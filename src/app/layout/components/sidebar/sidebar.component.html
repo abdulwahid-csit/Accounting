@@ -1,0 +1,67 @@
+<div class="sidebar-main d-flex flex-column justify-content-between pb-3" [class.close_sidebar]="isSidebarVisible">
+    <div class="sidbar-logo-navigations">
+        <div class="logo mt-1">
+            <img class="ms-4" src="../../../../assets/logos/logoiis.svg" alt="">
+        </div>
+        <div class="navigations">
+            <!-- <div class="fs-12px ms-3 semi-bold-font menu-text mt-2">MENU</div> -->
+            <ul class="pt-2">
+                <li  [ngClass]="{'active': activeMenu === 'dashboard'}" (click)="setActive('dashboard')" class="d-flex align-items-center sidebar_svg" routerLink="dashboard"><span
+                        class="d-flex align-items-center sidebar_svg home"></span><a>Dashboard</a></li>
+
+                <li [ngClass]="{'active': activeMenu === 'banking'}" (click)="setActive('banking')" class="d-flex align-items-center sidebar_svg" routerLink="banking" routerLinkActive="active" >
+                    <span class="d-flex align-items-center sidebar_svg Icon"></span><a>Banking</a>
+                </li>
+
+                <li  [ngClass]="{'active': activeMenu === 'transaction'}" (click)="setActive('transaction')" class="d-flex align-items-center sidebar_svg" routerLink="transaction" >
+                    <span class="d-flex align-items-center sidebar_svg check-verified"></span><a>Transactions</a>
+                </li>
+
+                <li  [ngClass]="{'active': activeMenu === 'bills'}" (click)="setActive('bills')" class="d-flex align-items-center sidebar_svg" routerLink="bills" >
+                    <span class="d-flex align-items-center sidebar_svg monitor"></span><a>Bills</a>
+                </li>
+
+                <li  [ngClass]="{'active': activeMenu === 'checks'}" (click)="setActive('checks')" class="d-flex align-items-center sidebar_svg" routerLink="checks" ><span
+                        class="d-flex align-items-center sidebar_svg iconone"></span><a>Checks</a></li>
+
+                <li  [ngClass]="{'active': activeMenu === 'convert'}" (click)="setActive('convert')" class="d-flex align-items-center sidebar_svg" routerLink="convert" >
+                    <span class="d-flex align-items-center sidebar_svg users "></span><a>Convert</a>
+                </li>
+                <li  [ngClass]="{'active': activeMenu === 'charts-of-account'}" (click)="setActive('charts-of-account')" class="d-flex align-items-center sidebar_svg" routerLink="charts-of-account"
+                    >
+                    <span class="d-flex align-items-center sidebar_svg users "></span><a>Chart of Accounts</a>
+                </li>
+                <li  [ngClass]="{'active': activeMenu === 'reconcile'}" (click)="setActive('reconcile')" class="d-flex align-items-center sidebar_svg" routerLink="reconcile" >
+                    <span class="d-flex align-items-center sidebar_svg users "></span><a>Reconcile</a>
+                </li>
+                <li  [ngClass]="{'active': activeMenu === 'budget'}" (click)="setActive('budget')" class="d-flex align-items-center sidebar_svg" routerLink="budget" >
+                    <span class="d-flex align-items-center sidebar_svg users "></span><a>Budget</a>
+                </li>
+                <li  [ngClass]="{'active': activeMenu === 'reports'}" (click)="setActive('reports')" class="d-flex align-items-center sidebar_svg" routerLink="reports" >
+                    <span class="d-flex align-items-center sidebar_svg users "></span><a>Reports</a>
+                </li>
+                <li  [ngClass]="{'active': activeMenu === 'setting'}" (click)="setActive('setting')" class="d-flex align-items-center sidebar_svg" routerLink="setting" >
+                    <span class="d-flex align-items-center sidebar_svg users "></span><a>Settings</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="logout-section-main-div">
+        <div class="logout-section">
+            <!-- <hr class="text-white"> -->
+            <div class="text-white d-flex justify-content-between">
+                <div class="d-flex">
+                    <div class="user-img">
+                        <img class="rounded-circle" [src]="" alt="Profile Picture">
+                    </div>
+                    <div class="ms-2">
+                        <div class="fs-14px fw-700">Username</div>
+                        <div class="role fs-12px">Role</div>
+                    </div>
+                </div>
+                <div class="me-4 mt-2" (click)="logout()"><span class="cursor-pointer logout-icon"></span></div>
+            </div>
+        </div>
+    </div>
+</div>
