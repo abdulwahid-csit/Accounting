@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
 
     this.commonService.sidebarVisible$.subscribe((visible)=>{
       this.isSidebarVisible = visible;
-      console.log("Is sidebar visible: ", this.isSidebarVisible)
+      console.log("Is sidebar visible updated: ", this.isSidebarVisible)
     })
 
     this.router.events.pipe(
