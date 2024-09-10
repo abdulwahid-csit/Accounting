@@ -1,1 +1,123 @@
-<p>Dashboard works!</p>
+<div class="wrapper">
+    <main id="content">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="fw-bold">Dashboard</h2>
+                <button class="btn border">
+                    <i class="fas fa-filter"></i> Last 30 days
+                </button>
+            </div>
+
+            <div class="row">
+                <!-- Left Panel: Bank Accounts and Charts -->
+                <div class="col-md-6 mb-3">
+                    <div class="row">
+                        <!-- Bank Accounts -->
+                        <div class="col-md-12 mb-3">
+                            <div class="card">
+                                <app-bank-account-list style="height: 39rem;"></app-bank-account-list>
+                            </div>
+                        </div>
+
+                        <!-- Profit and Loss -->
+                        <div class="col-md-6 mb-3">
+                            <div class="card equal-height">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">Profit and Loss</h5>
+                                    <canvas id="profitLossChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Income -->
+                        <div class="col-md-6 mb-3">
+                            <div class="card equal-height">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">Income</h5>
+                                    <canvas id="incomeChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Dashboard and Graphs -->
+                <div class="col-md-6 mb-3">
+                    <div class="row">
+                        <!-- Transactions and Filters -->
+                        <div class="col-md-12">
+                            <div class="card">
+                                <app-transactions-list style="height: 25rem;"></app-transactions-list>
+                                <div class="d-flex justify-content-center p-5 pb-0 mb-3 bg-white">
+                                    <div style="text-align: center;">
+                                        <h5 class="card-title fw-bold">Expense Account Overview</h5>
+                                        <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="pieData"
+                                            [labels]="showLabels" [doughnut]="false" [legend]="true"
+                                            [animations]="true">
+                                        </ngx-charts-pie-chart>
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <div class="card-body">
+                                        <!-- Tabs -->
+                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                            <li *ngFor="let tab of tabs" class="nav-item" role="presentation">
+                                                <a class="nav-link" [class.active]="tab.id === 'brl'"
+                                                    id="{{ tab.id }}-tab" data-bs-toggle="tab" [href]="'#' + tab.id"
+                                                    role="tab" [attr.aria-controls]="tab.id"
+                                                    [attr.aria-selected]="tab.id === 'brl'">{{ tab.label }}</a>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Tab Content -->
+                                        <div class="tab-content" id="myTabContent">
+                                            <!-- <div *ngFor="let tab of tabs" class="tab-pane fade" [class.show]="tab.id === 'brl'" [class.active]="tab.id === 'brl'" id="{{ tab.id }}" role="tabpanel" [attr.aria-labelledby]="tab.id + '-tab'">
+                                            <div class="table-wrapper mt-2">
+                                              <table class="table table-striped">
+                                                <thead>
+                                                  <tr>
+                                                    <th scope="col">Transactions</th>
+                                                    <th scope="col">Qty</th>
+                                                    <th scope="col">Amount</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr *ngFor="let item of tab.data">
+                                                    <td>{{ item.transaction }}</td>
+                                                    <td>{{ item.qty }}</td>
+                                                    <td>{{ item.amount }}</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </div> -->
+                                          <div class="container">
+                                            <ngx-charts-line-chart
+                                              [results]="data"
+                                              [xAxis]="true"
+                                              [yAxis]="true"
+                                              [scheme]="colorSchemeSingl"
+                                              [showGridLines]="false"
+                                              [showXAxisLabel]="true"
+                                              [showYAxisLabel]="true"
+                                              [xAxisLabel]="'Month'"
+                                              [yAxisLabel]="'Value'">
+                                            </ngx-charts-line-chart>
+                                          </div>
+                                          
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
