@@ -1,0 +1,31 @@
+/* Ensure all columns are the same height */
+.row {
+    display: flex;
+  }
+  
+  /* Flexbox for equal height cards */
+  .card-equal-height {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card-equal-height {
+    display: flex;
+    flex-direction: column;
+  }
+  .card-body {
+    flex: 1 1 auto;
+  }
+
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .equal-height {
+      height: auto !important;
+    }
+    .card-body {
+      overflow: auto; 
+    }
+  }
+  
+
