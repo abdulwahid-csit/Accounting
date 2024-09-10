@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
-import { CrudService } from 'src/app/shared/services/crud.service';
-import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +6,8 @@ import { LocalStoreService } from 'src/app/shared/services/local-store.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+
+  tabId = 'brl';
 
   tabs = [
     {
@@ -101,94 +100,136 @@ export class DashboardComponent {
   };
 
   data = [
-  {
-    "name": "green",
-    "series": [
-      {
-        "name": "Aug",
-        "value": 14
-      },
-      {
-        "name": "Sep",
-        "value": 35
-      },
-      {
-        "name": "Oct",
-        "value": 4
-      },
-      {
-        "name": "Nov",
-        "value": 17
-      },
-      {
-        "name": "Dec",
-        "value": 14
-      },
-      {
-        "name": "Jan",
-        "value": 35
-      }
-    ]
-  },
+    {
+      "name": "green",
+      "series": [
+        {
+          "name": "Aug",
+          "value": 14
+        },
+        {
+          "name": "Sep",
+          "value": 35
+        },
+        {
+          "name": "Oct",
+          "value": 4
+        },
+        {
+          "name": "Nov",
+          "value": 17
+        },
+        {
+          "name": "Dec",
+          "value": 14
+        },
+        {
+          "name": "Jan",
+          "value": 35
+        }
+      ]
+    },
 
-  {
-    "name": "yellow",
-    "series": [
-      {
-        "name": "Aug",
-        "value": 364
-      },
-      {
-        "name": "Sep",
-        "value": 412
-      },
-      {
-        "name": "Oct",
-        "value": 437
-      },
-      {
-        "name": "Nov",
-        "value": 437
-      },
-      {
-        "name": "Dec",
-        "value": 364
-      },
-      {
-        "name": "Jan",
-        "value": 412
-      }
-    ]
-  },
-  {
-    "name": "red",
-    "series": [
-      {
-        "name": "Aug",
-        "value": 168
-      },
-      {
-        "name": "Sep",
-        "value": 343
-      },
-      {
-        "name": "Oct",
-        "value": 512
-      },
-      {
-        "name": "Nov",
-        "value": 291
-      },
-      {
-        "name": "Dec",
-        "value": 168
-      },
-      {
-        "name": "Jan",
-        "value": 343
-      },
-    ]
+    {
+      "name": "yellow",
+      "series": [
+        {
+          "name": "Aug",
+          "value": 364
+        },
+        {
+          "name": "Sep",
+          "value": 412
+        },
+        {
+          "name": "Oct",
+          "value": 437
+        },
+        {
+          "name": "Nov",
+          "value": 4437
+        },
+        {
+          "name": "Dec",
+          "value": 364
+        },
+        {
+          "name": "Jan",
+          "value": 412
+        }
+      ]
+    },
+    {
+      "name": "red",
+      "series": [
+        {
+          "name": "Aug",
+          "value": 168
+        },
+        {
+          "name": "Sep",
+          "value": 343
+        },
+        {
+          "name": "Oct",
+          "value": 512
+        },
+        {
+          "name": "Nov",
+          "value": 491
+        },
+        {
+          "name": "Dec",
+          "value": 168
+        },
+        {
+          "name": "Jan",
+          "value": 343
+        },
+      ]
+    }
+  ]
+  horizontalLines = [
+    { position: 50 }, // Adjust position values as needed
+    { position: 100 }
+  ];
+
+
+
+
+  //Profit and loss
+
+  dataProfit = [
+    {
+      "name": "Category A",
+      "value": 30
+    },
+    {
+      "name": "Category B",
+      "value": 80
+    },
+    {
+      "name": "Category C",
+      "value": 45
+    },
+    {
+      "name": "Category D",
+      "value": 60
+    }
+  ];
+
+  colorSchemeProfit: any = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+
+
+
+
+
+
+  changeTab(tabId: string){
+this.tabId = tabId;
   }
-]
 
 }
+

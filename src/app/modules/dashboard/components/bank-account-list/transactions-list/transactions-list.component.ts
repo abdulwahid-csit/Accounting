@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transactions-list.component.scss']
 })
 export class TransactionsListComponent implements OnInit {
+
+  tabId = 'brl';
   tabs = [
     {
       id: 'brl', label: 'BRL(R$)', currency: 'R$', data: [
@@ -64,5 +66,9 @@ export class TransactionsListComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  changeTab(tabId: string){
+    this.tabId = tabId;
+      }
 
 }

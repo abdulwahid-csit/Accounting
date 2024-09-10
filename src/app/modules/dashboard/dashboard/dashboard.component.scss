@@ -4,18 +4,33 @@
   }
   
   /* Flexbox for equal height cards */
-  .card-equal-height {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
+//   .card-equal-height {
+//     display: flex;
+//     flex-direction: column;
+//     height: 100%;
+//   }
   
-  .card-equal-height {
-    display: flex;
-    flex-direction: column;
-  }
-  .card-body {
-    flex: 1 1 auto;
+//   .card-equal-height {
+//     display: flex;
+//     flex-direction: column;
+//   }
+//   .card-body {
+//     flex: 1 1 auto;
+//   }
+
+.card{
+    border-radius: 0 !important;
+}
+
+.nav-link{
+    color: black !important;
+    border: none !important;
+    cursor: pointer;
+}
+  .active{
+    border: none !important;
+    border-bottom: 3px solid #4c7cfd !important;
+    color: #4c7cfd !important;
   }
 
   /* Media Queries */
@@ -27,5 +42,45 @@
       overflow: auto; 
     }
   }
+
+
+  
+  ::ng-deep ngx-charts-line-chart .line {
+    stroke-width: 2px; /* Adjust line thickness */
+  }
+  
+  ::ng-deep ngx-charts-line-chart .circle {
+    stroke-width: 1px; /* Adjust point border thickness */
+    stroke: #000; /* Adjust point border color */
+  }
+
+  .chart-container {
+    width: 100%;
+    height: 400px; /* Adjust as needed */
+  }
+  
+  /* Hide horizontal grid lines */
+  ::ng-deep .custom-bar-chart .grid-line-horizontal {
+    display: none !important;
+  }
+
+
+
+  .chart-container {
+    width: 100%;
+    height: 400px; /* Adjust height as needed */
+  }
+  
+  /* Hide bars but keep vertical grid lines */
+  .custom-bar-chart .bar {
+    display: none;
+  }
+  
+  /* Ensure vertical grid lines are visible */
+  .custom-bar-chart .grid-line {
+    stroke: #ccc; /* Line color */
+    stroke-width: 1px; /* Line thickness */
+  }
+  
   
 
