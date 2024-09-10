@@ -1,15 +1,11 @@
-import { Component } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
-import { CrudService } from 'src/app/shared/services/crud.service';
-import { LocalStoreService } from 'src/app/shared/services/local-store.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-transactions-list',
+  templateUrl: './transactions-list.component.html',
+  styleUrls: ['./transactions-list.component.scss']
 })
-export class DashboardComponent {
-
+export class TransactionsListComponent implements OnInit {
   tabs = [
     {
       id: 'brl', label: 'BRL(R$)', currency: 'R$', data: [
@@ -64,131 +60,9 @@ export class DashboardComponent {
     }
   ];
 
+  constructor() { }
 
-  pieData = [
-    {
-      "name": "Sales",
-      "value": 9322400
-    },
-    {
-      "name": "Expenses",
-      "value": 932240
-    },
-    {
-      "name": "Profit",
-      "value": 932240
-    },
-    {
-      "name": "Loss",
-      "value": 932240
-    }
-  ];
-
-  // View size (Optional)
-  view: [number, number] = [400, 400];
-
-  // Color scheme
-  colorScheme: any = {
-    domain: ['#7CB5EC', '#dc3545', '#28a745', '#111111']
-  };
-
-  // Labels visibility
-  showLabels = false;
-
-
-  colorSchemeSingl: any = {
-    domain: ['#08DDC1', '#FFDC1B', '#FF5E3A']
-  };
-
-  data = [
-  {
-    "name": "green",
-    "series": [
-      {
-        "name": "Aug",
-        "value": 14
-      },
-      {
-        "name": "Sep",
-        "value": 35
-      },
-      {
-        "name": "Oct",
-        "value": 4
-      },
-      {
-        "name": "Nov",
-        "value": 17
-      },
-      {
-        "name": "Dec",
-        "value": 14
-      },
-      {
-        "name": "Jan",
-        "value": 35
-      }
-    ]
-  },
-
-  {
-    "name": "yellow",
-    "series": [
-      {
-        "name": "Aug",
-        "value": 364
-      },
-      {
-        "name": "Sep",
-        "value": 412
-      },
-      {
-        "name": "Oct",
-        "value": 437
-      },
-      {
-        "name": "Nov",
-        "value": 437
-      },
-      {
-        "name": "Dec",
-        "value": 364
-      },
-      {
-        "name": "Jan",
-        "value": 412
-      }
-    ]
-  },
-  {
-    "name": "red",
-    "series": [
-      {
-        "name": "Aug",
-        "value": 168
-      },
-      {
-        "name": "Sep",
-        "value": 343
-      },
-      {
-        "name": "Oct",
-        "value": 512
-      },
-      {
-        "name": "Nov",
-        "value": 291
-      },
-      {
-        "name": "Dec",
-        "value": 168
-      },
-      {
-        "name": "Jan",
-        "value": 343
-      },
-    ]
+  ngOnInit() {
   }
-]
 
 }
