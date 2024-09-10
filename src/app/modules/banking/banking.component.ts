@@ -12,4 +12,14 @@ export class BankingComponent implements OnInit {
   ngOnInit() {
   }
 
+  selectedView: string = 'bankAccounts';
+
+  showBankAccounts() {
+    this.selectedView = 'bankAccounts';
+  }
+
+  showBankFeeds() {
+    this.selectedView = 'bankFeeds';
+  }
+
 }

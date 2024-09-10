@@ -1,0 +1,15 @@
+.common_box{
+  padding: 24px;
+}
+.table{
+  thead{
+      th{
+          border: 1px solid #ccc;
+          background-color: #F8FAFC;
+      }
+  }
+}
+.large-icon {
+font-size: 20px;
+font-weight: 600;
+}
