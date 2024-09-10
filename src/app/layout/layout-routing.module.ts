@@ -1,3 +1,4 @@
+import { RegistersModule } from './../modules/registers/registers.module';
 import { ChecksModule } from './../modules/checks/checks.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -73,6 +74,11 @@ const routes: Routes = [
       {
         path: 'setting',
         loadChildren: () => import('../modules/setting/setting.module').then(m => m.SettingModule),
+
+      },
+      {
+        path: 'register',
+        loadChildren: () => import('../modules/registers/registers.module').then(m => m.RegistersModule),
 
       },
     ]
