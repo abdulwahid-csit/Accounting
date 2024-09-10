@@ -50,8 +50,11 @@ body {
     color: #ffffff;
 }
 
+
+//********************** Main Buttons *****************************
+
 .primary_button {
-    background-color: #6F61CF;
+    background-color: #0284C7;
     color: white;
     padding: 10px 24px;
     border: none;
@@ -61,6 +64,41 @@ body {
     transition: background-color 0.2s ease-in-out;
     font-weight: 600;
 }
+
+
+.export_button {
+    .button {
+        height: 45px;
+        outline: none;
+        font-family: "Quicksand", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.4s ease;
+    }
+
+    .button:hover {
+        background: #cecfcf !important;
+    }
+
+    .button:active {
+        background: #fff;
+    }
+
+    .button__text,
+    .button__icon {
+        display: inline-flex;
+        align-items: center;
+        padding: 0 24px;
+        color: #111;
+        height: 100%;
+    }
+}
+
+
+
+
+// ********************* Main Buttons End ***************************
 
 .sso_card {
     --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1) !important;
