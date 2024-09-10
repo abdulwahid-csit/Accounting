@@ -10,7 +10,7 @@ import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 })
 export class SidebarComponent implements OnInit {
   isSidebarVisible = false;
-  activeMenu: string = 'dashboard';
+  activeMenu: string = '';
 
   constructor(
     private commonService:CommonService, 
@@ -23,11 +23,6 @@ export class SidebarComponent implements OnInit {
       this.isSidebarVisible = visible;
     });
   }
-
-  setActive(menu: string): void {
-    this.activeMenu = menu;
-  }
-
 
   logout() {
     this.router.navigate(['/login'])
