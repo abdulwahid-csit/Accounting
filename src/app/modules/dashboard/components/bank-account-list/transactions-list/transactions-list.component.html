@@ -1,0 +1,32 @@
+<div class="card-body">
+  <!-- Tabs -->
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li *ngFor="let tab of tabs" class="nav-item" role="presentation">
+      <a class="nav-link" [class.active]="tab.id === 'brl'" id="{{ tab.id }}-tab" data-bs-toggle="tab" [href]="'#' + tab.id" role="tab" [attr.aria-controls]="tab.id" [attr.aria-selected]="tab.id === 'brl'">{{ tab.label }}</a>
+    </li>
+  </ul>
+
+  <!-- Tab Content -->
+  <div class="tab-content" id="myTabContent">
+    <div *ngFor="let tab of tabs" class="tab-pane fade" [class.show]="tab.id === 'brl'" [class.active]="tab.id === 'brl'" id="{{ tab.id }}" role="tabpanel" [attr.aria-labelledby]="tab.id + '-tab'">
+      <div class="table-wrapper mt-2">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Transactions</th>
+              <th scope="col">Qty</th>
+              <th scope="col">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of tab.data">
+              <td>{{ item.transaction }}</td>
+              <td>{{ item.qty }}</td>
+              <td>{{ item.amount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
