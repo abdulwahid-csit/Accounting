@@ -13,6 +13,7 @@ export class DataTableComponent implements OnInit {
   @Input() dataSet: any[] = [];
   @Input() searchTerm: string = '';
 
+
   filterData: any[] = [];
   startItem: number = 0;
   endItem: number = 0;
@@ -139,4 +140,11 @@ export class DataTableComponent implements OnInit {
     this.changePage.emit(item);
     this.updatePaginationRange();
   }
+  // toggleSelectAll(event: any): void {
+  //   if (event.target.checked) {
+  //     this.selectedItems = [...this.applicationList];
+  //   } else {
+  //     this.selectedItems = [];
+  //   }
+  // }
 }

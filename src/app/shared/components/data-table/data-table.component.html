@@ -2,8 +2,13 @@
   <table class="table table-hover mb-0">
     <thead>
       <tr>
-        <th class="align-content-center" *ngFor="let column of getUpdatedColumns()">
-          {{ column }}
+        <th *ngFor="let column of columns">
+          <ng-container *ngIf="column.isCheckbox">
+            <input type="checkbox" />
+          </ng-container>
+          <ng-container *ngIf="!column.isCheckbox">
+            {{ column.name }}
+          </ng-container>
         </th>
       </tr>
     </thead>
@@ -41,9 +46,9 @@
       </p>
     </div>
     <div>
-      <app-pagination 
-        [totalPages]="config.paginationParams.total_pages" 
-        [currentPage]="config.paginationParams.current_page" 
+      <app-pagination
+        [totalPages]="config.paginationParams.total_pages"
+        [currentPage]="config.paginationParams.current_page"
         (currentPageChange)="onPageChange($event)">
       </app-pagination>
     </div>
