@@ -5,13 +5,15 @@ import { RouterModule } from '@angular/router';
 import { RegistersRoutes } from './registers.routing';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
     RegistersRoutes,
     NgSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [RegistersComponent],
   exports: [

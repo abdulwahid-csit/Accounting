@@ -11,8 +11,7 @@
         [multiple]="true"
         [groupBy]="'category'"
         placeholder="None selected"
-        [closeOnSelect]="false"
-      >
+        [closeOnSelect]="false">
         <ng-template ng-option-tmp let-item="item">
           <div class="custom-option">
             <i class="fas fa-check custom-icon" *ngIf="selectedAccounts.includes(item.id)"></i>
@@ -43,8 +42,7 @@
           [multiple]="true"
           [groupBy]="'category'"
           placeholder="None selected"
-          [closeOnSelect]="false"
-        >
+          [closeOnSelect]="false">
           <ng-template ng-option-tmp let-item="item">
             <div class="custom-option">
               <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
@@ -66,7 +64,7 @@
 
     <div class="col-md-3">
       <div class="mb-3">
-        <label for="statusSelect" class="form-label">Sub Account</label>
+        <label for="statusSelect" class="form-label">Type</label>
         <ng-select
           [items]="subAccounts"
           bindLabel="name"
@@ -75,8 +73,8 @@
           [multiple]="true"
           [groupBy]="'category'"
           placeholder="None selected"
-          [closeOnSelect]="false"
-        >
+          [closeOnSelect]="false">
+
           <ng-template ng-option-tmp let-item="item">
             <div class="custom-option">
               <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
@@ -98,7 +96,7 @@
 
     <div class="col-md-3">
       <div class="mb-3">
-        <label for="statusSelect" class="form-label">Sub Account</label>
+        <label for="statusSelect" class="form-label">Detail Type</label>
         <ng-select
           [items]="subAccounts"
           bindLabel="name"
@@ -107,8 +105,8 @@
           [multiple]="true"
           [groupBy]="'category'"
           placeholder="None selected"
-          [closeOnSelect]="false"
-        >
+          [closeOnSelect]="false">
+
           <ng-template ng-option-tmp let-item="item">
             <div class="custom-option">
               <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
@@ -127,9 +125,7 @@
         </ng-select>
       </div>
     </div>
-
-
-  </div>
+</div>
 
   <div class="row">
     <div class="col-md-3">
@@ -145,4 +141,6 @@
       </div>
     </div>
   </div>
+
+  <app-data-table></app-data-table>
 </div>
