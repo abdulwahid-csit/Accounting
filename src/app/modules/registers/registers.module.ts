@@ -6,6 +6,7 @@ import { RegistersRoutes } from './registers.routing';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 @NgModule({
   imports: [
     CommonModule,
@@ -13,7 +14,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    BsDatepickerModule,
+  
   ],
   declarations: [RegistersComponent],
   exports: [
