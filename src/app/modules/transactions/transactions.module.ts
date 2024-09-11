@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TransactionsComponent } from './transactions.component';
 import { TransactionsRoutes } from './transactions.routing';
 import { RouterModule } from '@angular/router';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
   imports: [
     CommonModule,
     TransactionsRoutes
   ],
-  declarations: [TransactionsComponent],
+  declarations: [ListComponent],
   exports: [
     RouterModule
   ]
