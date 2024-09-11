@@ -26,6 +26,7 @@ export class RegistersComponent implements OnInit {
   openDatepicker() {
     this.datepicker?.show();
   }
+  
   accounts = [
     { id: 1, name: 'BIM', category: 'Bank' },
     { id: 2, name: 'FNB - Bilhetes', category: 'Bank' },
