@@ -42,26 +42,9 @@ span.input-group-text {
 
 }
 
-// .theme-green .bs-datepicker-head{
-//     background-color: transparent !important;
-//     }
-  
-    .theme-green .bs-datepicker-head {
-        background-color: transparent !important;
-    }
   
     ::ng-deep .customClass{
-        // .theme-green{
-        //     .bs-datepicker-head{
-        //         background-color: transparent !important;
-        //         button.current{
-        //             color: black !important;
-        //         }
-        //         button.previous{
-        //             color: black !important;
-        //         }
-        //     }
-        // } 
+ 
         .bs-datepicker-head{
             background-color: transparent !important;
             button.current{
@@ -71,4 +54,9 @@ span.input-group-text {
                 color: black !important;
             }
         }
+    }
+
+
+    ::ng-deep .ng-select-focused{
+        border: 1px solid #86b7fe;
     }
