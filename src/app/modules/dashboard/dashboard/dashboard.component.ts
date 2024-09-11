@@ -84,7 +84,7 @@ export class DashboardComponent {
   ];
 
   // View size (Optional)
-  view: [number, number] = [400, 400];
+  view: [number, number] = [700, 400];
 
   // Color scheme
   colorScheme: any = {
@@ -222,14 +222,122 @@ export class DashboardComponent {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
+//Cash Flow Data
+
+  cashFlowData = [
+    {
+      "name": "Sales",
+      "series": [
+        { "name": "2023-07-01", "value": 1500000 },
+        { "name": "2023-07-15", "value": 0 },
+        { "name": "2023-08-01", "value": 932240 },
+        { "name": "2023-08-15", "value": 0 }
+      ]
+    },
+    {
+      "name": "Expenses",
+      "series": [
+        { "name": "2023-07-01", "value": 500000 },
+        { "name": "2023-07-15", "value": 0 },
+        { "name": "2023-08-01", "value": 932240 },
+        { "name": "2023-08-15", "value": 98989 },
+        { "name": "2023-07-01", "value": 500000 },
+        { "name": "2023-07-15", "value": 0 },
+        { "name": "2024-08-01", "value": 932240 },
+        { "name": "2024-08-15", "value": 500000 },
+        { "name": "2024-07-01", "value": 500000 },
+        { "name": "2024-07-15", "value": 0 },
+        { "name": "2024-08-01", "value": 7676 },
+        { "name": "2024-08-15", "value": 500000 }
+      ]
+    }
+  ];
+
+  colorSchemeCashflow: any = {
+    domain: ['#7CB5EC', '#dc3545'] // Custom colors for each line
+  };
+
+  // Chart options
+  showLegend = true;
+  showXAxis = true;
+  showYAxis = true;
+  showGridLines = true;
+  xAxisLabel = 'Date';
+  yAxisLabel = 'Amount';
 
 
 
-
-
-  changeTab(tabId: string){
-this.tabId = tabId;
+  changeTab(tabId: string) {
+    this.tabId = tabId;
   }
 
+
+  // view: [number, number] = [700, 400];
+  
+  // Data for the bar chart
+  profitLossData = [
+    {
+      "name": "Income",
+      "value": 93298
+    },
+    {
+      "name": "Expenses",
+      "value": 3294289.68
+    },
+    {
+      "name": "Net Income",
+      "value": -3201291.68
+    }
+  ];
+
+  // Color scheme for different categories
+  colorSchemeProfitAndLoss:any = {
+    domain: ['#28a745', '#343a40', '#007bff'] // Custom colors for Income (green), Expenses (gray), Net Income (blue)
+  };
+
+  // Options for axis and grid
+  showXAxisProfitandLoss = true;
+  showYAxisProfitAndLoss = true;
+  showGridLinesProfitAndLoss = false;
+  barPaddingProfitAndLoss = 100;
+  xAxisLabelProfitAndLoss = 'BRL';
+  yAxisLabelProfitAndLoss = '';
+  showLegendProfitAndLoss = false;
+
+
+
+
+  incomeData = [
+    {
+      "name": "Income",
+      "series": [
+        {
+          "name": "Open Invoice",
+          "value": 360480
+        },
+        {
+          "name": "Overdue Invoices",
+          "value": 0
+        },
+        {
+          "name": "Paid last 30 days",
+          "value": 3435900.90
+        },
+        {
+          "name": "Has been mapped",
+          "value": 92898
+        }
+      ]
+    }
+  ];
+
+  // Custom color scheme for different categories
+  colorSchemeIncome:any = {
+    domain: ['#6c757d', '#dc3545', '#28a745', '#007bff'] // Gray, Red, Green, Blue
+  };
+
+
 }
+
+
 

@@ -10,7 +10,7 @@ import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 })
 export class SidebarComponent implements OnInit {
   isSidebarVisible = false;
-  activeMenu: string = '';
+  activeMenu: string | null = null;
 
   constructor(
     private commonService:CommonService, 
@@ -22,6 +22,12 @@ export class SidebarComponent implements OnInit {
     this.commonService.sidebarVisible$.subscribe(visible => {
       this.isSidebarVisible = visible;
     });
+  }
+
+
+  // Method to toggle sub-menu
+  toggleMenu(menu: string) {
+    this.activeMenu = this.activeMenu === menu ? null : menu;
   }
 
   logout() {
