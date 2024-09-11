@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
-import { CrudService } from 'src/app/shared/services/crud.service';
-import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,52 +7,229 @@ import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 })
 export class DashboardComponent {
 
-  userName: string = '';
+  tabId = 'brl';
 
-  columns: any = []
-  overViewList: any = []
-  dataTable: any = []
-  tableConfig = {
-    paginationParams: {
-      "total_pages": 1,
-      "payload_size": 0,
-      "has_next": false,
-      "current_page": 1,
-      "skipped_records": 0,
-      "total_records": 0
+  tabs = [
+    {
+      id: 'brl', label: 'BRL(R$)', currency: 'R$', data: [
+        { transaction: 'Invoice', qty: 145, amount: 'R$3,859,404.50' },
+        { transaction: 'Payment', qty: 85, amount: 'R$2,619,461.47' },
+        { transaction: 'Invoice', qty: 145, amount: 'R$3,859,404.50' },
+        { transaction: 'Payment', qty: 85, amount: 'R$2,619,461.47' },
+        { transaction: 'Invoice', qty: 145, amount: 'R$3,859,404.50' },
+        { transaction: 'Payment', qty: 85, amount: 'R$2,619,461.47' },
+        { transaction: 'Invoice', qty: 145, amount: 'R$3,859,404.50' },
+        { transaction: 'Payment', qty: 85, amount: 'R$2,619,461.47' },
+        { transaction: 'Payment', qty: 85, amount: 'R$2,619,461.47' },
+        { transaction: 'Payment', qty: 85, amount: 'R$2,619,461.47' },
+
+        { transaction: 'Expense of', qty: 18, amount: 'R$857,619' }
+      ]
+    },
+    {
+      id: 'xaf', label: 'XAF(FCFA)', currency: 'FCFA', data: [
+        { transaction: 'Invoice', qty: 145, amount: 'FCFA3,859,404.50' },
+        { transaction: 'Payment', qty: 85, amount: 'FCFA2,619,461.47' },
+        { transaction: 'Expense of', qty: 18, amount: 'FCFA857,619' }
+      ]
+    },
+    {
+      id: 'qar', label: 'QAR(QAR)', currency: 'QAR', data: [
+        { transaction: 'Invoice', qty: 145, amount: 'QAR3,859,404.50' },
+        { transaction: 'Payment', qty: 85, amount: 'QAR2,619,461.47' },
+        { transaction: 'Expense of', qty: 18, amount: 'QAR857,619' }
+      ]
+    },
+    {
+      id: 'inr', label: 'INR(₹)', currency: '₹', data: [
+        { transaction: 'Invoice', qty: 145, amount: '₹3,859,404.50' },
+        { transaction: 'Payment', qty: 85, amount: '₹2,619,461.47' },
+        { transaction: 'Expense of', qty: 18, amount: '₹857,619' }
+      ]
+    },
+    {
+      id: 'usd', label: 'USD($)', currency: '$', data: [
+        { transaction: 'Invoice', qty: 145, amount: '$3,859,404.50' },
+        { transaction: 'Payment', qty: 85, amount: '$2,619,461.47' },
+        { transaction: 'Expense of', qty: 18, amount: '$857,619' }
+      ]
+    },
+    {
+      id: 'sar', label: 'SAR(SAR)', currency: 'SAR', data: [
+        { transaction: 'Invoice', qty: 145, amount: 'SAR3,859,404.50' },
+        { transaction: 'Payment', qty: 85, amount: 'SAR2,619,461.47' },
+        { transaction: 'Expense of', qty: 18, amount: 'SAR857,619' }
+      ]
     }
+  ];
+
+
+  pieData = [
+    {
+      "name": "Sales",
+      "value": 9322400
+    },
+    {
+      "name": "Expenses",
+      "value": 932240
+    },
+    {
+      "name": "Profit",
+      "value": 932240
+    },
+    {
+      "name": "Loss",
+      "value": 932240
+    }
+  ];
+
+  // View size (Optional)
+  view: [number, number] = [400, 400];
+
+  // Color scheme
+  colorScheme: any = {
+    domain: ['#7CB5EC', '#dc3545', '#28a745', '#111111']
   };
 
-  constructor(
-    private localStoreService: LocalStoreService,
-    private crudService: CrudService
-  ) {}
+  // Labels visibility
+  showLabels = false;
 
-  ngOnInit(): void {
 
-    // this.userName = this.localStoreService.getUserName();
+  colorSchemeSingl: any = {
+    domain: ['#08DDC1', '#FFDC1B', '#FF5E3A']
+  };
 
-    // this.getOverview();
-    // this.getUserLogs();
+  data = [
+    {
+      "name": "green",
+      "series": [
+        {
+          "name": "Aug",
+          "value": 14
+        },
+        {
+          "name": "Sep",
+          "value": 35
+        },
+        {
+          "name": "Oct",
+          "value": 4
+        },
+        {
+          "name": "Nov",
+          "value": 17
+        },
+        {
+          "name": "Dec",
+          "value": 14
+        },
+        {
+          "name": "Jan",
+          "value": 35
+        }
+      ]
+    },
+
+    {
+      "name": "yellow",
+      "series": [
+        {
+          "name": "Aug",
+          "value": 364
+        },
+        {
+          "name": "Sep",
+          "value": 412
+        },
+        {
+          "name": "Oct",
+          "value": 437
+        },
+        {
+          "name": "Nov",
+          "value": 4437
+        },
+        {
+          "name": "Dec",
+          "value": 364
+        },
+        {
+          "name": "Jan",
+          "value": 412
+        }
+      ]
+    },
+    {
+      "name": "red",
+      "series": [
+        {
+          "name": "Aug",
+          "value": 168
+        },
+        {
+          "name": "Sep",
+          "value": 343
+        },
+        {
+          "name": "Oct",
+          "value": 512
+        },
+        {
+          "name": "Nov",
+          "value": 491
+        },
+        {
+          "name": "Dec",
+          "value": 168
+        },
+        {
+          "name": "Jan",
+          "value": 343
+        },
+      ]
+    }
+  ]
+  horizontalLines = [
+    { position: 50 }, // Adjust position values as needed
+    { position: 100 }
+  ];
+
+
+
+
+  //Profit and loss
+
+  dataProfit = [
+    {
+      "name": "Category A",
+      "value": 30
+    },
+    {
+      "name": "Category B",
+      "value": 80
+    },
+    {
+      "name": "Category C",
+      "value": 45
+    },
+    {
+      "name": "Category D",
+      "value": 60
+    }
+  ];
+
+  colorSchemeProfit: any = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+
+
+
+
+
+
+  changeTab(tabId: string){
+this.tabId = tabId;
   }
 
-  // getOverview(){
-  //   this.crudService.read('dashboard/overview').subscribe((response: any) => {
-  //     this.overViewList = response.data;
-  //   }, error => {
-  //     console.error('HTTP error:', error);
-  //   });
-  // }
-  
-  // getUserLogs(){
-  //   this.crudService.read('dashboard/user-logs').subscribe((response: any) => {
-  //     if (response.data.length > 0) {
-  //       const column = Object.keys(response.data[0]);
-  //       this.columns = column.filter((column: string) => column !== 'last_name');
-  //       this.dataTable = response.data;
-  //     }
-  //   }, error => {
-  //     console.error('HTTP error:', error);
-  //   });
-  // }
 }
+
