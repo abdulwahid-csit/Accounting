@@ -4,7 +4,7 @@
         <label for="accountsSelect" class="form-label">Accounts</label>
 
         <ng-select
-        [items]="accounts"
+        [items]="filteredAccounts"
         bindLabel="name"
         bindValue="id"
         [(ngModel)]="selectedAccounts"
@@ -21,7 +21,7 @@
         </ng-template>
         
         <ng-template ng-header-tmp>
-          <input type="text" class="form-control mt-2" placeholder="Search..." />
+          <input type="text" class="form-control mt-2" placeholder="Search..." [(ngModel)]="SearchItems" (ngModelChange)="filterAccounts()" />
           <hr class="p-0" />
           <div class="ng-select-header d-flex justify-content-center">
             <button type="button" class="btn btn-primary" (click)="selectAll()">Select All</button>
