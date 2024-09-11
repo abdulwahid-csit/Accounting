@@ -7,6 +7,8 @@ import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
   styleUrls: ['./registers.component.scss']
 })
 export class RegistersComponent implements OnInit {
+  SearchItems: string = '';
+
 
   bsConfig = {
     isAnimated: true
@@ -36,7 +38,7 @@ export class RegistersComponent implements OnInit {
     { id: 9, name: 'Travel expenses - selling', category: 'Expenses' },
   ];
 
-
+  filteredAccounts = [...this.accounts];
   subAccounts = [
     { id: 1, name: 'Accounts Receivable (A/R)', },
     { id: 2, name: 'Allowance for bad debts', },
@@ -64,5 +66,12 @@ export class RegistersComponent implements OnInit {
   }
   deselectAllSubAccounts() {
     this.selectedSubAccounts = [];
+  }
+  filterAccounts() {
+    const query = this.SearchItems.toLowerCase();
+    this.filteredAccounts = this.accounts.filter(account =>
+      account.name.toLowerCase().includes(query) ||
+      account.category.toLowerCase().includes(query)
+    );
   }
 }
