@@ -67,9 +67,21 @@
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="checks"><span
                         class="d-flex align-items-center sidebar_svg iconone"></span><a>Checks</a></li>
 
+                      
                 <li (click)="toggleMenu('journal')" [ngClass]="{'active': activeMenu === 'journal'}"
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="journal-entry"><span
-                        class="d-flex align-items-center sidebar_svg iconone"></span><a>Journal Entry</a></li>
+                        class="d-flex align-items-center sidebar_svg iconone"></span><a>Journal Entry</a>
+                        <span class="arrow-icon" [ngClass]="{'open': activeMenu === 'journal'}">
+                            &#9654; 
+                        </span>
+                    </li>
+                    <ul [ngClass]="activeMenu === 'journal' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"
+                        class="sub-menu">
+                        <li class="nav-item position-relative">
+                            <a routerLink="journal-entry/journal-voucher" routerLinkActive="sublink-active">Journal Voucher</a>
+                        </li>
+                        </ul>
+
 
                 <li (click)="toggleMenu('convert')" [ngClass]="{'active': activeMenu === 'convert'}"
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="convert">

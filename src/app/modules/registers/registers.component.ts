@@ -8,7 +8,20 @@ import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 })
 export class RegistersComponent implements OnInit {
   SearchItems: string = '';
+  selectedAccounts: number[] = [];
+  selectedSubAccounts: number[] = [];
+  applicationList: any[] = [];
 
+  columns = [
+    { name: 'Type', key: 'isChecked', isCheckbox: true },
+    { name: 'Type', key: 'Type', },
+
+    { name: 'Sub Type', key: 'Sub Type' },
+    { name: 'Account Code', key: 'Account Code' },
+    { name: 'Account Name', key: 'Account Name' },
+    { name: 'Sub Account', key: 'Sub Account' },
+    { name: 'Balance', key: 'Balance' }
+  ];
 
   bsConfig = {
     isAnimated: true
@@ -21,12 +34,93 @@ export class RegistersComponent implements OnInit {
   }
 
   ngOnInit() {
+    const response = {
+      "status_code": 200,
+      "message": "Paginated list with data and paginate options.",
+      "data": {
+        "payload": [
+          {
+            "id": 1,
+            "Type": "Accounts Receivable (A/R)",
+            "Sub Type": "Accounts Receivable (A/R)",
+            "Account Code": "Expense",
+            "Account Name": "Accounts Receivable (A/R)",
+            "Sub Account": 1200.50,
+            "Balance": 800.75,
+            "Active": true,
+            "Options": "Edit",
+            "Date": "2024-09-01",
+            "isChecked": false
+          },
+          {
+            "id": 2,
+            "Type": "Non-current liabilities",
+            "Sub Type": "Accrued holiday payable",
+            "Account Code": "Expensed",
+            "Account Name": "Traveled",
+            "Sub Account": 1200.50,
+            "Balance": 800.75,
+            "Active": true,
+            "Options": "Edit",
+            "Date": "2024-09-01",
+            "isChecked": false
+          },
+          {
+            "id": 3,
+            "Type": "Accrued liabilities",
+            "Sub Type": "PreSales",
+            "Account Code": "Expensed",
+            "Account Name": "Traveled",
+            "Sub Account": 1400.50,
+            "Balance": 1800.75,
+            "Active": true,
+            "Options": "Edit",
+            "Date": "2024-09-01",
+            "isChecked": false
+          },
+          {
+            "id": 4,
+            "Type": "Non-current liabilities",
+            "Sub Type": "Accrued non-current liabilities",
+            "Account Code": "Expensedive",
+            "Account Name": "Travelediner",
+            "Sub Account": 2200.50,
+            "Balance": 3400.75,
+            "Active": true,
+            "Options": "Edit",
+            "Date": "2024-09-01",
+            "isChecked": false
+          },
+
+        ],
+        "paginate_options": {
+          "total_pages": 1,
+          "payload_size": 10,
+          "has_next": false,
+          "current_page": 1,
+          "skipped_records": 0,
+          "total_records": 10
+        }
+      },
+      "timestamp": "2024-09-10T08:06:46.886Z"
+    };
+
+    if (response && response.data && response.data.payload) {
+      this.applicationList = response.data.payload;
+      this.tableConfig.paginationParams = response.data.paginate_options;
+      // this.total_pages = response.data.paginate_options.total_pages;
+      // this.payload_size = response.data.paginate_options.payload_size;
+      // this.current_page = response.data.paginate_options.current_page;
+      // this.has_next = response.data.paginate_options.has_next;
+      // this.skipped_records = response.data.paginate_options.skipped_records;
+      // this.total_records = response.data.paginate_options.total_records;
+    }
   }
 
   openDatepicker() {
     this.datepicker?.show();
   }
-  
+
   accounts = [
     { id: 1, name: 'BIM', category: 'Bank' },
     { id: 2, name: 'FNB - Bilhetes', category: 'Bank' },
@@ -52,9 +146,17 @@ export class RegistersComponent implements OnInit {
     { id: 9, name: 'Loans To Shareholders',  },
   ];
 
-  selectedAccounts: number[] = [];
-  selectedSubAccounts: number[] = [];
 
+  tableConfig = {
+    paginationParams: {
+      total_pages: 1,
+      payload_size: 10,
+      has_next: false,
+      current_page: 1,
+      skipped_records: 0,
+      total_records: 10
+    }
+  };
   
   selectAll() {
     this.selectedAccounts = this.accounts.map(account => account.id);
