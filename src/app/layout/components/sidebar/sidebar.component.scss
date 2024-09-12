@@ -17,6 +17,8 @@
         }
     }
     .navigations{
+        height: 78vh;
+        overflow-y: auto;
         ul{
             margin: 0;
             list-style: none;
@@ -138,37 +140,38 @@ li.active{
   /* Sub-menu container */
   .sub-menu {
     list-style: none;
-    padding-left: 20px; /* Indent sub-links */
-    max-height: 0; /* Start with hidden sub-menu */
+    padding-left: 20px; 
+    max-height: 0; 
     overflow: hidden;
-    transition: max-height 0.6s ease-out; /* Smooth slide effect */
+    transition: max-height 0.4s ease-in-out; 
+    li{
+        padding: 4px 12px 4px 30px !important;
+        a{
+            font-size: 14px !important;
+        }
+    }
   }
   
-  /* Open sub-menu */
   .sub-menu.sublink-open {
-    max-height: 500px; /* Set to a value that will accommodate all links */
+    max-height: 500px; 
   }
   
-  /* Arrow icon */
   .arrow-icon {
     margin-left: auto;
     transition: transform 0.5s ease;
   }
   
-  /* Rotated arrow icon when open */
   .arrow-icon.open {
-    transform: rotate(90deg); /* Rotate arrow when open */
+    transform: rotate(90deg); 
   }
   
-  /* Navigation item styling */
   .nav-item a {
     text-decoration: none;
     color: black;
     display: block;
-    padding: -10px 0; /* Add some padding for better spacing */
+    padding: -10px 0;
   }
   
-  /* Hover effect for navigation links */
   .sublink-active::before{
     content: ".";
     color: white;
@@ -176,9 +179,7 @@ li.active{
     position: absolute;
     color: #0284c7;
     font-size: 90px;
-    // xtop: 149px;
-    // left: 24p;
-    top: -74px;
-    left: -12px;
+    top: -82px;
+    left: 5px;
     
   }

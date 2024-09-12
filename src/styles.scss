@@ -186,8 +186,8 @@ body {
 
 
 .active-nav-tab {
-    border-bottom: 2px solid #6F61CF !important;
-    color: #6F61CF !important;
+    border-bottom: 2px solid #0284C7 !important;
+    color: #0284C7 !important;
     background-color: #f1f5f9 !important;
 }
 
@@ -203,8 +203,9 @@ body {
         font-weight: 600;
         letter-spacing: 0px;
     }
-    input{
+    input, input.form-control{
         height: 46px;
+        box-shadow: none !important;
     }
     textarea::placeholder{
         padding-top: 4px !important;
@@ -221,9 +222,9 @@ body {
     .custom-form-select:focus, textarea:focus, textarea:active {
         padding: 8px 16px;
         border: var(--bs-border-width) solid var(--bs-border-color);
-        border-color: #6f63bd !important;
+        border-color: #0284C7 !important;
         outline: 0;
-        box-shadow: 0 0 0 0.25rem rgba(111, 97, 207, 0.20) !important;
+        box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;
 
     }
 

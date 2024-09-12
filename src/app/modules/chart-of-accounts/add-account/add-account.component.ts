@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
-  selector: 'app-payslips',
-  templateUrl: './payslips.component.html',
-  styleUrls: ['./payslips.component.scss']
+  selector: 'app-add-account',
+  templateUrl: './add-account.component.html',
+  styleUrls: ['./add-account.component.scss']
 })
-export class PayslipsComponent implements OnInit {
+export class AddAccountComponent implements OnInit {
 
+
+  constructor(private modalService: BsModalService) { }
+
+  
   applicationForm!: FormGroup;
   isFocused: boolean = false;
   isInvoiceFocused = false;
   isPaymentmodeFocused = false;
   isStatusFocused = false;
 
-  constructor() { }
 
   ngOnInit() {
 
@@ -43,6 +47,9 @@ export class PayslipsComponent implements OnInit {
     this.isFocused = false;
     console.log("Ng select blured.")
   }
-
+  
+  closeModal(): void {
+    this.modalService.hide();
+  }
 
 }
