@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-banking-feed',
@@ -6,16 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./banking-feed.component.css']
 })
 export class BankingFeedComponent implements OnInit {
-  applicationList: any[] = [];
-  columns = [
-    { name: 'Check', key: 'isChecked', isCheckbox: true },
-    { name: 'Name', key: 'Name' },
-    { name: 'Parent Account', key: 'ParentAccount' },
-    { name: 'Type', key: 'Type' },
-    { name: 'Detail Type', key: 'DetailType' },
-    { name: 'Primary Balance', key: 'PrimaryBalance' },
-    { name: 'Bank Balance', key: 'BankBalance' },
-    { name: 'Active', key: 'Active' },
+  BankingtableList: any[] = [];
+
+  bsConfig = {
+    isAnimated: true
+  };
+
+  @ViewChild(BsDatepickerDirective) datepicker: BsDatepickerDirective | any;
+
+  headers = [
+    { name: 'Date', key: 'isChecked', isCheckbox: true },
+    { name: 'Payee', key: 'Name' },
+    { name: 'Description', key: 'ParentAccount' },
+    { name: 'Withdrawals', key: 'Type' },
+    { name: 'Deposits', key: 'DetailType' },
+    { name: 'Banking Rule', key: 'PrimaryBalance' },
+    { name: 'Cleared', key: 'BankBalance' },
     { name: 'Options', key: 'Options' }
   ];
 
@@ -30,16 +37,7 @@ export class BankingFeedComponent implements OnInit {
     }
   };
 
-  // total_pages = 1;
-  // payload_size = 10;
-  // current_page = 1;
-  // has_next = false;
-  // skipped_records = 0;
-  // total_records = 10;
 
-  // modalRef?: BsModalRef;
-  // searchTerm: string = '';
-  // searchType: boolean = false;
 
   constructor() { }
 
@@ -117,7 +115,7 @@ export class BankingFeedComponent implements OnInit {
     };
 
     if (response && response.data && response.data.payload) {
-      this.applicationList = response.data.payload;
+      this.BankingtableList = response.data.payload;
       this.tableConfig.paginationParams = response.data.paginate_options;
       // this.total_pages = response.data.paginate_options.total_pages;
       // this.payload_size = response.data.paginate_options.payload_size;
@@ -128,7 +126,8 @@ export class BankingFeedComponent implements OnInit {
     }
   }
 
-  setupColumns() {
-
+  openDatepicker() {
+    this.datepicker?.show();
   }
+
 }

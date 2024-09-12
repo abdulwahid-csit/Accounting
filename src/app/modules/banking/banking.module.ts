@@ -6,18 +6,25 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { BankAccountsComponent } from './Bank-accounts/Bank-accounts.component';
 import { BankingFeedComponent } from './banking-feed/banking-feed.component';
 import { BankingComponent } from './banking.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AddBankComponent } from './Add-Bank Modal/Add-Bank.component';
 
 @NgModule({
   imports: [
     CommonModule,
     BankingRoutes,
     SharedModule,
+    ReactiveFormsModule,
+    // QuillModule.forRoot(),
+    FormsModule
 
   ],
   declarations: [
     BankingComponent,
     BankAccountsComponent,
-    BankingFeedComponent
+    BankingFeedComponent,
+    AddBankComponent
   ],
   exports: [
     RouterModule
