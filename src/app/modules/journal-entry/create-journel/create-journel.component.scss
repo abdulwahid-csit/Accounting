@@ -35,3 +35,27 @@
   td.text-end.text-muted {
     border: none;
 }
+.editor-container {
+    position: relative; 
+    margin: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .editor-content {
+    // padding: 10px;
+    margin-left: 16px;
+    background-color: #ffffff;
+    overflow-y: auto;
+    margin-top: 20px;
+  }
+  
+  
+ 
+::ng-deep .ql-container.ql-snow{
+    height: 50vh;
+    width: 80vw;
+    font-size: 20px;
+
+}

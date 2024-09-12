@@ -7,7 +7,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CreateJournelComponent } from './create-journel/create-journel.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {QuillModule} from 'ngx-quill'
 @NgModule({
   imports: [
     CommonModule,
@@ -15,12 +15,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgSelectModule,
     BsDatepickerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    QuillModule.forRoot(),
 
   ],
   declarations: [JournalEntryComponent, CreateJournelComponent],
   exports: [
     RouterModule
-  ]
+  ],
 })
 export class JournalEntryModule { }
