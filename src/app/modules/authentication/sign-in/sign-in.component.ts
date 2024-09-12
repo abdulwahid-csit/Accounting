@@ -13,8 +13,8 @@ export class SignInComponent {
   isLoading: boolean = false;
 
   constructor(
-    private fb: FormBuilder, 
-    private authService: AuthService, 
+    private fb: FormBuilder,
+    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private toast: ToastrService
@@ -44,7 +44,7 @@ export class SignInComponent {
       control.markAsTouched();
     }
   }
-  
+
   // onSubmit(): void {
   //   if (this.signInForm.invalid) {
   //     this.signInForm.markAllAsTouched();
@@ -53,7 +53,7 @@ export class SignInComponent {
   //   const { email, password } = this.signInForm.value;
   //   this.isLoading = true;
   //   this.authService.signIn(email, password).subscribe((response: any) => {
-     
+
   //     if (response.status_code === 200) {
   //       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/layout';
   //       this.router.navigateByUrl(returnUrl);
@@ -76,7 +76,7 @@ export class SignInComponent {
   }
 
   login(){
-    this.router.navigate(['/layout']);
+    this.router.navigate(['/dashboard']);
   }
-  
+
 }

@@ -2,30 +2,34 @@
   <table class="table table-hover mb-0">
     <thead>
       <tr>
-        <th class="align-content-center" *ngFor="let column of getUpdatedColumns()">
-          {{ column }}
+        <th *ngFor="let column of columns">
+          <ng-container *ngIf="column.isCheckbox">
+            <input type="checkbox" />
+          </ng-container>
+          <ng-container *ngIf="!column.isCheckbox">
+            {{ column.name }}
+          </ng-container>
         </th>
       </tr>
     </thead>
     <tbody [ngClass]="{'tbody-empty': filterData.length === 0}">
-      <tr *ngFor="let row of filterData" [ngClass]="{'cursor-pointer': module !== 'dashboard'}" (click)="onRowClick(row)">
+      <tr *ngFor="let row of filterData">
         <td class="align-content-center" style="font-size: 12px;" *ngFor="let column of columns">
-          <ng-container [ngSwitch]="column">
-            <span *ngSwitchCase="'email'">
-              <img class="rounded-circle me-2" [src]="row['profile_picture']" height="24px" />
-              {{ row[column]}}
+          <ng-container [ngSwitch]="column.key">
+
+            <span *ngSwitchCase="'isChecked'">
+              <input type="checkbox" [(ngModel)]="row[column.key]" />
             </span>
-            <span *ngSwitchCase="'first_name'">{{ row[column]}} {{row['last_name'] }}</span>
-            <span *ngSwitchCase="'created_at'">{{ row[column] | date: 'dd-MM-yyyy' }}</span>
-            <span *ngSwitchCase="'status'" [ngClass]="row[column] == 'active' ? 'badge badge-light-success text-capitalize' : 'badge badge-light-warning text-capitalize'">{{row[column]}}</span>
-            <span *ngSwitchCase="'role'">{{getRole(row[column]) || '-'}}</span>
-            <span *ngSwitchCase="'organization'">{{getOrganization(row[column]) || '-'}}</span>
-            <span *ngSwitchCase="'description'">{{row[column].length > 50? ( row[column] | slice:0:50) + ' ...' :  row[column]  || '-'}}</span>
-            <span *ngSwitchCase="'created_by'">
-              <img class="rounded-circle" [src]="getCreatedByPicture(row[column])" height="24px" />
-              {{getCreatedBy(row[column]) || '-'}}
-            </span>
-            <span *ngSwitchDefault>{{ row[column]}}</span>
+
+            <span *ngSwitchCase="'Name'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'ParentAccount'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'Type'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'DetailType'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'PrimaryBalance'">{{ row[column.key] | currency }}</span>
+            <span *ngSwitchCase="'BankBalance'">{{ row[column.key] | currency }}</span>
+            <span *ngSwitchCase="'Active'">{{ row[column.key] ? 'Yes' : 'No' }}</span>
+            <span *ngSwitchCase="'Options'">{{ row[column.key] }}</span>
+            <span *ngSwitchDefault>{{ row[column.key] }}</span>
           </ng-container>
         </td>
       </tr>
@@ -33,6 +37,7 @@
         <td [attr.colspan]="columns.length" class="font_weight_600">No Data Found</td>
       </tr>
     </tbody>
+
   </table>
   <div class="dataTable_pagination d-flex align-items-center justify-content-between" *ngIf="filterData.length">
     <div>
@@ -41,11 +46,12 @@
       </p>
     </div>
     <div>
-      <app-pagination 
-        [totalPages]="config.paginationParams.total_pages" 
-        [currentPage]="config.paginationParams.current_page" 
+      <app-pagination
+        [totalPages]="config.paginationParams.total_pages"
+        [currentPage]="config.paginationParams.current_page"
         (currentPageChange)="onPageChange($event)">
       </app-pagination>
     </div>
   </div>
 </div>
+

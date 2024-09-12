@@ -2,14 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BankingRoutes } from './banking.routing';
-import { ListComponent } from './list/list.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { BankAccountsComponent } from './Bank-accounts/Bank-accounts.component';
+import { BankingFeedComponent } from './banking-feed/banking-feed.component';
+import { BankingComponent } from './banking.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    BankingRoutes
+    BankingRoutes,
+    SharedModule,
+
   ],
-  declarations: [ListComponent],
+  declarations: [
+    BankingComponent,
+    BankAccountsComponent,
+    BankingFeedComponent
+  ],
   exports: [
     RouterModule
   ]

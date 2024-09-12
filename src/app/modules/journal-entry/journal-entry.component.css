@@ -1,0 +1,26 @@
+button.btn.btn-sm {
+    width: 50px;
+    background: #0285C7;
+    color: white;
+}
+
+
+::ng-deep .customClass{
+ 
+    .bs-datepicker-head{
+        background-color: transparent !important;
+        button.current{
+            color: black !important;
+        }
+        button.previous, .next{
+            color: black !important;
+        }
+    }
+}
+
+
+::ng-deep .ng-select-focused{
+    border: 1px solid #0284C7;
+    box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;
+
+}
