@@ -1,0 +1,167 @@
+<!-- voucher.component.html -->
+<div class="modal-header">
+    <h4 class="modal-title">Journal Voucher</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+<div class="modal-body">
+    <div class="row ">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="">Serial Number</label>
+                <input type="text" name="" id="" class="form-control">
+
+            </div>
+            <div class="col-md-6">
+                <label for="">Date</label>
+  
+                <div class="input-group w-auto ">
+                  <input type="date" placeholder="15/08/2024" class="form-control customClass">
+                </div>
+
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="">Type Of Account</label>
+                <ng-select>
+                    <ng-option>Cash In Hand</ng-option>
+                    <ng-option>Cash At Bank</ng-option>
+                </ng-select>
+            </div>
+            <div class="col-md-6">
+                <label for="">Branch Name (Debit)</label>
+                <ng-select>
+                    <ng-option>CityBank</ng-option>
+                    <ng-option>JpMorgan Chasr</ng-option>
+                </ng-select>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="">Branch Account (Debit)</label>
+                <ng-select>
+                    <ng-option [ariaSelected]="true">2002289679700-COMPANY PRIMARY ACCOUNT</ng-option>
+                    <ng-option>JpMorgan Chasr</ng-option>
+                </ng-select>
+            </div>
+            <div class="col-md-6">
+                <label for="">Head Of Account (Debit)</label>
+                <ng-select>
+                    <ng-option>Expenditure</ng-option>
+                    <ng-option>Tac revenue</ng-option>
+                </ng-select>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for=""> Major Head of Account (Debit)</label>
+                <ng-select>
+                    <ng-option>Employee related expenses</ng-option>
+                    <ng-option>Project preinvestment analysis</ng-option>
+                </ng-select>
+            </div>
+            <div class="col-md-6">
+                <label for=""> Minor Head of Account (Debit)</label>
+                <ng-select>
+                    <ng-option>Pay</ng-option>
+                    <ng-option>Allowances</ng-option>
+                </ng-select>
+            </div>
+        </div>
+        <div class="row mb-4">
+                <div class="col--12">
+                    <label for="">Description</label>
+                <textarea name="" id="" class="w-100 form-control">Enter Description</textarea>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for=""> Debit Amount</label>
+               <input type="text" class="form-control" placeholder="Enter Amount">
+            </div>
+            <div class="col-md-6">
+                <label for="">Debit Date</label>
+                <div class="input-group w-auto ">
+                    <input type="date" placeholder="15/08/2024" class="form-control ">
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-end">
+            <button class="btn btn-plus"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <hr class="mt-2">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="">Type Of Account</label>
+                <ng-select>
+                    <ng-option>Cash In Hand</ng-option>
+                    <ng-option>Cash At Bank</ng-option>
+                </ng-select>
+            </div>
+            <div class="col-md-6">
+                <label for="">Branch Name (Credit)</label>
+                <ng-select>
+                    <ng-option>CityBank</ng-option>
+                    <ng-option>JpMorgan Chasr</ng-option>
+                </ng-select>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="">Branch Account (Credit)</label>
+                <ng-select>
+                    <ng-option [ariaSelected]="true">2002289679700-COMPANY PRIMARY ACCOUNT</ng-option>
+                    <ng-option>JpMorgan Chasr</ng-option>
+                </ng-select>
+            </div>
+            <div class="col-md-6">
+                <label for="">Head Of Account (Credit)</label>
+                <ng-select>
+                    <ng-option>Expenditure</ng-option>
+                    <ng-option>Tac revenue</ng-option>
+                </ng-select>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for=""> Major Head of Account (Credit)</label>
+                <ng-select>
+                    <ng-option>Employee related expenses</ng-option>
+                    <ng-option>Project preinvestment analysis</ng-option>
+                </ng-select>
+            </div>
+            <div class="col-md-6">
+                <label for=""> Minor Head of Account (Credit)</label>
+                <ng-select>
+                    <ng-option>Pay</ng-option>
+                    <ng-option>Allowances</ng-option>
+                </ng-select>
+            </div>
+        </div>
+        <div class="row mb-4">
+                <div class="col--12">
+                    <label for="">Description</label>
+                <textarea name="" id="" class="w-100 form-control">Enter Description</textarea>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for=""> Debit Amount</label>
+               <input type="text" class="form-control" placeholder="Enter Amount">
+            </div>
+            <div class="col-md-6">
+                <label for="">Debit Date</label>
+                <div class="input-group w-auto ">
+                    <input type="date" placeholder="15/08/2024" class="form-control ">
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-end">
+            <button class="btn btn-plus"><i class="fa-solid fa-plus"></i></button>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+    <button type="button" class="btn btn-primary">Save changes</button>
+</div>
