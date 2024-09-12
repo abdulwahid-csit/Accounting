@@ -1,0 +1,57 @@
+.close-button-x{
+    color: #7a7a7a;
+    cursor: pointer;
+}
+.close-button-x:hover{
+    color: #111;
+}
+  
+  ::ng-deep ng-select.ng-select-focused {
+    border-color: #0284c7 !important;
+    box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;
+  }
+  
+  ::ng-deep .ng-select {
+    box-shadow: none !important;
+  }
+
+  ::ng-deep .ng-select .ng-select-container {
+    align-items: center !important;
+    position: unset !important;
+    input:focus{
+        box-shadow: none !important;
+        caret-color: transparent !important;
+    }
+}
+  
+  
+  .container-flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .box {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    flex: 1 1 300px; /* Each box should have at least 300px width */
+    max-width: 350px; /* Ensure they don’t overflow */
+    label{
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+  
+  
+  
+  .common_box{
+    padding: 24px;
+  }
+  .table{
+    thead{
+        th{
+            border: 1px solid #ccc;
+            background-color: #F8FAFC;
+        }
+    }
+  }

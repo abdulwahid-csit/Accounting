@@ -9,7 +9,7 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { FixedEquipmentComponent } from './components/inventory/fixed-equipment/fixed-equipment.component';
 
 const routes: Routes = [
-  { path: '', component:  ListComponent},
+  { path: '', component:  SalesComponent},
   { path: 'sale', component:  SalesComponent},
   { path: 'expenses', component:  ExpensesComponent},
   { path: 'payslips', component:  PayslipsComponent},
