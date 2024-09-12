@@ -1,0 +1,156 @@
+<div class="p-4 modal-content">
+  <div class="modal-header d-flex justify-content-between">
+    <div class="fs-20px bold-font pb-0">
+      <h3>Add Account</h3>
+    </div>
+    <div class="close-button-x" (click)="closeModal()">
+      X
+    </div>
+
+  </div>
+  <div class="modal-body">
+    <div class="main-content">
+<form [formGroup]="applicationForm">
+      <div class="d-md-flex justify-content-between gap-3">
+        <div class="mb-4 w-100"
+          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
+          <label for="required">Account Type</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+            'custom-select-error': isControlHasError('organization', 'required'),
+            'custom-select': !isControlHasError('organization', 'required'),
+            'ng-select-focused': isStatusFocused === true,
+            'ng-select-error': isControlHasError('organization', 'required')
+      }"  (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="mb-4 w-100"
+          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
+          <label for="">Detail Type</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+            'custom-select-error': isControlHasError('organization', 'required'),
+            'custom-select': !isControlHasError('organization', 'required'),
+            'ng-select-focused': isStatusFocused === true,
+            'ng-select-error': isControlHasError('organization', 'required')
+      }"  (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="d-md-flex justify-content-between gap-3">
+        <div class="mb-4 custom-input app-url w-100"
+          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
+          <label for="appUrl" class="mb-1 primary_color fw-700 required">Name</label>
+          <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter URL"
+             />
+          <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
+            App url is required
+          </small>
+          <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
+            Please enter a valid url
+          </small>
+
+        </div>
+        <div class="mb-4 custom-input app-url w-100"
+          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
+          <label for="appUrl" class="mb-1 primary_color fw-700 required">Number</label>
+          <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter URL"
+            />
+          <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
+            App url is required
+          </small>
+          <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
+            Please enter a valid url
+          </small>
+        </div>
+      </div>
+
+
+      <div class="mb-4 w-100"
+        [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
+        <label for="" class="required">Parrent Account</label>
+        <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isStatusFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')}" 
+          (focus)="isStatusFocused = true" (blur)="isStatusFocused = false" placeholder="Select Parrent Account">
+          <ng-option [value]="'id'">organization.name </ng-option>
+          <ng-option [value]="'id'">organization.name </ng-option>
+          <ng-option [value]="'id'">organization.name </ng-option>
+          <ng-option [value]="'id'">organization.name </ng-option>
+        </ng-select>
+      </div>
+
+      <div class="d-md-flex justify-content-between gap-3">
+        <div class="mb-4 custom-input app-url w-100"
+          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
+          <label for="appUrl" class="mb-1 primary_color fw-700 required">Ballance</label>
+          <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter URL"
+            />
+          <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
+            App url is required
+          </small>
+          <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
+            Please enter a valid url
+          </small>
+
+        </div>
+        <div class="mb-4 custom-input app-url w-100"
+          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
+          <label for="appUrl" class="mb-1 primary_color fw-700 required">As Of</label>
+          <input type="date" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter URL"
+ />
+          <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
+            App url is required
+          </small>
+          <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
+            Please enter a valid url
+          </small>
+        </div>
+      </div>
+    </form>
+    <div class="custom-input">
+    <label for="">Description</label>
+      <div class="editor-container">
+        <div class="editor-tabs position-relative">
+          <span class="dropdown">
+            <button  class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              File
+            </button>
+            <div class="dropdown-menu px-1" aria-labelledby="dropdownMenuButton">
+             <div class="print-button d-flex justify-content-between gap-3 p-2" (click)="printDocument()">
+              <span>
+                <i class="bi bi-printer-fill"></i>
+                <span class="ms-2">Print</span>
+              </span>
+              <span>Ctrl+P</span>
+              </div>
+            </div>
+          </span>
+        </div>
+
+        <quill-editor class="quill-editor border-0" [(ngModel)]="editorContent" [modules]="editorConfig" theme="snow" placeholder="Enter Description Here..."></quill-editor>
+      </div>
+    </div>
+    </div>
+    <div id="print-section" #printSection style="display: none;"></div>
+
+
+    <div class="modal-footer pe-0">
+      <div class="d-flex gap-2 me-0">
+        <button class="btn btn-outline-secondary" (click)="closeModal()">Close</button>
+        <button class="primary_button" (click)="closeModal()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

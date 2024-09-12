@@ -1,3 +1,979 @@
-<p>
-  fixed-equipment works!
-</p>
+<div class="container-fluid mt-5 p-4 border rounded bg-white">
+  <div class="tabs mb-5">
+    <ul class="nav nav-tabs">
+      <li class="nav-item" (click)="changeActiveMenue('payment')" [ngClass]="{'active': activeTab === 'payment'}">
+        <a class="nav-link" aria-current="page">Assests <span class="tab_values">(259)</span></a>
+      </li>
+      <li class="nav-item" (click)="changeActiveMenue('invoice')" [ngClass]="{'active': activeTab === 'invoice'}">
+        <a class="nav-link">Licenses <span class="tab_values">(465)</span></a>
+      </li>
+      <li class="nav-item" (click)="changeActiveMenue('salesordersreturn')"
+        [ngClass]="{'active': activeTab === 'salesordersreturn'}">
+        <a class="nav-link">Coponents <span class="tab_values">(0)</span></a>
+      </li>
+      <li class="nav-item" (click)="changeActiveMenue('salesrefund')"
+        [ngClass]="{'active': activeTab === 'salesrefund'}">
+        <a class="nav-link">Consumables <span class="tab_values">(1)</span></a>
+      </li>
+      <li class="nav-item" (click)="changeActiveMenue('Maintenances')"
+        [ngClass]="{'active': activeTab === 'Maintenances'}">
+        <a class="nav-link">Maintenances <span class="tab_values">(1)</span></a>
+      </li>
+      <li class="nav-item" (click)="changeActiveMenue('Depreciations')"
+        [ngClass]="{'active': activeTab === 'Depreciations'}">
+        <a class="nav-link">Depreciations <span class="tab_values">(1)</span></a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-div">
+
+    <div *ngIf="activeTab === 'payment'">
+      <div class="container-flex">
+        <div class="box">
+          <label for="">Status</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isStatusFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">From Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">To Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="table_div mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Parrent Account</th>
+              <th scope="col">Type</th>
+              <th scope="col">Detail Type</th>
+              <th scope="col">Primary Ballance</th>
+              <th scope="col">Bank Balance</th>
+              <th scope="col">Active</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div *ngIf="activeTab === 'invoice'">
+      <div class="container-flex">
+        <div class="box">
+          <label for="">Status</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isStatusFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">From Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">To Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="table_div mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Parrent Account</th>
+              <th scope="col">Type</th>
+              <th scope="col">Detail Type</th>
+              <th scope="col">Primary Ballance</th>
+              <th scope="col">Bank Balance</th>
+              <th scope="col">Active</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div *ngIf="activeTab === 'salesordersreturn'">
+      <div class="container-flex">
+        <div class="box">
+          <label for="">Status</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isStatusFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">From Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">To Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="table_div mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Parrent Account</th>
+              <th scope="col">Type</th>
+              <th scope="col">Detail Type</th>
+              <th scope="col">Primary Ballance</th>
+              <th scope="col">Bank Balance</th>
+              <th scope="col">Active</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div *ngIf="activeTab === 'salesrefund'">
+      <div class="container-flex">
+        <div class="box">
+          <label for="">Status</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isStatusFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">From Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">To Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="table_div mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Parrent Account</th>
+              <th scope="col">Type</th>
+              <th scope="col">Detail Type</th>
+              <th scope="col">Primary Ballance</th>
+              <th scope="col">Bank Balance</th>
+              <th scope="col">Active</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div *ngIf="activeTab === 'Maintenances'">
+      <div class="container-flex">
+        <div class="box">
+          <label for="">Status</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isStatusFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">From Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">To Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="table_div mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Parrent Account</th>
+              <th scope="col">Type</th>
+              <th scope="col">Detail Type</th>
+              <th scope="col">Primary Ballance</th>
+              <th scope="col">Bank Balance</th>
+              <th scope="col">Active</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div *ngIf="activeTab === 'Depreciations'">
+      <div class="container-flex">
+        <div class="box">
+          <label for="">Status</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isStatusFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">From Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+        <div class="box">
+          <label for="">To Date</label>
+          <ng-select class="" [multiple]="false" [ngClass]="{
+        'custom-select-error': isControlHasError('organization', 'required'),
+        'custom-select': !isControlHasError('organization', 'required'),
+        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-error': isControlHasError('organization', 'required')
+      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+            placeholder="Select organization">
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+            <ng-option [value]="'id'">organization.name </ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="table_div mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Parrent Account</th>
+              <th scope="col">Type</th>
+              <th scope="col">Detail Type</th>
+              <th scope="col">Primary Ballance</th>
+              <th scope="col">Bank Balance</th>
+              <th scope="col">Active</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>mdo</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+              </td>
+              <td>mdo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
