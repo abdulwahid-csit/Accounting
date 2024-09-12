@@ -1,31 +1,131 @@
 /* Ensure all columns are the same height */
 .row {
     display: flex;
-  }
-  
-  /* Flexbox for equal height cards */
-  .card-equal-height {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  .card-equal-height {
-    display: flex;
-    flex-direction: column;
-  }
-  .card-body {
-    flex: 1 1 auto;
-  }
+}
 
-  /* Media Queries */
-  @media (max-width: 768px) {
+/* Flexbox for equal height cards */
+//   .card-equal-height {
+//     display: flex;
+//     flex-direction: column;
+//     height: 100%;
+//   }
+
+//   .card-equal-height {
+//     display: flex;
+//     flex-direction: column;
+//   }
+//   .card-body {
+//     flex: 1 1 auto;
+//   }
+
+.card {
+    border-radius: 0 !important;
+}
+
+.nav-link {
+    color: black !important;
+    border: none !important;
+    cursor: pointer;
+}
+
+.active {
+    border: none !important;
+    border-bottom: 3px solid #4c7cfd !important;
+    color: #4c7cfd !important;
+}
+
+
+
+// /////////////////////////
+
+
+.custom-legend {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: inline-block;
+  }
+  
+
+
+// ////////////////////////////////
+
+
+::ng-deep .legend-labels {
+    width: 150px !important;
+}
+
+::ng-deep .legend-label-text {
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
     .equal-height {
-      height: auto !important;
+        height: auto !important;
     }
-    .card-body {
-      overflow: auto; 
-    }
-  }
-  
 
+    .card-body {
+        overflow: auto;
+    }
+}
+
+
+
+::ng-deep ngx-charts-line-chart .line {
+    stroke-width: 2px;
+    /* Adjust line thickness */
+}
+
+::ng-deep ngx-charts-line-chart .circle {
+    stroke-width: 1px;
+    /* Adjust point border thickness */
+    stroke: #000;
+    /* Adjust point border color */
+}
+
+.chart-container {
+    width: 100%;
+    height: 400px;
+    /* Adjust as needed */
+}
+
+/* Hide horizontal grid lines */
+::ng-deep .custom-bar-chart .grid-line-horizontal {
+    display: none !important;
+}
+
+
+
+.chart-container {
+    width: 100%;
+    height: 400px;
+    /* Adjust height as needed */
+}
+
+/* Hide bars but keep vertical grid lines */
+.custom-bar-chart .bar {
+    display: none;
+}
+
+/* Ensure vertical grid lines are visible */
+.custom-bar-chart .grid-line {
+    stroke: #ccc;
+    /* Line color */
+    stroke-width: 1px;
+    /* Line thickness */
+}

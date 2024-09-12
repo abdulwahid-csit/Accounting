@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
-import { CrudService } from 'src/app/shared/services/crud.service';
-import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +6,8 @@ import { LocalStoreService } from 'src/app/shared/services/local-store.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+
+  tabId = 'brl';
 
   tabs = [
     {
@@ -85,7 +84,7 @@ export class DashboardComponent {
   ];
 
   // View size (Optional)
-  view: [number, number] = [400, 400];
+  view: [number, number] = [700, 400];
 
   // Color scheme
   colorScheme: any = {
@@ -101,94 +100,244 @@ export class DashboardComponent {
   };
 
   data = [
-  {
-    "name": "green",
-    "series": [
-      {
-        "name": "Aug",
-        "value": 14
-      },
-      {
-        "name": "Sep",
-        "value": 35
-      },
-      {
-        "name": "Oct",
-        "value": 4
-      },
-      {
-        "name": "Nov",
-        "value": 17
-      },
-      {
-        "name": "Dec",
-        "value": 14
-      },
-      {
-        "name": "Jan",
-        "value": 35
-      }
-    ]
-  },
+    {
+      "name": "green",
+      "series": [
+        {
+          "name": "Aug",
+          "value": 14
+        },
+        {
+          "name": "Sep",
+          "value": 35
+        },
+        {
+          "name": "Oct",
+          "value": 4
+        },
+        {
+          "name": "Nov",
+          "value": 17
+        },
+        {
+          "name": "Dec",
+          "value": 14
+        },
+        {
+          "name": "Jan",
+          "value": 35
+        }
+      ]
+    },
 
-  {
-    "name": "yellow",
-    "series": [
-      {
-        "name": "Aug",
-        "value": 364
-      },
-      {
-        "name": "Sep",
-        "value": 412
-      },
-      {
-        "name": "Oct",
-        "value": 437
-      },
-      {
-        "name": "Nov",
-        "value": 437
-      },
-      {
-        "name": "Dec",
-        "value": 364
-      },
-      {
-        "name": "Jan",
-        "value": 412
-      }
-    ]
-  },
-  {
-    "name": "red",
-    "series": [
-      {
-        "name": "Aug",
-        "value": 168
-      },
-      {
-        "name": "Sep",
-        "value": 343
-      },
-      {
-        "name": "Oct",
-        "value": 512
-      },
-      {
-        "name": "Nov",
-        "value": 291
-      },
-      {
-        "name": "Dec",
-        "value": 168
-      },
-      {
-        "name": "Jan",
-        "value": 343
-      },
-    ]
+    {
+      "name": "yellow",
+      "series": [
+        {
+          "name": "Aug",
+          "value": 364
+        },
+        {
+          "name": "Sep",
+          "value": 412
+        },
+        {
+          "name": "Oct",
+          "value": 437
+        },
+        {
+          "name": "Nov",
+          "value": 4437
+        },
+        {
+          "name": "Dec",
+          "value": 364
+        },
+        {
+          "name": "Jan",
+          "value": 412
+        }
+      ]
+    },
+    {
+      "name": "red",
+      "series": [
+        {
+          "name": "Aug",
+          "value": 168
+        },
+        {
+          "name": "Sep",
+          "value": 343
+        },
+        {
+          "name": "Oct",
+          "value": 512
+        },
+        {
+          "name": "Nov",
+          "value": 491
+        },
+        {
+          "name": "Dec",
+          "value": 168
+        },
+        {
+          "name": "Jan",
+          "value": 343
+        },
+      ]
+    }
+  ]
+  horizontalLines = [
+    { position: 50 }, // Adjust position values as needed
+    { position: 100 }
+  ];
+
+
+
+
+  //Profit and loss
+
+  dataProfit = [
+    {
+      "name": "Category A",
+      "value": 30
+    },
+    {
+      "name": "Category B",
+      "value": 80
+    },
+    {
+      "name": "Category C",
+      "value": 45
+    },
+    {
+      "name": "Category D",
+      "value": 60
+    }
+  ];
+
+  colorSchemeProfit: any = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+
+//Cash Flow Data
+
+  cashFlowData = [
+    {
+      "name": "Sales",
+      "series": [
+        { "name": "2023-07-01", "value": 1500000 },
+        { "name": "2023-07-15", "value": 0 },
+        { "name": "2023-08-01", "value": 932240 },
+        { "name": "2023-08-15", "value": 0 }
+      ]
+    },
+    {
+      "name": "Expenses",
+      "series": [
+        { "name": "2023-07-01", "value": 500000 },
+        { "name": "2023-07-15", "value": 0 },
+        { "name": "2023-08-01", "value": 932240 },
+        { "name": "2023-08-15", "value": 98989 },
+        { "name": "2023-07-01", "value": 500000 },
+        { "name": "2023-07-15", "value": 0 },
+        { "name": "2024-08-01", "value": 932240 },
+        { "name": "2024-08-15", "value": 500000 },
+        { "name": "2024-07-01", "value": 500000 },
+        { "name": "2024-07-15", "value": 0 },
+        { "name": "2024-08-01", "value": 7676 },
+        { "name": "2024-08-15", "value": 500000 }
+      ]
+    }
+  ];
+
+  colorSchemeCashflow: any = {
+    domain: ['#7CB5EC', '#dc3545'] // Custom colors for each line
+  };
+
+  // Chart options
+  showLegend = true;
+  showXAxis = true;
+  showYAxis = true;
+  showGridLines = true;
+  xAxisLabel = 'Date';
+  yAxisLabel = 'Amount';
+
+
+
+  changeTab(tabId: string) {
+    this.tabId = tabId;
   }
-]
+
+
+  // view: [number, number] = [700, 400];
+  
+  // Data for the bar chart
+  profitLossData = [
+    {
+      "name": "Income",
+      "value": 93298
+    },
+    {
+      "name": "Expenses",
+      "value": 3294289.68
+    },
+    {
+      "name": "Net Income",
+      "value": -3201291.68
+    }
+  ];
+
+  // Color scheme for different categories
+  colorSchemeProfitAndLoss:any = {
+    domain: ['#28a745', '#343a40', '#007bff'] // Custom colors for Income (green), Expenses (gray), Net Income (blue)
+  };
+
+  // Options for axis and grid
+  showXAxisProfitandLoss = true;
+  showYAxisProfitAndLoss = true;
+  showGridLinesProfitAndLoss = false;
+  barPaddingProfitAndLoss = 100;
+  xAxisLabelProfitAndLoss = 'BRL';
+  yAxisLabelProfitAndLoss = '';
+  showLegendProfitAndLoss = false;
+
+
+
+
+  incomeData = [
+    {
+      "name": "Income",
+      "series": [
+        {
+          "name": "Open Invoice",
+          "value": 360480
+        },
+        {
+          "name": "Overdue Invoices",
+          "value": 0
+        },
+        {
+          "name": "Paid last 30 days",
+          "value": 3435900.90
+        },
+        {
+          "name": "Has been mapped",
+          "value": 92898
+        }
+      ]
+    }
+  ];
+
+  // Custom color scheme for different categories
+  colorSchemeIncome:any = {
+    domain: ['#6c757d', '#dc3545', '#28a745', '#007bff'] // Gray, Red, Green, Blue
+  };
+
 
 }
+
+
+

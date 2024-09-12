@@ -1,0 +1,64 @@
+
+
+.main-content {
+    padding: 1rem;
+    background-color: #ffff;
+    border: 3px solid transparent;
+    border-radius: 10px;
+}
+
+
+
+::ng-deep .ng-dropdown-panel {
+    width: 80% !important;
+    margin-left: 36px !important;
+}
+
+button.btn {
+    width: 161px;
+    border:  1px solid #CBD5E1;;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    stroke: #CBD5E1;
+    background-color: #FFFFFF;
+    color: black;
+    font-size: 18px;
+    height: 34px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    /* text-align: center; */
+    justify-content: center;
+}
+
+
+span.input-group-text {
+    width: 40px;
+    height: 40px;
+    /* border-left: 1px solid black; */
+    /* background: transparent; */
+    /* margin-left: 3px; */
+    border-radius: 0px;
+
+}
+
+  
+    ::ng-deep .customClass{
+ 
+        .bs-datepicker-head{
+            background-color: transparent !important;
+            button.current{
+                color: black !important;
+            }
+            button.previous, .next{
+                color: black !important;
+            }
+        }
+    }
+
+
+    ::ng-deep .ng-select-focused{
+        border: 1px solid #0284C7;
+        box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;
+
+    }

@@ -1,8 +1,8 @@
-<div class="card-body">
+<div class="">
   <!-- Tabs -->
   <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li *ngFor="let tab of tabs" class="nav-item" role="presentation">
-      <a class="nav-link" [class.active]="tab.id === 'brl'" id="{{ tab.id }}-tab" data-bs-toggle="tab" [href]="'#' + tab.id" role="tab" [attr.aria-controls]="tab.id" [attr.aria-selected]="tab.id === 'brl'">{{ tab.label }}</a>
+    <li *ngFor="let tab of tabs" class="nav-item" role="presentation" (click)="changeTab(tab.id)">
+      <a class="nav-link" [class.active]="tab.id === tabId" id="{{ tab.id }}-tab" data-bs-toggle="tab" role="tab" [attr.aria-controls]="tab.id" [attr.aria-selected]="tab.id === 'brl'">{{ tab.label }}</a>
     </li>
   </ul>
 

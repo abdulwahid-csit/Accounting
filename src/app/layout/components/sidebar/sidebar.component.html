@@ -6,44 +6,94 @@
         <div class="navigations">
             <!-- <div class="fs-12px ms-3 semi-bold-font menu-text mt-2">MENU</div> -->
             <ul class="pt-2">
-                <li  [ngClass]="{'active': activeMenu === 'dashboard'}"  class="d-flex align-items-center sidebar_svg" routerLink="dashboard" routerLinkActive="active"><span
+                <li (click)="toggleMenu('dashboard')" [ngClass]="{'active': activeMenu === 'dashboard'}"
+                    class="d-flex align-items-center sidebar_svg" routerLink="dashboard" routerLinkActive="active"><span
                         class="d-flex align-items-center sidebar_svg home"></span><a>Dashboard</a></li>
 
-                <li [ngClass]="{'active': activeMenu === 'banking'}" class="d-flex align-items-center sidebar_svg" routerLink="banking" routerLinkActive="active" >
+                <li (click)="toggleMenu('banking')" [ngClass]="{'active': activeMenu === 'banking'}"
+                    class="d-flex align-items-center sidebar_svg" routerLink="banking" routerLinkActive="active">
                     <span class="d-flex align-items-center sidebar_svg Icon"></span><a>Banking</a>
                 </li>
 
-                <li  [ngClass]="{'active': activeMenu === 'transaction'}"  class="d-flex align-items-center sidebar_svg" routerLink="transaction"  routerLinkActive="active" >
-                    <span class="d-flex align-items-center sidebar_svg check-verified"></span><a>Transactions</a>
-                </li>
-                <li  [ngClass]="{'active': activeMenu === 'transaction'}"  class="d-flex align-items-center sidebar_svg" routerLink="register"  routerLinkActive="active" >
-                    <span class="d-flex align-items-center sidebar_svg check-verified"></span><a>Register</a>
+                <li [ngClass]="{'active': activeMenu === 'transaction'}" class="d-flex align-items-center sidebar_svg"
+                    (click)="toggleMenu('transaction')" routerLink="transaction">
+                    <!-- Main link content -->
+                    <span class="d-flex align-items-center sidebar_svg check-verified"></span>
+                    <a>Transactions</a>
+
+                    <!-- Arrow Icon -->
+                    <span class="arrow-icon" [ngClass]="{'open': activeMenu === 'transaction'}">
+                        &#9654; <!-- Arrow symbol, rotate on open -->
+                    </span>
                 </li>
 
-                <li  [ngClass]="{'active': activeMenu === 'bills'}"  class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="bills" >
+                <ul [ngClass]="activeMenu === 'transaction' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"
+                    class="sub-menu">
+                    <li class="nav-item position-relative">
+                        <a routerLink="transaction/sale" routerLinkActive="sublink-active">Sale</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a routerLink="transaction/expenses" routerLinkActive="sublink-active">Expenses</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a routerLink="transaction/payslips" routerLinkActive="sublink-active">Payslips</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a routerLink="transaction/purchase" routerLinkActive="sublink-active">Purchase</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a routerLink="transaction/inventory" routerLinkActive="sublink-active">Inventory</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a routerLink="transaction/manufacturing" routerLinkActive="sublink-active">Manufacturing</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a routerLink="transaction/fixed-equipment" routerLinkActive="sublink-active">Fixed
+                            equipment</a>
+                    </li>
+                </ul>
+
+
+                <!-- <li (click)="toggleMenu('transaction')" [ngClass]="{'active': activeMenu === 'transaction'}"  class="d-flex align-items-center sidebar_svg" routerLink="register"  routerLinkActive="active" >
+                    <span class="d-flex align-items-center sidebar_svg check-verified"></span><a>Register</a>
+                </li> -->
+
+                <li (click)="toggleMenu('bills')" [ngClass]="{'active': activeMenu === 'bills'}"
+                    class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="bills">
                     <span class="d-flex align-items-center sidebar_svg monitor"></span><a>Bills</a>
                 </li>
 
-                <li  [ngClass]="{'active': activeMenu === 'checks'}"  class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="checks" ><span
+                <li (click)="toggleMenu('checks')" [ngClass]="{'active': activeMenu === 'checks'}"
+                    class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="checks"><span
                         class="d-flex align-items-center sidebar_svg iconone"></span><a>Checks</a></li>
 
-                <li  [ngClass]="{'active': activeMenu === 'convert'}"  class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="convert" >
+                <li (click)="toggleMenu('journal')" [ngClass]="{'active': activeMenu === 'journal'}"
+                    class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="journal-entry"><span
+                        class="d-flex align-items-center sidebar_svg iconone"></span><a>Journal Entry</a></li>
+
+                <li (click)="toggleMenu('convert')" [ngClass]="{'active': activeMenu === 'convert'}"
+                    class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="convert">
                     <span class="d-flex align-items-center sidebar_svg users "></span><a>Convert</a>
                 </li>
-                <li  [ngClass]="{'active': activeMenu === 'charts-of-account'}" class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="charts-of-account"
-                    >
+                <li (click)="toggleMenu('charts-of-account')" [ngClass]="{'active': activeMenu === 'charts-of-account'}"
+                    class="d-flex align-items-center sidebar_svg" routerLinkActive="active"
+                    routerLink="charts-of-account">
                     <span class="d-flex align-items-center sidebar_svg users "></span><a>Chart of Accounts</a>
                 </li>
-                <li  [ngClass]="{'active': activeMenu === 'reconcile'}" class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="reconcile" >
+                <li (click)="toggleMenu('reconcile')" [ngClass]="{'active': activeMenu === 'reconcile'}"
+                    class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="reconcile">
                     <span class="d-flex align-items-center sidebar_svg users "></span><a>Reconcile</a>
                 </li>
-                <li  [ngClass]="{'active': activeMenu === 'budget'}" class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="budget" >
+                <li (click)="toggleMenu('budget')" [ngClass]="{'active': activeMenu === 'budget'}"
+                    class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="budget">
                     <span class="d-flex align-items-center sidebar_svg users "></span><a>Budget</a>
                 </li>
-                <li  [ngClass]="{'active': activeMenu === 'reports'}" class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="reports" >
+                <li (click)="toggleMenu('reports')" [ngClass]="{'active': activeMenu === 'reports'}"
+                    class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="reports">
                     <span class="d-flex align-items-center sidebar_svg users "></span><a>Reports</a>
                 </li>
-                <li  [ngClass]="{'active': activeMenu === 'setting'}" class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="setting" >
+                <li (click)="toggleMenu('setting')" [ngClass]="{'active': activeMenu === 'setting'}"
+                    class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="setting">
                     <span class="d-flex align-items-center sidebar_svg users "></span><a>Settings</a>
                 </li>
             </ul>

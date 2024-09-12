@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-journal-entry',
@@ -7,6 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JournalEntryComponent implements OnInit {
 
+
+  bsConfig = {
+    isAnimated: true
+  };
+
+  @ViewChild(BsDatepickerDirective) datepicker: BsDatepickerDirective | any;
+
+  openDatepicker() {
+    this.datepicker?.show();
+  }
   constructor() { }
 
   ngOnInit() {
