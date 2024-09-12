@@ -1,12 +1,52 @@
 <div class="table-div common_box">
-  <div><button class="primary_button mb-4">Add Bank Account</button></div>
-  <div class="d-block mb-3">
-    <div><span>Actives</span></div>
-    <select class="custom-select p-2 rounded mb-3">
-      <option selected>ALL</option>
-      <option value="1">Yes</option>
-      <option value="1">No</option>
-    </select>
+  <select class="custom-select p-2 rounded ">
+    <option selected>Select Bank Account</option>
+    <option value="1">Bank Account No 1</option>
+    <option value="2">Bank Account No 2</option>
+    <option value="3">Bank Account No 3</option>
+  </select>
+  <div class="row mt-3 px-2  mb-3">
+    <div class="col-md-4">
+      <label for="">From date</label>
+      <div class="input-group w-auto mt-2">
+        <input type="text" placeholder="Datepicker" class="form-control customClass" bsDatepicker
+        id="datepickerInput">
+        <div class="input-group-append">
+          <span class="input-group-text" (click)="openDatepicker()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar"
+              viewBox="0 0 16 16">
+              <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="">To date</label>
+      <div class="input-group w-auto mt-2">
+        <input type="text" placeholder="Datepicker" class="form-control customClass" bsDatepicker
+         id="datepickerInput">
+        <div class="input-group-append">
+          <span class="input-group-text" (click)="openDatepicker()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar"
+              viewBox="0 0 16 16">
+              <path
+                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="">Status</label>
+      <select class="custom-select p-2 rounded mt-2">
+        <option selected>Cleared</option>
+        <option value="1">Uncleared</option>
+        <option value="2">Ignore</option>
+      </select>
+    </div>
+
   </div>
   <div class="d-flex gap-3 mb-3">
     <select class="custom-select p-2 rounded ">
@@ -27,8 +67,9 @@
       </div>
     </span>
   </div>
-<app-data-table ></app-data-table>
-<app-data-table [columns]="columns" [config]="tableConfig" [dataSet]="applicationList"
+
+<!-- <app-data-table ></app-data-table> -->
+<app-data-table [columns]="headers" [config]="tableConfig" [dataSet]="BankingtableList"
  ></app-data-table>
 
 </div>

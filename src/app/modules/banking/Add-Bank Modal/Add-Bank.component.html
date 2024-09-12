@@ -1,0 +1,99 @@
+<div class="p-4 modal-content">
+  <div class="modal-header border-bottom-0 pb-0">
+      <div class="fs-20px bold-font pb-0">
+       Bank  Application
+      </div>
+  </div>
+  <div class="modal-body">
+ <form [formGroup]="AddBankForm">
+          <div class="mb-4 custom-input">
+              <label for="app_name" class="mb-1 primary_color required fw-700 ">Name</label>
+              <input type="text" class="form-control form-control-lg ps-3 ps-2 fs-14px"
+                  formControlName="app_name" placeholder="Bank" >
+          </div>
+
+          <div class="mb-4 custom-input app-url"  >
+            <label for="appUrl" class="mb-1 primary_color fw-700 required">App URL</label>
+            <input
+              type="text"  id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Bank" formControlName="url"  />
+          </div>
+
+          <div class="mb-4 custom-input">
+            <label  class="mb-1 primary_color required fw-700 ">Name</label>
+            <input type="text" class="form-control form-control-lg ps-3 ps-2 fs-14px"
+                formControlName="name"  >
+            </div>
+
+        <div class="mb-4 custom-input">
+          <label  class="mb-1 primary_color required fw-700 ">Number</label>
+          <input type="text" class="form-control form-control-lg ps-3 ps-2 fs-14px"
+              formControlName="number"  >
+         </div>
+
+         <label for="app_name" class="mb-1 primary_color required fw-700 ">Parent Account</label>
+         <select class="form-control form-control-lg ps-3 ps-2 fs-14px">
+          <option selected>None Selected</option>
+          <option value="1">Discerete logix</option>
+          <option value="2">50</option>
+          <option value="3">70</option>
+          <option value="4">All</option>
+        </select>
+
+        <div class="row mt-3 px-2  mb-3">
+          <div class="mb-4 custom-input col-md-3">
+              <label  class="mb-1 primary_color required fw-700 ">Balance</label>
+                  <input type="text" class="form-control form-control-lg ps-3 ps-2 fs-14px"
+                    formControlName="number"  >
+               </div>
+               <div class="col-md-3">
+                <label >as of</label>
+                <div class="input-group w-auto mt-2">
+                  <input type="text" placeholder="Datepicker" class="form-control customClass" bsDatepicker
+                  id="datepickerInput">
+                  <div class="input-group-append">
+                    <span class="input-group-text" (click)="openDatepicker()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar"
+                        viewBox="0 0 16 16">
+                        <path
+                          d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="mb-4 custom-input">
+            <label  class="mb-1 primary_color required fw-700 ">Bank Name</label>
+            <input type="text" class="form-control form-control-lg ps-3 ps-2 fs-14px"
+                formControlName="bankname"  >
+            </div>
+
+            <div class="mb-4 custom-input">
+              <label  class="mb-1 primary_color required fw-700 ">Bank Account</label>
+              <input type="text" class="form-control form-control-lg ps-3 ps-2 fs-14px"
+                  formControlName="bankaccount"  >
+              </div>
+
+
+            <div class="mb-4 custom-input">
+              <label  class="mb-1 primary_color required fw-700 ">Bank Routing</label>
+              <input type="text" class="form-control form-control-lg ps-3 ps-2 fs-14px"
+                  formControlName="bankrouting"  >
+              </div>
+
+              <div class="mb-4 custom-input">
+                <label  class="mb-1 primary_color required fw-700 ">address</label>
+                <input type="text" class="form-control form-control-lg ps-3 ps-2 fs-14px"
+                    formControlName="address"  >
+                </div>
+                <!-- <quill-editor [(ngModel)]="editorContent" ></quill-editor> -->
+
+
+      <div class="modal-footer border-top-0 pb-0 pe-0">
+        <button type="button" class="cancel_btn" (click)="closeModal()">Cancel</button>
+        <button type="submit" class="primary_button" [disabled]="isLoading"> save  </button>
+    </div>
+  </form>
+
+  </div>
+</div>
