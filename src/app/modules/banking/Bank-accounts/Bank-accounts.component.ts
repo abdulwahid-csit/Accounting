@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { AddBankComponent } from '../Add-Bank Modal/Add-Bank.component';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-Bank-accounts',
@@ -8,6 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class BankAccountsComponent implements OnInit {
 
   applicationList: any[] = [];
+  modalRef: any;
+  bankForm!: FormGroup;
+  constructor(private modalService: BsModalService,) { }
   columns = [
     { name: 'Check', key: 'isChecked', isCheckbox: true },
     { name: 'Name', key: 'Name' },
@@ -31,20 +37,11 @@ export class BankAccountsComponent implements OnInit {
     }
   };
 
-  // total_pages = 1;
-  // payload_size = 10;
-  // current_page = 1;
-  // has_next = false;
-  // skipped_records = 0;
-  // total_records = 10;
-
-  // modalRef?: BsModalRef;
-  // searchTerm: string = '';
-  // searchType: boolean = false;
-
-  constructor() { }
-
   ngOnInit() {
+    this.bankForm = new FormGroup({
+      bankName: new FormControl('')
+      // Add more controls as needed
+    });
 
     const response = {
       "status_code": 200,
@@ -120,16 +117,21 @@ export class BankAccountsComponent implements OnInit {
     if (response && response.data && response.data.payload) {
       this.applicationList = response.data.payload;
       this.tableConfig.paginationParams = response.data.paginate_options;
-      // this.total_pages = response.data.paginate_options.total_pages;
-      // this.payload_size = response.data.paginate_options.payload_size;
-      // this.current_page = response.data.paginate_options.current_page;
-      // this.has_next = response.data.paginate_options.has_next;
-      // this.skipped_records = response.data.paginate_options.skipped_records;
-      // this.total_records = response.data.paginate_options.total_records;
     }
   }
 
-  setupColumns() {
+  addBank() {
 
+    const initialState = { itemList: '', title: 'Create' };
+    this.modalRef = this.modalService.show(AddBankComponent, {
+      class: 'modal-dialog modal-dialog-centered modal-lg create_organization',
+      backdrop: 'static',
+      keyboard: true,
+
+    });
+    // this.modalRef.content.successCall.subscribe(() => {
+    //   this.applicationListing(1);
+    // });
   }
+
 }

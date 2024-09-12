@@ -1,0 +1,77 @@
+.box {
+    // padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    flex: 1 1 300px; /* Each box should have at least 300px width */
+    max-width: 100%; /* Ensure they don’t overflow */
+    
+  }
+  
+  ::ng-deep ng-select.ng-select-focused {
+    border-color: #0284c7 !important;
+    box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;
+  }
+  
+  ::ng-deep .ng-select {
+    box-shadow: none !important;
+  }
+  
+  
+  .container-flex {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-evenly; /* Ensure even spacing between boxes */
+  }
+  
+  .box {
+    // background-color: #007bff;
+    // color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    flex: 1 1 300px; /* Each box should have at least 300px width */
+    max-width: 350px; /* Ensure they don’t overflow */
+    label{
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+  
+  
+  
+  .common_box{
+    padding: 24px;
+  }
+  .table{
+    thead{
+        th{
+            border: 1px solid #ccc;
+            background-color: #F8FAFC;
+        }
+    }
+  }
+  .nav-item{
+    cursor: pointer;
+    a{
+      border: none !important;
+      color: #111;
+      font-size: 14px;
+      font-weight: 600;
+    .tab_values{
+      color: red !important;
+    }
+    } 
+    
+    a:hover{
+      color: #0284c7;
+    }
+  }
+  
+  .active{
+    border-bottom: 3px solid #0284c7;
+    a{
+      color: #0284c7;
+      font-weight: 600;
+    }
+  }
+  
