@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
-import { ListComponent } from './list/list.component';
+import { BankingComponent } from './banking.component';
 
 const routes: Routes = [
-  { path: '', component: ListComponent },
+  { path: '', component: BankingComponent },
 ];
 
 export const BankingRoutes = RouterModule.forChild(routes);

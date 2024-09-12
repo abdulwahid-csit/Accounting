@@ -1,0 +1,34 @@
+<div class="table-div common_box">
+  <div><button class="primary_button mb-4">Add Bank Account</button></div>
+  <div class="d-block mb-3">
+    <div><span>Actives</span></div>
+    <select class="custom-select p-2 rounded mb-3">
+      <option selected>ALL</option>
+      <option value="1">Yes</option>
+      <option value="1">No</option>
+    </select>
+  </div>
+  <div class="d-flex gap-3 mb-3">
+    <select class="custom-select p-2 rounded ">
+      <option selected>10</option>
+      <option value="1">25</option>
+      <option value="2">50</option>
+      <option value="3">70</option>
+      <option value="4">All</option>
+    </select>
+    <span>
+      <div class="export_button">
+        <button type="button" class="button d-flex p-0 bg-white overflow-hidden rounded border">
+          <span class="button__text">Export</span>
+          <span class="button__icon border-start">
+            <span class="large-icon">&#x21bb;</span>
+          </span>
+        </button>
+      </div>
+    </span>
+  </div>
+<app-data-table ></app-data-table>
+<app-data-table [columns]="columns" [config]="tableConfig" [dataSet]="applicationList"
+ ></app-data-table>
+
+</div>

@@ -6,7 +6,7 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 
 const routes: Routes = [
   {
-    path: 'layout',
+    path: '',
     loadChildren: () =>
       import('./layout/layout.module').then((m) => m.LayoutModule),
   },
