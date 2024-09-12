@@ -5,12 +5,17 @@ import { ChartOfAccountsRoutes } from './chart-of-accounts.routing';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddAccountComponent } from './add-account/add-account.component';
+import { QuillModule } from 'ngx-quill';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     ChartOfAccountsRoutes,
-    NgSelectModule
+    NgSelectModule,
+    QuillModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [ChartOfAccountsComponent, AddAccountComponent],
   exports: [

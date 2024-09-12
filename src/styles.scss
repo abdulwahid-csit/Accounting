@@ -224,9 +224,9 @@ body {
     .custom-form-select:focus, textarea:focus, textarea:active {
         padding: 8px 16px;
         border: var(--bs-border-width) solid var(--bs-border-color);
-        border-color: #0284C7 !important;
+        border-color: #6f63bd !important;
         outline: 0;
-        box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;
+        box-shadow: 0 0 0 0.25rem rgba(111, 97, 207, 0.20) !important;
 
     }
 
