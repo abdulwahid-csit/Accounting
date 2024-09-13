@@ -11,5 +11,13 @@ export class SettingComponent implements OnInit {
 
   ngOnInit() {
   }
+  selectedView: string = 'general';
 
+  showBankAccounts() {
+    this.selectedView = 'general';
+  }
+
+  showBankFeeds() {
+    this.selectedView = 'bankFeeds';
+  }
 }
