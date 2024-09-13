@@ -10,6 +10,10 @@
                     class="d-flex align-items-center sidebar_svg" routerLink="dashboard" routerLinkActive="active"><span
                         class="d-flex align-items-center sidebar_svg home"></span><a>Dashboard</a></li>
 
+                        <li (click)="toggleMenu('organization')" [ngClass]="{'active': activeMenu === 'organization'}"
+                        class="d-flex align-items-center sidebar_svg" routerLink="organization" routerLinkActive="active"><span
+                            class="d-flex align-items-center sidebar_svg home"></span><a>Organization</a></li>
+
                 <li (click)="toggleMenu('banking')" [ngClass]="{'active': activeMenu === 'banking'}"
                     class="d-flex align-items-center sidebar_svg" routerLink="banking" routerLinkActive="active">
                     <span class="d-flex align-items-center sidebar_svg Icon"></span><a>Banking</a>

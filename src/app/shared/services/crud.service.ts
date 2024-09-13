@@ -8,6 +8,12 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CrudService {
+  create(arg0: string, formData: any) {
+    throw new Error('Method not implemented.');
+  }
+  update(arg0: string, organizationId: number, formData: any) {
+    throw new Error('Method not implemented.');
+  }
 
   // private apiUrl: string = environment.apiUrl;
 
