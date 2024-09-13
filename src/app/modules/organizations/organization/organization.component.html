@@ -1,0 +1,168 @@
+<div class="container-fluid mt-5">
+    <div class="container mt-5">
+        <div class="form-container d-flex justify-content-center flex-column">
+            <div class="row mb-4">
+                <h2>Glad you're here.</h2>
+                <p>Help us customize your settings to offer you the right tools for seamless business experience.</p>
+            </div>
+            <form  [formGroup]="form">
+
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="row justify-content-center">
+                            <div class="row mb-2">
+                                <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                    <label for="business-name">Business Name <span class="text-danger">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" id="business-name" name="business-name" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <a href=""></a>
+                                </div>
+                            </div>
+                            <!-- second row -->
+                            <div class="row mb-2">
+                                <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                    <label for="industry">Industry <span class="text-danger">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" id="industry" name="industry" value="Construction" disabled>
+                                </div>
+                                <div class="col-md-3 text-left d-flex align-items-center justify-content-start">
+                                    <a href="#" class="help-link">Help me choose</a>
+                                </div>
+                            </div>
+                            <!-- third row -->
+                            <div class="row mb-2">
+                                <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                    <label for="business-type">Business Type <span class="text-danger">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <select id="business-type" name="business-type">
+                                        <option value="">Select Business Type</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 d-flex align-items-center justify-content-start">
+                                    <a href="#" class="help-link">Help me choose</a>
+                                </div>
+                            </div>
+                            <!-- fourth row -->
+                            <div class="row mb-2">
+                                <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                    <label for="admin-email">Admin's email <span class="text-danger">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" id="admin-email" name="admin-email"
+                                        placeholder="Enter company file admin's email" required>
+                                </div>
+                                <div class="col-md-3 d-flex align-items-center justify-content-start">
+                                    <a href="#" class="help-link">Help me choose</a>
+                                </div>
+                            </div>
+
+                            <!-- fifth row -->
+                            <div class="row mb-2">
+                                <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                  <label for="ein">Employer Identification Number (EIN)</label>
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                  <div class="col-md-4">
+                                    <input type="text" id="ein" formControlName="ein" placeholder="12-3456789">
+                                  </div>
+                                  <div class="col-md-1 px-2">
+                                    <i class="fa-solid fa-circle-question" style="color: #007fe0;"></i>
+                                  </div>
+                                  <div class="col-md-3 d-flex justify-content-start align-items-center">
+                                    <label for="phone">National Tax Number (NTN)</label>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <input type="text" id="phone" formControlName="phone">
+                                  </div>
+                                </div>
+                                <div class="col-md-3 d-flex align-items-center justify-content-start"></div>
+                              </div>
+                            <!-- sixth row -->
+                            <div class="row mb-2">
+                                <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                    <label for="business-address">Business Address</label>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="text" id="business-address" name="business-address">
+                                </div>
+                                <div class="col-md-3">
+
+                                </div>
+                            </div>
+                            <!-- seven row -->
+                            <div class="row mb-2">
+                                <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                    Phone
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="text" id="business-address" name="business-address">
+                                </div>
+                                <div class="col-md-3">
+
+                                </div>
+                            </div>
+                            <!-- eight row -->
+                            <div class="row mb-2">
+                                <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                    <label for="city">City</label>
+                                </div>
+
+                                <div class="col-md-6 d-flex">
+                                    <div class="col-md-5">
+                                        <input type="text" id="city" name="city">
+                                    </div>
+                                    <div class="col-md-2 d-flex align-items-center justify-content-end">
+                                        <label for="zip">ZIP</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="text" id="zip" name="zip">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+
+                                </div>
+                            </div>
+                            <!-- nine row -->
+                            <div class="row mb-2">
+                                <div class="col-md-3  d-flex align-items-center justify-content-end">
+                                    <label for="state">State</label>
+                                </div>
+
+                                <div class="col-md-6 d-flex">
+                                    <div class="col-md-5">
+                                        <select id="state" name="state">
+                                            <option value="">Select state</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2  d-flex align-items-center justify-content-end">
+                                        <label for="country">Country</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <select id="country" name="country">
+                                            <option value="U.S.">U.S.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- buttons and text -->
+                <div class="buttons d-flex justify-content-end gap-3">
+                    <button type="button" class="back-btn">Back</button>
+                    <button type="submit" class="submit-btn">Create Company</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

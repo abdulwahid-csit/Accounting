@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e9eff5;
+    // height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.col-md-3{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-md-2{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    // width: 100%;
+    // height: 100%;
+    align-items: center;
+}
+
+.container {
+    // width: 90%;
+    // max-width: 700px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;}
+
+.form-container {
+    padding: 20px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+input, select {
+    width:100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    background-color: #f0f0f0;
+}
+
+
+input::placeholder  {
+    color: #999;
+}
+
+.help-link {
+    font-size: 0.8rem;
+    color: #007bff;
+    float: right;
+    text-decoration: none;
+}
+
+.help-link:hover {
+    text-decoration: underline;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-group-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group-row .form-group {
+    flex: 0 0 48%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.back-btn {
+    background-color: #ddd;
+    color: #333;
+}
+
+.submit-btn {
+    background-color: #595395;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 600px) {
+    .form-group-row {
+        flex-direction: column;
+    }
+    .form-group-row .form-group {
+        flex: 0 0 100%;
+        margin-bottom: 15px;
+    }
+}
