@@ -18,7 +18,7 @@
         class="list-group-item list-group-item-action"
         [class.active]="selectedView === 'bankFeeds'"
         (click)="showBankFeeds()">
-        Bank Feeds
+      Mapping setup
       </button>
     </div>
   </div>
@@ -31,8 +31,7 @@
     </ng-container>
 
     <ng-container *ngIf="selectedView === 'bankFeeds'">
-      <h1>permission settings</h1>
-      <!-- <app-banking-feed></app-banking-feed> -->
+      <app-Mapping-Setup></app-Mapping-Setup>
     </ng-container>
   </div>
   </div>

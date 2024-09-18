@@ -5,16 +5,20 @@ import { SettingRoutes } from './setting.routing';
 import { RouterModule } from '@angular/router';
 import { GeneralComponent } from './General settings/General.component';
 import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { MappingSetupComponent } from './Mapping-Setup/Mapping-Setup.component';
 
 @NgModule({
   imports: [
     CommonModule,
     SettingRoutes,
-    FormsModule
+    FormsModule,
+    NgSelectModule
   ],
   declarations: [
     SettingComponent,
-    GeneralComponent
+    GeneralComponent,
+    MappingSetupComponent
 
   ],
   exports: [

@@ -1,0 +1,18 @@
+<div class="tabs mb-5">
+  <ul class="nav nav-tabs">
+    <li class="nav-item" (click)="changeActiveMenue('payment')" [ngClass]="{'active': activeTab === 'payment'}">
+      <a class="nav-link" aria-current="page">Inventory reciving voucher <span class="tab_values">(259)</span></a>
+    </li>
+    <li class="nav-item" (click)="changeActiveMenue('invoice')" [ngClass]="{'active': activeTab === 'invoice'}">
+      <a class="nav-link">Stock exports <span class="tab_values">(465)</span></a>
+    </li>
+    <li class="nav-item" (click)="changeActiveMenue('salesordersreturn')"
+    [ngClass]="{'active': activeTab === 'salesordersreturn'}">
+      <a class="nav-link">Loss and adjusment <span class="tab_values">(0)</span></a>
+    </li>
+    <li class="nav-item" (click)="changeActiveMenue('salesrefund')"
+      [ngClass]="{'active': activeTab === 'salesrefund'}">
+      <a class="nav-link">Opening Stock <span class="tab_values">(1)</span></a>
+    </li>
+  </ul>
+</div>
