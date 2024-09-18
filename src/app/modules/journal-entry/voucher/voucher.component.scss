@@ -1,0 +1,22 @@
+button.btn.btn-plus {
+    cursor: pointer;
+    background: #f1ecec;
+    color: blue;
+    border: none;
+    width: 40px;
+    border-radius: 4px;
+    height: 40px;
+}
+button.btn.btn-minus {
+    cursor: pointer;
+    background: #f1ecec;
+    color: red;
+    border: none;
+    width: 40px;
+    border-radius: 4px;
+    height: 40px;
+}
+
+::ng-deep .ng-clear-wrapper{
+ display: none;
+}

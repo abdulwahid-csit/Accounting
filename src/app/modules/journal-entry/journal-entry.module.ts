@@ -8,6 +8,10 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CreateJournelComponent } from './create-journel/create-journel.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {QuillModule} from 'ngx-quill'
+import { SharedModule } from 'src/app/shared/shared.module';
+import { JournalVoucherComponent } from './journal-voucher/journal-voucher.component';
+import { VoucherComponent } from './voucher/voucher.component';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,9 +21,12 @@ import {QuillModule} from 'ngx-quill'
     FormsModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),
+    SharedModule,
+    
+  
 
   ],
-  declarations: [JournalEntryComponent, CreateJournelComponent],
+  declarations: [JournalEntryComponent, CreateJournelComponent, JournalVoucherComponent, VoucherComponent],
   exports: [
     RouterModule
   ],
