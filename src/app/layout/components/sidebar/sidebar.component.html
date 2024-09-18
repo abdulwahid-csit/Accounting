@@ -71,12 +71,12 @@
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="checks"><span
                         class="d-flex align-items-center sidebar_svg iconone"></span><a>Checks</a></li> -->
 
-                      
+
                 <li (click)="toggleMenu('journal')" [ngClass]="{'active': activeMenu === 'journal'}"
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="journal-entry"><span
                         class="d-flex align-items-center sidebar_svg iconone"></span><a>Journal Entry</a>
                         <span class="arrow-icon" [ngClass]="{'open': activeMenu === 'journal'}">
-                            &#9654; 
+                            &#9654;
                         </span>
                     </li>
                     <ul [ngClass]="activeMenu === 'journal' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"
@@ -112,6 +112,18 @@
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="setting">
                     <span class="d-flex align-items-center sidebar_svg users "></span><a>Settings</a>
                 </li>
+
+                <ul [ngClass]="activeMenu === 'setting' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"
+                    class="sub-menu">
+
+                    <!-- <li class="nav-item position-relative">
+                        <a routerLink="" routerLinkActive="sublink-active">Permissions</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a routerLink="" routerLinkActive="sublink-active">Account settings
+                            equipment</a>
+                    </li> -->
+                </ul>
             </ul>
         </div>
     </div>

@@ -1,0 +1,147 @@
+<div class="container p-2">
+  <div class="d-flex">
+    <button class="primary_button"> Reset Data</button>
+    <div class="p-2 text-danger">it will delete all data related to the accounting module</div>
+  </div>
+
+  <hr>
+
+  <div class="d-flex">
+    <button class="primary_button"> Remove Invalid entries</button>
+    <div class="p-2 text-danger">will delete entries for which the transaction no longer exist</div>
+  </div>
+
+  <hr>
+
+  <div class="col-8">
+    <div class="d-flex justify-content-between">
+      <div>Accounting</div>
+      <div>Chart of Accounts</div>
+    </div>
+    <div>
+      <label class="d-flex ">First month of financial year
+        <div class="question-mark ms-2">?</div>
+      </label>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <select class="custom-select p-2 rounded ">
+        <option selected>January</option>
+        <option value="1">February </option>
+        <option value="2">March</option>
+        <option value="3">April</option>
+      </select>
+      <div>
+        <div>
+          Enable account
+        </div>
+
+        <div>
+          numbers
+          <div class="question-mark ms-2">?</div>
+        </div>
+      </div>
+
+
+      <div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isSwitchChecked">
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+
+          </label>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <div class="form-check" *ngIf="isSwitchChecked">
+        <input class="form-check-input" type="checkbox" id="checkbox1">
+        <label class="form-check-label" for="checkbox1">
+          Show account numbers
+          <div class="question-mark ms-2">?</div>
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <label class="d-flex ">First month of tax year
+
+      </label>
+      <select class="custom-select p-2 rounded ">
+        <option selected>January</option>
+        <option value="1">February </option>
+        <option value="2">March</option>
+        <option value="3">April</option>
+      </select>
+    </div>
+    <div>
+      <label class="d-flex ">Accounting method
+        <div class="question-mark ms-2">?</div>
+      </label>
+      <select class="custom-select p-2 rounded ">
+        <option selected>Accrual</option>
+        <option value="1">cash </option>
+      </select>
+    </div>
+
+    <div class="mb-2">
+      - When you use the accrual method in reports:
+    </div>
+    <div>
+      + Your report counts income and expenses as if
+    </div>
+    <div>
+      they happened when you sent the invoice or
+    </div>
+    <div>
+      got the bill
+    </div>
+    <div>
+      + It includes income and expenses even if the
+    </div>
+    <div class="mt-2">
+      money hasn’t changed hands yet
+    </div>
+
+    <label class="d-flex ">Close the books
+      <div class="question-mark ms-2">?</div>
+    </label>
+
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="CloseBooked" [(ngModel)]="isCloseBooked">
+      <label class="form-check-label" for="flexSwitchCheckDefault">
+      </label>
+    </div>
+    <div *ngIf="isCloseBooked">
+      <label>* Closing date</label>
+      <div class="col-md-4">
+        <label for="">From date</label>
+        <div class="input-group w-auto mt-2">
+          <input type="text" placeholder="Datepicker" class="form-control customClass" bsDatepicker
+            id="datepickerInput">
+          <div class="input-group-append">
+            <span class="input-group-text" (click)="openDatepicker()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <select class="custom-select p-2 rounded ">
+        <option selected>Allow changes after viewing a warning</option>
+      </select>
+    </div>
+
+  </div>
+  <hr>
+  <div class="d-flex justify-content-end">
+    <button class="primary_button">
+      save
+    </button>
+  </div>
+</div>
