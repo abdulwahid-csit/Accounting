@@ -7,6 +7,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { ImportAccountComponent } from './import-account/import-account.component';
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -16,8 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     QuillModule,
     FormsModule,
     ReactiveFormsModule,
-  ],
-  declarations: [ChartOfAccountsComponent, AddAccountComponent],
+    SharedModule
+],
+  declarations: [ChartOfAccountsComponent, AddAccountComponent, ImportAccountComponent],
   exports: [
     RouterModule
   ]

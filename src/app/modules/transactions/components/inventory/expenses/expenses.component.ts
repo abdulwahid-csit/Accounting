@@ -4,14 +4,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-expenses',
   templateUrl: './expenses.component.html',
-  styleUrls: ['./expenses.component.scss']
+  styleUrls: ['./expenses.component.scss', '../../../../../css/custpm-dropdown-style.scss']
 })
 export class ExpensesComponent implements OnInit {
   applicationForm!: FormGroup;
   isFocused: boolean = false;
-  isInvoiceFocused = false;
-  isPaymentmodeFocused = false;
-  isStatusFocused = false;
+  isStatusFocus = false;
+  isFromDateFocus = false;
+  isToDateFocus = false;
 
   constructor() { }
 

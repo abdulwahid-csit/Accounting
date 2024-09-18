@@ -1,19 +1,21 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-add-account',
   templateUrl: './add-account.component.html',
-  styleUrls: ['./add-account.component.scss']
+  styleUrls: ['./add-account.component.scss', '../../../css/custpm-dropdown-style.scss']
 })
-export class AddAccountComponent implements OnInit {
+export class AddAccountComponent implements OnInit, OnDestroy {
 
   applicationForm!: FormGroup;
-  isFocused: boolean = false;
-  isInvoiceFocused = false;
-  isPaymentmodeFocused = false;
-  isStatusFocused = false;
+  isAccountFocus = false;
+  isParrentAccountFocus = false;
+  isTypeFoucus = false;
+  isDetailTypeFocus = false;
+  isStatusFocus = false;
+  isQuillFocus = false;
   editorContent = ''
   @ViewChild('printSection', { static: false }) printSection!: ElementRef;
 
@@ -55,16 +57,6 @@ export class AddAccountComponent implements OnInit {
   }
 
 
-  onSelectFoucus() {
-    console.log("NG slect focused");
-    this.isFocused = true;
-  }
-
-  onNgSelectBlur() {
-    this.isFocused = false;
-    console.log("Ng select blured.")
-  }
-
   closeModal(): void {
     this.modalService.hide();
   }
@@ -82,6 +74,14 @@ export class AddAccountComponent implements OnInit {
     this.isSubDropdownOpen = isOpen;
   }
 
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    if (this.isQuillFocus && event.ctrlKey && event.key === 'p') {
+      event.preventDefault();
+      this.printDocument();
+    }
+  }
+  
   printDocument() {
     if (this.printSection) {
       this.printSection.nativeElement.innerHTML = this.editorContent;
@@ -113,5 +113,11 @@ export class AddAccountComponent implements OnInit {
       }
     }
 
+  }
+
+
+
+  ngOnDestroy(): void {
+    this.isQuillFocus = false;
   }
 }
