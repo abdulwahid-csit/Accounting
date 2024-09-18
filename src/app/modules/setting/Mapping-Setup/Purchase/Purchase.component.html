@@ -1,3 +1,253 @@
-<p>
-  Purchase works!
-</p>
+<div class="main-container">
+  <div class="pt-1 mt-2">
+    <h3>Automatic Mapping</h3>
+  </div>
+  <div class="border border-1 pt-1 mt-2">
+    <div class="p-3">
+      <div class="d-flex col-3 justify-content-between ">
+        <div>
+         Purchase Order
+        </div>
+        <div>
+          <div class="form-check form-switch border-start ">
+            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isExpensesChecked">
+            <label class="form-check-label" for="flexSwitchCheckDefault">
+
+            </label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isExpensesChecked">
+        <div class=" row ">
+          <div class="col-6">
+            <label>Payment account</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label>Deposit to</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="border border-1 pt-1 mt-2">
+    <div class="p-3">
+      <div class="d-flex col-3 justify-content-between ">
+        <div>
+          Purchase Invoice
+        </div>
+        <div>
+          <div class="form-check form-switch border-start ">
+            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isSalesChecked">
+            <label class="form-check-label" for="flexSwitchCheckDefault">
+
+            </label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isSalesChecked">
+        <div class=" row ">
+          <div class="col-6">
+            <label>Payment account</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label>Deposit to</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="border border-1 pt-1 mt-2">
+    <div class="p-3">
+      <div class="d-flex col-3 justify-content-between ">
+        <div>
+         Payment
+        </div>
+        <div>
+          <div class="form-check form-switch border-start ">
+            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isExpenseChecked">
+            <label class="form-check-label" for="flexSwitchCheckDefault">
+
+            </label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isExpensesChecked">
+        <div class=" row ">
+          <div class="col-6">
+            <label>Payment account</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label>Deposit to</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="border border-1 pt-1 mt-2">
+    <div class="p-3">
+      <div class="d-flex col-3 justify-content-between ">
+        <div>
+        Purchase order return
+        </div>
+        <div>
+          <div class="form-check form-switch border-start ">
+            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isExpensesChecked">
+            <label class="form-check-label" for="flexSwitchCheckDefault">
+
+            </label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isExpensesChecked">
+        <div class=" row ">
+          <div class="col-6">
+            <label>Payment account</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label>Deposit to</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="border border-1 pt-1 mt-2">
+    <div class="p-3">
+      <div class="d-flex col-3 justify-content-between ">
+        <div>
+          Refund
+        </div>
+        <div>
+          <div class="form-check form-switch border-start ">
+            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isSalesChecked">
+            <label class="form-check-label" for="flexSwitchCheckDefault">
+
+            </label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isSalesChecked">
+        <div class=" row ">
+          <div class="col-6">
+            <label>Payment account</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label>Deposit to</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="border border-1 pt-1 mt-2">
+    <div class="p-3">
+      <div class="d-flex col-3 justify-content-between ">
+        <div>
+          Tax Default
+        </div>
+        <div>
+          <div class="form-check form-switch border-start ">
+            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isExpenseChecked">
+            <label class="form-check-label" for="flexSwitchCheckDefault">
+
+            </label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isExpensesChecked">
+        <div class=" row ">
+          <div class="col-6">
+            <label>Payment account</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label>Deposit to</label>
+            <select class="custom-select p-2 rounded ">
+              <option selected>Sales</option>
+              <option value="1">Other </option>
+              <option value="2">Overhead</option>
+              <option value="3">Interest income</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <hr>
+    <div class="d-flex justify-content-end">
+      <div class="primary_button">
+        Save
+      </div>
+    </div>
+
+  </div>
+
+</div>
