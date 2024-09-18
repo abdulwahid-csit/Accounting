@@ -1,20 +1,9 @@
 .box {
     border-radius: 5px;
     margin-bottom: 15px;
-    flex: 1 1 300px; /* Each box should have at least 300px width */
-    max-width: 100%; /* Ensure they don’t overflow */
-    
+    flex: 1 1 300px; 
+    max-width: 100%;
   }
-  
-  ::ng-deep ng-select.ng-select-focused {
-    border-color: #0284c7 !important;
-    box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;
-  }
-  
-  ::ng-deep .ng-select {
-    box-shadow: none !important;
-  }
-  
   
   .container-flex {
     display: flex;
@@ -25,8 +14,8 @@
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 15px;
-    flex: 1 1 300px; /* Each box should have at least 300px width */
-    max-width: 350px; /* Ensure they don’t overflow */
+    flex: 1 1 300px;
+    max-width: 350px;
     label{
       font-size: 14px;
       font-weight: bold;
@@ -57,14 +46,14 @@
     } 
     
     a:hover{
-      color: #0284c7;
+      color:  #6f63bd;
     }
   }
   
   .active{
-    border-bottom: 3px solid #0284c7;
+    border-bottom: 3px solid  #6f63bd;
     a{
-      color: #0284c7;
+      color:  #6f63bd;
       font-weight: 600;
     }
   }

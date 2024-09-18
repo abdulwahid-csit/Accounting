@@ -28,9 +28,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-focused': isInvoiceFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+      }" formControlName="organization" (focus)="isInvoiceFocus = true" (blur)="isInvoiceFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -43,9 +43,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isPaymentmodeFocused === true,
+        'ng-select-focused': isPaymentmodeFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isPaymentmodeFocused = true" (blur)="isPaymentmodeFocused = false"
+      }" formControlName="organization" (focus)="isPaymentmodeFocus = true" (blur)="isPaymentmodeFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -58,9 +58,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isStatusFocused === true,
+        'ng-select-focused': isStatusFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+      }" formControlName="organization" (focus)="isStatusFocus = true" (blur)="isStatusFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -73,9 +73,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-focused': isFromdateFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+      }" formControlName="organization" (focus)="isFromdateFocus = true" (blur)="isFromdateFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -88,9 +88,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-focused': isToDateFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+      }" formControlName="organization" (focus)="isToDateFocus = true" (blur)="isToDateFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -198,9 +198,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isStatusFocused === true,
+        'ng-select-focused': isStatusFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+      }" formControlName="organization" (focus)="isStatusFocus = true" (blur)="isStatusFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -213,9 +213,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-focused': isFromdateFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+      }" formControlName="organization" (focus)="isFromdateFocus = true" (blur)="isFromdateFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -228,9 +228,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-focused': isToDateFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+      }" formControlName="organization" (focus)="isToDateFocus = true" (blur)="isToDateFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -338,9 +338,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isStatusFocused === true,
+        'ng-select-focused': isStatusFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+      }" formControlName="organization" (focus)="isStatusFocus = true" (blur)="isStatusFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -353,9 +353,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-focused': isFromdateFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+      }" formControlName="organization" (focus)="isFromdateFocus = true" (blur)="isFromdateFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -368,9 +368,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-focused': isToDateFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+      }" formControlName="organization" (focus)="isToDateFocus = true" (blur)="isToDateFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -478,9 +478,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isStatusFocused === true,
+        'ng-select-focused': isStatusFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isStatusFocused = true" (blur)="isStatusFocused = false"
+      }" formControlName="organization" (focus)="isStatusFocus = true" (blur)="isStatusFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -493,9 +493,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-focused': isFromdateFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+      }" formControlName="organization" (focus)="isFromdateFocus = true" (blur)="isFromdateFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -508,9 +508,9 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'custom-select-error': isControlHasError('organization', 'required'),
         'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isInvoiceFocused === true,
+        'ng-select-focused': isToDateFocus === true,
         'ng-select-error': isControlHasError('organization', 'required')
-      }" formControlName="organization" (focus)="isInvoiceFocused = true" (blur)="isInvoiceFocused = false"
+      }" formControlName="organization" (focus)="isToDateFocus = true" (blur)="isToDateFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>

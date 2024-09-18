@@ -4,15 +4,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-payslips',
   templateUrl: './payslips.component.html',
-  styleUrls: ['./payslips.component.scss']
+  styleUrls: ['./payslips.component.scss', '../../../../../css/custpm-dropdown-style.scss']
 })
 export class PayslipsComponent implements OnInit {
 
   applicationForm!: FormGroup;
   isFocused: boolean = false;
-  isInvoiceFocused = false;
-  isPaymentmodeFocused = false;
-  isStatusFocused = false;
+  isStatus= false;
+  isFromDate = false;
+  isToDate = false;
 
   constructor() { }
 
