@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
 
   // Method to toggle sub-menu
   toggleMenu(menu: string) {
-    this.activeMenu = this.activeMenu === menu ? null : menu;
+    this.activeMenu = menu;
   }
 
   logout() {

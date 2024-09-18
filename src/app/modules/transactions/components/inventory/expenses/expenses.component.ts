@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-expenses',
   templateUrl: './expenses.component.html',
-  styleUrls: ['./expenses.component.scss', '../../../../../css/custpm-dropdown-style.scss']
+  styleUrls: ['./expenses.component.scss', '../../../../../css/custpm-dropdown-style.scss', '../../../../../css/custom-datepicker-style.scss']
 })
 export class ExpensesComponent implements OnInit {
   applicationForm!: FormGroup;
