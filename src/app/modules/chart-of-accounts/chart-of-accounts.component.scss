@@ -6,16 +6,6 @@
     
   }
   
-  ::ng-deep ng-select.ng-select-focused {
-    border-color: #0284c7 !important;
-    box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;
-  }
-  
-  ::ng-deep .ng-select {
-    box-shadow: none !important;
-  }
-  
-  
   .container-flex {
     display: flex;
     flex-wrap: wrap;

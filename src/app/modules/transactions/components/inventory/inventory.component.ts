@@ -4,14 +4,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
-  styleUrls: ['./inventory.component.scss']
+  styleUrls: ['./inventory.component.scss', '../../../../css/custpm-dropdown-style.scss']
 })
 export class InventoryComponent implements OnInit {
   applicationForm!: FormGroup;
   isFocused: boolean = false;
-  isInvoiceFocused = false;
-  isPaymentmodeFocused = false;
-  isStatusFocused = false;
+  isStatusFocus = false;
+  isFromDateFocus = false;
+  isToDateFocus = false;
   activeTab = 'payment';
 
   constructor() { }

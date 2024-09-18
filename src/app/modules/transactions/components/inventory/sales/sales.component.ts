@@ -4,14 +4,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-sales',
   templateUrl: './sales.component.html',
-  styleUrls: ['./sales.component.scss']
+  styleUrls: ['./sales.component.scss', '../../../../../css/custpm-dropdown-style.scss']
 })
 export class SalesComponent implements OnInit {
   applicationForm!: FormGroup;
   isFocused: boolean = false;
-  isInvoiceFocused = false;
-  isPaymentmodeFocused = false;
-  isStatusFocused = false;
+  isInvoiceFocus = false;
+  isPaymentmodeFocus = false;
+  isStatusFocus = false;
+  isFromdateFocus = false;
+  isToDateFocus = false;
   activeTab = 'payment';
 
   constructor() { }
