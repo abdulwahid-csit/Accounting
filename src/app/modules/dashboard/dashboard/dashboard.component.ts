@@ -84,7 +84,7 @@ export class DashboardComponent {
   ];
 
   // View size (Optional)
-  view: [number, number] = [700, 400];
+  view: [number, number] = [500, 300];
 
   // Color scheme
   colorScheme: any = {

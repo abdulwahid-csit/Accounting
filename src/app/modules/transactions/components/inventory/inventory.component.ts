@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
-  styleUrls: ['./inventory.component.scss', '../../../../css/custpm-dropdown-style.scss']
+  styleUrls: ['./inventory.component.scss', '../../../../css/custpm-dropdown-style.scss', '../../../../css/custom-datepicker-style.scss']
 })
 export class InventoryComponent implements OnInit {
   applicationForm!: FormGroup;

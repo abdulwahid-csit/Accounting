@@ -3,20 +3,6 @@
     display: flex;
 }
 
-/* Flexbox for equal height cards */
-//   .card-equal-height {
-//     display: flex;
-//     flex-direction: column;
-//     height: 100%;
-//   }
-
-//   .card-equal-height {
-//     display: flex;
-//     flex-direction: column;
-//   }
-//   .card-body {
-//     flex: 1 1 auto;
-//   }
 
 .card {
     border-radius: 0 !important;
@@ -128,4 +114,8 @@
     /* Line color */
     stroke-width: 1px;
     /* Line thickness */
+}
+::ng-deep .ngx-charts-outer{
+width: auto !important;
+height: auto !important;
 }
