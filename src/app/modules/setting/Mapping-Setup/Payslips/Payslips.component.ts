@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Payslips.component.css']
 })
 export class PayslipsComponent implements OnInit {
+isExpenseChecked: any;
+isExpensesChecked: any;
+isPaymentChecked: any;
+isSalesChecked: any;
+isRefundChecked: any;
 
   constructor() { }
 
