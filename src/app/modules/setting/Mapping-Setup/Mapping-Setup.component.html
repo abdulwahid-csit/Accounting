@@ -1,0 +1,44 @@
+<div class="tabs mb-5">
+  <ul class="nav nav-tabs">
+    <li class="nav-item" (click)="changeActiveMenue('General')"
+    [ngClass]="{'active': activeTab === 'General'}">
+      <a class="nav-link">General<span class="tab_values"></span></a>
+    </li>
+    <li class="nav-item" (click)="changeActiveMenue('Payslips')"
+      [ngClass]="{'active': activeTab === 'Payslips'}">
+      <a class="nav-link">Payslips <span class="tab_values"></span></a>
+    </li>
+    <li class="nav-item" (click)="changeActiveMenue('Purchase')"
+    [ngClass]="{'active': activeTab === 'Purchase'}">
+    <a class="nav-link">Purchase <span class="tab_values"></span></a>
+  </li>
+  <li class="nav-item" (click)="changeActiveMenue('Inventory')"
+  [ngClass]="{'active': activeTab === 'Inventory'}">
+  <a class="nav-link">Inventory<span class="tab_values"></span></a>
+   </li>
+   <li class="nav-item" (click)="changeActiveMenue('Manufacturing')"
+   [ngClass]="{'active': activeTab === 'Manufacturing'}">
+   <a class="nav-link">Manufacturing<span class="tab_values"></span></a>
+    </li>
+    <li class="nav-item" (click)="changeActiveMenue('OmniSales')"
+   [ngClass]="{'active': activeTab === 'OmniSales'}">
+   <a class="nav-link">Omni Sales<span class="tab_values"></span></a>
+    </li>
+    <li class="nav-item" (click)="changeActiveMenue('Fixedequipment')"
+    [ngClass]="{'active': activeTab === 'Fixedequipment'}">
+    <a class="nav-link">Fixed equipment<span class="tab_values"></span></a>
+     </li>
+  </ul>
+</div>
+
+<ng-container [ngSwitch]="activeTab" >
+  <app-generaltab *ngSwitchCase="'General'" > </app-generaltab>
+  <app-Fixedequiment  *ngSwitchCase="'Fixedequipment'"></app-Fixedequiment>
+  <app-Inventory *ngSwitchCase="'Inventory'"></app-Inventory>
+  <app-Manufacturing *ngSwitchCase="'Manufacturing'"></app-Manufacturing>
+  <app-Omni *ngSwitchCase="'OmniSales'"></app-Omni>
+  <app-Payslips *ngSwitchCase="'Payslips'"></app-Payslips>
+  <app-Purchase *ngSwitchCase="'Purchase'"></app-Purchase>
+
+</ng-container>
+
