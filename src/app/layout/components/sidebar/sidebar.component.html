@@ -8,7 +8,7 @@
             <ul class="pt-2">
                 <li (click)="toggleMenu('dashboard')" [ngClass]="{'active': activeMenu === 'dashboard'}"
                     class="d-flex align-items-center sidebar_svg" routerLink="dashboard" routerLinkActive="active"><span
-                        class="d-flex align-items-center sidebar_svg home"></span><a>Dashboard</a></li>
+                        class="d-flex align-items-center sidebar_svg dashboard-icon"></span><a>Dashboard</a></li>
 
                         <li (click)="toggleMenu('organization')" [ngClass]="{'active': activeMenu === 'organization'}"
                         class="d-flex align-items-center sidebar_svg" routerLink="organization" routerLinkActive="active"><span
@@ -16,50 +16,55 @@
 
                 <li (click)="toggleMenu('banking')" [ngClass]="{'active': activeMenu === 'banking'}"
                     class="d-flex align-items-center sidebar_svg" routerLink="banking" routerLinkActive="active">
-                    <span class="d-flex align-items-center sidebar_svg Icon"></span><a>Banking</a>
+                    <span class="d-flex align-items-center sidebar_svg Icon banking-icon"></span><a>Banking</a>
                 </li>
 
-                <li [ngClass]="{'active': activeMenu === 'transaction'}" class="d-flex align-items-center sidebar_svg"
+                <li [ngClass]="{'active': activeMenu === 'transaction'}" class="d-flex align-items-center justify-content-between sidebar_svg"
                     (click)="toggleMenu('transaction')" routerLink="transaction">
-                    <!-- Main link content -->
-                    <span class="d-flex align-items-center sidebar_svg check-verified"></span>
+                   <div class="d-flex">
+                    <span class="d-flex align-items-center sidebar_svg transactions-icon"></span>
                     <a>Transactions</a>
+                   </div>
 
-                    <!-- Arrow Icon -->
-                    <span class="arrow-icon" [ngClass]="{'open': activeMenu === 'transaction'}">
-                        &#9654; <!-- Arrow symbol, rotate on open -->
-                    </span>
+                    <span  class="arrow-icon chevron-right-icon" [ngClass]="{'open': activeMenu === 'transaction'}"></span>
                 </li>
 
                 <ul [ngClass]="activeMenu === 'transaction' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"
                     class="sub-menu">
-                    <li class="nav-item position-relative">
-                        <a routerLink="transaction/sale" routerLinkActive="sublink-active">Sale</a>
+                    <li class="nav-item position-relative d-flex" routerLink="transaction/sale" routerLinkActive="sublink-active">
+                        <span class="sale-icon sidebar_svg"></span>
+                        <a>Sale</a>
                     </li>
-                    <li class="nav-item position-relative">
-                        <a routerLink="transaction/expenses" routerLinkActive="sublink-active">Expenses</a>
+                    <li class="nav-item position-relative d-flex" routerLink="transaction/expenses" routerLinkActive="sublink-active">
+                        <span class="expense-icon sidebar_svg"></span>
+                        <a >Expenses</a>
                     </li>
-                    <li class="nav-item position-relative">
-                        <a routerLink="transaction/payslips" routerLinkActive="sublink-active">Payslips</a>
+                    <li class="nav-item position-relative d-flex"  routerLink="transaction/payslips" routerLinkActive="sublink-active">
+                        <span class="payslips-icon sidebar_svg"></span>
+                        <a>Payslips</a>
                     </li>
-                    <li class="nav-item position-relative">
-                        <a routerLink="transaction/purchase" routerLinkActive="sublink-active">Purchase</a>
+                    <li class="nav-item position-relative d-flex"  routerLink="transaction/purchase" routerLinkActive="sublink-active">
+                        <span class="purchase-icon sidebar_svg"></span>
+                        <a>Purchase</a>
                     </li>
-                    <li class="nav-item position-relative">
-                        <a routerLink="transaction/inventory" routerLinkActive="sublink-active">Inventory</a>
+                    <li class="nav-item position-relative d-flex"  routerLink="transaction/inventory" routerLinkActive="sublink-active">
+                        <span class="inventory-icon sidebar_svg"></span>
+                        <a>Inventory</a>
                     </li>
-                    <li class="nav-item position-relative">
-                        <a routerLink="transaction/manufacturing" routerLinkActive="sublink-active">Manufacturing</a>
+                    <li class="nav-item position-relative d-flex"  routerLink="transaction/manufacturing" routerLinkActive="sublink-active">
+                        <span class="manufacturing-icon sidebar_svg"></span>
+                        <a>Manufacturing</a>
                     </li>
-                    <li class="nav-item position-relative">
-                        <a routerLink="transaction/fixed-equipment" routerLinkActive="sublink-active">Fixed
+                    <li class="nav-item position-relative d-flex"  routerLink="transaction/fixed-equipment" routerLinkActive="sublink-active">
+                        <span class="fixed-equipment-icon sidebar_svg"></span>
+                        <a>Fixed
                             equipment</a>
                     </li>
                 </ul>
 
 
                 <li (click)="toggleMenu('Register')" [ngClass]="{'active': activeMenu === 'Register'}"  class="d-flex align-items-center sidebar_svg" routerLink="register"  routerLinkActive="active" >
-                    <span class="d-flex align-items-center sidebar_svg check-verified"></span><a>Register</a>
+                    <span class="d-flex align-items-center sidebar_svg register-icon"></span><a>Register</a>
                 </li>
 
                 <!-- <li (click)="toggleMenu('bills')" [ngClass]="{'active': activeMenu === 'bills'}"
@@ -73,28 +78,30 @@
 
 
                 <li (click)="toggleMenu('journal')" [ngClass]="{'active': activeMenu === 'journal'}"
-                    class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="journal-entry"><span
-                        class="d-flex align-items-center sidebar_svg iconone"></span><a>Journal Entry</a>
-                        <span class="arrow-icon" [ngClass]="{'open': activeMenu === 'journal'}">
-                            &#9654;
-                        </span>
+                    class="d-flex align-items-center justify-content-between sidebar_svg" routerLinkActive="active" routerLink="journal-entry">
+                    <div class="d-flex">
+                        <span
+                            class="d-flex align-items-center sidebar_svg journal-entry-icon"></span><a>Journal Entry</a>
+                    </div>
+                        <span  class="arrow-icon chevron-right-icon" [ngClass]="{'open':activeMenu === 'journal'}"></span>
                     </li>
                     <ul [ngClass]="activeMenu === 'journal' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"
                         class="sub-menu">
-                        <li class="nav-item position-relative">
-                            <a routerLink="journal-entry/journal-voucher" routerLinkActive="sublink-active">Journal Voucher</a>
+                        <li class="nav-item position-relative d-flex" routerLink="journal-entry/journal-voucher" routerLinkActive="sublink-active">
+                            <span class="journal-voucher-icon sidebar_svg"></span>
+                            <a>Journal Voucher</a>
                         </li>
                         </ul>
 
 
-                <li (click)="toggleMenu('convert')" [ngClass]="{'active': activeMenu === 'convert'}"
+                <!-- <li (click)="toggleMenu('convert')" [ngClass]="{'active': activeMenu === 'convert'}"
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="convert">
                     <span class="d-flex align-items-center sidebar_svg users "></span><a>Convert</a>
-                </li>
+                </li> -->
                 <li (click)="toggleMenu('charts-of-account')" [ngClass]="{'active': activeMenu === 'charts-of-account'}"
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active"
                     routerLink="charts-of-account">
-                    <span class="d-flex align-items-center sidebar_svg users "></span><a>Chart of Accounts</a>
+                    <span class="d-flex align-items-center sidebar_svg chart-of-account-icon "></span><a>Chart of Accounts</a>
                 </li>
                 <!-- <li (click)="toggleMenu('reconcile')" [ngClass]="{'active': activeMenu === 'reconcile'}"
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="reconcile">
@@ -106,11 +113,11 @@
                 </li> -->
                 <li (click)="toggleMenu('reports')" [ngClass]="{'active': activeMenu === 'reports'}"
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="reports">
-                    <span class="d-flex align-items-center sidebar_svg users "></span><a>Reports</a>
+                    <span class="d-flex align-items-center sidebar_svg reports-icon "></span><a>Reports</a>
                 </li>
                 <li (click)="toggleMenu('setting')" [ngClass]="{'active': activeMenu === 'setting'}"
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="setting">
-                    <span class="d-flex align-items-center sidebar_svg users "></span><a>Settings</a>
+                    <span class="d-flex align-items-center sidebar_svg setting-icon "></span><a>Settings</a>
                 </li>
 
                 <ul [ngClass]="activeMenu === 'setting' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"

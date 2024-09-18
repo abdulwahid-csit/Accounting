@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-fixed-equipment',
   templateUrl: './fixed-equipment.component.html',
-  styleUrls: ['./fixed-equipment.component.scss', '../../../../../css/custpm-dropdown-style.scss']
+  styleUrls: ['./fixed-equipment.component.scss', '../../../../../css/custpm-dropdown-style.scss', '../../../../../css/custom-datepicker-style.scss']
 })
 export class FixedEquipmentComponent implements OnInit {
 

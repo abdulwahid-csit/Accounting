@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-sales',
   templateUrl: './sales.component.html',
-  styleUrls: ['./sales.component.scss', '../../../../../css/custpm-dropdown-style.scss']
+  styleUrls: ['./sales.component.scss', '../../../../../css/custpm-dropdown-style.scss', '../../../../../css/custom-datepicker-style.scss']
 })
 export class SalesComponent implements OnInit {
   applicationForm!: FormGroup;
@@ -15,6 +16,8 @@ export class SalesComponent implements OnInit {
   isFromdateFocus = false;
   isToDateFocus = false;
   activeTab = 'payment';
+  
+  @ViewChild(BsDatepickerDirective) datepicker: BsDatepickerDirective | any;
 
   constructor() { }
 
@@ -48,6 +51,10 @@ export class SalesComponent implements OnInit {
   onNgSelectBlur() {
     this.isFocused = false;
     console.log("Ng select blured.")
+  }
+
+  openDatepicker() {
+    this.datepicker?.show();
   }
 
 }
