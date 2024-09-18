@@ -76,7 +76,7 @@
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="checks"><span
                         class="d-flex align-items-center sidebar_svg iconone"></span><a>Checks</a></li> -->
 
-                      
+
                 <li (click)="toggleMenu('journal')" [ngClass]="{'active': activeMenu === 'journal'}"
                     class="d-flex align-items-center justify-content-between sidebar_svg" routerLinkActive="active" routerLink="journal-entry">
                     <div class="d-flex">
@@ -119,6 +119,18 @@
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="setting">
                     <span class="d-flex align-items-center sidebar_svg setting-icon "></span><a>Settings</a>
                 </li>
+
+                <ul [ngClass]="activeMenu === 'setting' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"
+                    class="sub-menu">
+
+                    <!-- <li class="nav-item position-relative">
+                        <a routerLink="" routerLinkActive="sublink-active">Permissions</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a routerLink="" routerLinkActive="sublink-active">Account settings
+                            equipment</a>
+                    </li> -->
+                </ul>
             </ul>
         </div>
     </div>

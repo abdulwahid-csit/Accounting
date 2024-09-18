@@ -40,11 +40,13 @@
     </div>
     <div class="col-md-4">
       <label for="">Status</label>
-      <select class="custom-select p-2 rounded mt-2">
-        <option selected>Cleared</option>
-        <option value="1">Uncleared</option>
-        <option value="2">Ignore</option>
-      </select>
+      <div>
+        <select class="custom-select p-2 rounded mt-2">
+          <option selected>Cleared</option>
+          <option value="1">Uncleared</option>
+          <option value="2">Ignore</option>
+        </select>
+      </div>
     </div>
 
   </div>
@@ -57,13 +59,16 @@
       <option value="4">All</option>
     </select>
     <span>
-      <div class="export_button">
+      <div class="export_button d-flex">
         <button type="button" class="button d-flex p-0 bg-white overflow-hidden rounded border">
           <span class="button__text">Export</span>
+        </button>
+        <button>
           <span class="button__icon border-start">
             <span class="large-icon">&#x21bb;</span>
           </span>
         </button>
+
       </div>
     </span>
   </div>

@@ -8,7 +8,6 @@ import { BankingFeedComponent } from './banking-feed/banking-feed.component';
 import { BankingComponent } from './banking.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AddBankComponent } from './Add-Bank Modal/Add-Bank.component';
 
 @NgModule({
   imports: [
@@ -24,7 +23,7 @@ import { AddBankComponent } from './Add-Bank Modal/Add-Bank.component';
     BankingComponent,
     BankAccountsComponent,
     BankingFeedComponent,
-    AddBankComponent
+
   ],
   exports: [
     RouterModule
