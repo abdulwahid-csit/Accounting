@@ -4,15 +4,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-manufacturing',
   templateUrl: './manufacturing.component.html',
-  styleUrls: ['./manufacturing.component.scss']
+  styleUrls: ['./manufacturing.component.scss', '../../../../../css/custpm-dropdown-style.scss']
 })
 export class ManufacturingComponent implements OnInit {
 
   applicationForm!: FormGroup;
   isFocused: boolean = false;
-  isInvoiceFocused = false;
-  isPaymentmodeFocused = false;
-  isStatusFocused = false;
+  isProductFocus = false;
+  isRoutingFocus = false;
+  isStatusFocus = false;
 
   constructor() { }
 

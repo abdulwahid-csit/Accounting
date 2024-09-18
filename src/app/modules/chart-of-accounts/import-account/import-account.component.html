@@ -1,0 +1,82 @@
+<div class="main-wrapper p-4 bg-white rounded border">
+  <div class="main-content">
+    <div class="button">
+      <button class="primary_button import_button"><a download="Sample File Import"
+          href="../../../../assets/files/Sample_import_account_file_en.xlsx">Download Template</a></button>
+      <div class="line mt-4">
+        <hr>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <ol class="list">
+        <li>Columns with the * symbol must be filled; Column Type, Sub Type, Sub Account can be filled with ID or Name;
+        </li>
+        <li>Format the excel file (type: text) before entering values.</li>
+      </ol>
+    </div>
+
+    <div class="table mt-4">
+      <table class="table border">
+        <thead>
+          <th class="border req_field">Type</th>
+          <th class="border req_field">SubType</th>
+          <th class="border">Account Code</th>
+          <th class="border req_field">Account Name</th>
+          <th class="border">Sub Account of (account)</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-5 mb-4">
+      <hr>
+    </div>
+
+    <div class="custom-inpu">
+      <label for="" class="req_field">Select Excel File</label>
+      <div class="button mt-2 border rounded w-50 py-2 px-3">
+        <input #file type="file" name="" id="" (change)="isImportButtonDisabled = false; importFile(file, $event)" accept=".xlsx, .xls">
+      </div>
+    </div>
+
+    <div class="button mt-4">
+      <button class="primary_button" [ngClass]="{'button_disabled': isImportButtonDisabled || !isFileSelected}"
+        [disabled]="isImportButtonDisabled || !isFileSelected" (click)="writeDataToServer()">Import</button>
+    </div>
+  </div>
+</div>
+
+<div class="main-wrapper p-4 bg-white rounded border mt-4" *ngIf="isFileSelected">
+  <div class="main-content">
+    <h4>Selected Data</h4>
+    <div class="table-for-imports mt-4">
+      <table class="table border">
+        <thead>
+          <th class="border req_field">Type</th>
+          <th class="border req_field">SubType</th>
+          <th class="border">Account Code</th>
+          <th class="border req_field">Account Name</th>
+          <th class="border">Sub Account of (account)</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of importDataAsObject">
+            <td>{{item.type? item.type: 'N/A'}}</td>
+            <td>{{item.subType? item.subType: 'N/A'}}</td>
+            <td>{{item.accountCode? item.accountCode: 'N/A'}}</td>
+            <td>{{item.accountName? item.accountName: 'N/A'}}</td>
+            <td>{{item.subAccountOfaccount? item.subAccountOfaccount: 'N/A'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

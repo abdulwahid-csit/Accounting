@@ -4,15 +4,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-fixed-equipment',
   templateUrl: './fixed-equipment.component.html',
-  styleUrls: ['./fixed-equipment.component.scss']
+  styleUrls: ['./fixed-equipment.component.scss', '../../../../../css/custpm-dropdown-style.scss']
 })
 export class FixedEquipmentComponent implements OnInit {
 
   applicationForm!: FormGroup;
   isFocused: boolean = false;
-  isInvoiceFocused = false;
-  isPaymentmodeFocused = false;
-  isStatusFocused = false;
+  isFromDateFocus = false;
+  isToDateFocus = false;
+  isStatusFocus = false;
   activeTab = 'payment';
 
   constructor() { }

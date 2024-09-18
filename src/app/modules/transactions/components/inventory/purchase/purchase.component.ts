@@ -4,15 +4,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-purchase',
   templateUrl: './purchase.component.html',
-  styleUrls: ['./purchase.component.scss']
+  styleUrls: ['./purchase.component.scss', '../../../../../css/custpm-dropdown-style.scss']
 })
 export class PurchaseComponent implements OnInit {
 
   applicationForm!: FormGroup;
   isFocused: boolean = false;
-  isInvoiceFocused = false;
-  isPaymentmodeFocused = false;
-  isStatusFocused = false;
+  isStatusFocus = false;
+  isFromDateFocus = false;
+  isToDateFocus = false;
   activeTab = 'payment';
 
   constructor() { }

@@ -7,26 +7,6 @@
     color: #111;
 }
 
-::ng-deep ng-select.ng-select-focused {
-    border-color: #0284c7 !important;
-    box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;
-}
-
-::ng-deep .ng-select {
-    box-shadow: none !important;
-}
-
-::ng-deep .ng-select .ng-select-container {
-    align-items: center !important;
-    position: unset !important;
-
-    input:focus {
-        box-shadow: none !important;
-        caret-color: transparent !important;
-    }
-}
-
-
 .container-flex {
     display: flex;
     flex-wrap: wrap;
@@ -38,13 +18,12 @@
     margin-bottom: 15px;
     flex: 1 1 300px;
     max-width: 350px;
+
     label {
         font-size: 14px;
         font-weight: bold;
     }
 }
-
-
 
 .common_box {
     padding: 24px;
@@ -60,16 +39,18 @@
 }
 
 
-.editor-tabs{
+.editor-tabs {
     margin: 5px;
-    button{
+
+    button {
         border: none;
         background-color: #fff;
         padding: 5px 8px;
         border-radius: 4px;
         transition: background-color 0.3s ease;
     }
-    button:hover{
+
+    button:hover {
         background-color: #cce2fa;
     }
 }
@@ -80,35 +61,37 @@
     border-radius: 8px;
     border: 1px solid #cccc;
 }
+
 ::ng-deep .quill-editor {
     width: 100%;
-  }
+}
 
-  ::ng-deep .ql-toolbar{
+::ng-deep .ql-toolbar {
     border: none !important;
     box-shadow: 0px 4px 5px #dcdcdc;
-  }
-  ::ng-deep .ql-editor{
+}
+
+::ng-deep .ql-editor {
     padding-bottom: 0 !important;
     overflow-y: hidden !important;
     min-height: 200px;
     border: none !important;
-  }
-  ::ng-deep .ql-container{
+}
+
+::ng-deep .ql-container {
     border: none !important;
-  }
+}
 
-
-
-//   Dropdown CSS Start here
-.dropdown-toggle::after{
+.dropdown-toggle::after {
     display: none !important;
 }
-.dropdown-menu{
+
+.dropdown-menu {
     max-height: 450px;
     overflow-y: auto;
     top: 640px;
-    .print-button{
+
+    .print-button {
         border-radius: 4px;
         cursor: pointer;
         user-select: none;
@@ -116,7 +99,8 @@
         font-size: 14px;
         font-weight: 500;
     }
-    .print-button:hover{
+
+    .print-button:hover {
         background-color: #6f63bd;
         color: white;
     }
