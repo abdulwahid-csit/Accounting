@@ -15,9 +15,8 @@ export class MappingSetupComponent implements OnInit {
 
   ngOnInit() {
   }
-  activeTab: string = 'payment'; // Initialize the property
+  activeTab: string = 'General';
 
-  // Method to change the active tab
   setActiveTab(tab: string) {
   }
 
