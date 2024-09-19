@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   showSettingsIcon = false;
   isDropdownVisible = false;
   isDashboard = false;
+  user: any;
 
   constructor(
     private commonService:CommonService,
@@ -42,6 +43,7 @@ export class HeaderComponent implements OnInit {
     ).subscribe((event: any) => {
       this.isDetailsPage = event.urlAfterRedirects.includes('/details');
     })
+    this.getUserDetaisl()
   }
 
   toggleSidebar(){
@@ -78,7 +80,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    // this.localStoreService.removeItem();
+    this.localStoreService.removeItem();
     this.router.navigate(['/login'])
   }
   navigate(){
@@ -90,6 +92,12 @@ export class HeaderComponent implements OnInit {
     if (!this.elRef.nativeElement.contains(event.target)) {
       this.isDropdownVisible = false;
     }
+  }
+
+
+  getUserDetaisl(){
+    this.user = this.localStoreService.getItem('user');
+    // console.log("Current User: ", this.user)
   }
 
 }

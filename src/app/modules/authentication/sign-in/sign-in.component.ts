@@ -50,24 +50,41 @@ export class SignInComponent {
       this.signInForm.markAllAsTouched();
       return;
     }
+
     const { email, password } = this.signInForm.value;
     this.isLoading = true;
-    this.authService.signIn(email, password).subscribe((response: any) => {
 
-      if (response.status_code === 200) {
-        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/dashboard';
-        this.router.navigateByUrl(returnUrl);
-        const { access_token, refresh_token, access_token_expires, user } = response.data;
-        this.authService.storeTokens(access_token, refresh_token, access_token_expires, user);
-        this.router.navigate(['/dashboard']);
-      } else {
-        this.toast.error(response.message, "Error!");
+    this.authService.signIn(email, password).subscribe({
+      next: (response: any) => {
+        if (response?.data) {
+          const { access_token, refresh_token, access_token_expires, user } = response.data?.data;
+          if (access_token && refresh_token && access_token_expires && user) {
+            this.authService.storeTokens(access_token, refresh_token, access_token_expires, user);
+            console.log("Tokens stored to localstorage.")
+            this.router.navigate(['dashboard']);
+          } else {
+            console.log("Tokens not stored to local storage.")
+            this.toast.error("Incomplete response data");
+            console.error("Incomplete response data:", response);
+          }
+        } else {
+          this.toast.error("Unexpected response format");
+          console.error("Unexpected response format:", response);
+        }
+      },
+      error: (error) => {
+        this.toast.error("Error!");
+        console.error("Error from login API:", error);
+        if (error.error?.message) {
+          this.toast.error(error.message, "Error!");
+        } else {
+          this.toast.error("An unknown error occurred", "Error!");
+        }
+        this.isLoading = false;
+      },
+      complete: () => {
+        this.isLoading = false;
       }
-      this.isLoading = false;
-    }, error => {
-      this.toast.error(error.error.message, "Error!");
-      console.log("here is the error", error)
-      this.isLoading = false;
     });
   }
 

@@ -135,21 +135,20 @@
         </div>
     </div>
 
-    <div class="logout-section-main-div">
+    <!-- <div class="logout-section-main-div">
         <div class="logout-section">
-            <!-- <hr class="text-white"> -->
             <div class="text-white d-flex justify-content-between">
                 <div class="d-flex">
                     <div class="user-img">
                         <img class="rounded-circle" [src]="" alt="Profile Picture">
                     </div>
                     <div class="ms-2">
-                        <div class="fs-14px fw-700">Username</div>
+                        <div class="fs-14px fw-700">{{localStoreService.getItem('user')?.email}}</div>
                         <div class="role fs-12px">Role</div>
                     </div>
                 </div>
                 <div class="me-4 mt-2" (click)="logout()"><span class="cursor-pointer logout-icon"></span></div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
