@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss', '../../../css/custpm-dropdown-style.scss']
 })
-export class DashboardComponent {
-
+export class DashboardComponent implements OnInit {
+  applicationForm!: FormGroup
   tabId = 'brl';
+  isStatus = false;
 
   tabs = [
     {
@@ -336,6 +338,23 @@ export class DashboardComponent {
     domain: ['#6c757d', '#dc3545', '#28a745', '#007bff'] // Gray, Red, Green, Blue
   };
 
+
+
+  ngOnInit(): void {
+    this.applicationForm = new FormGroup({
+      organization: new FormControl('', [Validators.required]),
+    })
+  }
+
+  isControlHasError(controlName: any, validationType: string): boolean {
+    const control = this.applicationForm.controls[controlName];
+    if (!control) {
+      return false;
+    }
+    return (
+      control.hasError(validationType) && (control.dirty || control.touched)
+    );
+  }
 
 }
 
