@@ -1,8 +1,36 @@
 .question-mark {
-  display: inline-block;
+  display: flex;
   background-color: black;
   color: white;
   padding-left: 4px;
   padding-right: 4px;
-  border-radius: 90px;
+  border-radius: 100%;
+}
+.box {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  flex: 1 1 300px; 
+  
+}
+
+p{
+  font-size: 20px;
+  font-style: italic;
+}
+label{
+  font-size: 18px;
+}
+input#CloseBooked {
+  height: 25px;
+  width: 56px;
+  margin-left: 10px; 
+}
+input#flexSwitchCheckDefault {
+  width: 56px;
+  height: 23px;
+  margin-left: 10px;
+}
+.form-check.form-switch {
+  border-left: 1px solid #b8adad;
 }
