@@ -13,7 +13,7 @@
               Happy to see you again ! Sign in via email or another trusted account.
             </div>
             <div class="modal-body mt-3">
-              <form [formGroup]="signInForm" (ngSubmit)=" login()">
+              <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
                 <div class="row custom-input mb-4">
                   <div class="input-container ">
                     <label for="email" class="label-font required">Email</label>
@@ -64,7 +64,7 @@
           <div class="col-12 mt-4">
             <div class="d-flex flex-column flex-md-row justify-content-center mt-2">
               <div class="dark-light pe-1">New on our platform?</div>
-              <div class="text-clr cursor-pointer" [routerLink]="['/register']">Create an account</div>
+              <div class="text-clr cursor-pointer" [routerLink]="['/sign-up']">Create an account</div>
             </div>
           </div>
         </div>

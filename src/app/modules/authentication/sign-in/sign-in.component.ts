@@ -45,38 +45,35 @@ export class SignInComponent {
     }
   }
 
-  // onSubmit(): void {
-  //   if (this.signInForm.invalid) {
-  //     this.signInForm.markAllAsTouched();
-  //     return;
-  //   }
-  //   const { email, password } = this.signInForm.value;
-  //   this.isLoading = true;
-  //   this.authService.signIn(email, password).subscribe((response: any) => {
+  onSubmit(): void {
+    if (this.signInForm.invalid) {
+      this.signInForm.markAllAsTouched();
+      return;
+    }
+    const { email, password } = this.signInForm.value;
+    this.isLoading = true;
+    this.authService.signIn(email, password).subscribe((response: any) => {
 
-  //     if (response.status_code === 200) {
-  //       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/layout';
-  //       this.router.navigateByUrl(returnUrl);
-  //       const { access_token, refresh_token, access_token_expires, user } = response.data;
-  //       this.authService.storeTokens(access_token, refresh_token, access_token_expires, user);
-  //       this.router.navigate(['/layout']);
-  //     } else {
-  //       // this.toast.error(response.message, "Error!");
-  //     }
-  //     this.isLoading = false;
-  //   }, error => {
-  //     this.toast.error(error.error.message, "Error!");
-  //     console.log("here is the error", error)
-  //     this.isLoading = false;
-  //   });
-  // }
+      if (response.status_code === 200) {
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/dashboard';
+        this.router.navigateByUrl(returnUrl);
+        const { access_token, refresh_token, access_token_expires, user } = response.data;
+        this.authService.storeTokens(access_token, refresh_token, access_token_expires, user);
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.toast.error(response.message, "Error!");
+      }
+      this.isLoading = false;
+    }, error => {
+      this.toast.error(error.error.message, "Error!");
+      console.log("here is the error", error)
+      this.isLoading = false;
+    });
+  }
 
   togglePasswordVisibility(): void {
     this.hidePassword = !this.hidePassword;
   }
 
-  login(){
-    this.router.navigate(['/dashboard']);
-  }
 
 }

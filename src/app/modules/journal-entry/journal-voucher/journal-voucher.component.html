@@ -31,10 +31,10 @@
               <label for="">To date</label>
   
               <div class="input-group w-auto mt-2">
-                <input type="text" placeholder="Datepicker" class="form-control customClass" bsDatepicker
+                <input #toDate="bsDatepicker" type="text" placeholder="Datepicker" class="form-control customClass" bsDatepicker
                   [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="datepickerInput">
                 <div class="input-group-append">
-                  <span class="input-group-text" (click)="openDatepicker()">
+                  <span class="input-group-text" (click)="toDate.show()">
                     <!-- Calendar SVG Icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-calendar"
                       viewBox="0 0 16 16">
