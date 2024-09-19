@@ -64,7 +64,7 @@ body {
 //********************** Main Buttons *****************************
 
 .primary_button {
-    background-color: #0284C7;
+    background-color: #6f63bd;
     color: white;
     padding: 10px 24px;
     border: none;
@@ -73,6 +73,10 @@ body {
     font-size: 14px;
     transition: background-color 0.2s ease-in-out;
     font-weight: 600;
+}
+
+.primary_button:hover{
+    background-color: #5c519e;
 }
 
 
@@ -283,7 +287,7 @@ input:-webkit-autofill {
 
 .custom-badge-primary {
     background-color: #EAE7FF;
-    color: #6F61CF;
+    color: #6f63bd;
     border-radius: 1.2rem;
     width: auto;
     height: auto;
