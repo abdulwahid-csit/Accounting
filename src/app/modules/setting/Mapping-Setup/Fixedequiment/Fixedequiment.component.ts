@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Fixedequiment.component.css']
 })
 export class FixedequimentComponent implements OnInit {
+isExpensesChecked: any;
+isSalesChecked: any;
 
   constructor() { }
 

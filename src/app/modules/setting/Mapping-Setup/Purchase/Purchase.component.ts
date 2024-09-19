@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Purchase.component.css']
 })
 export class PurchaseComponent implements OnInit {
+isExpensesChecked: any;
+isSalesChecked: any;
+isExpenseChecked: any;
 
   constructor() { }
 

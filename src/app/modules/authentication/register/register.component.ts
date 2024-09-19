@@ -24,9 +24,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
-      username: [null, Validators.required],
+      full_name: [null, Validators.required],
+      // lastName: [null, Validators.required],
+      phone: [null, Validators.required],
+      address: [null, Validators.required],
       email: [null, [
         Validators.required,
         Validators.pattern("^[A-Z a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
@@ -81,32 +82,34 @@ export class RegisterComponent implements OnInit {
     return errors;
   }
 
-  // onSubmit(): void {
-  //   if (this.registerForm.invalid) {
-  //     this.registerForm.markAllAsTouched();
-  //     return;
-  //   }
-  //   // const {firstName, lastName,  email, password, userName } = this.registerForm.value;
-  //   // let data = {
-  //   //   firstName: firstName, lastName: lastName, email: email, password: password, username: userName
-  //   // }
-  //   this.isLoading = true;
-  //   this.authService.signUp(this.registerForm.value).subscribe((response: any) => {
-  //     if (response.status_code === 201) {
-  //       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/layout';
-  //       this.router.navigateByUrl(returnUrl);
-  //       const { access_token, refresh_token, access_token_expires, user } = response.data;
-  //       this.authService.storeTokens(access_token, refresh_token, access_token_expires, user);
-  //       this.router.navigate(['/layout']);
-  //     } else {
-  //       this.toast.error(response.message, "Error!");
-  //     }
-  //     this.isLoading = false;
-  //   }, error => {
-  //     this.toast.error(error.error.message, "Error!");
-  //     this.isLoading = false;
-  //   });
-  // }
+  onSubmit(): void {
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
+    const {full_name, phone, address,  email, password } = this.registerForm.value;
+    let body = {
+      fullName: full_name, Phone: phone, Address: address, email: email, password: password
+    }
+    this.isLoading = true;
+    this.authService.signUp(this.registerForm.value).subscribe((response: any) => {
+      if (response.status_code === 201) {
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/dashboard';
+        this.router.navigateByUrl(returnUrl);
+        console.log("Response: ", response);
+        const { access_token, refresh_token, access_token_expires, user } = response.data;
+        console.log("Response data: ", response.data);
+        this.authService.storeTokens(access_token, refresh_token, access_token_expires, user);
+        this.router.navigate(['/layout']);
+      } else {
+        this.toast.error(response.message, "Error!");
+      }
+      this.isLoading = false;
+    }, error => {
+      this.toast.error(error.error.message, "Error!");
+      this.isLoading = false;
+    });
+  }
 
   onControlBlur(controlName: string): void {
     const control = this.registerForm.get(controlName);

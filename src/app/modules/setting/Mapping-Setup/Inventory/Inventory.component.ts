@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Inventory.component.css']
 })
 export class InventoryComponent implements OnInit {
+isExpensesChecked: boolean = false;
+isSalesChecked:  boolean = false;
+isRefundChecked: any;
+isPaymentChecked: any;
 
   constructor() { }
 
