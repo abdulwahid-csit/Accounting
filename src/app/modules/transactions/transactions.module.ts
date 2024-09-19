@@ -11,12 +11,14 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { FixedEquipmentComponent } from './components/inventory/fixed-equipment/fixed-equipment.component';
 import { PayslipsComponent } from './components/inventory/payslips/payslips.component';
 import { PurchaseComponent } from './components/inventory/purchase/purchase.component';
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   imports: [
     CommonModule,
     TransactionsRoutes,
-    NgSelectModule
+    NgSelectModule,
+    BsDatepickerModule
   ],
   declarations: [SalesComponent, ExpensesComponent, ManufacturingComponent, InventoryComponent, FixedEquipmentComponent, PayslipsComponent, PurchaseComponent],
   exports: [

@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Omni.component.css']
 })
 export class OmniComponent implements OnInit {
+isSalesChecked: any;
+isExpensesChecked: any;
 
   constructor() { }
 

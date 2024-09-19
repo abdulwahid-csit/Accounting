@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-payslips',
   templateUrl: './payslips.component.html',
-  styleUrls: ['./payslips.component.scss', '../../../../../css/custpm-dropdown-style.scss']
+  styleUrls: ['./payslips.component.scss', '../../../../../css/custpm-dropdown-style.scss', '../../../../../css/custom-datepicker-style.scss']
 })
 export class PayslipsComponent implements OnInit {
 

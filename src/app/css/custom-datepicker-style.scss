@@ -1,0 +1,18 @@
+::ng-deep .bs-datepicker{
+    left: 15px !important;
+  }
+  
+  ::ng-deep .customClass {
+    .bs-datepicker-head {
+      background-color: transparent !important;
+  
+      button.current {
+        color: black !important;
+      }
+  
+      button.previous,
+      .next {
+        color: black !important;
+      }
+    }
+  }
