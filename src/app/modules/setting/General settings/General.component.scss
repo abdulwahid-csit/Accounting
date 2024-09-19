@@ -1,25 +1,13 @@
-.question-mark {
-  display: flex;
-  background-color: black;
-  color: white;
-  padding-left: 4px;
-  padding-right: 4px;
-  border-radius: 100%;
-}
-.box {
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  flex: 1 1 300px; 
-  
+button{
+  text-wrap: nowrap;
 }
 
 p{
-  font-size: 20px;
+  font-size: 14px;
   font-style: italic;
 }
 label{
-  font-size: 18px;
+  font-size: 16px;
 }
 input#CloseBooked {
   height: 25px;
@@ -34,3 +22,24 @@ input#flexSwitchCheckDefault {
 .form-check.form-switch {
   border-left: 1px solid #b8adad;
 }
+
+
+::ng-deep .customClass{
+ 
+  .bs-datepicker-head{
+      background-color: transparent !important;
+      button.current{
+          color: black !important;
+      }
+      button.previous, .next{
+          color: black !important;
+      }
+  }
+}
+
+
+// ::ng-deep .ng-select-focused{
+//   border: 1px solid #0284C7;
+//   box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;
+
+// }

@@ -1,0 +1,26 @@
+input#flexSwitchCheckDefault {
+    margin-left: 10px;
+}
+.search_input{
+    input{
+        height: 45px !important;
+        padding: 6px 10px !important;
+        background-color: #fff;
+        border-radius: 10px;
+        // width: 300px;
+        border: 1px solid #dcdcdc;
+        outline: none !important;
+        box-shadow: none !important
+    };
+
+    input:focus{
+        border-color: rgb(2, 132, 199);
+        box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;        
+    }
+    span{
+        position: relative;
+        /* display: flex; */
+        left: -30px;
+        top: 8px;
+    }
+    }
