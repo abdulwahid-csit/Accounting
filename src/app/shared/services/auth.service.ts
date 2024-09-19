@@ -8,9 +8,9 @@ import { environment } from 'src/environments/environment';
 interface RegisterUser{
   full_name: string,
   phone: string,
+  address: string,
   email: string,
   password: string,
-  address: string,
 }
 
 
@@ -48,7 +48,7 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}auth/signin`, body);
   }
 
-  signUp(body: RegisterUser): Observable<any>{
+  signUp(body: any): Observable<any>{
     // const body = {email,password,username};
     return this.http.post(`${environment.apiUrl}auth/signup`, body);
   }
