@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ListComponent implements OnInit {
   applicationForm!: FormGroup;
   isFocused: boolean = false;
+  isStatusFocus: boolean = false;
 
   constructor() { }
 
