@@ -13,17 +13,17 @@
               Happy to see you here! Sign up to create a new account.
             </div>
             <div class="modal-body mt-4">
-              <form [formGroup]="registerForm">
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
                 
                 <!-- Last Name Field -->
                  <div class="d-flex">
                 <div class="row custom-input mb-4 pe-2">
                   <div class="input-container">
-                    <label class="label-font required">First Name</label>
-                    <input type="text" class="form-control" formControlName="firstName"
-                      [ngClass]="{'is-invalid': isControlHasError('firstName', 'required')}"
-                      placeholder="Enter first name" (blur)="onControlBlur('firstName')" />
-                    <span *ngIf="isControlHasError('firstName', 'required')" class="text-danger fs-8 ps-3 pt-1">
+                    <label class="label-font required">Full Name</label>
+                    <input type="text" class="form-control" formControlName="full_name"
+                      [ngClass]="{'is-invalid': isControlHasError('full_name', 'required')}"
+                      placeholder="Enter full name" (blur)="onControlBlur('full_name')" />
+                    <span *ngIf="isControlHasError('full_name', 'required')" class="text-danger fs-8 ps-3 pt-1">
                       Firstname is required
                     </span>
                   </div>
@@ -31,11 +31,11 @@
                 <!-- First Name Field -->
                 <div class="row custom-input mb-4 ps-2">
                   <div class="input-container">
-                    <label class="label-font required">Last Name</label>
-                    <input type="text" class="form-control" formControlName="lastName"
-                      [ngClass]="{'is-invalid': isControlHasError('lastName', 'required')}"
-                      placeholder="Enter last name" (blur)="onControlBlur('lastName')" />
-                    <span *ngIf="isControlHasError('lastName', 'required')" class="text-danger fs-8 ps-3 pt-1">
+                    <label class="label-font required">Phone</label>
+                    <input type="text" class="form-control" formControlName="phone"
+                      [ngClass]="{'is-invalid': isControlHasError('phone', 'required')}"
+                      placeholder="Enter phone Number" (blur)="onControlBlur('phone')" />
+                    <span *ngIf="isControlHasError('phone', 'required')" class="text-danger fs-8 ps-3 pt-1">
                       Lastname is required
                     </span>
                   </div>
@@ -44,12 +44,12 @@
                 <!-- User Name Field -->
                 <div class="row custom-input mb-4">
                   <div class="input-container">
-                    <label class="label-font required">User Name</label>
-                    <input type="text" class="form-control" formControlName="username"
-                      [ngClass]="{'is-invalid': isControlHasError('username', 'required')}"
-                      placeholder="Enter user name" (blur)="onControlBlur('username')" />
-                    <span *ngIf="isControlHasError('username', 'required')" class="text-danger fs-8 ps-3 pt-1">
-                      Username is required
+                    <label class="label-font required">Address</label>
+                    <input type="text" class="form-control" formControlName="address"
+                      [ngClass]="{'is-invalid': isControlHasError('address', 'required')}"
+                      placeholder="Enter user name" (blur)="onControlBlur('address')" />
+                    <span *ngIf="isControlHasError('address', 'required')" class="text-danger fs-8 ps-3 pt-1">
+                      address is required
                     </span>
                   </div>
                 </div>

@@ -1,11 +1,11 @@
-<div class="container-fluid mt-5">
-    <div class="container mt-5">
+<div class="container-fluid mt-5  ">
+    <div class="container mt-5 ">
         <div class="form-container d-flex justify-content-center flex-column">
-            <div class="row mb-4">
+            <div class="row mb-3">
                 <h2>Glad you're here.</h2>
                 <p>Help us customize your settings to offer you the right tools for seamless business experience.</p>
             </div>
-            <form  [formGroup]="form">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
                 <div class="row justify-content-center">
                     <div class="col-md-12">
@@ -15,45 +15,50 @@
                                     <label for="business-name">Business Name <span class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" id="business-name" name="business-name" required>
+                                    <input type="text" id="business-name" formControlName="name" 
+                                        required>
                                 </div>
                                 <div class="col-md-3">
                                     <a href=""></a>
                                 </div>
                             </div>
+
                             <!-- second row -->
                             <div class="row mb-2">
                                 <div class="col-md-3 d-flex align-items-center justify-content-end">
                                     <label for="industry">Industry <span class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" id="industry" name="industry" value="Construction" disabled>
+                                    <input type="text" id="industry"  formControlName="industry"
+                                    >
                                 </div>
                                 <div class="col-md-3 text-left d-flex align-items-center justify-content-start">
                                     <a href="#" class="help-link">Help me choose</a>
                                 </div>
                             </div>
+
                             <!-- third row -->
                             <div class="row mb-2">
                                 <div class="col-md-3 d-flex align-items-center justify-content-end">
                                     <label for="business-type">Business Type <span class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <select id="business-type" name="business-type">
-                                        <option value="">Select Business Type</option>
-                                    </select>
+                                    <ng-select id="bussinessType"  formControlName="businessType">
+                                        <ng-option value="metal">metal</ng-option>
+                                    </ng-select>
                                 </div>
                                 <div class="col-md-3 d-flex align-items-center justify-content-start">
                                     <a href="#" class="help-link">Help me choose</a>
                                 </div>
                             </div>
+
                             <!-- fourth row -->
                             <div class="row mb-2">
                                 <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                    <label for="admin-email">Admin's email <span class="text-danger">*</span></label>
+                                    <label for="adminEmail">Admin's email <span class="text-danger">*</span></label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" id="admin-email" name="admin-email"
+                                    <input type="email" id="adminEmail" formControlName="adminEmail"
                                         placeholder="Enter company file admin's email" required>
                                 </div>
                                 <div class="col-md-3 d-flex align-items-center justify-content-start">
@@ -64,37 +69,63 @@
                             <!-- fifth row -->
                             <div class="row mb-2">
                                 <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                  <label for="ein">Employer Identification Number (EIN)</label>
+                                    <label for="einNumber">Employer Identification Number (EIN)</label>
                                 </div>
                                 <div class="col-md-6 d-flex">
-                                  <div class="col-md-4">
-                                    <input type="text" id="ein" formControlName="ein" placeholder="12-3456789">
-                                  </div>
-                                  <div class="col-md-1 px-2">
-                                    <i class="fa-solid fa-circle-question" style="color: #007fe0;"></i>
-                                  </div>
-                                  <div class="col-md-3 d-flex justify-content-start align-items-center">
-                                    <label for="phone">National Tax Number (NTN)</label>
-                                  </div>
-                                  <div class="col-md-4">
-                                    <input type="text" id="phone" formControlName="phone">
-                                  </div>
+                                    <div class="col-md-4">
+                                        <input type="text" id="einNumber" formControlName="einNumber"
+                                            placeholder="12-3456789">
+                                    </div>
+                                    <div class="col-md-1 px-2">
+                                        <i class="fa-solid fa-circle-question" style="color: #007fe0;"></i>
+                                    </div>
+                                    <div class="col-md-3 d-flex justify-content-start align-items-center">
+                                        <label for="ntnNumber">National Tax Number (NTN)</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" id="ntnNumber" formControlName="ntnNumber">
+                                    </div>
                                 </div>
                                 <div class="col-md-3 d-flex align-items-center justify-content-start"></div>
-                              </div>
+                            </div>
+
                             <!-- sixth row -->
                             <div class="row mb-2">
                                 <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                    <label for="business-address">Business Address</label>
+                                    <label for="address">Business Address</label>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <input type="text" id="business-address" name="business-address">
+                                    <input type="text" id="address" name="address" formControlName="address">
                                 </div>
                                 <div class="col-md-3">
 
                                 </div>
                             </div>
+
+                            <!-- new-row -->
+                            <div class="row mb-2">
+                                <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                    <label for="domain">Domain</label>
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <div class="col-md-5">
+                                        <input type="text" id="domain" formControlName="domain"
+                                            placeholder="domain">
+                                    </div>
+                                    <div class="col-md-1 px-2">
+                                        <i class="fa-solid fa-circle-question" style="color: #007fe0;"></i>
+                                    </div>
+                                    <div class="col-md-1 d-flex justify-content-start align-items-center">
+                                        <label for="ntnNumber">Logo</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="file" id="logo" (change)="onFileChange($event)" accept="image/*">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 d-flex align-items-center justify-content-start"></div>
+                            </div>
+
                             <!-- seven row -->
                             <div class="row mb-2">
                                 <div class="col-md-3 d-flex align-items-center justify-content-end">
@@ -102,12 +133,13 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <input type="text" id="business-address" name="business-address">
+                                    <input type="text" id="phone" name="phone" formControlName="phone">
                                 </div>
                                 <div class="col-md-3">
 
                                 </div>
                             </div>
+
                             <!-- eight row -->
                             <div class="row mb-2">
                                 <div class="col-md-3 d-flex align-items-center justify-content-end">
@@ -116,7 +148,7 @@
 
                                 <div class="col-md-6 d-flex">
                                     <div class="col-md-5">
-                                        <input type="text" id="city" name="city">
+                                        <input type="text" id="city" name="city" formControlName="city">
                                     </div>
                                     <div class="col-md-2 d-flex align-items-center justify-content-end">
                                         <label for="zip">ZIP</label>
@@ -130,24 +162,27 @@
                                 </div>
                             </div>
                             <!-- nine row -->
-                            <div class="row mb-2">
+                            <div class="row ">
                                 <div class="col-md-3  d-flex align-items-center justify-content-end">
                                     <label for="state">State</label>
                                 </div>
 
                                 <div class="col-md-6 d-flex">
                                     <div class="col-md-5">
-                                        <select id="state" name="state">
-                                            <option value="">Select state</option>
-                                        </select>
+                                        <ng-select id="state" name="state" formControlName="state">
+                                            <ng-option value="eourpe"> eourpe</ng-option>
+                                            <ng-option value="eourpe"> eourpe</ng-option>
+
+                                        </ng-select>
                                     </div>
                                     <div class="col-md-2  d-flex align-items-center justify-content-end">
-                                        <label for="country">Country</label>
+                                        <label for="country">Status</label>
                                     </div>
                                     <div class="col-md-5">
-                                        <select id="country" name="country">
-                                            <option value="U.S.">U.S.</option>
-                                        </select>
+                                        <ng-select class="form-control" formControlName="status">
+                                            <ng-option value="Active">Active</ng-option>
+                                            <ng-option value="Inactive">Inactive</ng-option>
+                                        </ng-select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">

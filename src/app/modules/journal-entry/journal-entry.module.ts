@@ -17,7 +17,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
     CommonModule,
     JournalEntryRoutes,
     NgSelectModule,
-    BsDatepickerModule,
+    BsDatepickerModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),

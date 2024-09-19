@@ -6,13 +6,13 @@ import * as CryptoJS from 'crypto-js';
 })
 export class LocalStoreService {
 
-  // private key = 'qzjYlELTHI61gR4/4J0iD0zINtCuIlH8avwBWb5NehWY/oJdrQLjqT0WceU3CclC';
+  private key = 'qzjYlELTHI61gR4/4J0iD0zINtCuIlH8avwBWb5NehWY/oJdrQLjqT0WceU3CclC';
 
   // constructor() { }
 
-  // encrypt(data: string): string {
-  //   return CryptoJS.AES.encrypt(data, this.key).toString();
-  // }
+  encrypt(data: string): string {
+    return CryptoJS.AES.encrypt(data, this.key).toString();
+  }
 
   // decrypt(data: string): string {
   //   const bytes = CryptoJS.AES.decrypt(data, this.key);
@@ -28,11 +28,11 @@ export class LocalStoreService {
   //   return null;
   // }
 
-  // setItem(key: string, value: any): void {
-  //   const item = JSON.stringify(value);
-  //   const encryptedItem = this.encrypt(item);
-  //   localStorage.setItem(key, encryptedItem);
-  // }
+  setItem(key: string, value: any): void {
+    const item = JSON.stringify(value);
+    const encryptedItem = this.encrypt(item);
+    localStorage.setItem(key, encryptedItem);
+  }
 
   // removeItem(){
   //   localStorage.clear();
