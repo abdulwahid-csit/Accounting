@@ -14,19 +14,19 @@ export class LocalStoreService {
     return CryptoJS.AES.encrypt(data, this.key).toString();
   }
 
-  // decrypt(data: string): string {
-  //   const bytes = CryptoJS.AES.decrypt(data, this.key);
-  //   return bytes.toString(CryptoJS.enc.Utf8);
-  // }
+  decrypt(data: string): string {
+    const bytes = CryptoJS.AES.decrypt(data, this.key);
+    return bytes.toString(CryptoJS.enc.Utf8);
+  }
 
-  // getItem(key: string): any {
-  //   const item = localStorage.getItem(key);
-  //   if(item) {
-  //     const decryptedItem = this.decrypt(item);
-  //     return JSON.parse(decryptedItem);
-  //   }
-  //   return null;
-  // }
+  getItem(key: string): any {
+    const item = localStorage.getItem(key);
+    if(item) {
+      const decryptedItem = this.decrypt(item);
+      return JSON.parse(decryptedItem);
+    }
+    return null;
+  }
 
   setItem(key: string, value: any): void {
     const item = JSON.stringify(value);
@@ -34,62 +34,62 @@ export class LocalStoreService {
     localStorage.setItem(key, encryptedItem);
   }
 
-  // removeItem(){
-  //   localStorage.clear();
-  // }
+  removeItem(){
+    localStorage.clear();
+  }
 
-  // getUserId(): number {
-  //   const userData = this.getItem('user');
-  //   return userData.id;
-  // }
+  getUserId(): number {
+    const userData = this.getItem('user');
+    return userData.id;
+  }
 
-  // getUserName(): string {
-  //   const userData = this.getItem('user');
-  //   return userData?.first_name + ' ' + userData?.last_name;
-  // }
+  getUserName(): string {
+    const userData = this.getItem('user');
+    return userData?.first_name + ' ' + userData?.last_name;
+  }
 
-  // getUserEmail(): string {
-  //   const userData = this.getItem('user');
-  //   return userData.email;
-  // }
+  getUserEmail(): string {
+    const userData = this.getItem('user');
+    return userData.email;
+  }
   
-  // getUserProfile(): string {
-  //   const userData = this.getItem('user');
-  //   return userData.profile_picture || '../../../../../assets/images/iis.svg';
-  // }
+  getUserProfile(): string {
+    const userData = this.getItem('user');
+    return userData.profile_picture || '../../../../../assets/images/iis.svg';
+  }
 
-  // getUserRole(): string {
-  //   const userData = this.getItem('user');
-  //   return userData.role.name || '';
-  // }
+  getUserRole(): string {
+    const userData = this.getItem('user');
+    return userData.role.name || '';
+  }
 
-  // getUserOrganization(): string {
-  //   const userData = this.getItem('user');
-  //   return userData.organization.id || '';
-  // }
+  getUserOrganization(): string {
+    const userData = this.getItem('user');
+    return userData.organization.id || '';
+  }
   
-  // getUserOrganizationLogo(): string {
-  //   const userData = this.getItem('user');
-  //   return userData.organization.logo || '';
-  // }
+  getUserOrganizationLogo(): string {
+    const userData = this.getItem('user');
+    return userData.organization.logo || '';
+  }
 
-  // getUserOrganizationName(): string {
-  //   const userData = this.getItem('user');
-  //   return userData.organization.name || '';
-  // }
+  getUserOrganizationName(): string {
+    const userData = this.getItem('user');
+    return userData.organization.name || '';
+  }
 
-  // getUserOrganizationDomain(): string {
-  //   const userData = this.getItem('user');
-  //   return userData.organization.domain || '';
-  // }
+  getUserOrganizationDomain(): string {
+    const userData = this.getItem('user');
+    return userData.organization.domain || '';
+  }
 
-  // getUserPermission() {
-  //   const userData = this.getItem('user');
-  //   return userData.permissions || 'NA';
-  // }
+  getUserPermission() {
+    const userData = this.getItem('user');
+    return userData.permissions || 'NA';
+  }
   
-  // hasPermission(permissionName: string): boolean {
-  //   const permissionData = this.getUserPermission();
-  //   return permissionData.some((permission: { slug: string; }) => permission.slug === permissionName);
-  // }
+  hasPermission(permissionName: string): boolean {
+    const permissionData = this.getUserPermission();
+    return permissionData.some((permission: { slug: string; }) => permission.slug === permissionName);
+  }
 }

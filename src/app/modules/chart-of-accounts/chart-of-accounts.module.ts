@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ImportAccountComponent } from './import-account/import-account.component';
 import { SharedModule } from "../../shared/shared.module";
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { SharedModule } from "../../shared/shared.module";
     QuillModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    BsDatepickerModule
 ],
   declarations: [ChartOfAccountsComponent, AddAccountComponent, ImportAccountComponent],
   exports: [

@@ -98,23 +98,38 @@
           <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter URL"
             />
           <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
-            App url is required
+           **
           </small>
           <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
-            Please enter a valid url
+           **
           </small>
 
         </div>
         <div class="mb-4 custom-input app-url w-100"
           [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
-          <label for="appUrl" class="mb-1 primary_color fw-700 required">As Of</label>
-          <input type="date" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter URL"
- />
+          <div class="box">  
+            <label for="">To Date</label>
+            <div class="input-group">
+              <input #toDate="bsDatepicker" type="text" placeholder="From date" class="form-control" bsDatepicker
+                [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="From date">
+              <div class="input-group-append">
+                <span class="input-group-text h-100 border-start-0 rounded-start-0 bg-transparent"
+                  (click)="toDate.show()">
+                  <!-- Calendar SVG Icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                    class="bi bi-calendar" viewBox="0 0 16 16">
+                    <path
+                      d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
           <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
-            App url is required
+            **
           </small>
           <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
-            Please enter a valid url
+            **
           </small>
         </div>
       </div>

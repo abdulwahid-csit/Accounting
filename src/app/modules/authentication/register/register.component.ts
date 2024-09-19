@@ -92,7 +92,7 @@ export class RegisterComponent implements OnInit {
       fullName: full_name, Phone: phone, Address: address, email: email, password: password
     }
     this.isLoading = true;
-    this.authService.signUp(this.registerForm.value).subscribe((response: any) => {
+    this.authService.signUp(body).subscribe((response: any) => {
       if (response.status_code === 201) {
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/dashboard';
         this.router.navigateByUrl(returnUrl);

@@ -5,7 +5,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-add-account',
   templateUrl: './add-account.component.html',
-  styleUrls: ['./add-account.component.scss', '../../../css/custpm-dropdown-style.scss']
+  styleUrls: ['./add-account.component.scss', '../../../css/custpm-dropdown-style.scss', '../../../css/custom-datepicker-style.scss']
 })
 export class AddAccountComponent implements OnInit, OnDestroy {
 
