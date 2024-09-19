@@ -15,91 +15,103 @@
       </div>
     </div>
     <div *ngIf="isSwitchChecked">
-      <div class="pt-1">
+      <div class="mt-1">
         <div>Default for all item</div>
-        <div class=" row ">
-          <div class="col-6">
-            <label>Payment account</label>
-            <select class="custom-select p-2 rounded ">
-              <option selected>Sales</option>
-              <option value="1">Other </option>
-              <option value="2">Overhead</option>
-              <option value="3">Interest income</option>
-            </select>
+        <div class="row mt-1">
+          <div class="col-md-6">
+            <label for="">Payment account</label>
+           <div>
+            <ng-select class="rounded">
+              <ng-option selected>Sales</ng-option>
+              <ng-option value="1">Other </ng-option>
+              <ng-option value="2">Overhead</ng-option>
+              <ng-option value="3">Interest income</ng-option>
+            </ng-select>
+           </div>
           </div>
-          <div class="col-6">
-            <label>Deposit to</label>
-            <select class="custom-select p-2 rounded ">
-              <option selected>Sales</option>
-              <option value="1">Other </option>
-              <option value="2">Overhead</option>
-              <option value="3">Interest income</option>
-            </select>
+          <div class="col-md-6">
+            <label for="">Deposit to</label>
+          <div>
+            <ng-select class=" rounded ">
+              <ng-option selected>Sales</ng-option>
+              <ng-option value="1">Other </ng-option>
+              <ng-option value="2">Overhead</ng-option>
+              <ng-option value="3">Interest income</ng-option>
+            </ng-select>
+          </div>
           </div>
         </div>
       </div>
-      <div class="pt-1">
+
+      <div class="mt-3">
         <div>Discount</div>
-        <div class=" row ">
-          <div class="col-6">
+        <div class="row mt-1 ">
+          <div class="col-md-6">
             <label>Payment account</label>
-            <select class="custom-select p-2 rounded ">
-              <option selected>Sales</option>
-              <option value="1">Other </option>
-              <option value="2">Overhead</option>
-              <option value="3">Interest income</option>
-            </select>
+            <div>
+              <ng-select class=" rounded ">
+                <ng-option selected>Sales</ng-option>
+                <ng-option value="1">Other </ng-option>
+                <ng-option value="2">Overhead</ng-option>
+                <ng-option value="3">Interest income</ng-option>
+              </ng-select>
+            </div>
           </div>
-          <div class="col-6">
-            <label>Deposit to</label>
-            <select class="custom-select p-2 rounded ">
-              <option selected>Sales</option>
-              <option value="1">Other </option>
-              <option value="2">Overhead</option>
-              <option value="3">Interest income</option>
-            </select>
+          <div class="col-md-6">
+            <label for="">Deposit to</label>
+           <div>
+            <ng-select class=" rounded ">
+              <ng-option selected>Sales</ng-option>
+              <ng-option value="1">Other </ng-option>
+              <ng-option value="2">Overhead</ng-option>
+              <ng-option value="3">Interest income</ng-option>
+            </ng-select>
+           </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<!-- payment -->
 
 <div class="border border-1 pt-1 mt-2">
   <div class="p-3">
     <div>Payment</div>
-    <div class="d-flex col-3 justify-content-between ">
+    <div class="d-flex col-3 justify-content-between mb-3 mt-2 ">
       <div>
         Sales
       </div>
       <div>
         <div class="form-check form-switch border-start ">
           <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isPaymentChecked">
-          <label class="form-check-label" for="flexSwitchCheckDefault">
-
-          </label>
+          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
         </div>
       </div>
     </div>
     <div *ngIf="isPaymentChecked">
-      <div class=" row ">
+      <div class="row mb-3">
         <div class="col-6">
           <label>Payment account</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+         <div>
+          <ng-select class="  rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
+         </div>
         </div>
         <div class="col-6">
           <label>Deposit to</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+         <div>
+          <ng-select class=" rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
+         </div>
         </div>
       </div>
     </div>
@@ -117,34 +129,39 @@
       </div>
     </div>
     <div *ngIf="isExpensesChecked">
-      <div class=" row ">
+      <div class=" row mt-2 ">
         <div class="col-6">
           <label>Payment account</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+        <div>
+          <ng-select class="custom-select  rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
+        </div>
         </div>
         <div class="col-6">
           <label>Deposit to</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+        <div>
+          <ng-select class="custom-select  rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
+        </div>
         </div>
       </div>
     </div>
 
   </div>
 </div>
+<!-- creditnote -->
 <div class="border border-1 pt-1 mt-2">
   <div class="p-3">
     <div>Credit Note</div>
-    <div class="d-flex col-3 justify-content-between ">
+    <div class="d-flex col-3 justify-content-between mb-2 mt-2">
       <div>
         Sales
       </div>
@@ -158,24 +175,24 @@
       </div>
     </div>
     <div *ngIf="isSalesChecked">
-      <div class=" row ">
+      <div class=" row mb-3 ">
         <div class="col-6">
           <label>Payment account</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+          <ng-select class=" rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
         </div>
         <div class="col-6">
           <label>Deposit to</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+          <ng-select class=" rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
         </div>
       </div>
     </div>
@@ -193,31 +210,31 @@
       </div>
     </div>
     <div *ngIf="isRefundChecked">
-      <div class=" row ">
+      <div class=" row mt-2 ">
         <div class="col-6">
           <label>Payment account</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+          <ng-select class=" rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
         </div>
         <div class="col-6">
           <label>Deposit to</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+          <ng-select class=" rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
         </div>
       </div>
     </div>
 
   </div>
 </div>
-
+<!-- expense-default -->
 <div class="border border-1 pt-1 mt-2">
   <div class="p-3">
     <div class="d-flex col-3 justify-content-between ">
@@ -234,31 +251,31 @@
       </div>
     </div>
     <div *ngIf="isExpenseChecked">
-      <div class=" row ">
+      <div class=" row mt-2">
         <div class="col-6">
           <label>Payment account</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+          <ng-select class=" rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
         </div>
         <div class="col-6">
           <label>Deposit to</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+          <ng-select class=" rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
         </div>
       </div>
     </div>
 
   </div>
 </div>
-
+<!-- tax-default -->
 <div class="border border-1 pt-1 mt-2">
   <div class="p-3">
     <div class="d-flex col-3 justify-content-between ">
@@ -275,27 +292,255 @@
       </div>
     </div>
     <div *ngIf="isTaxChecked">
-      <div class=" row ">
+      <div class=" row mt-2">
         <div class="col-6">
           <label>Payment account</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+          <ng-select class=" rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
         </div>
         <div class="col-6">
           <label>Deposit to</label>
-          <select class="custom-select p-2 rounded ">
-            <option selected>Sales</option>
-            <option value="1">Other </option>
-            <option value="2">Overhead</option>
-            <option value="3">Interest income</option>
-          </select>
+          <ng-select class=" rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <p class="mt-3">Expenses</p>
+      <div class=" row ">
+        
+        <div class="col-6">
+          <label>Payment account</label>
+          <ng-select class=" rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
+        </div>
+        <div class="col-6">
+          <label>Deposit to</label>
+          <ng-select class=" rounded ">
+            <ng-option selected>Sales</ng-option>
+            <ng-option value="1">Other </ng-option>
+            <ng-option value="2">Overhead</ng-option>
+            <ng-option value="3">Interest income</ng-option>
+          </ng-select>
         </div>
       </div>
     </div>
 
   </div>
 </div>
+<hr class="mt-5">
+<div class="d-flex justify-content-end">
+  <button class="primary_button">Save</button>
+</div>
+<hr>
+
+<!-- item mapping setup -->
+<div class="p-2">
+<h3>Item mapping setup</h3>
+</div>
+<hr>
+<div class="d-flex p-2">
+  <button class="primary_button" (click)="openitemModal()">Add</button>
+</div>
+<hr class="mt-3">
+
+<!-- table -->
+<div class="row w-100 mt-3 px-3">
+  <div class="d-flex gap-3  mt-3 mb-2 ">
+    <select class="custom-select p-2 rounded ">
+      <option selected>10</option>
+      <option value="1">25</option>
+      <option value="2">50</option>
+      <option value="3">70</option>
+      <option value="4">All</option>
+    </select>
+    <span>
+      <div class="export_button d-flex">
+        <button type="button" class="button d-flex p-0 bg-white overflow-hidden rounded border gap-3">
+          <span class="button__text">Export</span>
+          <span class="button__icon border-start">
+            <span class="large-icon">&#x21bb;</span>
+          </span>
+        </button>
+      </div>
+    </span>
+    <div class="col">
+      <div class="search_input d-flex justify-content-end">
+          <input type="text" class="position-relative " placeholder="Search..." aria-label="search" aria-describedby="basic-addon2">
+          <span><img src="../../../../assets/icons/search.svg" alt=""></span>
+      </div>
+  </div>
+  </div>
+</div>
+<div>
+  
+<table class="table table-responsive table-bordered  mx-3 mt-4">
+  <thead class="table-light">
+      <tr>
+      <td>Description</td>
+      <td>Description</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tr>
+    <td>No entries found</td>
+  </tr>
+</table>  
+</div>
+<!-- payment mode mapping -->
+<hr class="mt-5">
+<div class="p-2">
+  <h3>Payment mode mapping</h3>
+  <div class="d-flex  ">
+   
+    <div>
+      <div class="form-check form-switch  ">
+        <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefaulty" >
+        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+      </div>
+    </div>
+  </div>
+  </div>
+<hr class="mt-3 mb-3">
+<div class="d-flex p-2">
+  <button class="primary_button" (click)="openPaymentModal()">Add</button>
+</div>
+<hr class="mt-3">
+
+<!-- tabel -->
+<div class="row w-100 mt-3 px-3">
+  <div class="d-flex gap-3  mt-3 mb-2 ">
+    <select class="custom-select p-2 rounded ">
+      <option selected>10</option>
+      <option value="1">25</option>
+      <option value="2">50</option>
+      <option value="3">70</option>
+      <option value="4">All</option>
+    </select>
+    <span>
+      <div class="export_button d-flex">
+        <button type="button" class="button d-flex p-0 bg-white overflow-hidden rounded border gap-3">
+          <span class="button__text">Export</span>
+          <span class="button__icon border-start">
+            <span class="large-icon">&#x21bb;</span>
+          </span>
+        </button>
+      </div>
+    </span>
+    <div class="col">
+      <div class="search_input d-flex justify-content-end">
+          <input type="text" class="position-relative " placeholder="Search..." aria-label="search" aria-describedby="basic-addon2">
+          <span><img src="../../../../assets/icons/search.svg" alt=""></span>
+      </div>
+  </div>
+  </div>
+</div>
+<div>
+  <!-- table -->
+<table class="table table-responsive table-bordered  mx-3 mt-4">
+  <thead class="table-light">
+      <tr>
+      <td>Description</td>
+      <td>Description</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tr>
+    <td>No entries found</td>
+  </tr>
+</table>  
+</div>
+
+<!-- expense category mapping -->
+<hr class="mt-5">
+<div class="p-2">
+  <h3>Expense category mapping</h3>
+  <div class="d-flex  ">
+   
+    <div>
+      <div class="form-check form-switch  ">
+        <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefaulty" >
+        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+      </div>
+    </div>
+  </div>
+  </div>
+<hr class="mt-3 mb-3">
+<div class="d-flex p-2">
+  <button class="primary_button" (click)="openExpenseModal()">Add</button>
+</div>
+<hr class="mt-3">
+
+<!-- tabel -->
+<div class="row w-100 mt-3 px-3">
+  <div class="d-flex gap-3  mt-3 mb-2 ">
+    <select class="custom-select p-2 rounded ">
+      <option selected>10</option>
+      <option value="1">25</option>
+      <option value="2">50</option>
+      <option value="3">70</option>
+      <option value="4">All</option>
+    </select>
+    <span>
+      <div class="export_button d-flex">
+        <button type="button" class="button d-flex p-0 bg-white overflow-hidden rounded border gap-3">
+          <span class="button__text">Export</span>
+          <span class="button__icon border-start">
+            <span class="large-icon">&#x21bb;</span>
+          </span>
+        </button>
+      </div>
+    </span>
+    <div class="col">
+      <div class="search_input d-flex justify-content-end">
+          <input type="text" class="position-relative " placeholder="Search..." aria-label="search" aria-describedby="basic-addon2">
+          <span><img src="../../../../assets/icons/search.svg" alt=""></span>
+      </div>
+  </div>
+  </div>
+</div>
+<div>
+  <!-- table -->
+<table class="table table-responsive table-bordered  mx-3 mt-4">
+  <thead class="table-light">
+      <tr>
+      <td>Description</td>
+      <td>Description</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tr>
+    <td>No entries found</td>
+  </tr>
+</table>  
+</div>
+<!-- Tax mapping setup -->
+
+<hr class="mt-5">
+<div class="p-2">
+  <h3>Tax mapping setup</h3>
+  <div class="d-flex">
+   
+    <div>
+      <div class="form-check form-switch  ">
+        <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefaulty" >
+        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+      </div>
+    </div>
+  </div>
+  </div>
+<hr class="mt-3 mb-3">
+<div class="d-flex p-2">
+  <button class="primary_button" (click)="openPaymentModal()">Add</button>
+</div>
+<hr class="mt-3">

@@ -4,7 +4,7 @@ import { SettingComponent } from './setting.component';
 import { SettingRoutes } from './setting.routing';
 import { RouterModule } from '@angular/router';
 import { GeneralComponent } from './General settings/General.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MappingSetupComponent } from './Mapping-Setup/Mapping-Setup.component';
 import { GeneraltabComponent } from './Mapping-Setup/generaltab/generaltab.component';
@@ -14,6 +14,11 @@ import { ManufacturingComponent } from './Mapping-Setup/Manufacturing/Manufactur
 import { OmniComponent } from './Mapping-Setup/Omni/Omni.component';
 import { PurchaseComponent } from './Mapping-Setup/Purchase/Purchase.component';
 import { PayslipsComponent } from './Mapping-Setup/Payslips/Payslips.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ItemMappingSetupComponent } from './Mapping-Setup/item-mapping-setup/item-mapping-setup.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { PaymentTaxMappingComponent } from './Mapping-Setup/payment-tax-mapping/payment-tax-mapping.component';
+import { ExpenseCategoryMappingComponent } from './Mapping-Setup/expense-category-mapping/expense-category-mapping.component';
 
 @NgModule({
   imports: [
@@ -21,7 +26,9 @@ import { PayslipsComponent } from './Mapping-Setup/Payslips/Payslips.component';
     SettingRoutes,
     FormsModule,
     NgSelectModule,
-
+    BsDatepickerModule.forRoot(),
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [
     SettingComponent,
@@ -33,7 +40,10 @@ import { PayslipsComponent } from './Mapping-Setup/Payslips/Payslips.component';
     ManufacturingComponent,
     OmniComponent,
     PurchaseComponent,
-    PayslipsComponent
+    PayslipsComponent,
+    ItemMappingSetupComponent,
+    PaymentTaxMappingComponent,
+    ExpenseCategoryMappingComponent
   ],
   exports: [
     RouterModule
