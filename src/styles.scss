@@ -2,15 +2,22 @@
 @import '../node_modules/quill/dist/quill.snow.css';
 @import '../node_modules/quill-mention/dist/quill.mention.css';
 
-body {
-    font-family: 'Urbanist', sans-serif !important;
-    background-color: #F1F5F9 !important;
+
+@font-face {
+    font-family: 'Inter';
+    src: url('./assets/fonts/Inter-fonts/font-files/Inter-Medium.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
 }
+
 
 html,
 body {
+    font-family: 'Inter', sans-serif !important;
+    background-color: #F1F5F9 !important;
     overflow-y: hidden;
 }
+
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
 
@@ -206,7 +213,7 @@ body {
         letter-spacing: 0px;
     }
     input, input.form-control{
-        height: 46px;
+        height: 38px;
         box-shadow: none !important;
     }
     textarea::placeholder{
