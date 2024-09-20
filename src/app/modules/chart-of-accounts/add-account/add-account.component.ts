@@ -1,3 +1,4 @@
+import { CrudService } from 'src/app/shared/services/crud.service';
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -17,6 +18,8 @@ export class AddAccountComponent implements OnInit, OnDestroy {
   isStatusFocus = false;
   isQuillFocus = false;
   editorContent = ''
+  accountTypes: any;
+  accountDetailsTypes: any;
   @ViewChild('printSection', { static: false }) printSection!: ElementRef;
 
 
@@ -37,13 +40,15 @@ export class AddAccountComponent implements OnInit, OnDestroy {
     ]
   };
 
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService, private CrudService: CrudService) { }
 
   ngOnInit() {
 
     this.applicationForm = new FormGroup({
       organization: new FormControl('', [Validators.required]),
     })
+
+    this.getAccountType();
   }
 
   isControlHasError(controlName: any, validationType: string): boolean {
@@ -115,6 +120,31 @@ export class AddAccountComponent implements OnInit, OnDestroy {
 
   }
 
+
+
+  getAccountType(){
+    this.CrudService.read('meta-data/account-type').subscribe(response => {
+      if(response.data?.status_code === 200){
+        this.accountTypes = response.data?.data;
+        console.log("Data: ", this.accountTypes)
+      }else{
+        console.log("Error response: ", response);
+      }
+    })
+  }
+
+
+  getAccountDetailsType(selectedAccountType: any): void {
+    const accountTypeName = selectedAccountType.title;
+    console.log('Selected Account Type Name:', accountTypeName);
+    this.CrudService.read('meta-data/account-detail-type').subscribe(response => {
+      if(response.data?.status_code === 200){
+        this.accountDetailsTypes = response.data?.data;
+        console.log("Account details types: ", this.accountDetailsTypes);
+      }else{
+        console.log("Error: ", response);
+      }
+    })}
 
 
   ngOnDestroy(): void {

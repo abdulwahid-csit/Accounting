@@ -208,15 +208,17 @@ li {
     }
 }
 
-
-.sublink-active::before {
+.sub-menu li::before {
     content: ".";
     color: white;
     display: inline;
     position: absolute;
-    color: #6F61CF;
-    font-size: 90px;
-    top: -84px;
-    left: 5px;
+    font-size: 40px;
+    top: -27px;
+    left: 12px;
+}
+
+.sublink-active::before {
+    color: #6F61CF !important;
 
 }

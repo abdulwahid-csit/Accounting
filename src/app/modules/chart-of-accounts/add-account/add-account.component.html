@@ -21,11 +21,9 @@
             'ng-select-focused': isAccountFocus === true,
             'ng-select-error': isControlHasError('organization', 'required')
       }"  (focus)="isAccountFocus = true" (blur)="isAccountFocus = false"
-            placeholder="Select organization">
-            <ng-option>organization.name </ng-option>
-            <ng-option>organization.name </ng-option>
-            <ng-option>organization.name </ng-option>
-            <ng-option>organization.name </ng-option>
+            placeholder="Select organization" 
+            (change)="getAccountDetailsType($event)">
+            <ng-option  *ngFor="let item of accountTypes" [value]="item">{{item?.title}}</ng-option>
           </ng-select>
         </div>
         <div class="mb-4 w-100"
@@ -37,11 +35,10 @@
             'ng-select-focused': isDetailTypeFocus === true,
             'ng-select-error': isControlHasError('organization', 'required')
       }"  (focus)="isDetailTypeFocus = true" (blur)="isDetailTypeFocus = false"
-            placeholder="Select organization">
-            <ng-option>organization.name </ng-option>
-            <ng-option>organization.name </ng-option>
-            <ng-option>organization.name </ng-option>
-            <ng-option>organization.name </ng-option>
+            placeholder="Select organization"
+            (change)="getAccountDetailsType($event)"
+            >
+            <ng-option *ngFor="let item of accountDetailsTypes" [value]="item">{{item?.title}}</ng-option>
           </ng-select>
         </div>
       </div>
