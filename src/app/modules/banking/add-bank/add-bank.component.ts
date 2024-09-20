@@ -1,6 +1,8 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-bank',
@@ -8,8 +10,6 @@ import { BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./add-bank.component.scss', '../../../css/custom-datepicker-style.scss', '../../../css/custpm-dropdown-style.scss']
 })
 export class AddBankComponent implements OnInit {
-
- 
   applicationForm!: FormGroup;
   isAccountFocus = false;
   isParrentAccountFocus = false;
@@ -17,10 +17,12 @@ export class AddBankComponent implements OnInit {
   isDetailTypeFocus = false;
   isStatusFocus = false;
   isQuillFocus = false;
-  editorContent = ''
+  editorContent = '';
+  date = new Date();
   @ViewChild('printSection', { static: false }) printSection!: ElementRef;
-
-
+  AccountsType: any;
+  detailsType: any;
+  parentsType: any;
   editorConfig = {
     toolbar: [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
@@ -38,15 +40,35 @@ export class AddBankComponent implements OnInit {
     ]
   };
 
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService,private fb: FormBuilder,  private http:HttpClient,) { }
 
   ngOnInit() {
 
-    this.applicationForm = new FormGroup({
-      organization: new FormControl('', [Validators.required]),
-    })
+    // this.applicationForm = new FormGroup({
+    //   organization: new FormControl('', [Validators.required]),
+    // })
+    this.initForm();
+    this.accountType();
+    this.detailType();
+    this.parentType();
   }
-
+  initForm() {
+    const validation = {
+      account_type:[null],
+      name:[null,Validators.compose([Validators.required])],
+      detail_type:[null],
+      number:[null,Validators.compose([Validators.required])],
+      parent_account:[null],
+      balance:[null,Validators.compose([Validators.required])],
+      balance_date:[this.date],
+      bank_name:[null],
+      bank_account:[null],
+      bank_routing:[null],
+      address:[null],
+      description:[null]
+    };
+    this.applicationForm = this.fb.group(validation);
+  }
   isControlHasError(controlName: any, validationType: string): boolean {
     const control = this.applicationForm.controls[controlName];
     if (!control) {
@@ -116,9 +138,63 @@ export class AddBankComponent implements OnInit {
 
   }
 
+save(){
+ const formData = this.applicationForm.value
+  this.http.post(`${environment.apiUrl}banking`, formData).subscribe(
+    (res: any) => {
+      console.log('res', res);
+      this.closeModal();
+    },
+    err => {
+      // this.toasterService.showModal(err.message, 'error');
+      console.log('err', err);
+    }
+  );
+}
+accountType() {
+  this.http.get(`${environment.apiUrl}meta-data/account-type`).subscribe(
+    (res: any) => {
+      console.log('res', res);
+      this.AccountsType = res;
+      console.log('AccountsType', res);
+      this.closeModal();
+    },
+    err => {
+      console.error('Error:', err.message);
+    }
+  );
+}
+
+ detailType(){
+  this.http.get(`${environment.apiUrl}meta-data/account-type`).subscribe(
+    (res: any) => {
+      console.log('res', res);
+      this.detailsType = res
+      console.log('detailsType', res);
+      this.closeModal();
+    },
+    err => {
+      // this.toasterService.showModal(err.message, 'error');
+      console.log('err', err);
+    }
+  );
+}
+parentType(){
+  this.http.get(`${environment.apiUrl}banking`).subscribe(
+    (res: any) => {
+      console.log('res', res);
+      this.parentsType = res
+      console.log('parentsType', res);
+      this.closeModal();
+    },
+    err => {
+      // this.toasterService.showModal(err.message, 'error');
+      console.log('err', err);
+    }
+  );
+}
 
   ngOnDestroy(): void {
     this.isQuillFocus = false;
   }
-
 }
