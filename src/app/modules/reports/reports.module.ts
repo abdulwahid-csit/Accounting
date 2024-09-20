@@ -11,6 +11,14 @@ import { CashFlowsComponent } from './Statement of CashFlows/CashFlows.component
 import { ChangesInEquityComponent } from './ChangesInEquity/ChangesInEquity.component';
 import { GeneralLedgerComponent } from './General Leisure/GeneralLedger.component';
 import { ProfitnLossComponent } from './ProfitnLoss/ProfitnLoss.component';
+import { BudgetComponent } from '../budget/budget.component';
+import { BudgetOveriewComponent } from './BudgetOveriew/BudgetOveriew.component';
+import { CheckDetailComponent } from './CheckDetail/CheckDetail.component';
+import { ReconcileComponent } from '../reconcile/reconcile.component';
+import { ReconcilationDetailComponent } from './ReconcilationDetail/ReconcilationDetail.component';
+import { TaxSummaryComponent } from './Tax-Summary/Tax-Summary.component';
+import { TaxDetailsComponent } from './TaxDetails/TaxDetails.component';
+import { TreatBalanceComponent } from './TreatBalance/TreatBalance.component';
 
 @NgModule({
   imports: [
@@ -21,13 +29,19 @@ import { ProfitnLossComponent } from './ProfitnLoss/ProfitnLoss.component';
     SharedModule
 
   ],
-  declarations: [ReportsComponent,
+  declarations: [
+    ReportsComponent,
     BalanceSheetComponent,
     CashFlowsComponent,
     ChangesInEquityComponent,
     GeneralLedgerComponent,
-    ProfitnLossComponent
-
+    ProfitnLossComponent,
+    BudgetOveriewComponent,
+    CheckDetailComponent,
+    ReconcilationDetailComponent,
+    TaxSummaryComponent,
+    TaxDetailsComponent,
+    TreatBalanceComponent
   ],
   exports: [
     RouterModule
