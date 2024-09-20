@@ -1,0 +1,107 @@
+.close-button-x {
+    color: #7a7a7a;
+    cursor: pointer;
+}
+
+.close-button-x:hover {
+    color: #111;
+}
+
+.container-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    flex: 1 1 300px;
+    max-width: 350px;
+
+    label {
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+.common_box {
+    padding: 24px;
+}
+
+.table {
+    thead {
+        th {
+            border: 1px solid #ccc;
+            background-color: #F8FAFC;
+        }
+    }
+}
+
+
+.editor-tabs {
+    margin: 5px;
+
+    button {
+        border: none;
+        background-color: #fff;
+        padding: 5px 8px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #cce2fa;
+    }
+}
+
+.editor-container {
+    max-width: 100%;
+    margin: 10px auto 20px;
+    border-radius: 8px;
+    border: 1px solid #cccc;
+}
+
+::ng-deep .quill-editor {
+    width: 100%;
+}
+
+::ng-deep .ql-toolbar {
+    border: none !important;
+    box-shadow: 0px 4px 5px #dcdcdc;
+}
+
+::ng-deep .ql-editor {
+    padding-bottom: 0 !important;
+    overflow-y: hidden !important;
+    min-height: 200px;
+    border: none !important;
+}
+
+::ng-deep .ql-container {
+    border: none !important;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.dropdown-menu {
+    max-height: 450px;
+    overflow-y: auto;
+    top: 640px;
+
+    .print-button {
+        border-radius: 4px;
+        cursor: pointer;
+        user-select: none;
+        transition: background-color 0.3s ease;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .print-button:hover {
+        background-color: #6f63bd;
+        color: white;
+    }
+}

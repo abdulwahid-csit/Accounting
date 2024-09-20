@@ -7,6 +7,10 @@ import { BankAccountsComponent } from './Bank-accounts/Bank-accounts.component';
 import { BankingFeedComponent } from './banking-feed/banking-feed.component';
 import { BankingComponent } from './banking.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddBankComponent } from './add-bank/add-bank.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { BsDatepickerDirective, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { QuillModule } from 'ngx-quill';
 
 
 @NgModule({
@@ -16,13 +20,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     ReactiveFormsModule,
     // QuillModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule,
+    BsDatepickerModule,
+    QuillModule
+
 
   ],
   declarations: [
     BankingComponent,
     BankAccountsComponent,
     BankingFeedComponent,
+    AddBankComponent
 
   ],
   exports: [
