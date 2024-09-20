@@ -3,6 +3,7 @@ import { ItemMappingSetupComponent } from '../item-mapping-setup/item-mapping-se
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ExpenseCategoryMappingComponent } from '../expense-category-mapping/expense-category-mapping.component';
 import { PaymentTaxMappingComponent } from '../payment-tax-mapping/payment-tax-mapping.component';
+import { PaymentModeMappingComponent } from '../payment-mode-mapping/payment-mode-mapping.component';
 
 @Component({
   selector: 'app-generaltab',
@@ -137,9 +138,17 @@ constructor(private modalService: BsModalService) { }
       keyboard: true,
     });
   }
-  // tax and payment
-  openPaymentModal() {
+  // tax 
+  opentaxModal() {
     this.modalService.show(PaymentTaxMappingComponent, {
+      class: 'modal-dialog modal-dialog-centered modal-lg ',
+      backdrop: 'static',
+      keyboard: true,
+    });
+  }
+  // payment
+  openPaymentModal() {
+    this.modalService.show(PaymentModeMappingComponent, {
       class: 'modal-dialog modal-dialog-centered modal-lg ',
       backdrop: 'static',
       keyboard: true,
