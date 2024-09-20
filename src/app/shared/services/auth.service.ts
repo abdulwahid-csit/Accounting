@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { LocalStoreService } from './local-store.service';
-// import { environment } from 'src/environments/environment';
-import { environment } from './../../../enviromenets/environment';
+import { environment } from 'src/assets/environment/environments';
+
 
 interface RegisterUser{
   full_name: string,
