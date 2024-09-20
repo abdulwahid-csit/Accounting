@@ -7,12 +7,36 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./report-list.component.scss']
 })
 export class ReportListComponent implements OnInit {
+openDatepicker() {
+
+}
+selectAllSubAccounts() {
+
+}
+deselectAllSubAccounts() {
+
+}
+deselectAll() {
+
+}
+selectAll() {
+
+}
+
+filterAccounts() {
+
+}
+  SearchItems: any;
   applicationForm!: FormGroup;
   isFocused: boolean = false;
   isStatusFocus = false;
   isFromDateFocus = false;
   isToDateFocus = false;
   activeTab = 'payment';
+  selectedSubAccounts: any;
+  subAccounts: readonly any[] | null | undefined;
+  selectedAccounts: any;
+ filteredAccounts: readonly any[] | null | undefined;
 
   constructor() { }
 
