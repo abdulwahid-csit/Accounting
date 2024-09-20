@@ -115,6 +115,54 @@
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="reports">
                     <span class="d-flex align-items-center sidebar_svg reports-icon "></span><a>Reports</a>
                 </li>
+                <ul [ngClass]="activeMenu === 'reports' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"
+                class="sub-menu">
+                <li class="nav-item position-relative d-flex" routerLink="reports/balancesheet" routerLinkActive="sublink-active">
+                    <span class="sale-icon sidebar_svg"></span>
+                    <a>Balance Sheet</a>
+                </li>
+                <li class="nav-item position-relative d-flex" routerLink="reports/customerSummary" routerLinkActive="sublink-active">
+                    <span class="expense-icon sidebar_svg"></span>
+                    <a>Customer Summary</a>
+                </li>
+                <li class="nav-item position-relative d-flex"  routerLink="reports/profitnloss" routerLinkActive="sublink-active">
+                    <span class="payslips-icon sidebar_svg"></span>
+                    <a>Profit Loss</a>
+                </li>
+                <li class="nav-item position-relative d-flex"  routerLink="reports/cashflows" routerLinkActive="sublink-active">
+                    <span class="purchase-icon sidebar_svg"></span>
+                    <a>Statement of CashFlow</a>
+                </li>
+                <li class="nav-item position-relative d-flex"  routerLink="reports/TreatBalance" routerLinkActive="sublink-active">
+                    <span class="inventory-icon sidebar_svg"></span>
+                    <a>Treat Balance</a>
+                </li>
+                <li class="nav-item position-relative d-flex"  routerLink="reports/generalleisure" routerLinkActive="sublink-active">
+                    <span class="manufacturing-icon sidebar_svg"></span>
+                    <a>General leisure</a>
+                </li>
+                <li class="nav-item position-relative d-flex"  routerLink="reports/Reconcilation" routerLinkActive="sublink-active">
+                    <span class="fixed-equipment-icon sidebar_svg"></span>
+                    <a>Reconcilation Detail</a>
+                </li>
+                <li class="nav-item position-relative d-flex"  routerLink="reports/BudegtOverview" routerLinkActive="sublink-active">
+                  <span class="manufacturing-icon sidebar_svg"></span>
+                  <a>Budget Overview </a>
+              </li>
+             <li class="nav-item position-relative d-flex"  routerLink="reports/taxdetails" routerLinkActive="sublink-active">
+                  <span class="fixed-equipment-icon sidebar_svg"></span>
+                  <a>Tax Detail report</a>
+              </li>
+              <li class="nav-item position-relative d-flex"  routerLink="reports/taxSummary" routerLinkActive="sublink-active">
+                <span class="fixed-equipment-icon sidebar_svg"></span>
+                <a>Tax Summary report</a>
+            </li>
+            <li class="nav-item position-relative d-flex"  routerLink="reports/CheckDetail" routerLinkActive="sublink-active">
+              <span class="fixed-equipment-icon sidebar_svg"></span>
+              <a>Check Details</a>
+          </li>
+
+            </ul>
                 <li (click)="toggleMenu('setting')" [ngClass]="{'active': activeMenu === 'setting'}"
                     class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="setting">
                     <span class="d-flex align-items-center sidebar_svg setting-icon "></span><a>Settings</a>
