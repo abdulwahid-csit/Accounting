@@ -1,5 +1,0 @@
-export const environment = {
-    production: false,
-    apiUrl: 'https://api-accounting.4iisolutions.com/api/v1/',
-    // apiUrl: 'http://10.10.10.134:3000/api/v1/'
-  }  
