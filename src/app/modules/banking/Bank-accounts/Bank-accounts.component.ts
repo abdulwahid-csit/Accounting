@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AddAccountComponent } from '../../chart-of-accounts/add-account/add-account.component';
+import { AddBankComponent } from '../add-bank/add-bank.component';
 
 @Component({
   selector: 'app-Bank-accounts',
@@ -123,7 +123,7 @@ export class BankAccountsComponent implements OnInit {
   addBank() {
 
     const initialState = { itemList: '', title: 'Create' };
-    this.modalRef = this.modalService.show(AddAccountComponent, {
+    this.modalRef = this.modalService.show(AddBankComponent, {
       class: 'modal-dialog modal-dialog-centered modal-lg create_organization',
       backdrop: 'static',
       keyboard: true,
