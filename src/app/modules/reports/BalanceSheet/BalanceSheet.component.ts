@@ -11,5 +11,6 @@ export class BalanceSheetComponent implements OnInit {
 
   ngOnInit() {
   }
+ date = '19/09/2024';
 
 }
