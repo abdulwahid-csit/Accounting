@@ -1,5 +1,9 @@
 input#flexSwitchCheckDefault {
-    margin-left: 10px;
+    margin-left: 5px;
+}
+
+.form-check.form-switch.border-start {
+    margin-right: -30px;
 }
 .search_input{
     input{
@@ -23,4 +27,8 @@ input#flexSwitchCheckDefault {
         left: -30px;
         top: 8px;
     }
+    }
+
+    hr{
+        border: 1px solid rgb(191, 191, 191);
     }

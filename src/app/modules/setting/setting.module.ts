@@ -19,6 +19,7 @@ import { ItemMappingSetupComponent } from './Mapping-Setup/item-mapping-setup/it
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PaymentTaxMappingComponent } from './Mapping-Setup/payment-tax-mapping/payment-tax-mapping.component';
 import { ExpenseCategoryMappingComponent } from './Mapping-Setup/expense-category-mapping/expense-category-mapping.component';
+import { PaymentModeMappingComponent } from './Mapping-Setup/payment-mode-mapping/payment-mode-mapping.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { ExpenseCategoryMappingComponent } from './Mapping-Setup/expense-categor
     PayslipsComponent,
     ItemMappingSetupComponent,
     PaymentTaxMappingComponent,
-    ExpenseCategoryMappingComponent
+    ExpenseCategoryMappingComponent,
+    PaymentModeMappingComponent
   ],
   exports: [
     RouterModule
