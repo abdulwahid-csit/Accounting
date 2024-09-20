@@ -16,7 +16,7 @@ export class ImportAccountComponent implements OnInit {
   constructor() { }
   ngOnInit() {
   }
-
+  
   importFile(evt: any, eventForFileSelection: Event) {
     const input = eventForFileSelection.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {

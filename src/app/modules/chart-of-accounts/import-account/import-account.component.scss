@@ -46,11 +46,12 @@ input[type="file"]::-webkit-file-upload-button {
     padding: 5px 15px;
     border: none;
     cursor: pointer;
-    border: 1px solid #333;
+    border: 1px solid #222;
     transition: background-color 0.3s ease;
   }
   input[type="file"]::-webkit-file-upload-button:hover{
-    background-color: #000;
+    background-color: #6f63bd;
+    border: 1px solid #6f63bd;
     color: #fff;
   }
 
