@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-Payslips',
   templateUrl: './Payslips.component.html',
-  styleUrls: ['./Payslips.component.css']
+  styleUrls: ['./Payslips.component.scss', '../../../../css/custpm-dropdown-style.scss']
 })
 export class PayslipsComponent implements OnInit {
 isExpenseChecked: any;
