@@ -6,8 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Fixedequiment.component.scss', '../../../../css/custpm-dropdown-style.scss']
 })
 export class FixedequimentComponent implements OnInit {
-isExpensesChecked: any;
-isSalesChecked: any;
+isPurchasOrderChecked: any;
+isPurchaseInovoiceChecked: any;
+isPaymentChecked: any;
+isPurchaseOrderReturnChecked: any;
+isRefundChecked: any;
+isTaxDefaultChecked: any;
+
 
   constructor() { }
 

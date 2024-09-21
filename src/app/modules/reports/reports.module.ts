@@ -6,14 +6,19 @@ import { ReportsRoutes } from './reports.routing';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AccountHistoryComponent } from './AccountHistory/AccountHistory.component';
-import { AccountListComponent } from './AccountList/AccountList.component';
 import { BalanceSheetComponent } from './BalanceSheet/BalanceSheet.component';
-import { CashFlowsComponent } from './CashFlows/CashFlows.component';
+import { CashFlowsComponent } from './Statement of CashFlows/CashFlows.component';
 import { ChangesInEquityComponent } from './ChangesInEquity/ChangesInEquity.component';
-import { GeneralLedgerComponent } from './GeneralLedger/GeneralLedger.component';
-import { JournalComponent } from './Journal/Journal.component';
+import { GeneralLedgerComponent } from './General Leisure/GeneralLedger.component';
 import { ProfitnLossComponent } from './ProfitnLoss/ProfitnLoss.component';
+import { BudgetComponent } from '../budget/budget.component';
+import { BudgetOveriewComponent } from './BudgetOveriew/BudgetOveriew.component';
+import { CheckDetailComponent } from './CheckDetail/CheckDetail.component';
+import { ReconcileComponent } from '../reconcile/reconcile.component';
+import { ReconcilationDetailComponent } from './ReconcilationDetail/ReconcilationDetail.component';
+import { TaxSummaryComponent } from './Tax-Summary/Tax-Summary.component';
+import { TaxDetailsComponent } from './TaxDetails/TaxDetails.component';
+import { TreatBalanceComponent } from './TreatBalance/TreatBalance.component';
 
 @NgModule({
   imports: [
@@ -24,16 +29,19 @@ import { ProfitnLossComponent } from './ProfitnLoss/ProfitnLoss.component';
     SharedModule
 
   ],
-  declarations: [ReportsComponent,
-    AccountHistoryComponent,
-    AccountListComponent,
+  declarations: [
+    ReportsComponent,
     BalanceSheetComponent,
     CashFlowsComponent,
     ChangesInEquityComponent,
     GeneralLedgerComponent,
-    JournalComponent,
-    ProfitnLossComponent
-
+    ProfitnLossComponent,
+    BudgetOveriewComponent,
+    CheckDetailComponent,
+    ReconcilationDetailComponent,
+    TaxSummaryComponent,
+    TaxDetailsComponent,
+    TreatBalanceComponent
   ],
   exports: [
     RouterModule

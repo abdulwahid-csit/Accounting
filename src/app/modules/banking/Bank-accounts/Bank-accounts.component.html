@@ -30,6 +30,11 @@
             </span>
           </div>
 
-          <app-data-table [columns]="columns" [config]="tableConfig" [dataSet]="applicationList"
-         ></app-data-table>
+          <app-data-table [columns]="columns" 
+          [config]="tableConfig" 
+          [dataSet]="bankingData"
+          [editMethod]="editRow.bind(this)"
+          [deleteMethod]="deleteRow.bind(this)">
+           </app-data-table>
+
         </div>
