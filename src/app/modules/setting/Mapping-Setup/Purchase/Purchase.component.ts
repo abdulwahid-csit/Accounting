@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseComponent implements OnInit {
 isExpensesChecked: any;
+isPusrchaseChecked: any;
+isPaymentChecked:any;
 isSalesChecked: any;
 isExpenseChecked: any;
-
+isTaxChecked:any;
+isInvoiceChecked:any;
   constructor() { }
 
   ngOnInit() {

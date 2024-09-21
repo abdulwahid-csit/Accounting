@@ -162,22 +162,28 @@
               <a>Check Details</a>
           </li>
 
-            </ul>
-                <li (click)="toggleMenu('setting')" [ngClass]="{'active': activeMenu === 'setting'}"
-                    class="d-flex align-items-center sidebar_svg" routerLinkActive="active" routerLink="setting">
-                    <span class="d-flex align-items-center sidebar_svg setting-icon "></span><a>Settings</a>
+         </ul>
+
+                <li [ngClass]="{'active': activeMenu === 'setting'}" class="d-flex align-items-center justify-content-between sidebar_svg"
+                (click)="toggleMenu('setting')" routerLink="setting">
+               <div class="d-flex">
+                <span class="d-flex align-items-center sidebar_svg setting-icon"></span>
+                <a>setting</a>
+               </div>
+
+                <span  class="arrow-icon chevron-right-icon" [ngClass]="{'open': activeMenu === 'setting'}"></span>
+            </li>
+
+            <ul [ngClass]="activeMenu === 'setting' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"
+                class="sub-menu">
+                <li class="nav-item position-relative d-flex" routerLink="setting/general-settings" routerLinkActive="sublink-active">
+                    <span class=" sidebar_svg"><i class="fa-solid fa-table-cells"></i></span>
+                    <a>General</a>
                 </li>
-
-                <ul [ngClass]="activeMenu === 'setting' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"
-                    class="sub-menu">
-
-                    <!-- <li class="nav-item position-relative">
-                        <a routerLink="" routerLinkActive="sublink-active">Permissions</a>
-                    </li>
-                    <li class="nav-item position-relative">
-                        <a routerLink="" routerLinkActive="sublink-active">Account settings
-                            equipment</a>
-                    </li> -->
+                <li class="nav-item position-relative d-flex" routerLink="setting/mapping-settings" routerLinkActive="sublink-active">
+                    <span class=" sidebar_svg"><i class="fa-solid fa-wand-magic"></i></span>
+                    <a >Mapping Setup</a>
+                </li>
                 </ul>
             </ul>
         </div>
