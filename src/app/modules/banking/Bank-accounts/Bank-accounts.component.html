@@ -34,7 +34,19 @@
           [config]="tableConfig" 
           [dataSet]="bankingData"
           [editMethod]="editRow.bind(this)"
-          [deleteMethod]="deleteRow.bind(this)">
+          [deleteMethod]="deleteRow.bind(this)"
+          [toggleSwitch]="toggleSwitch.bind(this)"
+          >
            </app-data-table>
 
+          
         </div>
+        <ng-template #deleteModel>
+          <div class="modal-body d-flex align-items-center border-0 pt-10 py-0 flex-column">
+              <p>Are you sure you want to delete this item?</p>
+          </div>
+          <div class="modal-footer border-0 d-flex justify-content-center">
+              <button (click)="closeModal()" type="button" class="btn btn-outline btn-outline-solid btn-outline-dark btn-active-light-dark">Cancel</button>
+              <button (click)="delete()" type="button" class="btn btn-primary">Delete</button>
+          </div>
+      </ng-template>
