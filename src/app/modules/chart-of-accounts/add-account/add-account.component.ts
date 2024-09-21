@@ -2,6 +2,7 @@ import { CrudService } from 'src/app/shared/services/crud.service';
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-account',
@@ -17,7 +18,10 @@ export class AddAccountComponent implements OnInit, OnDestroy {
   isDetailTypeFocus = false;
   isStatusFocus = false;
   isQuillFocus = false;
+  isAccounLevelFocus = false
+  isLevelThreeFocus = false;
   editorContent = ''
+  selectedAccountLevel: number = 1;
   accountTypes: any;
   accountDetailsTypes: any;
   @ViewChild('printSection', { static: false }) printSection!: ElementRef;
@@ -40,14 +44,10 @@ export class AddAccountComponent implements OnInit, OnDestroy {
     ]
   };
 
-  constructor(private modalService: BsModalService, private CrudService: CrudService) { }
+  constructor(private modalService: BsModalService, private CrudService: CrudService, private toastService: ToastrService) { }
 
   ngOnInit() {
-
-    this.applicationForm = new FormGroup({
-      organization: new FormControl('', [Validators.required]),
-    })
-
+    this.initializeForm();
     this.getAccountType();
   }
 
@@ -67,18 +67,6 @@ export class AddAccountComponent implements OnInit, OnDestroy {
   }
 
 
-
-  isDropdownOpen = false;
-  isSubDropdownOpen = false;
-
-  toggleDropdown(isOpen: boolean) {
-    this.isDropdownOpen = isOpen;
-  }
-
-  toggleSubDropdown(isOpen: boolean) {
-    this.isSubDropdownOpen = isOpen;
-  }
-
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
     if (this.isQuillFocus && event.ctrlKey && event.key === 'p') {
@@ -86,7 +74,7 @@ export class AddAccountComponent implements OnInit, OnDestroy {
       this.printDocument();
     }
   }
-  
+
   printDocument() {
     if (this.printSection) {
       this.printSection.nativeElement.innerHTML = this.editorContent;
@@ -107,7 +95,7 @@ export class AddAccountComponent implements OnInit, OnDestroy {
             </style>
           </head>
           <body>
-            ${this.printSection.nativeElement.innerHTML}
+            ${this.applicationForm.get('description')?.value}
           </body>
           </html>
         `);
@@ -121,13 +109,25 @@ export class AddAccountComponent implements OnInit, OnDestroy {
   }
 
 
+  initializeForm() {
+    this.applicationForm = new FormGroup({
+      account_level: new FormControl(1),
+      account_type: new FormControl(null, [Validators.required]),
+      account_detail_type: new FormControl(null),
+      account_sub_detail_type: new FormControl(null),
+      parrent_account: new FormControl(null),
+      name: new FormControl('', [Validators.required]),
+      number: new FormControl('', [Validators.required]),
+      description: new FormControl(''),
+    })
 
-  getAccountType(){
+  }
+  getAccountType() {
     this.CrudService.read('meta-data/account-type').subscribe(response => {
-      if(response.data?.status_code === 200){
+      if (response.data?.status_code === 200) {
         this.accountTypes = response.data?.data;
         console.log("Data: ", this.accountTypes)
-      }else{
+      } else {
         console.log("Error response: ", response);
       }
     })
@@ -135,17 +135,60 @@ export class AddAccountComponent implements OnInit, OnDestroy {
 
 
   getAccountDetailsType(selectedAccountType: any): void {
-    const accountTypeName = selectedAccountType.title;
+    const accountTypeName = selectedAccountType;
     console.log('Selected Account Type Name:', accountTypeName);
     this.CrudService.read('meta-data/account-detail-type').subscribe(response => {
-      if(response.data?.status_code === 200){
+      if (response.data?.status_code === 200) {
         this.accountDetailsTypes = response.data?.data;
         console.log("Account details types: ", this.accountDetailsTypes);
-      }else{
+      } else {
         console.log("Error: ", response);
       }
-    })}
+    })
+  }
 
+
+
+  setAccountFieldsVisibility(value: number) {
+    this.selectedAccountLevel = value;
+    this.applicationForm.markAsUntouched();
+    if (value == 2) {
+      this.applicationForm?.get('account_detail_type')?.setValidators(Validators.required);
+      this.applicationForm?.get('parrent_account')?.setValidators(Validators.required);
+    }
+    else if (value == 3) {
+      this.applicationForm?.get('account_detail_type')?.setValidators(Validators.required);
+      this.applicationForm?.get('account_sub_detail_type')?.setValidators(Validators.required);
+      this.applicationForm?.get('parrent_account')?.setValidators(Validators.required);
+    }
+    else {
+      this.applicationForm?.get('account_detail_type')?.clearValidators();
+      this.applicationForm?.get('account_sub_detail_type')?.clearValidators();
+      this.applicationForm?.get('parrent_account')?.clearValidators();
+    }
+
+    this.applicationForm?.get('account_detail_type')?.updateValueAndValidity();
+    this.applicationForm?.get('account_sub_detail_type')?.updateValueAndValidity();
+    this.applicationForm?.get('parrent_account')?.updateValueAndValidity();
+  }
+
+
+
+  onSubmit() {
+    if (this.applicationForm.invalid) {
+      this.applicationForm.markAllAsTouched();
+      return;
+    }
+    const descriptionControl = this.applicationForm.controls['description'];
+    const formattedDescription = descriptionControl.value.replace(/<\/?p>/g, '');
+    descriptionControl.setValue(formattedDescription);
+    const filterFormData = Object.fromEntries(
+      Object.entries(this.applicationForm.value)
+        .filter(([key, value]) => value !== null && value !== '')
+    );
+
+    console.log("Form Submitted", filterFormData);
+  }
 
   ngOnDestroy(): void {
     this.isQuillFocus = false;

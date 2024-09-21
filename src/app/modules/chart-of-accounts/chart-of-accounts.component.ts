@@ -158,7 +158,7 @@ export class ChartOfAccountsComponent implements OnInit {
 
   addAccount(){
     this.modalService.show(AddAccountComponent, {
-      class: 'modal-dialog modal-dialog-centered modal-xl create_organization',
+      class: 'modal-dialog modal-dialog-centered modal-lg create_organization',
       backdrop: 'static',
       keyboard: true,
     });

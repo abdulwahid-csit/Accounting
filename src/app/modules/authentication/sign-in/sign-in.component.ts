@@ -63,7 +63,6 @@ export class SignInComponent {
             console.log("Tokens stored to localstorage.")
             this.router.navigate(['dashboard']);
           } else {
-            console.log("Tokens not stored to local storage.")
             this.toast.error("Incomplete response data");
             console.error("Incomplete response data:", response);
           }
