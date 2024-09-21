@@ -3,6 +3,7 @@ import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } fro
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { environment } from 'src/environments/environment';
+import { BankingService } from '../banking.service';
 
 @Component({
   selector: 'app-add-bank',
@@ -39,8 +40,11 @@ export class AddBankComponent implements OnInit {
       [{ 'direction': 'rtl' }],
     ]
   };
+  bankingData: any;
 
-  constructor(private modalService: BsModalService,private fb: FormBuilder,  private http:HttpClient,) { }
+  constructor(private modalService: BsModalService,private fb: FormBuilder,  private http:HttpClient,
+    private bankinService:BankingService
+  ) { }
 
   ngOnInit() {
 
@@ -48,20 +52,18 @@ export class AddBankComponent implements OnInit {
     //   organization: new FormControl('', [Validators.required]),
     // })
     this.initForm();
-    this.accountType();
-    this.detailType();
-    this.parentType();
+    this.fetchBankingData();
   }
   initForm() {
     const validation = {
-      account_type:[null],
-      name:[null,Validators.compose([Validators.required])],
-      detail_type:[null],
-      number:[null,Validators.compose([Validators.required])],
-      parent_account:[null],
-      balance:[null,Validators.compose([Validators.required])],
-      balance_date:[this.date],
-      bank_name:[null],
+      opening_date:[this.date],
+      banking_name:[null,Validators.compose([Validators.required])],
+      branch_name:[null],
+      account_nature:[null,Validators.compose([Validators.required])],
+      title_of_account:[null],
+      account_no:[null,Validators.compose([Validators.required])],
+      iban_no:[null],
+      opening_balance:[null],
       bank_account:[null],
       bank_routing:[null],
       address:[null],
@@ -137,59 +139,26 @@ export class AddBankComponent implements OnInit {
     }
 
   }
-
-save(){
- const formData = this.applicationForm.value
-  this.http.post(`${environment.apiUrl}banking`, formData).subscribe(
-    (res: any) => {
-      console.log('res', res);
-      this.closeModal();
+submitForm() {
+  const postData = this.applicationForm.value
+  this.bankinService.createBankingResource(postData).subscribe(
+    response => {
+      console.log('Response:', response);
     },
-    err => {
-      // this.toasterService.showModal(err.message, 'error');
-      console.log('err', err);
-    }
-  );
-}
-accountType() {
-  this.http.get(`${environment.apiUrl}meta-data/account-type`).subscribe(
-    (res: any) => {
-      console.log('res', res);
-      this.AccountsType = res;
-      console.log('AccountsType', res);
-      this.closeModal();
-    },
-    err => {
-      console.error('Error:', err.message);
+    error => {
+      console.error('Error:', error);
     }
   );
 }
 
- detailType(){
-  this.http.get(`${environment.apiUrl}meta-data/account-type`).subscribe(
-    (res: any) => {
-      console.log('res', res);
-      this.detailsType = res
-      console.log('detailsType', res);
-      this.closeModal();
+fetchBankingData() {
+  this.bankinService.getBankingResource().subscribe(
+    data => {
+      console.log('Banking Data:', data);
+      this.bankingData = data;
     },
-    err => {
-      // this.toasterService.showModal(err.message, 'error');
-      console.log('err', err);
-    }
-  );
-}
-parentType(){
-  this.http.get(`${environment.apiUrl}banking`).subscribe(
-    (res: any) => {
-      console.log('res', res);
-      this.parentsType = res
-      console.log('parentsType', res);
-      this.closeModal();
-    },
-    err => {
-      // this.toasterService.showModal(err.message, 'error');
-      console.log('err', err);
+    error => {
+      console.error('Error:', error);
     }
   );
 }

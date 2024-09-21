@@ -17,7 +17,7 @@
           <div class="">
             <label for="">Opening Date</label>
             <div class="input-group">
-              <input #toDate="bsDatepicker" type="text" placeholder="From date" class="form-control" bsDatepicker
+              <input formControlName="opening_date" #toDate="bsDatepicker" type="text" placeholder="From date" class="form-control" bsDatepicker
                 [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="From date">
               <div class="input-group-append">
                 <span class="input-group-text h-100 border-start-0 rounded-start-0 bg-transparent"
@@ -42,7 +42,7 @@
           <div class="mb-4 w-100"
             [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : ''">
             <label for="required">Bank Name</label>
-            <ng-select class="" [multiple]="false" [ngClass]="{
+            <ng-select class="" [multiple]="false" formControlName="banking_name" [ngClass]="{
             'custom-select-error': isControlHasError('organization', 'required'),
             'custom-select': !isControlHasError('organization', 'required'),
             'ng-select-focused': isAccountFocus === true,
@@ -64,7 +64,7 @@
           <div class="custom-input app-url w-100 "
           [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
           <label for="appUrl" class="mb-1 primary_color fw-700 required">Branch Name</label>
-          <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Branch Name" />
+          <input formControlName="branch_name" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Branch Name" />
           <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
             **
           </small>
@@ -76,7 +76,7 @@
         <div class="mb-4 w-100"
         [ngClass]="(isControlHasError('account_nature', 'required') || isControlHasError('account_nature', 'pattern')) ? 'custom-input-error' : ''">
         <label for="required">Account Nature</label>
-        <ng-select  formControlName="parent_account" class="" [multiple]="false" [ngClass]="{
+        <ng-select  formControlName="account_nature" class="" [multiple]="false" [ngClass]="{
           'custom-select-error': isControlHasError('organization', 'required'),
           'custom-select': !isControlHasError('organization', 'required'),
           'ng-select-focused': isParrentAccountFocus === true,
@@ -93,7 +93,7 @@
   <div class="custom-input app-url w-100"
   [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
   <label for="appUrl" class="mb-1 primary_color fw-700 required">Title Of Account</label>
-  <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Title Of Account" />
+  <input formControlName="title_of_account" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Title Of Account" />
   <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
     **
   </small>
@@ -128,7 +128,7 @@
           <div class="custom-input app-url w-100 "
             [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
             <label for="appUrl" class="mb-1 primary_color fw-700 required">Account No</label>
-            <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Account No" />
+            <input formControlName="account_no" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Account No" />
             <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
               **
             </small>
@@ -140,7 +140,7 @@
           <div class="custom-input app-url w-100 "
           [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
           <label for="appUrl" class="mb-1 primary_color fw-700 required">IBAN No</label>
-          <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter IBAN No" />
+          <input formControlName="iban_no" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter IBAN No" />
           <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
             **
           </small>
@@ -152,7 +152,7 @@
         <div class="custom-input app-url w-100 "
         [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
         <label for="appUrl" class="mb-1 primary_color fw-700 required">Opening Balance</label>
-        <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Balance" />
+        <input formControlName="opening_balance" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Balance" />
         <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
           **
         </small>
@@ -204,7 +204,7 @@
     <div class="modal-footer pe-0 border-top-0">
       <div class="d-flex gap-2 me-0">
         <button class="btn btn-outline-secondary" (click)="closeModal()">Close</button>
-        <button class="primary_button" (click)="closeModal()">Save</button>
+        <button class="primary_button" (click)="submitForm()">Save</button>
       </div>
     </div>
   </div>
