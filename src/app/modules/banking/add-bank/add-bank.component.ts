@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { environment } from 'src/environments/environment';
 import { BankingService } from '../banking.service';
-
+import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 @Component({
   selector: 'app-add-bank',
   templateUrl: './add-bank.component.html',
@@ -23,7 +23,9 @@ export class AddBankComponent implements OnInit {
   @ViewChild('printSection', { static: false }) printSection!: ElementRef;
   AccountsType: any;
   detailsType: any;
-  parentsType: any;
+  user: any;
+  @Output() successCall = new EventEmitter<void>();
+  @Input() data: any;
   editorConfig = {
     toolbar: [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
@@ -41,9 +43,9 @@ export class AddBankComponent implements OnInit {
     ]
   };
   bankingData: any;
-
+  isUpdateMode: boolean = false
   constructor(private modalService: BsModalService,private fb: FormBuilder,  private http:HttpClient,
-    private bankinService:BankingService
+    private bankinService:BankingService, private LocalStoreService: LocalStoreService
   ) { }
 
   ngOnInit() {
@@ -53,21 +55,25 @@ export class AddBankComponent implements OnInit {
     // })
     this.initForm();
     this.fetchBankingData();
+    this.forBussinessId();
+    console.log("update",this.data)
+    if(this.data){
+      this.isUpdateMode = true
+      this.fillFormData();
+    }
+
   }
   initForm() {
     const validation = {
-      opening_date:[this.date],
-      banking_name:[null,Validators.compose([Validators.required])],
-      branch_name:[null],
-      account_nature:[null,Validators.compose([Validators.required])],
-      title_of_account:[null],
-      account_no:[null,Validators.compose([Validators.required])],
-      iban_no:[null],
-      opening_balance:[null],
-      bank_account:[null],
-      bank_routing:[null],
-      address:[null],
-      description:[null]
+      opening_Date:[this.date,Validators.compose([Validators.required])],
+      name:[null,Validators.compose([Validators.required])],
+      branch_name:[null,Validators.compose([Validators.required])],
+      account_natures:[null,Validators.compose([Validators.required])],
+      account_number:[null,Validators.compose([Validators.required])],
+      iban_number:[null,Validators.compose([Validators.required])],
+      balance:[null],
+      business:[""],
+      bank:[null,Validators.compose([Validators.required])],
     };
     this.applicationForm = this.fb.group(validation);
   }
@@ -86,7 +92,9 @@ export class AddBankComponent implements OnInit {
     this.modalService.hide();
   }
 
-
+  forBussinessId(){
+    this.user = this.LocalStoreService.getItem('user');
+  }
 
   isDropdownOpen = false;
   isSubDropdownOpen = false;
@@ -140,10 +148,17 @@ export class AddBankComponent implements OnInit {
 
   }
 submitForm() {
+  if(this.applicationForm?.invalid){
+    this.applicationForm?.markAllAsTouched();
+  return
+  }
   const postData = this.applicationForm.value
+  postData['business'] = this.user.business
   this.bankinService.createBankingResource(postData).subscribe(
     response => {
       console.log('Response:', response);
+      this.closeModal();
+      this.successCall.emit();
     },
     error => {
       console.error('Error:', error);
@@ -153,9 +168,13 @@ submitForm() {
 
 fetchBankingData() {
   this.bankinService.getBankingResource().subscribe(
-    data => {
-      console.log('Banking Data:', data);
-      this.bankingData = data;
+    (response: any) => {
+      if (response?.data?.data?.payload) {
+        this.bankingData = response.data.data.payload;
+        console.log('Banking Data:', this.bankingData);
+      } else {
+        console.error('Unexpected response format', response);
+      }
     },
     error => {
       console.error('Error:', error);
@@ -166,4 +185,36 @@ fetchBankingData() {
   ngOnDestroy(): void {
     this.isQuillFocus = false;
   }
+  fillFormData() {
+    console.log("data for update",this.data)
+    if (this.data) {
+      this.applicationForm.patchValue({
+        opening_Date: this.data.opening_Date || this.date,  // Use this.date as fallback
+        name: this.data.name || null,
+        branch_name: this.data.branch_name || null,
+        account_natures: this.data.account_natures || null,
+        account_number: this.data.account_number || null,
+        iban_number: this.data.iban_number || null,
+        balance: this.data.balance || null,
+        bank: this.data.bank._id || null,
+        business: this.data.business || this.user.business
+      });
+    }
+  }
+
+  updateForm() {
+    const postData = this.applicationForm.value
+    postData['business'] = this.user.business
+    this.bankinService.editBankingResource(this.data?._id,postData).subscribe(
+      response => {
+        console.log('Response:', response);
+        this.closeModal();
+        this.successCall.emit();
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
+  }
+  
 }
