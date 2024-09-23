@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CrudService } from 'src/app/shared/services/crud.service';
+import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -11,12 +15,17 @@ export class ImportAccountComponent implements OnInit {
   isImportButtonDisabled = false;
   isFileSelected = false;
   importData: any;
-  importDataAsObject: any;
+  chartOfAccountMultipleData: any;
 
-  constructor() { }
-  ngOnInit() {
-  }
-  
+  constructor(
+    private localStorage: LocalStoreService,
+    private crudService: CrudService,
+    private toastService: ToastrService,
+    private router: Router) { }
+
+    
+  ngOnInit() {}
+
   importFile(evt: any, eventForFileSelection: Event) {
     const input = eventForFileSelection.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -49,7 +58,7 @@ export class ImportAccountComponent implements OnInit {
 
   changeArrayToObject() {
     const keys = this.importData[0];
-    const camelCaseKeys = keys.map((key: string) => this.toCamelCase(key));
+    const camelCaseKeys = keys.map((key: string) => this.to_snake_case(key));
     const arrayOfObjects = this.importData.slice(1).map((row: { [x: string]: null; }) => {
       return camelCaseKeys.reduce((obj: { [x: string]: any; }, key: string | number, index: string | number) => {
         obj[key] = row[index] || null;
@@ -57,22 +66,33 @@ export class ImportAccountComponent implements OnInit {
       }, {});
     });
 
-    this.importDataAsObject = arrayOfObjects;
+    const importDataAsObject = arrayOfObjects;
+    this.chartOfAccountMultipleData = importDataAsObject.map((account: any) => ({
+      ...account,
+      business: this.localStorage.getItem('user')?.business
+    }));
   }
 
-  toCamelCase(str: string): string {
+  to_snake_case(str: string): string {
     return str
       .replace(/[()]/g, '')
-      .toLowerCase()
-      .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
-        index === 0 ? match.toLowerCase() : match.toUpperCase()
-      )
-      .replace(/\s+/g, '');
+      .replace(/\s+/g, '_')
+      .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+      .replace(/_{2,}/g, '_')
+      .toLowerCase();
   }
 
-  writeDataToServer() {
+
+
+  submittDataToServer() {
     this.isImportButtonDisabled = true;
-    console.log("Data Send to Server.")
+    this.crudService.create('charts-of-accounts/create-many', this.chartOfAccountMultipleData).subscribe(response => {
+      if (response.data?.status_code == 201) {
+        this.toastService.success("Charts Of Account Added.", 'Success')
+        this.router.navigate(['charts-of-account']);
+      }
+    }, error => {
+      this.toastService.error(error.message, "Error !");
+    })
   }
-
 }
