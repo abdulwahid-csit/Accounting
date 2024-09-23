@@ -1,4 +1,5 @@
 <div class="p-4 modal-content">
+
   <div class="modal-header d-flex justify-content-between">
     <div class="fs-20px bold-font pb-0">
       <h3>Add Account</h3>
@@ -6,162 +7,187 @@
     <div class="close-button-x" (click)="closeModal()">
       X
     </div>
-
   </div>
+
   <div class="modal-body">
     <div class="main-content">
-<form [formGroup]="applicationForm">
-      <div class="d-md-flex justify-content-between gap-3">
-        <div class="mb-4 w-100"
-          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : ''">
-          <label for="required">Account Type</label>
-          <ng-select class="" [multiple]="false" [ngClass]="{
-            'custom-select-error': isControlHasError('organization', 'required'),
-            'custom-select': !isControlHasError('organization', 'required'),
-            'ng-select-focused': isAccountFocus === true,
-            'ng-select-error': isControlHasError('organization', 'required')
-      }"  (focus)="isAccountFocus = true" (blur)="isAccountFocus = false"
-            placeholder="Select organization" 
-            (change)="getAccountDetailsType($event)">
-            <ng-option  *ngFor="let item of accountTypes" [value]="item">{{item?.title}}</ng-option>
-          </ng-select>
-        </div>
-        <div class="mb-4 w-100"
-          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : ''">
-          <label for="">Detail Type</label>
-          <ng-select class="" [multiple]="false" [ngClass]="{
-            'custom-select-error': isControlHasError('organization', 'required'),
-            'custom-select': !isControlHasError('organization', 'required'),
-            'ng-select-focused': isDetailTypeFocus === true,
-            'ng-select-error': isControlHasError('organization', 'required')
-      }"  (focus)="isDetailTypeFocus = true" (blur)="isDetailTypeFocus = false"
-            placeholder="Select organization"
-            (change)="getAccountDetailsType($event)"
-            >
-            <ng-option *ngFor="let item of accountDetailsTypes" [value]="item">{{item?.title}}</ng-option>
-          </ng-select>
-        </div>
-      </div>
-
-      <div class="d-md-flex justify-content-between gap-3">
-        <div class="mb-4 custom-input app-url w-100"
-          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
-          <label for="appUrl" class="mb-1 primary_color fw-700 required">Name</label>
-          <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter URL"
-             />
-          <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
-            App url is required
-          </small>
-          <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
-            Please enter a valid url
-          </small>
-
-        </div>
-        <div class="mb-4 custom-input app-url w-100"
-          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
-          <label for="appUrl" class="mb-1 primary_color fw-700 required">Number</label>
-          <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter URL"
-            />
-          <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
-            App url is required
-          </small>
-          <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
-            Please enter a valid url
-          </small>
-        </div>
-      </div>
-
-
-      <div class="mb-4 w-100"
-        [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : ''">
-        <label for="" class="required">Parrent Account</label>
-        <ng-select class="" [multiple]="false" [ngClass]="{
-        'custom-select-error': isControlHasError('organization', 'required'),
-        'custom-select': !isControlHasError('organization', 'required'),
-        'ng-select-focused': isParrentAccountFocus === true,
-        'ng-select-error': isControlHasError('organization', 'required')}" 
-          (focus)="isParrentAccountFocus = true" (blur)="isParrentAccountFocus = false" placeholder="Select Parrent Account">
-          <ng-option [value]="'id'">organization.name </ng-option>
-          <ng-option [value]="'id'">organization.name </ng-option>
-          <ng-option [value]="'id'">organization.name </ng-option>
-          <ng-option [value]="'id'">organization.name </ng-option>
-        </ng-select>
-      </div>
-
-      <div class="d-md-flex justify-content-between gap-3">
-        <div class="mb-4 custom-input app-url w-100 "
-          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
-          <label for="appUrl" class="mb-1 primary_color fw-700 required">Ballance</label>
-          <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter URL"
-            />
-          <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
-           **
-          </small>
-          <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
-           **
-          </small>
-
-        </div>
-        <div class="mb-4 custom-input app-url w-100"
-          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
-          <div class="box">  
-            <label for="">To Date</label>
-            <div class="input-group">
-              <input #toDate="bsDatepicker" type="text" placeholder="From date" class="form-control" bsDatepicker
-                [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="From date">
-              <div class="input-group-append">
-                <span class="input-group-text h-100 border-start-0 rounded-start-0 bg-transparent"
-                  (click)="toDate.show()">
-                  <!-- Calendar SVG Icon -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                    class="bi bi-calendar" viewBox="0 0 16 16">
-                    <path
-                      d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                  </svg>
-                </span>
-              </div>
-            </div>
+      <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
+        <div class="d-md-flex justify-content-between gap-3">
+          <div class="mb-4 w-100"
+            [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : ''">
+            <label for="required">Select Account Level</label>
+            <ng-select class="" [multiple]="false" [ngClass]="{
+              'custom-select-error': isControlHasError('organization', 'required'),
+              'custom-select': !isControlHasError('organization', 'required'),
+              'ng-select-focused': isAccounLevelFocus === true,
+              'ng-select-error': isControlHasError('organization', 'required')
+              }" (focus)="isAccounLevelFocus = true" (blur)="isAccounLevelFocus = false"
+              placeholder="Select account level"
+              (change)="setAccountFieldsVisibility($event);" formControlName="account_level">
+              <ng-option value="1">Level - 1 </ng-option>
+              <ng-option value="2">Level - 2 </ng-option>
+              <ng-option value="3">Level - 3 </ng-option>
+            </ng-select>
           </div>
-          <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
-            **
-          </small>
-          <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
-            **
-          </small>
+          <div class="mb-4 w-100 custom-ng-select">
+            <label for="" class="required">Account Type</label>
+            <ng-select class="" [multiple]="false" [ngClass]="{
+            'custom-select-error': isControlHasError('parrent_account', 'required'),
+            'custom-select': !isControlHasError('parrent_account', 'required'),
+            'ng-select-focused': isParrentAccountFocus === true}
+           " (focus)="isParrentAccountFocus = true" (blur)="isParrentAccountFocus = false"
+              placeholder="Select Parrent Account" formControlName="parrent_account">
+              <ng-option [value]="'id'">organization.name </ng-option>
+              <ng-option [value]="'id'">organization.name </ng-option>
+              <ng-option [value]="'id'">organization.name </ng-option>
+              <ng-option [value]="'id'">organization.name </ng-option>
+            </ng-select>
+            <small *ngIf="isControlHasError('parrent_account', 'required')" class="mt-1">Parrent account is
+              required</small>
+          </div>
         </div>
-      </div>
-    </form>
-    <div class="custom-input">
-    <label for="">Description</label>
-      <div class="editor-container">
-        <div class="editor-tabs position-relative">
-          <span class="dropdown">
-            <button  class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              File
-            </button>
-            <div class="dropdown-menu px-1" aria-labelledby="dropdownMenuButton">
-             <div class="print-button d-flex justify-content-between gap-3 p-2" (click)="printDocument()">
-              <span>
-                <i class="bi bi-printer-fill"></i>
-                <span class="ms-2">Print</span>
-              </span>
-              <span>Ctrl+P</span>
-              </div>
-            </div>
-          </span>
+        <div class="d-md-flex justify-content-between gap-3">
+          <div class="mb-4 w-100 custom-ng-select"
+            *ngIf="selectedAccountLevel == 1 || selectedAccountLevel == 2 || selectedAccountLevel == 3">
+            <label for="required" class="required">Select Level - 1</label>
+            <ng-select class="" [multiple]="false" [ngClass]="{
+            'custom-select-error': isControlHasError('account_type', 'required'),
+            'custom-select': !isControlHasError('account_type', 'required'),
+            'ng-select-focused': isAccountFocus === true,
+            }" formControlName="account_type" (focus)="isAccountFocus = true" (blur)="isAccountFocus = false"
+              placeholder="Enter level 1" (change)="getAccountDetailsType($event)">
+              <ng-option *ngFor="let item of accountTypes" [value]="item.title">{{item?.title}}</ng-option>
+            </ng-select>
+            <small *ngIf="isControlHasError('account_type', 'required')" class="mt-1">Account level - 1 is
+              required</small>
+          </div>
+          <div class="mb-4 w-100 custom-ng-select" *ngIf="selectedAccountLevel == 2 || selectedAccountLevel == 3">
+            <label for="" class="required">Select Level - 2</label>
+            <ng-select class="" [multiple]="false" [ngClass]="{
+            'custom-select-error': isControlHasError('account_detail_type', 'required'),
+            'custom-select': !isControlHasError('account_detail_type', 'required'),
+            'ng-select-focused': isDetailTypeFocus === true,
+      }" formControlName="account_detail_type" (focus)="isDetailTypeFocus = true" (blur)="isDetailTypeFocus = false"
+              placeholder="Enter level 2" (change)="getAccountDetailsType($event)">
+              <ng-option *ngFor="let item of accountDetailsTypes" [value]="item.title">{{item?.title}}</ng-option>
+            </ng-select>
+            <small *ngIf="isControlHasError('account_detail_type', 'required')" class="mt-1">Account level - 2 is
+              required</small>
+          </div>
+        </div>
+        <div class="d-md-flex justify-content-between gap-3">
+          <div class="mb-4 w-100 custom-ng-select" *ngIf="selectedAccountLevel == 3">
+            <label for="required" class="required">Select Level - 3</label>
+            <ng-select class="" [multiple]="false" [ngClass]="{
+              'custom-select-error': isControlHasError('account_sub_detail_type', 'required'),
+              'custom-select': !isControlHasError('account_sub_detail_type', 'required'),
+              'ng-select-focused': isLevelThreeFocus === true,
+              }" formControlName="account_sub_detail_type" (focus)="isLevelThreeFocus = true"
+              (blur)="isLevelThreeFocus = false" [placeholder]="'Enter level 3'"
+              (change)="getAccountDetailsType($event)">
+              <ng-option *ngFor="let item of accountTypes" [value]="item.title">{{item?.title}}</ng-option>
+            </ng-select>
+            <small *ngIf="isControlHasError('account_sub_detail_type', 'required')" class="mt-1">Account level - 3 is
+              required</small>
+
+          </div>
         </div>
 
-        <quill-editor class="quill-editor border-0" (onFocus)="isQuillFocus = true" (onBlur)="isQuillFocus = false" [(ngModel)]="editorContent" [modules]="editorConfig" theme="snow" placeholder="Enter Description Here..."></quill-editor>
-      </div>
-    </div>
+        <div class="d-md-flex justify-content-between gap-3">
+          <div class="mb-4 custom-input app-url w-100"
+            [ngClass]="isControlHasError('name', 'required') ? 'custom-input-error' : 'custom-input'">
+            <label for="appUrl" class="mb-1 primary_color fw-700 required">Name</label>
+            <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter name"
+              formControlName="name" />
+            <small *ngIf="isControlHasError('name', 'required')" class="text-danger fs-12px mt-1">
+              Name is required
+            </small>
+          </div>
+
+          <div class="mb-4 custom-input app-url w-100"
+            [ngClass]="isControlHasError('number', 'required')  ? 'custom-input-error' : 'custom-input'">
+            <label for="appUrl" class="mb-1 primary_color fw-700 required">Number</label>
+            <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter number"
+              formControlName="number" />
+            <small *ngIf="isControlHasError('number', 'required')" class="text-danger fs-12px mt-1">
+              Number is required
+            </small>
+          </div>
+        </div>
+
+        <!-- <div class="d-md-flex justify-content-between gap-3">
+          <div class="mb-4 custom-input app-url w-100 "
+            [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
+            <label for="appUrl" class="mb-1 primary_color fw-700 required">Ballance</label>
+            <input type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter URL" formControlName="ballance" />
+            <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
+              **
+            </small>
+            <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
+              **
+            </small>
+
+          </div>
+          <div class="mb-4 custom-input app-url w-100"
+            [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
+            <div class="box">
+              <label for="">To Date</label>
+              <div class="input-group">
+                <input #toDate="bsDatepicker" type="text" placeholder="From date" class="form-control" bsDatepicker
+                  [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="From date" formControlName="date">
+                <div class="input-group-append">
+                  <span class="input-group-text h-100 border-start-0 rounded-start-0 bg-transparent"
+                    (click)="toDate.show()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                      class="bi bi-calendar" viewBox="0 0 16 16">
+                      <path
+                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <small *ngIf="isControlHasError('url', 'required')" class="text-danger fs-12px mt-1">
+              **
+            </small>
+            <small *ngIf="isControlHasError('url', 'pattern')" class="text-danger fs-12px mt-1">
+              **
+            </small>
+          </div>
+        </div> -->
+        <div class="custom-input">
+          <label for="">Description</label>
+          <div class="editor-container">
+            <div class="editor-tabs position-relative">
+              <span class="dropdown">
+                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  File
+                </button>
+                <div class="dropdown-menu px-1" aria-labelledby="dropdownMenuButton">
+                  <div class="print-button d-flex justify-content-between gap-3 p-2" (click)="printDocument()">
+                    <span>
+                      <i class="bi bi-printer-fill"></i>
+                      <span class="ms-2">Print</span>
+                    </span>
+                    <span>Ctrl+P</span>
+                  </div>
+                </div>
+              </span>
+            </div>
+            <quill-editor class="quill-editor border-0" (onFocus)="isQuillFocus = true" (onBlur)="isQuillFocus = false"
+              [modules]="editorConfig" theme="snow" placeholder="Enter Description Here..."
+              formControlName="description"></quill-editor>
+          </div>
+        </div>
+      </form>
     </div>
     <div id="print-section" #printSection style="display: none;"></div>
-
 
     <div class="modal-footer pe-0">
       <div class="d-flex gap-2 me-0">
         <button class="btn btn-outline-secondary" (click)="closeModal()">Close</button>
-        <button class="primary_button" (click)="closeModal()">Save</button>
+        <button class="primary_button" (click)="onSubmit()">Save</button>
       </div>
     </div>
   </div>
