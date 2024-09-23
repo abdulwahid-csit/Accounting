@@ -236,8 +236,8 @@ body {
         padding: 8px 16px;
         border: var(--bs-border-width) solid var(--bs-border-color);
         outline: 0;
-        border-color: #6f63bd !important;
-        box-shadow: 0 0 0 0.25rem rgba(111, 97, 207, 0.20) !important;
+        border-color: #6f63bd;
+        box-shadow: 0 0 0 0.25rem rgba(111, 97, 207, 0.20);
 
     }
 
@@ -442,5 +442,3 @@ input.form-control:focus {
 .ng-select-container{
     border:none !important
 }
-
-
