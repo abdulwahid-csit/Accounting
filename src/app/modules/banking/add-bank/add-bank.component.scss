@@ -105,3 +105,7 @@
         color: white;
     }
 }
+.custom-input-error input,
+.custom-input-error ng-select {
+  border: 1px solid red;
+}

@@ -34,7 +34,10 @@
           [config]="tableConfig" 
           [dataSet]="bankingData"
           [editMethod]="editRow.bind(this)"
-          [deleteMethod]="deleteRow.bind(this)">
+          [deleteMethod]="deleteRow.bind(this)"
+          [toggleSwitch]="toggleSwitch.bind(this)"
+          >
            </app-data-table>
 
+          
         </div>
