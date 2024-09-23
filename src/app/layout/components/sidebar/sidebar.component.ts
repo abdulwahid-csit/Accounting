@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
 
   // Method to toggle sub-menu
   toggleMenu(menu: string) {
-    if(this.activeMenu == menu){
+    if(this.activeMenu == menu && (menu == 'transaction' || menu == 'reports' || menu == 'journal' || menu == 'setting')){
       this.activeMenu = ''
     }else{
       this.activeMenu = menu;
@@ -35,6 +35,7 @@ export class SidebarComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
+    this.localStoreService.removeItem();
   }
 }

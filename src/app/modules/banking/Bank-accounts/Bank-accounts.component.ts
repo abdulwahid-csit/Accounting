@@ -17,6 +17,9 @@ export class BankAccountsComponent implements OnInit {
   bankForm!: FormGroup;
   bankingData: any;
   @Input() deleteData : any
+  @Input() changePage: any;
+  selectedPageSize: number = 10; // Default page size
+  currentPage: number = 1;
   constructor(private modalService: BsModalService,private bankinService: BankingService,private toastr: ToastrService) { }
   columns = [
     { name: 'Check', key: 'isChecked', isCheckbox: true },
@@ -47,14 +50,7 @@ export class BankAccountsComponent implements OnInit {
     this.fetchBankingData();
     this.bankForm = new FormGroup({
       bankName: new FormControl('')
-      // Add more controls as needed
     });
-//     this.deleteData?.subscribe((res:any)=>{
-// console.log("res" , res)
-//     })
-//        if(this.deleteData){
-//          this.delete();
-//        }
   }
 
   addBank(data?: any) {
@@ -71,12 +67,14 @@ export class BankAccountsComponent implements OnInit {
       this.fetchBankingData();
     });
   }
-  fetchBankingData() {
-    this.bankinService.getBankResource().subscribe(
+  fetchBankingData(page: number = 1) {
+    this.bankinService.getBankResource(page,this.selectedPageSize).subscribe(
       (response: any) => {
         if (response?.data?.data?.payload) {
           this.bankingData = response?.data?.data?.payload;
-          console.log('Banking Data:', this.bankingData);
+          this.tableConfig.paginationParams = response?.data?.data?.paginate_options
+          // console.log('Banking Data:', this.bankingData);
+          // console.log(' this.tableConfig.paginationParams:',  this.tableConfig.paginationParams);
         } else {
           console.error('Unexpected response format', response);
         }
@@ -139,5 +137,22 @@ export class BankAccountsComponent implements OnInit {
   }
   closeModal() {
     this.modalService.hide();
+  }
+  onPageChange(item: number) {
+    this.changePage.emit(item); 
+    this.fetchBankingData(item); 
+  }
+    onPageSizeChange(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedSize = selectElement.value;
+
+    // Handle 'All' option
+    this.selectedPageSize = selectedSize === 'All' ? this.tableConfig.paginationParams.total_records : +selectedSize;
+
+    // Reset to the first page when page size changes
+    this.currentPage = 1;
+
+    // Fetch data based on the new page size
+    this.fetchBankingData(this.currentPage);
   }
 }

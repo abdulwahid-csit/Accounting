@@ -26,10 +26,14 @@ export class BankingService {
     const url = `${this.apiUrl}banks`; 
     return this.http.get(url, { headers: this.getHeaders() });
   }
-  getBankResource(): Observable<any> {
-    const url = `${this.apiUrl}banking`; 
-    return this.http.get(url, { headers: this.getHeaders() });
-  }
+  getBankResource(page: number = 1, pageSize: number = 10): Observable<any> {
+    const url = `${this.apiUrl}banking`;
+    const params = {
+      page: page.toString(),
+      pageSize: pageSize.toString()
+    };
+    return this.http.get(url, { headers: this.getHeaders(), params });
+}
 
   editBankingResource(id: string, data: any): Observable<any> {
       const url = `${this.apiUrl}banking/${id}`;

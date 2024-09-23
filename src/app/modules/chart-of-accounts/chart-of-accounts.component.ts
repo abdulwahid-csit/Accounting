@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { AddAccountComponent } from './add-account/add-account.component';
+import { CrudService } from 'src/app/shared/services/crud.service';
 
 @Component({
   selector: 'app-chart-of-accounts',
@@ -41,7 +42,7 @@ export class ChartOfAccountsComponent implements OnInit {
     }
   };
 
- response = {
+  response = {
     "status_code": 200,
     "message": "Paginated list with data and paginate options.",
     "data": {
@@ -115,7 +116,8 @@ export class ChartOfAccountsComponent implements OnInit {
 
 
   constructor(
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private CrudService: CrudService
   ) { }
 
   ngOnInit() {
@@ -132,6 +134,8 @@ export class ChartOfAccountsComponent implements OnInit {
     this.applicationForm = new FormGroup({
       organization: new FormControl('', [Validators.required]),
     })
+    this.getChartOfAccounts();
+
   }
 
   isControlHasError(controlName: any, validationType: string): boolean {
@@ -156,12 +160,24 @@ export class ChartOfAccountsComponent implements OnInit {
   }
 
 
-  addAccount(){
+  addAccount() {
     this.modalService.show(AddAccountComponent, {
       class: 'modal-dialog modal-dialog-centered modal-lg create_organization',
       backdrop: 'static',
       keyboard: true,
     });
+  }
+
+
+  getChartOfAccounts() {
+    this.CrudService.read('charts-of-accounts').subscribe(response => {
+      if (response?.data?.status_code == 201) {
+        console.log("Charts of account data is loaded.")
+      }
+      console.log("Charts Of Account Data: ", response.data)
+    }, error => {
+      console.log("Error ", error.message)
+    })
   }
 
 }
