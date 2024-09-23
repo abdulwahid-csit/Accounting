@@ -12,8 +12,9 @@ export class DataTableComponent implements OnInit {
   @Input() config: any;
   @Input() dataSet: any[] = [];
   @Input() searchTerm: string = '';
-
-
+  @Input() editMethod!: (row: any) => void;
+  @Input() deleteMethod!: (row: any) => void;
+  @Input() toggleSwitch!: (row: any) => void;
   filterData: any[] = [];
   startItem: number = 0;
   endItem: number = 0;

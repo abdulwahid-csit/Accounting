@@ -21,14 +21,32 @@
               <input type="checkbox" [(ngModel)]="row[column.key]" />
             </span>
 
-            <span *ngSwitchCase="'Name'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'ParentAccount'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'Type'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'DetailType'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'PrimaryBalance'">{{ row[column.key] | currency }}</span>
-            <span *ngSwitchCase="'BankBalance'">{{ row[column.key] | currency }}</span>
-            <span *ngSwitchCase="'Active'">{{ row[column.key] ? 'Yes' : 'No' }}</span>
-            <span *ngSwitchCase="'Options'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'opening_date'">{{ row[column.key]  | date}}</span>
+            <span *ngSwitchCase="'branch_name'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'name'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'account_natures'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'bank'">{{ row[column.key]?.title}}</span>
+            <span *ngSwitchCase="'account_number'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'iban_number'">{{ row[column.key]  }}</span>
+            <span *ngSwitchCase="'balance'">{{ row[column.key] | currency  }}</span>
+            <span *ngSwitchCase="'Active'"><div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" 
+                     [checked]="row.someBooleanValue" 
+                     (change)="toggleSwitch(row)" 
+                     id="flexSwitchCheckDefault{{row.id}}">
+              <label class="form-check-label" for="flexSwitchCheckDefault{{row.id}}">
+                {{ row.someBooleanValue ? 'Yes' : 'No' }}
+              </label>
+            </div></span>
+            <span *ngSwitchCase="'icons'">
+              <button (click)="editMethod(row)" class="btn btn-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button (click)="deleteMethod(row)" class="btn btn-delete">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </span>
+            
             <span *ngSwitchDefault>{{ row[column.key] }}</span>
           </ng-container>
         </td>
