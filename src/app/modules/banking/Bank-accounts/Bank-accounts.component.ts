@@ -1,9 +1,10 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AddBankComponent } from '../add-bank/add-bank.component';
 import { BankingService } from '../banking.service';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteModalComponent } from 'src/app/shared/components/delete-modal/delete-modal.component';
 @Component({
   selector: 'app-Bank-accounts',
   templateUrl: './Bank-accounts.component.html',
@@ -15,6 +16,7 @@ export class BankAccountsComponent implements OnInit {
   modalRef: any;
   bankForm!: FormGroup;
   bankingData: any;
+  @Input() deleteData : any
   constructor(private modalService: BsModalService,private bankinService: BankingService,private toastr: ToastrService) { }
   columns = [
     { name: 'Check', key: 'isChecked', isCheckbox: true },
@@ -47,6 +49,12 @@ export class BankAccountsComponent implements OnInit {
       bankName: new FormControl('')
       // Add more controls as needed
     });
+//     this.deleteData?.subscribe((res:any)=>{
+// console.log("res" , res)
+//     })
+//        if(this.deleteData){
+//          this.delete();
+//        }
   }
 
   addBank(data?: any) {
@@ -82,9 +90,20 @@ export class BankAccountsComponent implements OnInit {
     this.addBank(row);
   }
   itemToDelete: any; // Store the item to delete
-  deleteRow(row: any) {
-    this.itemToDelete = row._id; 
-    this.openModal(this.deleteModel, 'modal-dialog modal-dialog-centered modal-sm', row._id);
+  deleteRow(row: any): void {
+    this.itemToDelete = row._id; // Store the item to delete
+    const initialState = { description: 'Are you sure you want to delete this item?' };
+
+    this.modalRef = this.modalService.show(DeleteModalComponent, {
+      class: 'modal-dialog modal-dialog-centered modal-lg create_organization',
+      backdrop: 'static',
+      keyboard: true,
+      initialState
+    });
+
+    this.modalRef.content.deleteData.subscribe(() => {
+      this.delete(this.itemToDelete);
+    });
   }
 
   openModal(template: TemplateRef<any>, cls: string, id: any) {
@@ -95,8 +114,8 @@ export class BankAccountsComponent implements OnInit {
       keyboard: false,
     });
   }
-  delete() {
-   const id = this.itemToDelete
+  delete(id?:any) {
+   id = this.itemToDelete
     console.log('BankingService:', this.bankinService);
     if (!this.bankinService) {
       console.error('BankingService is not defined!');
