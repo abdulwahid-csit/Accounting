@@ -13,30 +13,25 @@
       <form [formGroup]="applicationForm">
         <div class="d-md-flex justify-content-between gap-3">
           <div class="custom-input app-url w-100"
-          [ngClass]="(isControlHasError('url', 'required') || isControlHasError('url', 'pattern')) ? 'custom-input-error' : 'custom-input'">
-          <div class="">
-            <label class="required" for="">Opening Date</label>
-            <div class="input-group">
-              <input  formControlName="opening_Date" #toDate="bsDatepicker" type="text" placeholder="From date" class="form-control" bsDatepicker
-                [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="From date">
-              <div class="input-group-append">
-                <span class="input-group-text h-100 border-start-0 rounded-start-0 bg-transparent"
-                  (click)="toDate.show()">
-                  <!-- Calendar SVG Icon -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                    class="bi bi-calendar" viewBox="0 0 16 16">
-                    <path
-                      d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                  </svg>
-                </span>
-              </div>
+          [ngClass]="isControlHasError('opening_Date', 'required') ? 'custom-input-error' : 'custom-input'">
+          <label class="required">Opening Date</label>
+          <div class="input-group">
+            <input type="date" trim="blur" maxlength="15" formControlName="opening_Date" #toDate="bsDatepicker" type="text" placeholder="From date" class="form-control" bsDatepicker
+              [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="From date">
+            <div class="input-group-append">
+              <span class="input-group-text" (click)="toDate.show()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                </svg>
+              </span>
             </div>
           </div>
-        </div>
+          <small *ngIf="isControlHasError('opening_Date', 'required')" class="text-danger">Opening Date Required</small>
+        </div>        
           <div class="mb-4 w-100"
             [ngClass]="(isControlHasError('bank', 'required') || isControlHasError('bank', 'pattern')) ? 'custom-input-error' : ''">
             <label class="required" for="required">Bank Name</label>
-            <ng-select  [multiple]="false" formControlName="bank" [ngClass]="{
+            <ng-select type="text" trim="blur" maxlength="30"  [multiple]="false" formControlName="bank" [ngClass]="{
             'custom-select-error': isControlHasError('bank', 'required'),
             'custom-select': !isControlHasError('bank', 'required'),
             'ng-select-focused': isAccountFocus === true,
@@ -45,66 +40,66 @@
               >
               <ng-option *ngFor="let bank of bankingData" [value]="bank?._id">{{ bank?.title }}</ng-option>
             </ng-select>
+            <small *ngIf="isControlHasError('bank', 'required')" class="text-danger">Bank Name Required</small>
           </div>
-         
-         
         </div>
 
         <div class="d-md-flex justify-content-between gap-3" >
           <div class="custom-input app-url w-100 "
           [ngClass]="(isControlHasError('branch_name', 'required') || isControlHasError('branch_name', 'pattern')) ? 'custom-input-error' : 'custom-input'">
           <label for="appUrl" class="mb-1 primary_color fw-700 required">Branch Name</label>
-          <input class="required" formControlName="branch_name" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Branch Name" />
+          <input type="text" trim="blur" maxlength="30"  class="required" formControlName="branch_name" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Branch Name" />
           <small *ngIf="isControlHasError('branch_name', 'required')" class="text-danger fs-12px mt-1">
-            **
+            Branch Name Required
           </small>
   
         </div>
         <div class="mb-4 w-100"
-        [ngClass]="(isControlHasError('account_nature', 'required') || isControlHasError('account_nature', 'pattern')) ? 'custom-input-error' : ''">
+        [ngClass]="(isControlHasError('account_natures', 'required') || isControlHasError('account_natures', 'pattern')) ? 'custom-input-error' : ''">
         <label class="required" for="required">Account Nature</label>
-        <ng-select  formControlName="account_natures"  [multiple]="false" [ngClass]="{
-          'custom-select-error': isControlHasError('account_nature', 'required'),
-          'custom-select': !isControlHasError('account_nature', 'required'),
+        <ng-select type="text" trim="blur" maxlength="30"   formControlName="account_natures"  [multiple]="false" [ngClass]="{
+          'custom-select-error': isControlHasError('account_natures', 'required'),
+          'custom-select': !isControlHasError('account_natures', 'required'),
           'ng-select-focused': isParrentAccountFocus === true,
-          'ng-select-error': isControlHasError('account_nature', 'required')}" 
+          'ng-select-error': isControlHasError('account_natures', 'required')}" 
             (focus)="isParrentAccountFocus = true" (blur)="isParrentAccountFocus = false" placeholder="Select Account Nature">
             <ng-option [value]="'Current'">Current </ng-option>
             <ng-option [value]="'Saving'">Saving </ng-option>
             <ng-option [value]="'Defult'">Defult </ng-option>
           </ng-select>
+          <small *ngIf="isControlHasError('account_natures', 'required')" class="text-danger fs-12px mt-1">Account Nature Required</small>
       </div>
         </div>
-<div class="d-md-flex justify-content-between gap-3" style="padding-bottom: 20px;">
-  <div class="custom-input app-url w-100"
-  [ngClass]="(isControlHasError('name', 'required') || isControlHasError('name', 'pattern')) ? 'custom-input-error' : 'custom-input'">
-  <label for="appUrl" class="mb-1 primary_color fw-700 required">Title Of Account</label>
-  <input formControlName="name" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Title Of Account" />
-  <small *ngIf="isControlHasError('name', 'required')" class="text-danger fs-12px mt-1">
-    **
-  </small>
-</div>
-</div>
+            <div class="d-md-flex justify-content-between gap-3" style="padding-bottom: 20px;">
+              <div class="custom-input app-url w-100"
+              [ngClass]="(isControlHasError('name', 'required') || isControlHasError('name', 'pattern')) ? 'custom-input-error' : 'custom-input'">
+              <label for="appUrl" class="mb-1 primary_color fw-700 required">Title Of Account</label>
+              <input type="text" trim="blur" maxlength="30"  formControlName="name" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Title Of Account" />
+              <small *ngIf="isControlHasError('name', 'required')" class="text-danger fs-12px mt-1">
+                Title Of Account Required
+              </small>
+            </div>
+            </div>
         <div class="d-md-flex justify-content-between align-items-center gap-3 mb-4">
           <div class="custom-input app-url w-100 "
             [ngClass]="(isControlHasError('account_number', 'required') || isControlHasError('account_number', 'pattern')) ? 'custom-input-error' : 'custom-input'">
-            <label for="appUrl" class="mb-1 primary_color fw-700 required">Account No</label>
-            <input formControlName="account_number" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Account No" />
+            <label for="appUrl" class="mb-1 primary_color fw-700 required">Account No </label>
+            <input type="text" trim="blur" maxlength="30"  formControlName="account_number" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Account No" />
             <small *ngIf="isControlHasError('account_number', 'required')" class="text-danger fs-12px mt-1">
-              **
+              Account No Required
             </small>
           </div>
           <div class="custom-input app-url w-100 "
           [ngClass]="(isControlHasError('iban_number', 'required') || isControlHasError('iban_number', 'pattern')) ? 'custom-input-error' : 'custom-input'">
           <label for="appUrl" class="mb-1 primary_color fw-700 required">IBAN No</label>
-          <input formControlName="iban_number" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter IBAN No" />
+          <input type="text" trim="blur" maxlength="30"  formControlName="iban_number" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter IBAN No" />
           <small *ngIf="isControlHasError('iban_number', 'required')" class="text-danger fs-12px mt-1">
-            **
+            IBAN No Required
           </small>
         </div>
         <div class="custom-input app-url w-100 ">
        <label for="appUrl" class="mb-1 primary_color fw-700 ">Opening Balance</label>
-        <input formControlName="balance" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Balance" />
+        <input type="number" trim="blur" maxlength="30"  formControlName="balance" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Balance" />
       </div>
         </div>
       </form>

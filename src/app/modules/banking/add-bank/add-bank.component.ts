@@ -5,6 +5,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { environment } from 'src/environments/environment';
 import { BankingService } from '../banking.service';
 import { LocalStoreService } from 'src/app/shared/services/local-store.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-bank',
   templateUrl: './add-bank.component.html',
@@ -45,7 +46,7 @@ export class AddBankComponent implements OnInit {
   bankingData: any;
   isUpdateMode: boolean = false
   constructor(private modalService: BsModalService,private fb: FormBuilder,  private http:HttpClient,
-    private bankinService:BankingService, private LocalStoreService: LocalStoreService
+    private bankinService:BankingService, private LocalStoreService: LocalStoreService , private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -154,6 +155,9 @@ submitForm() {
   }
   const postData = this.applicationForm.value
   postData['business'] = this.user.business
+  if(postData['balance'] == null){
+    postData['balance'] = 0
+  }
   this.bankinService.createBankingResource(postData).subscribe(
     response => {
       console.log('Response:', response);
@@ -205,6 +209,9 @@ fetchBankingData() {
   updateForm() {
     const postData = this.applicationForm.value
     postData['business'] = this.user.business
+    if(postData['balance'] == null){
+      postData['balance'] = 0
+    }
     this.bankinService.editBankingResource(this.data?._id,postData).subscribe(
       response => {
         console.log('Response:', response);
@@ -216,5 +223,10 @@ fetchBankingData() {
       }
     );
   }
+  isControlInvalid(controlName: string): boolean {
+    const control = this.applicationForm.get(controlName);
+    return control?.invalid && (control.dirty || control.touched) ? true : false;
+  }
+  
   
 }
