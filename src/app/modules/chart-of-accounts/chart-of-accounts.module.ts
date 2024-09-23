@@ -11,6 +11,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ImportAccountComponent } from './import-account/import-account.component';
 import { SharedModule } from "../../shared/shared.module";
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -21,7 +23,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    BsDatepickerModule
+    BsDatepickerModule,
+  
 ],
   declarations: [ChartOfAccountsComponent, AddAccountComponent, ImportAccountComponent],
   exports: [
