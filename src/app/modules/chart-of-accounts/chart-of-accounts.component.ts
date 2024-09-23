@@ -17,6 +17,7 @@ export class ChartOfAccountsComponent implements OnInit {
   isTypeFoucus = false;
   isDetailTypeFocus = false;
   isStatusFocus = false;
+  accoutTypes: any;
 
   applicationList: any[] = [];
   columns = [
@@ -135,7 +136,7 @@ export class ChartOfAccountsComponent implements OnInit {
       organization: new FormControl('', [Validators.required]),
     })
     this.getChartOfAccounts();
-
+    this.getAccountTypes();
   }
 
   isControlHasError(controlName: any, validationType: string): boolean {
@@ -177,6 +178,17 @@ export class ChartOfAccountsComponent implements OnInit {
       console.log("Charts Of Account Data: ", response.data)
     }, error => {
       console.log("Error ", error.message)
+    })
+  }
+
+
+  getAccountTypes(){
+    this.CrudService.read('meta-data/account-type').subscribe(response => {
+      if(response.data?.status_code == 200){
+        this.accoutTypes = response.data?.data;
+      }
+    }, error => {
+      console.log("Error while frtcing account types: ", error.message);
     })
   }
 

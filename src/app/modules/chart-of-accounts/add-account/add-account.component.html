@@ -152,9 +152,9 @@
             </small>
           </div>
         </div> -->
-        <div class="custom-input">
+        <div class="custom-input" >
           <label for="">Description</label>
-          <div class="editor-container">
+          <div class="editor-container" [ngClass]="{'description-error':isControlHasError('description', 'required')}">
             <div class="editor-tabs position-relative">
               <span class="dropdown">
                 <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -175,6 +175,7 @@
             <quill-editor class="quill-editor border-0" (onFocus)="isQuillFocus = true" (onBlur)="isQuillFocus = false"
               [modules]="editorConfig" theme="snow" placeholder="Enter Description Here..."
               formControlName="description"></quill-editor>
+              <small class="text-danger" *ngIf="isControlHasError('description','required')">Description is required.</small>
           </div>
         </div>
       </form>

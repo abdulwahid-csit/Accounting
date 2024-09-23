@@ -114,7 +114,7 @@ export class AddAccountComponent implements OnInit, OnDestroy {
     this.applicationForm = new FormGroup({
       account_level: new FormControl(1),
       account_type: new FormControl(null, [Validators.required]),
-      level_one: new FormControl(null),
+      level_one: new FormControl(null, [Validators.required]),
       level_two: new FormControl(null),
       level_three: new FormControl(null),
       name: new FormControl('', [Validators.required]),
@@ -154,23 +154,23 @@ export class AddAccountComponent implements OnInit, OnDestroy {
     this.selectedAccountLevel = value;
     this.applicationForm.markAsUntouched();
     if (value == 2) {
-      this.applicationForm?.get('account_detail_type')?.setValidators(Validators.required);
-      this.applicationForm?.get('parrent_account')?.setValidators(Validators.required);
+      this.applicationForm?.get('level_one')?.setValidators(Validators.required);
+      this.applicationForm?.get('level_two')?.setValidators(Validators.required);
     }
     else if (value == 3) {
-      this.applicationForm?.get('account_detail_type')?.setValidators(Validators.required);
-      this.applicationForm?.get('account_sub_detail_type')?.setValidators(Validators.required);
-      this.applicationForm?.get('parrent_account')?.setValidators(Validators.required);
+      this.applicationForm?.get('level_one')?.setValidators(Validators.required);
+      this.applicationForm?.get('level_two')?.setValidators(Validators.required);
+      this.applicationForm?.get('level_three')?.setValidators(Validators.required);
     }
     else {
-      this.applicationForm?.get('account_detail_type')?.clearValidators();
-      this.applicationForm?.get('account_sub_detail_type')?.clearValidators();
-      this.applicationForm?.get('parrent_account')?.clearValidators();
+      this.applicationForm?.get('level_one')?.setValidators(Validators.required);
+      this.applicationForm?.get('level_two')?.clearValidators();
+      this.applicationForm?.get('level_three')?.clearValidators();
     }
 
-    this.applicationForm?.get('account_detail_type')?.updateValueAndValidity();
-    this.applicationForm?.get('account_sub_detail_type')?.updateValueAndValidity();
-    this.applicationForm?.get('parrent_account')?.updateValueAndValidity();
+    this.applicationForm?.get('level_one')?.updateValueAndValidity();
+    this.applicationForm?.get('level_two')?.updateValueAndValidity();
+    this.applicationForm?.get('level_three')?.updateValueAndValidity();
   }
 
 
@@ -192,7 +192,7 @@ export class AddAccountComponent implements OnInit, OnDestroy {
 
     this.CrudService.create('charts-of-accounts', filterFormData).subscribe(response => {
       if (response.data?.status_code == 201) {
-        this.toastService.success("Charts Of Account Added.", 'Success')
+        this.toastService.success("Chart Of Account Added.", 'Success')
         this.closeModal();
       }
     }, error => {
