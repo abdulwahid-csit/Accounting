@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-GeneralLedger',
   templateUrl: './GeneralLedger.component.html',
-  styleUrls: ['./GeneralLedger.component.css']
+  styleUrls: ['./GeneralLedger.component.scss']
 })
 export class GeneralLedgerComponent implements OnInit {
 
