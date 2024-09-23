@@ -4,7 +4,6 @@ import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } fro
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-add-account',
@@ -189,7 +188,7 @@ export class AddAccountComponent implements OnInit, OnDestroy {
       Object.entries(this.applicationForm.value)
         .filter(([key, value]) => value !== null && value !== '')
     );
-    filterFormData['business'] = this.locaStorage.getItem('user');
+    filterFormData['business'] = this.locaStorage.getItem('user')?.business;
 
     this.CrudService.create('charts-of-accounts', filterFormData).subscribe(response => {
       if (response.data?.status_code == 201) {
