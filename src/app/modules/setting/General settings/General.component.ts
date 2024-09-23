@@ -63,7 +63,7 @@ months: string[] = [
       postData['close_book_date'] = '',
       postData['close_book'] = false
     }
-    this.settingService.createBankingResource(postData).subscribe(
+    this.settingService.createSettingsGeneral(postData).subscribe(
       response => {
         console.log('Response:', response);
         // this.successCall.emit();

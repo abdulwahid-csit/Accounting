@@ -17,12 +17,20 @@ export class SettingService {
       'Authorization': `Bearer ${this.LocalStoreService.getItem('access_token')}`
     });
   }
-  createBankingResource(data: any): Observable<any> {
+  createSettingsGeneral(data: any): Observable<any> {
     const url = `${this.apiUrl}settings-general/create-update`;
     return this.http.post(url, data, { headers: this.getHeaders() });
   }
   getGenralSetting(business:any): Observable<any> {
     const url = `${this.apiUrl}settings-general/${business}`;
+    return this.http.get(url, { headers: this.getHeaders() });
+  }
+  createSettingsPaySlips(data: any): Observable<any> {
+    const url = `${this.apiUrl}pay-slip/create-update`;
+    return this.http.post(url, data, { headers: this.getHeaders() });
+  }
+  getSettingsPaySlips(business:any): Observable<any> {
+    const url = `${this.apiUrl}pay-slip/${business}`;
     return this.http.get(url, { headers: this.getHeaders() });
   }
 }
