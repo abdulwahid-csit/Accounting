@@ -1,8 +1,10 @@
+import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 import { CrudService } from 'src/app/shared/services/crud.service';
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-add-account',
@@ -44,7 +46,7 @@ export class AddAccountComponent implements OnInit, OnDestroy {
     ]
   };
 
-  constructor(private modalService: BsModalService, private CrudService: CrudService, private toastService: ToastrService) { }
+  constructor(private modalService: BsModalService, private CrudService: CrudService, private toastService: ToastrService, private locaStorage: LocalStoreService) { }
 
   ngOnInit() {
     this.initializeForm();
@@ -113,9 +115,9 @@ export class AddAccountComponent implements OnInit, OnDestroy {
     this.applicationForm = new FormGroup({
       account_level: new FormControl(1),
       account_type: new FormControl(null, [Validators.required]),
-      account_detail_type: new FormControl(null),
-      account_sub_detail_type: new FormControl(null),
-      parrent_account: new FormControl(null),
+      level_one: new FormControl(null),
+      level_two: new FormControl(null),
+      level_three: new FormControl(null),
       name: new FormControl('', [Validators.required]),
       number: new FormControl('', [Validators.required]),
       description: new FormControl(''),
@@ -179,6 +181,7 @@ export class AddAccountComponent implements OnInit, OnDestroy {
       this.applicationForm.markAllAsTouched();
       return;
     }
+    this.applicationForm.removeControl('account_level');
     const descriptionControl = this.applicationForm.controls['description'];
     const formattedDescription = descriptionControl.value.replace(/<\/?p>/g, '');
     descriptionControl.setValue(formattedDescription);
@@ -186,8 +189,17 @@ export class AddAccountComponent implements OnInit, OnDestroy {
       Object.entries(this.applicationForm.value)
         .filter(([key, value]) => value !== null && value !== '')
     );
+    filterFormData['business'] = this.locaStorage.getItem('user');
 
-    console.log("Form Submitted", filterFormData);
+    this.CrudService.create('charts-of-accounts', filterFormData).subscribe(response => {
+      if (response.data?.status_code == 201) {
+        this.toastService.success("Charts Of Account Added.", 'Success')
+        this.closeModal();
+      }
+    }, error => {
+      this.toastService.error(error.message, "Error !");
+    })
+
   }
 
   ngOnDestroy(): void {
