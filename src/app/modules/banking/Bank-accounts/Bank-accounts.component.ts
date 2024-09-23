@@ -89,11 +89,10 @@ export class BankAccountsComponent implements OnInit {
   editRow(row: any) {
     this.addBank(row);
   }
-  itemToDelete: any; // Store the item to delete
+  itemToDelete: any; 
   deleteRow(row: any): void {
-    this.itemToDelete = row._id; // Store the item to delete
+    this.itemToDelete = row._id;
     const initialState = { description: 'Are you sure you want to delete this item?' };
-
     this.modalRef = this.modalService.show(DeleteModalComponent, {
       class: 'modal-dialog modal-dialog-centered modal-lg create_organization',
       backdrop: 'static',
