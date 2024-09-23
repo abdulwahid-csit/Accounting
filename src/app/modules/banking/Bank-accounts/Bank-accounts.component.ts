@@ -72,16 +72,9 @@ export class BankAccountsComponent implements OnInit {
       (response: any) => {
         if (response?.data?.data?.payload) {
           this.bankingData = response?.data?.data?.payload;
-          this.tableConfig.paginationParams = {
-            total_pages: response?.data?.data?.paginate_options?.total_pages,
-            payload_size: response?.data?.data?.paginate_options?.payload_size,
-            has_next: response?.data?.data?.paginate_options?.has_next,
-            current_page: response?.data?.data?.paginate_options?.current_page,
-            skipped_records: response?.data?.data?.paginate_options?.skipped_records,
-            total_records: response?.data?.data?.paginate_options?.total_records
-          };
+          this.tableConfig.paginationParams = response?.data?.data?.paginate_options
           // console.log('Banking Data:', this.bankingData);
-          console.log(' this.tableConfig.paginationParams:',  this.tableConfig.paginationParams);
+          // console.log(' this.tableConfig.paginationParams:',  this.tableConfig.paginationParams);
         } else {
           console.error('Unexpected response format', response);
         }
