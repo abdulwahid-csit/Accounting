@@ -19,6 +19,7 @@ import { ReconcilationDetailComponent } from './ReconcilationDetail/Reconcilatio
 import { TaxSummaryComponent } from './Tax-Summary/Tax-Summary.component';
 import { TaxDetailsComponent } from './TaxDetails/TaxDetails.component';
 import { TreatBalanceComponent } from './TreatBalance/TreatBalance.component';
+import { CustomerSummaryComponent } from './CustomerSummary/CustomerSummary.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { TreatBalanceComponent } from './TreatBalance/TreatBalance.component';
     ReconcilationDetailComponent,
     TaxSummaryComponent,
     TaxDetailsComponent,
-    TreatBalanceComponent
+    TreatBalanceComponent,
+    CustomerSummaryComponent
   ],
   exports: [
     RouterModule

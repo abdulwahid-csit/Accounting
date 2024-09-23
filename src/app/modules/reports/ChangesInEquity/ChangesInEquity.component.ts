@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-ChangesInEquity',
   templateUrl: './ChangesInEquity.component.html',
-  styleUrls: ['./ChangesInEquity.component.css']
+  styleUrls: ['./ChangesInEquity.component.scss']
 })
 export class ChangesInEquityComponent implements OnInit {
 
