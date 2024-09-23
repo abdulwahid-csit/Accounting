@@ -1,1 +1,120 @@
 <app-report-list></app-report-list>
+<div class="container">
+  <div class="balance-sheet p-5 ">
+  <div class="mb-3">
+   <h2 class="text-center">ISOBOT</h2>
+   <p class="text-center">Custom Summary Report</p>
+   <p class="text-center">as of {{date}}</p>
+  </div>
+
+   <table class="mt-5">
+     <thead class="bordertop">
+       <tr>
+         <th></th>
+         <th class="text-centerr " colspan="2">Total</th>
+       </tr>
+       <tr>
+         <th></th>
+         <th class="text-centerr">2023</th>
+         <th class="text-centerr">2024</th>
+       </tr>
+     </thead>
+
+     <tbody >
+       <!-- Assets Loop -->
+       <ng-container *ngFor="let item of balanceSheetData">
+         <tr >
+           <td (click)="toggleSection(item)" style="cursor: pointer;">
+             <span *ngIf="item.currentAssets || item.longTermAssets"
+                   [ngClass]="{'expand-arrow': !item.expanded, 'collapse-arrow': item.expanded}"></span>
+             {{ item.name }}
+           </td>
+           <td>{{ item.value2024 }}</td>
+           <td>{{ item.value2023 }}</td>
+         </tr>
+
+         <!-- Current Assets Loop -->
+         <ng-container *ngIf="item.expanded && item.currentAssets">
+           <ng-container *ngFor="let currentAsset of item.currentAssets">
+             <tr class="horizantal-line" >
+               <td (click)="toggleSection(currentAsset)" style="cursor: pointer; padding-left: 20px;">
+                 <span *ngIf="currentAsset.currentAssetsDetails"
+                       [ngClass]="{'expand-arrow': !currentAsset.expanded, 'collapse-arrow': currentAsset.expanded}"></span>
+                 {{ currentAsset.name }}
+               </td>
+               <td>{{ currentAsset.value2024 }}</td>
+               <td>{{ currentAsset.value2023 }}</td>
+             </tr>
+
+             <!-- Current Assets Details -->
+             <ng-container *ngIf="currentAsset.expanded && currentAsset.currentAssetsDetails">
+               <ng-container *ngFor="let detail of currentAsset.currentAssetsDetails">
+                 <tr >
+                   <td (click)="toggleSection(detail)" style="cursor: pointer; padding-left: 40px;">
+                     <span *ngIf="detail.arDetails || detail.bankDetails || detail.shortTermAssetsDetails"
+                           [ngClass]="{'expand-arrow': !detail.expanded, 'collapse-arrow': detail.expanded}"></span>
+                     {{ detail.name }}
+                   </td>
+                   <td>{{ detail.value2024 }}</td>
+                   <td>{{ detail.value2023 }}</td>
+                 </tr>
+
+                 <!-- Accounts Receivable Details -->
+                 <ng-container *ngIf="detail.expanded && detail.arDetails">
+                   <ng-container *ngFor="let arDetail of detail.arDetails">
+                     <tr class="horizantal-line">
+                       <td style="padding-left: 60px;">{{ arDetail.name }}</td>
+                       <td>{{ arDetail.value2024 }}</td>
+                       <td>{{ arDetail.value2023 }}</td>
+                     </tr>
+
+                   </ng-container>
+                 </ng-container>
+
+                 <!-- AXIS bank Details -->
+                 <ng-container *ngIf="detail.expanded && detail.bankDetails">
+                   <ng-container *ngFor="let bankDetail of detail.bankDetails">
+                     <tr class="horizantal-line">
+                       <td style="padding-left: 60px;">{{ bankDetail.name }}</td>
+                       <td>{{ bankDetail.value2024 }}</td>
+                       <td>{{ bankDetail.value2023 }}</td>
+                     </tr>
+                   </ng-container>
+                 </ng-container>
+
+                 <!-- Available for sale assets (short-term) Details -->
+                 <ng-container class="border" *ngIf="detail.expanded && detail.shortTermAssetsDetails">
+                   <ng-container *ngFor="let shortTermAsset of detail.shortTermAssetsDetails">
+                     <tr class="horizantal-line">
+                       <td style="padding-left: 60px;">{{ shortTermAsset.name }}</td>
+                       <td>{{ shortTermAsset.value2024 }}</td>
+                       <td>{{ shortTermAsset.value2023 }}</td>
+                     </tr>
+
+                   </ng-container>
+                 </ng-container>
+
+
+
+               </ng-container>
+             </ng-container>
+           </ng-container>
+         </ng-container>
+
+         <ng-container *ngIf="item.expanded && item.longTermAssets">
+            <ng-container *ngFor="let longAssets of item.longTermAssets">
+             <tr>
+               <td (click)="toggleSection(longAssets)" style="cursor: pointer; padding-left: 20px;">
+                 <span></span>
+                 {{ longAssets.name }}
+               </td>
+               <td>{{ longAssets.value2024 }}</td>
+               <td>{{ longAssets.value2023 }}</td>
+             </tr>
+         </ng-container>
+       </ng-container>
+       </ng-container>
+     </tbody>
+   </table>
+  </div>
+ </div>
