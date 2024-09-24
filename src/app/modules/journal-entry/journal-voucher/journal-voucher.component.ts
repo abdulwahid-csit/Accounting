@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
-import { VoucherComponent } from '../voucher/voucher.component';
+import { VoucherComponent } from '../voucher-Modal/voucher.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -53,7 +53,7 @@ export class JournalVoucherComponent {
             "Status":"Approved",
             "Mapping status":"Has Been Mapped",
             "Mapping":"arrow",
-          
+
             "Active": true,
             "Options": "Edit",
             "Date": "2024-09-01",
@@ -69,7 +69,7 @@ export class JournalVoucherComponent {
             "Status":"Approved",
             "Mapping status":"Has Been Mapped",
             "Mapping":"arrow",
-          
+
             "Active": true,
             "Options": "Edit",
             "Date": "2024-09-01",
@@ -85,7 +85,7 @@ export class JournalVoucherComponent {
             "Status":"Approved",
             "Mapping status":"Has Been Mapped",
             "Mapping":"arrow",
-          
+
             "Active": true,
             "Options": "Edit",
             "Date": "2024-09-01",
@@ -101,7 +101,7 @@ export class JournalVoucherComponent {
             "Status":"Approved",
             "Mapping status":"Has Been Mapped",
             "Mapping":"arrow",
-          
+
             "Active": true,
             "Options": "Edit",
             "Date": "2024-09-01",
@@ -145,8 +145,8 @@ export class JournalVoucherComponent {
   };
   // @ViewChild(VoucherComponent, { static: false }) VoucherComponent!: VoucherComponent;
 
- 
- 
+
+
   openVoucherModal() {
     this.modalService.show(VoucherComponent, {
       class: 'modal-dialog modal-dialog-centered modal-xl create_organization',

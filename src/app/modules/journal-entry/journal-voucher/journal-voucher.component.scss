@@ -5,18 +5,7 @@ button.btn.btn-sm {
 }
 
 
-::ng-deep .customClass{
- 
-    .bs-datepicker-head{
-        background-color: transparent !important;
-        button.current{
-            color: black !important;
-        }
-        button.previous, .next{
-            color: black !important;
-        }
-    }
-}
+
 
 
 ::ng-deep .ng-select-focused{
@@ -39,7 +28,7 @@ button.btn.btn-sm {
 
     input:focus{
         border-color: rgb(2, 132, 199);
-        box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;        
+        box-shadow: rgba(2, 132, 199, 0.1) 0px 0px 0px 3px !important;
     }
     span{
         position: relative;
