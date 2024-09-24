@@ -3,6 +3,7 @@ import { SettingService } from '../../setting.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalStoreService } from 'src/app/shared/services/local-store.service';
+import { BankingService } from 'src/app/modules/banking/banking.service';
 @Component({
   selector: 'app-Payslips',
   templateUrl: './Payslips.component.html',
@@ -11,7 +12,7 @@ import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 export class PayslipsComponent implements OnInit {
   settingForm! : FormGroup
   user: any;
-  accounts: Array<{ type: string; enable: boolean; payment_account: string; deposit_account: string }> = [];
+  accounts: Array<{ type: string; enable: boolean; payment_account: string; deposite_account: string }> = [];
   update : boolean = false ;
   accountTypes: { type: string; key: string }[] = [
     { type: 'Total Insurance', key: 'insurance' },
@@ -19,14 +20,17 @@ export class PayslipsComponent implements OnInit {
     { type: 'Net Pay', key: 'net_pay' },
   ];
   setting: any;
+  bankingData: any;
   constructor(private LocalStoreService : LocalStoreService, private settingService:SettingService,
-    private fb : FormBuilder , private toastr: ToastrService
+    private fb : FormBuilder , private toastr: ToastrService, private bankinService: BankingService
   ) { }
 
   ngOnInit(): void {
     this.initializeAccounts();
     this.forBussinessId();
     this.fetchSetting();
+  this.fetchBankingData();
+
   }
 
   initializeAccounts() {
@@ -34,7 +38,7 @@ export class PayslipsComponent implements OnInit {
       type,
       enable: false,
       payment_account: '',
-      deposit_account: '',
+      deposite_account: '',
     }));
   }
 
@@ -42,7 +46,7 @@ export class PayslipsComponent implements OnInit {
     const account = this.accounts[index];
     if (!account.enable) {
       account.payment_account = ''; // Reset if unchecked
-      account.deposit_account = '';  // Reset if unchecked
+      account.deposite_account = '';  // Reset if unchecked
     }
   }
   forBussinessId(){
@@ -63,7 +67,7 @@ export class PayslipsComponent implements OnInit {
           const key = mapping.key;
           data[key] = {
             payment_account: account.payment_account,
-            deposit_account: account.deposit_account,
+            deposite_account: account.deposite_account,
           };
         }
       }
@@ -72,12 +76,10 @@ export class PayslipsComponent implements OnInit {
       response => {
         console.log('Response:', response);
         // this.successCall.emit();
-        if(!this.update){
-          this.toastr.success('settings save successfully ', 'success');
-        }else{
-          this.toastr.success('settings update successfully ', 'success');
-
-        }
+        this.toastr.success(
+          this.update ? 'Settings updated successfully' : 'Settings saved successfully',
+          'Success'
+        );
         this.fetchSetting();
       },
       error => {
@@ -91,16 +93,34 @@ export class PayslipsComponent implements OnInit {
         if (response?.data?.data) {
           this.setting = response.data.data;
           this.update = true;
+  
+          // Iterate through the accounts and update payment accounts
           this.accounts.forEach(account => {
             const mapping = this.accountTypes.find(type => type.type === account.type);
             if (mapping) {
-              // Update payment and deposit accounts
-              account.payment_account = this.setting[mapping.key]?.payment_account || '';
-              account.deposit_account = this.setting[mapping.key]?.deposit_account || ''; 
-              account.enable = account.payment_account !== '' || account.deposit_account !== '';
+              // Update payment account based on the new response structure
+              const paymentAccountData = this.setting[mapping.key]?.payment_account;
+  
+              if (paymentAccountData) {
+                account.payment_account = paymentAccountData._id; // Set account ID
+                // account.payment_account = paymentAccountData.name; // Optional: Save the name if needed
+              } else {
+                account.payment_account = ''; // Reset if not found
+              }
+  
+              // Assuming you might have a similar structure for deposit_account
+              const depositAccountData = this.setting[mapping.key]?.deposite_account;
+              if (depositAccountData) {
+                account.deposite_account = depositAccountData._id; // Set account ID
+                // account.deposite_account = depositAccountData.name; // Optional: Save the name if needed
+              } else {
+                account.deposite_account = ''; // Reset if not found
+              }
+  
+              // Enable logic
+              account.enable = account.payment_account !== '' || account.deposite_account !== '';
             }
           });
-  
           // console.log("this.accounts", this.accounts);
         } else {
           console.error('Unexpected response format', response);
@@ -111,6 +131,29 @@ export class PayslipsComponent implements OnInit {
       }
     );
   }
+  
+  fetchBankingData(page: number = 1) {
+    this.bankinService.getBankResource().subscribe(
+      (response: any) => {
+        if (response?.data?.data?.payload) {
+          // Extracting the payload
+          this.bankingData = response.data.data.payload.map((item: any) => {
+            return {
+              _id: item._id,
+              name: item.name, // Use account name
+              account_number: item.account_number // Optional: Add account number if needed
+            };
+          });
+        } else {
+          console.error('Unexpected response format', response);
+        }
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
+  }
+  
   
  
 }

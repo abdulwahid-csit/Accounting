@@ -161,6 +161,10 @@ submitForm() {
   this.bankinService.createBankingResource(postData).subscribe(
     response => {
       console.log('Response:', response);
+      this.toastr.success(
+         'form saved successfully',
+        'Success'
+      );
       this.closeModal();
       this.successCall.emit();
     },
@@ -215,6 +219,10 @@ fetchBankingData() {
     this.bankinService.editBankingResource(this.data?._id,postData).subscribe(
       response => {
         console.log('Response:', response);
+        this.toastr.success(
+          'form updated successfully',
+         'Success'
+       );
         this.closeModal();
         this.successCall.emit();
       },

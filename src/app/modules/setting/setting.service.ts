@@ -33,4 +33,28 @@ export class SettingService {
     const url = `${this.apiUrl}pay-slip/${business}`;
     return this.http.get(url, { headers: this.getHeaders() });
   }
+  createSettingsPurchase(data: any): Observable<any> {
+    const url = `${this.apiUrl}purchase/create-update`;
+    return this.http.post(url, data, { headers: this.getHeaders() });
+  }
+  getSettingsPurchase(business:any): Observable<any> {
+    const url = `${this.apiUrl}purchase/${business}`;
+    return this.http.get(url, { headers: this.getHeaders() });
+  }
+  createSettingsInventory(data: any): Observable<any> {
+    const url = `${this.apiUrl}inventory/create-update`;
+    return this.http.post(url, data, { headers: this.getHeaders() });
+  }
+  getSettingsInventory(business:any): Observable<any> {
+    const url = `${this.apiUrl}inventory/${business}`;
+    return this.http.get(url, { headers: this.getHeaders() });
+  }
+  createSettingsManufacture(data: any): Observable<any> {
+    const url = `${this.apiUrl}manufacture/create-update`;
+    return this.http.post(url, data, { headers: this.getHeaders() });
+  }
+  getSettingsManufacture(business:any): Observable<any> {
+    const url = `${this.apiUrl}manufacture/${business}`;
+    return this.http.get(url, { headers: this.getHeaders() });
+  }
 }
