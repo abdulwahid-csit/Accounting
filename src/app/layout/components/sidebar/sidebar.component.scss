@@ -21,7 +21,7 @@
     }
 
     .navigations {
-        height: 78vh;
+        height:calc(100vh - 73px);
         overflow-y: auto;
 
         ul {
