@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStoreService } from 'src/app/shared/services/local-store.service';
-import { SettingService } from '../setting.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { CrudService } from 'src/app/shared/services/crud.service';
 @Component({
   selector: 'app-General',
   templateUrl: './General.component.html',
@@ -30,8 +30,8 @@ months: string[] = [
   setting: any;
   update: boolean = false;
 
-  constructor(private LocalStoreService : LocalStoreService, private settingService:SettingService,
-    private fb : FormBuilder , private toastr: ToastrService
+  constructor(private LocalStoreService : LocalStoreService,
+    private fb : FormBuilder , private toastr: ToastrService,private CrudService:CrudService
   ) { }
 
   ngOnInit() {
@@ -63,7 +63,7 @@ months: string[] = [
       postData['close_book_date'] = '',
       postData['close_book'] = false
     }
-    this.settingService.createSettingsGeneral(postData).subscribe(
+    this.CrudService.create('settings-general/create-update',postData).subscribe(
       response => {
         console.log('Response:', response);
         // this.successCall.emit();
@@ -93,7 +93,7 @@ months: string[] = [
     // Remove invalid entries logic
   }
   fetchSetting() {
-    this.settingService.getGenralSetting(this.user.business).subscribe(
+    this.CrudService.read('settings-general',this.user.business).subscribe(
       (response: any) => {
         if (response?.data?.data) {
           this.setting = response?.data?.data;

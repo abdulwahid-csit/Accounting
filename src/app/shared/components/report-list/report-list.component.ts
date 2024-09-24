@@ -8,10 +8,15 @@ import { FormGroup } from '@angular/forms';
 })
 export class ReportListComponent implements OnInit {
 
-  @Input() showField1 = false;
-  @Input() showField2 = false;
-  @Input() showField3 = false;
-  @Input() showField4 = false;
+  @Input() isAccountsVisible = false;
+  @Input() isFormdateVisible = false;
+  @Input() isTodateVisible = false;
+  @Input() isitemVisible = false;
+  @Input() isDetailVisible = false;
+  @Input() isSubAccVisible = false;
+  @Input() isCityVisible = false;
+  @Input() isPostalCodeVisible = false;
+
   SearchItems: any;
   applicationForm!: FormGroup;
   isFocused: boolean = false;

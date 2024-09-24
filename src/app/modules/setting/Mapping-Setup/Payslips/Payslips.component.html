@@ -24,24 +24,24 @@
           <div class="col-6">
             <label>Payment account</label>
             <ng-select [(ngModel)]="account.payment_account" required>
-              <ng-option value="66e3ed8a6fd5a1131bba641c">Sales</ng-option>
-              <ng-option value="1">Other</ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest Income</ng-option>
-            </ng-select>
+              <ng-option *ngFor="let bank of bankingData" [value]="bank?._id">
+                <!-- {{ bank?.name }} ({{ bank?.account_number }}) -->
+                {{ bank?.name }}
+              </ng-option>          
+              </ng-select>
             <div *ngIf="!account.payment_account && account.enable" class="text-danger">
               Payment account is required.
             </div>
           </div>
           <div class="col-6">
             <label>Deposit to</label>
-            <ng-select [(ngModel)]="account.deposit_account" required>
-              <ng-option value="66e3ed8a6fd5a1131bba6489">Sales</ng-option>
-              <ng-option value="1">Other</ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest Income</ng-option>
-            </ng-select>
-            <div *ngIf="!account.deposit_account && account.enable" class="text-danger">
+            <ng-select [(ngModel)]="account.deposite_account" required>
+              <ng-option *ngFor="let bank of bankingData" [value]="bank?._id">
+                <!-- {{ bank?.name }} ({{ bank?.account_number }})  -->
+                {{ bank?.name }} 
+              </ng-option>           
+             </ng-select>
+            <div *ngIf="!account.deposite_account && account.enable" class="text-danger">
               Deposit account is required.
             </div>
           </div>
@@ -51,8 +51,11 @@
   </div>
 
   <div class="d-flex justify-content-end my-2">
-    <div class="primary_button" (click)="submitForm()">
+    <div *ngIf="!update" class="primary_button" (click)="submitForm()">
       Save
+    </div>
+    <div *ngIf="update" class="primary_button" (click)="submitForm()">
+      Update
     </div>
   </div>
 </div>

@@ -77,20 +77,24 @@
                         class="d-flex align-items-center sidebar_svg iconone"></span><a>Checks</a></li> -->
 
 
-                <li (click)="toggleMenu('journal')" [ngClass]="{'active': activeMenu === 'journal'}"
-                    class="d-flex align-items-center justify-content-between sidebar_svg" routerLinkActive="active" routerLink="journal-entry">
+                <li (click)="toggleMenu('journal-entry')" [ngClass]="{'active': activeMenu === 'journal-entry'}"
+                    class="d-flex align-items-center justify-content-between sidebar_svg" routerLinkActive="active" >
                     <div class="d-flex">
                         <span
-                            class="d-flex align-items-center sidebar_svg journal-entry-icon"></span><a>Journal Entry</a>
+                            class="d-flex align-items-center sidebar_svg journal-entry-icon"></span><a>Journal</a>
                     </div>
-                        <span  class="arrow-icon chevron-right-icon" [ngClass]="{'open':activeMenu === 'journal'}"></span>
+                        <span  class="arrow-icon chevron-right-icon" [ngClass]="{'open':activeMenu === 'journal-entry'}"></span>
                     </li>
-                    <ul [ngClass]="activeMenu === 'journal' ? 'sub-menu sublink-open' : 'sub-menu sublink-close'"
+                    <ul [ngClass]="activeMenu === 'journal-entry' ? 'sublink-open' : 'sublink-close'"
                         class="sub-menu">
-                        <li class="nav-item position-relative d-flex" routerLink="journal-entry/journal-voucher" routerLinkActive="sublink-active">
+                        <li  class="nav-item position-relative d-flex" routerLink="journal-entry/journal-voucher" routerLinkActive="sublink-active">
                             <span class="journal-voucher-icon sidebar_svg"></span>
                             <a>Journal Voucher</a>
                         </li>
+                        <li class="nav-item position-relative d-flex" routerLink="journal-entry" routerLinkActive="sublink-active">
+                          <span class="journal-voucher-icon sidebar_svg"></span>
+                          <a>Journal Entry</a>
+                      </li>
                         </ul>
 
 
@@ -168,7 +172,7 @@
                 (click)="toggleMenu('setting')" routerLink="setting">
                <div class="d-flex">
                 <span class="d-flex align-items-center sidebar_svg setting-icon"></span>
-                <a>setting</a>
+                <a>Setting</a>
                </div>
 
                 <span  class="arrow-icon chevron-right-icon" [ngClass]="{'open': activeMenu === 'setting'}"></span>
