@@ -2,251 +2,57 @@
   <div class="pt-1 mt-2">
     <h3>Automatic Mapping</h3>
   </div>
-  <div class="border border-1 pt-1 mt-2">
-    <div class="p-3">
-      <div class="d-flex col-3 justify-content-between ">
-        <div>
-         Purchase Order
-        </div>
-        <div>
-          <div class="form-check form-switch border-start ">
-            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isExpensesChecked">
-            <label class="form-check-label" for="flexSwitchCheckDefault">
 
-            </label>
+  <div *ngFor="let account of accounts; let i = index" class="border border-1 pt-1 mt-2">
+    <div class="p-3">
+      <div class="d-flex col-3 justify-content-between">
+        <div>{{ account.type }}</div>
+        <div>
+          <div class="form-check form-switch border-start">
+            <input 
+              class="form-check-input" 
+              type="checkbox" 
+              [(ngModel)]="account.enable" 
+              (change)="toggleAccount(i)">
+            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
           </div>
         </div>
       </div>
-      <div *ngIf="isExpensesChecked">
-        <div class=" row ">
+
+      <div *ngIf="account.enable">
+        <div class="row">
           <div class="col-6">
             <label>Payment account</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
+            <ng-select [(ngModel)]="account.payment_account" required>
+              <ng-option *ngFor="let bank of bankingData" [value]="bank?._id">
+                <!-- {{ bank?.name }} ({{ bank?.account_number }}) -->
+                {{ bank?.name }}
+              </ng-option>  
             </ng-select>
+            <div *ngIf="!account.payment_account && account.enable" class="text-danger">
+              Payment account is required.
+            </div>
           </div>
           <div class="col-6">
             <label>Deposit to</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
+            <ng-select [(ngModel)]="account.deposite_account" required>
+              <ng-option *ngFor="let bank of bankingData" [value]="bank?._id">
+                <!-- {{ bank?.name }} ({{ bank?.account_number }}) -->
+                {{ bank?.name }}
+              </ng-option>  
             </ng-select>
+            <div *ngIf="!account.deposite_account && account.enable" class="text-danger">
+              Deposit account is required.
+            </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
-  <div class="border border-1 pt-1 mt-2">
-    <div class="p-3">
-      <div class="d-flex col-3 justify-content-between ">
-        <div>
-          Purchase Invoice
-        </div>
-        <div>
-          <div class="form-check form-switch border-start ">
-            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isSalesChecked">
-            <label class="form-check-label" for="flexSwitchCheckDefault">
 
-            </label>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="isSalesChecked">
-        <div class=" row ">
-          <div class="col-6">
-            <label>Payment account</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
-            </ng-select>
-          </div>
-          <div class="col-6">
-            <label>Deposit to</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
-            </ng-select>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="border border-1 pt-1 mt-2">
-    <div class="p-3">
-      <div class="d-flex col-3 justify-content-between ">
-        <div>
-         Payment
-        </div>
-        <div>
-          <div class="form-check form-switch border-start ">
-            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isPaymentChecked">
-            <label class="form-check-label" for="flexSwitchCheckDefault">
-
-            </label>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="isPaymentChecked">
-        <div class=" row ">
-          <div class="col-6">
-            <label>Payment account</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
-            </ng-select>
-          </div>
-          <div class="col-6">
-            <label>Deposit to</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
-            </ng-select>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="border border-1 pt-1 mt-2">
-    <div class="p-3">
-      <div class="d-flex col-3 justify-content-between ">
-        <div>
-        Purchase order return
-        </div>
-        <div>
-          <div class="form-check form-switch border-start ">
-            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isPusrchaseChecked">
-            <label class="form-check-label" for="flexSwitchCheckDefault">
-
-            </label>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="isPusrchaseChecked">
-        <div class=" row ">
-          <div class="col-6">
-            <label>Payment account</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
-            </ng-select>
-          </div>
-          <div class="col-6">
-            <label>Deposit to</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
-            </ng-select>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="border border-1 pt-1 mt-2">
-    <div class="p-3">
-      <div class="d-flex col-3 justify-content-between ">
-        <div>
-          Refund
-        </div>
-        <div>
-          <div class="form-check form-switch border-start ">
-            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isInvoiceChecked">
-            <label class="form-check-label" for="flexSwitchCheckDefault">
-
-            </label>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="isInvoiceChecked">
-        <div class=" row ">
-          <div class="col-6">
-            <label>Payment account</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
-            </ng-select>
-          </div>
-          <div class="col-6">
-            <label>Deposit to</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
-            </ng-select>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="border border-1 pt-1 mt-2">
-    <div class="p-3">
-      <div class="d-flex col-3 justify-content-between ">
-        <div>
-          Tax Default
-        </div>
-        <div>
-          <div class="form-check form-switch border-start ">
-            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isTaxChecked">
-            <label class="form-check-label" for="flexSwitchCheckDefault">
-
-            </label>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="isTaxChecked">
-        <div class=" row ">
-          <div class="col-6">
-            <label>Payment account</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
-            </ng-select>
-          </div>
-          <div class="col-6">
-            <label>Deposit to</label>
-            <ng-select class="">
-              <ng-option >Sales</ng-option>
-              <ng-option value="1">Other </ng-option>
-              <ng-option value="2">Overhead</ng-option>
-              <ng-option value="3">Interest income</ng-option>
-            </ng-select>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  
-  </div>
   <div class="d-flex justify-content-end my-2">
-    <div class="primary_button">
+    <div class="primary_button" (click)="submitForm()">
       Save
     </div>
   </div>
-
 </div>
