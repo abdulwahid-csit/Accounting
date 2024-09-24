@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingService } from '../../setting.service';
 import { ToastrService } from 'ngx-toastr';
 import { LocalStoreService } from 'src/app/shared/services/local-store.service';
-import { BankingService } from 'src/app/modules/banking/banking.service';
-
+import { CrudService } from 'src/app/shared/services/crud.service';
 @Component({
   selector: 'app-Inventory',
   templateUrl: './Inventory.component.html',
@@ -34,9 +32,8 @@ export class InventoryComponent implements OnInit {
 
   constructor(
     private localStoreService: LocalStoreService,
-    private settingService: SettingService,
     private toastr: ToastrService,
-    private bankinService: BankingService
+    private CrudService :CrudService
   ) {}
 
   ngOnInit(): void {
@@ -75,6 +72,7 @@ export class InventoryComponent implements OnInit {
     };
 
     this.accounts.forEach(account => {
+      if (account.payment_account || account.deposite_account) {
       if (account.enable) {
         data[account.key] = {
           payment_account: account.payment_account,
@@ -82,10 +80,10 @@ export class InventoryComponent implements OnInit {
         };
         const correspondingFlagKey = account.key.replace('_accounts', ''); // Creates key like "receiving_voucher"
         data[correspondingFlagKey] = true;
-      }
+      }}
     });
 
-    this.settingService.createSettingsInventory(data).subscribe(
+    this.CrudService.create('inventory/create-update',data).subscribe(
       response => {
         this.toastr.success(
           this.update ? 'Settings updated successfully' : 'Settings saved successfully',
@@ -101,7 +99,7 @@ export class InventoryComponent implements OnInit {
   }
 
   fetchSetting() {
-    this.settingService.getSettingsInventory(this.user?.business).subscribe(
+    this.CrudService.read('inventory/by-business',this.user?.business).subscribe(
       (response: any) => {
         if (response?.data?.data) {
           this.setting = response.data.data;
@@ -122,7 +120,7 @@ export class InventoryComponent implements OnInit {
               }
   
               // Assuming you might have a similar structure for deposit_account
-              const depositAccountData = this.setting[mapping.key]?.deposite_account;
+              const depositAccountData = this.setting[mapping.key]?.deposite_to;
               if (depositAccountData) {
                 account.deposite_account = depositAccountData._id; // Set account ID
                 // account.deposite_account = depositAccountData.name; // Optional: Save the name if needed
@@ -145,7 +143,7 @@ export class InventoryComponent implements OnInit {
     );
   }
   fetchBankingData(page: number = 1) {
-    this.bankinService.getBankResource().subscribe(
+    this.CrudService.read('banking').subscribe(
       (response: any) => {
         if (response?.data?.data?.payload) {
           // Extracting the payload
