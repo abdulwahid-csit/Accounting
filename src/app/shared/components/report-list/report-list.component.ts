@@ -9,10 +9,11 @@ import { FormGroup } from '@angular/forms';
 export class ReportListComponent implements OnInit {
 
   @Input() isAccountsVisible = false;
-  @Input() isdateVisible = false;
+  @Input() isFormdateVisible = false;
+  @Input() isTodateVisible = false;
   @Input() isitemVisible = false;
   @Input() isDetailVisible = false;
-  @Input() isAddressVisible = false;
+  @Input() isSubAccVisible = false;
   @Input() isCityVisible = false;
   @Input() isPostalCodeVisible = false;
 
