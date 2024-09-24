@@ -27,7 +27,7 @@
 
 
 
-    <div class="col-md-3"  *ngIf="isdateVisible">
+    <div class="col-md-3" *ngIf="isSubAccVisible" >
       <div class="mb-3">
         <label for="statusSelect" class="form-label">Sub Account</label>
         <ng-select  bindLabel="name" bindValue="id" [(ngModel)]="selectedSubAccounts"
@@ -62,7 +62,6 @@
             <div class="custom-option">
               <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
               {{ item.name }}
-
             </div>
           </ng-template>
 
@@ -106,7 +105,7 @@
 
 
   </div>
-  <div class="row"   *ngIf="isAccountsVisible">
+  <div class="row"   *ngIf="isFormdateVisible">
     <div class="col-md-3">
       <label for="">Form date</label>
       <div class="input-group w-auto mt-2">
@@ -125,7 +124,7 @@
       </div>
 
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" *ngIf="isTodateVisible">
       <label for="">To date</label>
 
       <div class="input-group w-auto mt-2">
