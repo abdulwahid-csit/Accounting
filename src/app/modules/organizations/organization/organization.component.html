@@ -94,7 +94,7 @@
                                             </small>
                                         </div>
                                         <div class="col-md-1 px-2">
-                                            <i class="fa-solid fa-circle-question" style="color: #007fe0;"></i>
+                                            <i class="fa-solid fa-circle-question" ></i>
                                         </div>
                                         <div class="col-md-3 d-flex justify-content-start align-items-center">
                                             <label for="ntn_number">National Tax Number (NTN)</label>
@@ -140,7 +140,7 @@
                                             </small>
                                         </div>
                                         <div class="col-md-1 px-2">
-                                            <i class="fa-solid fa-circle-question" style="color: #007fe0;"></i>
+                                            <i class="fa-solid fa-circle-question" ></i>
                                         </div>
                                         <div class="col-md-2 d-flex justify-content-start align-items-center">
                                             <label for="ntnNumber">Country</label>
@@ -222,9 +222,9 @@
                         </div>
                     </div>
                     <div class="buttons modal-footer d-flex justify-content-end gap-3 mt-5">
-                        <button type="button" class="back-btn" (click)="close()">Back</button>
-                        <button type="submit" class="submit-btn" *ngIf="!isUpdateData" [disabled]="form.invalid">Create Company</button>
-                        <button type="submit" class="submit-btn" *ngIf="isUpdateData"  [disabled]="form.invalid">Update Company</button>
+                        <button type="button" class="back-btn mt-2" (click)="close()">Back</button>
+                        <button type="submit" class="submit-btn mt-2" *ngIf="!isUpdateData" [disabled]="form.invalid">Create Company</button>
+                        <button type="submit" class="submit-btn mt-2" *ngIf="isUpdateData"  [disabled]="form.invalid">Update Company</button>
                     </div>
                 </form>
             </div>

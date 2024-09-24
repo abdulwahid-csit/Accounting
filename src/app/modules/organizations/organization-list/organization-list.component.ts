@@ -59,7 +59,7 @@ updateOrganization(data?: any) {
   console.log("data for update",data)
   const initialState = { data: data};
   this.modalRef = this.modalService.show(OrganizationComponent, {
-    class: 'modal-dialog modal-dialog-centered modal-lg create_organization',
+    class: 'modal-dialog modal-dialog-centered modal-xl create_organization',
     backdrop: 'static',
     keyboard: true,
     initialState

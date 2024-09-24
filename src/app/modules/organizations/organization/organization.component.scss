@@ -119,13 +119,11 @@ button {
 .back-btn {
     background-color: #ddd;
     color: #333;
-    margin-top: 10px;
 }
 
 .submit-btn {
     background-color: #595395;
     color: white;
-    margin-top: 10px;
 }
 
 button:hover {
@@ -144,4 +142,7 @@ button:active {
         flex: 0 0 100%;
         margin-bottom: 15px;
     }
+}
+.fa-solid{
+    color:#007fe0;
 }
