@@ -24,8 +24,10 @@
                                         <label for="business-name">Business Name <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" id="business-name" formControlName="name" 
-                                            required>
+                                        <input type="text" id="business-name" formControlName="name">
+                                        <small class="text-danger" *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched">
+                                                Business Name is required
+                                        </small>
                                     </div>
                                     <div class="col-md-3">
                                         <a href=""></a>
@@ -38,11 +40,12 @@
                                         <label for="industry">Industry <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" id="industry"  formControlName="industry"
-                                        >
+                                        <input type="text" id="industry"  formControlName="industry">
+                                        <small class="text-danger" *ngIf="form.controls['industry'].hasError('required') && form.controls['industry'].touched">
+                                           Industry Name is required
+                                        </small>
                                     </div>
                                     <div class="col-md-3 text-left d-flex align-items-center justify-content-start">
-                                        <a href="#" class="help-link">Help me choose</a>
                                     </div>
                                 </div>
     
@@ -52,14 +55,12 @@
                                         <label for="business-type">Business Type <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-md-6">
-                                        <ng-select id="bussiness_type"  formControlName="business_type">
-                                            <ng-option value="Partnership">Partnership</ng-option>
-                                            <ng-option value="LLP">LLP</ng-option>
-    
-                                        </ng-select>
+                                        <input type="text" id="bussiness_type"  formControlName="business_type">
+                                        <small class="text-danger" *ngIf="form.controls['business_type'].hasError('required') && form.controls['business_type'].touched">
+                                            Busines Type is required
+                                         </small>
                                     </div>
                                     <div class="col-md-3 d-flex align-items-center justify-content-start">
-                                        <a href="#" class="help-link">Help me choose</a>
                                     </div>
                                 </div>
     
@@ -70,10 +71,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="email" id="admin_email" formControlName="admin_email"
-                                            placeholder="Enter company file admin's email" required>
+                                            placeholder="Enter company file admin's email">
+                                         <small class="text-danger" *ngIf="form.controls['admin_email'].hasError('required') && form.controls['admin_email'].touched">
+                                                Admin Email is required
+                                        </small>
                                     </div>
                                     <div class="col-md-3 d-flex align-items-center justify-content-start">
-                                        <a href="#" class="help-link">Help me choose</a>
                                     </div>
                                 </div>
     
@@ -86,6 +89,9 @@
                                         <div class="col-md-4">
                                             <input type="text" id="ein_number" formControlName="ein_number"
                                                 placeholder="12-3456789">
+                                            <small class="text-danger" *ngIf="form.controls['ein_number'].hasError('required') && form.controls['ein_number'].touched">
+                                                    EIN is required
+                                            </small>
                                         </div>
                                         <div class="col-md-1 px-2">
                                             <i class="fa-solid fa-circle-question" style="color: #007fe0;"></i>
@@ -95,6 +101,9 @@
                                         </div>
                                         <div class="col-md-4">
                                             <input type="text" id="ntn_number" formControlName="ntn_number">
+                                        <small class="text-danger" *ngIf="form.controls['ntn_number'].hasError('required') && form.controls['ntn_number'].touched">
+                                                NIN is required
+                                        </small>
                                         </div>
                                     </div>
                                     <div class="col-md-3 d-flex align-items-center justify-content-start"></div>
@@ -108,6 +117,9 @@
     
                                     <div class="col-md-6">
                                         <input type="text" id="address" name="address" formControlName="address">
+                                        <small class="text-danger" *ngIf="form.controls['address'].hasError('required') && form.controls['address'].touched">
+                                            Business Address is required
+                                        </small>
                                     </div>
                                     <div class="col-md-3">
     
@@ -123,6 +135,9 @@
                                         <div class="col-md-5">
                                             <input type="text" id="domain" formControlName="domain"
                                                 placeholder="domain">
+                                            <small class="text-danger" *ngIf="form.controls['domain'].hasError('required') && form.controls['domain'].touched">
+                                                    Domain is required
+                                            </small>
                                         </div>
                                         <div class="col-md-1 px-2">
                                             <i class="fa-solid fa-circle-question" style="color: #007fe0;"></i>
@@ -132,6 +147,9 @@
                                         </div>
                                         <div class="col-md-4">
                                             <input type="text" id="country" formControlName="country">
+                                        <small class="text-danger" *ngIf="form.controls['country'].hasError('required') && form.controls['country'].touched">
+                                                Country Name is required
+                                        </small>
                                         </div>
                                     </div>
                                     <div class="col-md-3 d-flex align-items-center justify-content-start"></div>
@@ -145,6 +163,9 @@
     
                                     <div class="col-md-6">
                                         <input type="text" id="phone" name="phone" formControlName="phone">
+                                        <small class="text-danger" *ngIf="form.controls['phone'].hasError('required') && form.controls['phone'].touched">
+                                            Phone Number is required
+                                    </small>
                                     </div>
                                     <div class="col-md-3">
     
@@ -160,12 +181,18 @@
                                     <div class="col-md-6 d-flex">
                                         <div class="col-md-5">
                                             <input type="text" id="city" name="city" formControlName="city">
+                                            <small class="text-danger" *ngIf="form.controls['city'].hasError('required') && form.controls['city'].touched">
+                                                City Name is required
+                                            </small>
                                         </div>
                                         <div class="col-md-2 d-flex align-items-center justify-content-end">
                                             <label for="zip">ZIP</label>
                                         </div>
                                         <div class="col-md-5">
                                             <input type="text" id="zip" name="zip" formControlName="zip">
+                                            <small class="text-danger" *ngIf="form.controls['zip'].hasError('required') && form.controls['zip'].touched">
+                                                Zip Code is required
+                                        </small>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -180,15 +207,13 @@
     
                                     <div class="col-md-6 d-flex">
                                         <div class="col-md-5">
-                                            <ng-select id="state" name="state" formControlName="state">
-                                                <ng-option> Islamabad</ng-option>
-                                                <ng-option> Kabul</ng-option>
-    
-                                            </ng-select>
+                                            <input type="text" id="state" name="state" formControlName="state">
+                                        <small class="text-danger" *ngIf="form.controls['state'].hasError('required') && form.controls['state'].touched">
+                                                State Name is required
+                                        </small>
                                         </div>
-                                       
-                                       
                                     </div>
+
                                     <div class="col-md-3">
     
                                     </div>
@@ -196,16 +221,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- buttons and text -->
                     <div class="buttons modal-footer d-flex justify-content-end gap-3 mt-5">
                         <button type="button" class="back-btn" (click)="close()">Back</button>
-                        <button type="submit" class="submit-btn" (click)="close()">Create Company</button>
+                        <button type="submit" class="submit-btn" *ngIf="!isUpdateData" [disabled]="form.invalid">Create Company</button>
+                        <button type="submit" class="submit-btn" *ngIf="isUpdateData"  [disabled]="form.invalid">Update Company</button>
                     </div>
                 </form>
             </div>
         </div>
  
-<!-- <div class="modal-footer ">
-    <button type="button" class="btn btn-light " ><i class="bi bi-x"></i> Close</button>
-    <button type="button" class="btn btn-primary"><img src="" alt=""><i class="bi bi-check2-circle"></i> Save </button>
-</div> -->

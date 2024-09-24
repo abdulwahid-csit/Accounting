@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { CrudService } from 'src/app/shared/services/crud.service';
 
@@ -10,10 +10,14 @@ import { CrudService } from 'src/app/shared/services/crud.service';
 })
 export class OrganizationComponent {
   form: FormGroup | any;
+  @Input() data: any;
+  isUpdateData = false;
+
 
   constructor(private fb: FormBuilder, private CrudService:CrudService , private modelService:BsModalService) {}
 
   ngOnInit(): void {
+
     this.initialize();
 
     this.form.get('ein_number')?.valueChanges.subscribe((value: any) => {
@@ -22,6 +26,7 @@ export class OrganizationComponent {
       } else {
         this.form.get('ntn_number')?.enable();
       }
+      
     });
 
     this.form.get('ntn_number')?.valueChanges.subscribe((value: any) => {
@@ -31,6 +36,11 @@ export class OrganizationComponent {
         this.form.get('ein_number')?.enable();
       }
     });
+
+    if(this.data){
+      this.isUpdateData = true;
+      this.initailizeUpdateData();
+    }
   }
 
 
@@ -40,19 +50,19 @@ export class OrganizationComponent {
 
   initialize() {
     this.form = this.fb.group({
-      name: [''],
-      industry: [''],
-      business_type: [''],
-      admin_email: [''],
-      ein_number: [''],
-      ntn_number: [''],
-      address: [''],
-      domain: [''],
-      phone: [''],
-      city: [''],
-      state: [''],
-      zip:[''],
-      country:['']
+      name: ['',Validators.required],
+      industry: ['',Validators.required],
+      business_type: ['',Validators.required],
+      admin_email: ['',Validators.required],
+      ein_number: ['',Validators.required],
+      ntn_number: ['',Validators.required],
+      address: ['',Validators.required],
+      domain: ['',Validators.required],
+      phone: ['',Validators.required],
+      city: ['',Validators.required],
+      state: ['',Validators.required],
+      zip:['',Validators.required],
+      country:['',Validators.required]
     });
   }
   
@@ -69,7 +79,33 @@ export class OrganizationComponent {
   //   }
   // }
 
+
+  initailizeUpdateData(){
+      this.form = this.fb.group({
+        name: [this.data?.name],
+        industry: [this.data?.industry],
+        business_type: [this.data.business_type],
+        admin_email: [this.data.admin_email],
+        ein_number: [this.data.ein_number],
+        ntn_number: [this.data.ntn_number],
+        address: [this.data.address],
+        domain: [this.data.domain],
+        phone: [this.data.phone],
+        city: [this.data.city],
+        state: [this.data.city],
+        zip:[this.data.zip],
+        country:[this.data.country]
+      });
+  }
+
   onSubmit() {
+    if(this.isUpdateData){
+      this.CrudService.update('business', this.data.id, this.form.value).subscribe(response => {
+        this.data = response;
+      })
+      this.close()
+      return
+    }
     const formValue = this.form.value;
     if (formValue.ein_number) {
       const { ntn_number, ...dataToLog } = formValue;
@@ -89,6 +125,7 @@ export class OrganizationComponent {
         console.log("Error response: ", response);
       }
     });
+    this.close();
   }
   
 }
