@@ -30,7 +30,7 @@ export class BankingService {
     const url = `${this.apiUrl}banking`;
     const params = {
       page: page.toString(),
-      pageSize: pageSize.toString()
+      limit: pageSize.toString()
     };
     return this.http.get(url, { headers: this.getHeaders(), params });
 }
