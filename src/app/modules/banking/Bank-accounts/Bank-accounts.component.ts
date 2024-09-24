@@ -1,10 +1,10 @@
-import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AddBankComponent } from '../add-bank/add-bank.component';
-import { BankingService } from '../banking.service';
 import { ToastrService } from 'ngx-toastr';
 import { DeleteModalComponent } from 'src/app/shared/components/delete-modal/delete-modal.component';
+import { CrudService } from 'src/app/shared/services/crud.service';
 @Component({
   selector: 'app-Bank-accounts',
   templateUrl: './Bank-accounts.component.html',
@@ -20,7 +20,10 @@ export class BankAccountsComponent implements OnInit {
   @Input() changePage: any;
   selectedPageSize: number = 10; // Default page size
   currentPage: number = 1;
-  constructor(private modalService: BsModalService,private bankinService: BankingService,private toastr: ToastrService) { }
+  constructor(private modalService: BsModalService,private toastr: ToastrService,
+    private CrudService : CrudService
+
+  ) { }
   columns = [
     { name: 'Check', key: 'isChecked', isCheckbox: true },
     { name: 'Opening Date', key: 'opening_date' },
@@ -68,7 +71,7 @@ export class BankAccountsComponent implements OnInit {
     });
   }
   fetchBankingData(page: number = 1) {
-    this.bankinService.getBankResource(page,this.selectedPageSize).subscribe(
+    this.CrudService.readWithPaginations('banking',page,this.selectedPageSize).subscribe(
       (response: any) => {
         if (response?.data?.data?.payload) {
           this.bankingData = response?.data?.data?.payload;
@@ -112,13 +115,8 @@ export class BankAccountsComponent implements OnInit {
     });
   }
   delete(id?:any) {
-   id = this.itemToDelete
-    console.log('BankingService:', this.bankinService);
-    if (!this.bankinService) {
-      console.error('BankingService is not defined!');
-      return;
-    }   
-      this.bankinService.deleteBankingResource(id).subscribe(
+   id = this.itemToDelete  
+      this.CrudService.delete('banking',id).subscribe(
         response => {
           // console.log('Delete successful:', response);
           this.toastr.success('Item deleted successfully!', 'Success');
