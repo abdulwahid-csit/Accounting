@@ -98,7 +98,7 @@ export class PurchaseComponent implements OnInit {
     );
   }
   fetchSetting() {
-    this.CrudService.read('purchase',this.user?.business).subscribe(
+    this.CrudService.read('purchase/business',this.user?.business).subscribe(
       (response: any) => {
         if (response?.data?.data) {
           this.setting = response.data.data;
@@ -119,7 +119,7 @@ export class PurchaseComponent implements OnInit {
               }
   
               // Assuming you might have a similar structure for deposit_account
-              const depositAccountData = this.setting[mapping.key]?.deposite_account;
+              const depositAccountData = this.setting[mapping.key]?.deposite_to;
               if (depositAccountData) {
                 account.deposite_account = depositAccountData._id; // Set account ID
                 // account.deposite_account = depositAccountData.name; // Optional: Save the name if needed
