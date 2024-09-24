@@ -1,22 +1,16 @@
-<app-report-list></app-report-list>
-<!-- <div class="card m-2">
+<div class="card">
   <div class="card-body">
-    <div class="card-body">
-
-      <div class="d-flex justify-content-center">
-        <h5 class="">GTS solutions
-        </h5>
-      </div>
-      <div class="d-flex justify-content-center">
-        Balance Sheet Comparison
-      </div>
-    <div class="d-flex justify-content-center">
-      as of {{date}}
-    </div>
-    </div>
-
+    <app-report-list
+  [isAccountsVisible]="true"
+  [isdateVisible]="false"
+  [isitemVisible]="true"
+  [isDetailVisible]="false">
+</app-report-list>
   </div>
-</div> -->
+</div>
+
+
+
 <div class="container">
  <div class="balance-sheet p-5 ">
  <div class="mb-3">
@@ -37,13 +31,13 @@
         <th class="text-centerr">2024</th>
       </tr>
     </thead>
-    
+
     <tbody >
       <!-- Assets Loop -->
       <ng-container *ngFor="let item of balanceSheetData">
         <tr >
           <td (click)="toggleSection(item)" style="cursor: pointer;">
-            <span *ngIf="item.currentAssets || item.longTermAssets" 
+            <span *ngIf="item.currentAssets || item.longTermAssets"
                   [ngClass]="{'expand-arrow': !item.expanded, 'collapse-arrow': item.expanded}"></span>
             {{ item.name }}
           </td>
@@ -56,7 +50,7 @@
           <ng-container *ngFor="let currentAsset of item.currentAssets">
             <tr class="horizantal-line" >
               <td (click)="toggleSection(currentAsset)" style="cursor: pointer; padding-left: 20px;">
-                <span *ngIf="currentAsset.currentAssetsDetails" 
+                <span *ngIf="currentAsset.currentAssetsDetails"
                       [ngClass]="{'expand-arrow': !currentAsset.expanded, 'collapse-arrow': currentAsset.expanded}"></span>
                 {{ currentAsset.name }}
               </td>
@@ -69,7 +63,7 @@
               <ng-container *ngFor="let detail of currentAsset.currentAssetsDetails">
                 <tr >
                   <td (click)="toggleSection(detail)" style="cursor: pointer; padding-left: 40px;">
-                    <span *ngIf="detail.arDetails || detail.bankDetails || detail.shortTermAssetsDetails" 
+                    <span *ngIf="detail.arDetails || detail.bankDetails || detail.shortTermAssetsDetails"
                           [ngClass]="{'expand-arrow': !detail.expanded, 'collapse-arrow': detail.expanded}"></span>
                     {{ detail.name }}
                   </td>
@@ -108,11 +102,11 @@
                       <td>{{ shortTermAsset.value2024 }}</td>
                       <td>{{ shortTermAsset.value2023 }}</td>
                     </tr>
-                   
+
                   </ng-container>
                 </ng-container>
 
-                
+
 
               </ng-container>
             </ng-container>

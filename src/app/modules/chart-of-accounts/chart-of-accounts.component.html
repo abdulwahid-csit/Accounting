@@ -13,26 +13,17 @@
       </div>
       <div class="container-flex">
         <div class="box">
-          <label for="">Account</label>
+          <label for="">Account Type</label>
           <ng-select class="" [multiple]="false" [ngClass]="{
-        'custom-select-error': isControlHasError('organization', 'required'),
-        'custom-select': !isControlHasError('organization', 'required'),
         'ng-select-focused': isAccountFocus === true,
-        'ng-select-error': isControlHasError('organization', 'required')
-      }" (focus)="isAccountFocus = true" (blur)="isAccountFocus = false" placeholder="Select organization">
-            <ng-option [value]="'id'">organization.name </ng-option>
-            <ng-option [value]="'id'">organization.name </ng-option>
-            <ng-option [value]="'id'">organization.name </ng-option>
-            <ng-option [value]="'id'">organization.name </ng-option>
+      }" (focus)="isAccountFocus = true" (blur)="isAccountFocus = false" placeholder="Select Account Type">
+            <ng-option *ngFor="let item of accoutTypes" [value]="item">{{item.title}} </ng-option>
           </ng-select>
         </div>
         <div class="box">
-          <label for="">Parrent Account</label>
+          <label for="">Level 1</label>
           <ng-select class="" [multiple]="false" [ngClass]="{
-        'custom-select-error': isControlHasError('organization', 'required'),
-        'custom-select': !isControlHasError('organization', 'required'),
         'ng-select-focused': isParrentAccountFocus === true,
-        'ng-select-error': isControlHasError('organization', 'required')
       }" (focus)="isParrentAccountFocus = true" (blur)="isParrentAccountFocus = false"
             placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -42,12 +33,9 @@
           </ng-select>
         </div>
         <div class="box">
-          <label for="">Type</label>
+          <label for="">Level 2</label>
           <ng-select class="" [multiple]="false" [ngClass]="{
-        'custom-select-error': isControlHasError('organization', 'required'),
-        'custom-select': !isControlHasError('organization', 'required'),
         'ng-select-focused': isTypeFoucus === true,
-        'ng-select-error': isControlHasError('organization', 'required')
       }" (focus)="isTypeFoucus = true" (blur)="isTypeFoucus = false" placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -56,12 +44,9 @@
           </ng-select>
         </div>
         <div class="box">
-          <label for="">Detail Type</label>
+          <label for="">Level 3</label>
           <ng-select class="" [multiple]="false" [ngClass]="{
-        'custom-select-error': isControlHasError('organization', 'required'),
-        'custom-select': !isControlHasError('organization', 'required'),
         'ng-select-focused': isDetailTypeFocus === true,
-        'ng-select-error': isControlHasError('organization', 'required')
       }" (focus)="isDetailTypeFocus = true" (blur)="isDetailTypeFocus = false" placeholder="Select organization">
             <ng-option [value]="'id'">organization.name </ng-option>
             <ng-option [value]="'id'">organization.name </ng-option>
@@ -72,10 +57,7 @@
         <div class="box">
           <label for="">Active</label>
           <ng-select class="" [multiple]="false" [ngClass]="{
-        'custom-select-error': isControlHasError('organization', 'required'),
-        'custom-select': !isControlHasError('organization', 'required'),
         'ng-select-focused': isStatusFocus === true,
-        'ng-select-error': isControlHasError('organization', 'required')
       }" (focus)="isStatusFocus = true" (blur)="isStatusFocus = false" placeholder="Select organization">
             <ng-option [value]="'id'">All </ng-option>
             <ng-option [value]="'id'">Yes </ng-option>
@@ -86,7 +68,6 @@
 
       <div class="table_div mt-5">
         <app-data-table [columns]="columns" [config]="tableConfig" [dataSet]="applicationList"></app-data-table>
-
       </div>
     </div>
   </div>

@@ -11,12 +11,12 @@
             </select>
           </div>
           <div class="d-flex gap-3 mb-3">
-            <select class="custom-select p-2 rounded ">
+            <select class="custom-select p-2 rounded " [(ngModel)]="selectedPageSize" (change)="onPageSizeChange($event)">
               <option selected>10</option>
-              <option value="1">25</option>
-              <option value="2">50</option>
-              <option value="3">70</option>
-              <option value="4">All</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="70">70</option>
+              <option value="All">All</option>
             </select>
             <span>
               <div class="export_button">
@@ -34,7 +34,11 @@
           [config]="tableConfig" 
           [dataSet]="bankingData"
           [editMethod]="editRow.bind(this)"
-          [deleteMethod]="deleteRow.bind(this)">
+          [deleteMethod]="deleteRow.bind(this)"
+          [toggleSwitch]="toggleSwitch.bind(this)"
+          (changePage)="fetchBankingData($event)"
+          >
            </app-data-table>
 
+          
         </div>

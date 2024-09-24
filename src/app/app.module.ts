@@ -46,6 +46,7 @@ import { CustomStorageEngine } from './shared/services/custom-storage.engine';
       preventDuplicates: true,
       progressBar: true,
       tapToDismiss: true,
+      countDuplicates: true,
     })
 
   ],

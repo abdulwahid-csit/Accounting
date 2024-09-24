@@ -19,5 +19,6 @@ export class DeleteModalComponent {
 
   delete(){
     this.deleteData.emit();
+    this.closeModal();
   }
 }

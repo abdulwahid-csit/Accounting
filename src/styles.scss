@@ -218,7 +218,9 @@ body {
     }
     input, input.form-control{
         height: 38px;
-        box-shadow: none !important;
+        box-shadow: none;
+        font-size: 14px !important;
+        font-weight: 500 !important;
     }
     textarea::placeholder{
         padding-top: 4px !important;
@@ -226,18 +228,18 @@ body {
     input[type="password"]{
         font-size: 18px;
         font-weight: bold; 
-        letter-spacing: 0.1em;
+        // letter-spacing: 0.1em;
         padding: 2px 16px !important;
       }
 
     input:focus,
     input:active,
     .custom-form-select:focus, textarea:focus, textarea:active {
-        padding: 8px 16px;
+        // padding: 8px 16px;
         border: var(--bs-border-width) solid var(--bs-border-color);
         outline: 0;
-        border-color: #6f63bd !important;
-        box-shadow: 0 0 0 0.25rem rgba(111, 97, 207, 0.20) !important;
+        border-color: #6f63bd;
+        box-shadow: 0 0 0 0.25rem rgba(111, 97, 207, 0.20);
 
     }
 
@@ -255,6 +257,17 @@ body {
         font-size: 12px !important;
         font-weight: 500 !important;
         color: #EF4444 !important;
+    }
+}
+.custom-input-error{
+    input, input:focus{
+        border-color: #EF4444;
+        box-shadow: 0 0 0 0.25rem rgba(239, 68, 68, 0.3) !important;
+    }
+    small{
+        color: #EF4444;
+        font-size: 12px;
+        position: absolute;
     }
 }
 
@@ -415,14 +428,6 @@ input[type="password"]::-webkit-password-toggle-button,
 input[type="password"]::-webkit-password-toggle {
     display: none !important;
 }
-  
-
-input.form-control:focus {
-    border-color: #6f63bd !important;
-    box-shadow: 0 0 0 0.25rem rgba(111, 97, 207, 0.20) !important;
-}
-
-
 
 .ng-dropdown-panel.ng-select-bottom {
     top: 100%;
@@ -442,5 +447,3 @@ input.form-control:focus {
 .ng-select-container{
     border:none !important
 }
-
-

@@ -17,16 +17,20 @@
     </div>
 
     <div class="table mt-4">
-      <table class="table border">
+      <table class="table border template-table">
         <thead>
-          <th class="border req_field">Type</th>
-          <th class="border req_field">SubType</th>
-          <th class="border">Account Code</th>
-          <th class="border req_field">Account Name</th>
-          <th class="border">Sub Account of (account)</th>
+          <th class="border req_field">Account Type</th>
+          <th class="border req_field">Level 1</th>
+          <th class="border">Level 2</th>
+          <th class="border">Level 3</th>
+          <th class="border req_field">Name</th>
+          <th class="border req_field">Number</th>
+          <th class="border req_field">Description</th>
         </thead>
         <tbody>
           <tr>
+            <td>-</td>
+            <td>-</td>
             <td>-</td>
             <td>-</td>
             <td>-</td>
@@ -50,7 +54,7 @@
 
     <div class="button mt-4">
       <button class="primary_button" [ngClass]="{'button_disabled': isImportButtonDisabled || !isFileSelected}"
-        [disabled]="isImportButtonDisabled || !isFileSelected" (click)="writeDataToServer()">Import</button>
+        [disabled]="isImportButtonDisabled || !isFileSelected" (click)="submittDataToServer()">Import</button>
     </div>
   </div>
 </div>
@@ -61,19 +65,23 @@
     <div class="table-for-imports mt-4">
       <table class="table border">
         <thead>
-          <th class="border req_field">Type</th>
-          <th class="border req_field">SubType</th>
-          <th class="border">Account Code</th>
-          <th class="border req_field">Account Name</th>
-          <th class="border">Sub Account of (account)</th>
+          <th class="border req_field">Account Type</th>
+          <th class="border req_field">Level 1</th>
+          <th class="border">Level 2</th>
+          <th class="border req_field">Level 3</th>
+          <th class="border">Name</th>
+          <th class="border">Number 3</th>
+          <th class="border">Description</th>
         </thead>
         <tbody>
-          <tr *ngFor="let item of importDataAsObject">
-            <td>{{item.type? item.type: 'N/A'}}</td>
-            <td>{{item.subType? item.subType: 'N/A'}}</td>
-            <td>{{item.accountCode? item.accountCode: 'N/A'}}</td>
-            <td>{{item.accountName? item.accountName: 'N/A'}}</td>
-            <td>{{item.subAccountOfaccount? item.subAccountOfaccount: 'N/A'}}</td>
+          <tr *ngFor="let item of chartOfAccountMultipleData">
+            <td>{{item.account_type? item.account_type: 'N/A'}}</td>
+            <td>{{item.level_one? item.level_one: 'N/A'}}</td>
+            <td>{{item.level_two? item.level_two: 'N/A'}}</td>
+            <td>{{item.level_three? item.level_three: 'N/A'}}</td>
+            <td>{{item.name? item.name: 'N/A'}}</td>
+            <td>{{item.number? item.number: 'N/A'}}</td>
+            <td>{{item.description? item.description: 'N/A'}}</td>
           </tr>
         </tbody>
       </table>

@@ -1,7 +1,8 @@
+<div>
 <div class="col-md-12 col-lg-12 mt-5 main-content">
   <div class="row d-flex align-items-center">
-    <div class="col-md-3 mb-3">
-      <label for="accountsSelect" class="form-label">Accounts</label>
+    <div class="col-md-3 mb-3" *ngIf="isAccountsVisible">
+      <label for="accountsSelect" class="form-label">Accounts method</label>
 
       <ng-select  bindLabel="name" bindValue="id" [(ngModel)]="selectedAccounts"
         [multiple]="true" [groupBy]="'category'" placeholder="None selected" [closeOnSelect]="false">
@@ -26,7 +27,7 @@
 
 
 
-    <div class="col-md-3">
+    <div class="col-md-3"  *ngIf="isdateVisible">
       <div class="mb-3">
         <label for="statusSelect" class="form-label">Sub Account</label>
         <ng-select  bindLabel="name" bindValue="id" [(ngModel)]="selectedSubAccounts"
@@ -52,8 +53,8 @@
       </div>
 
     </div>
-    <div class="col-md-3">
-      <label for="fromDate" class="form-label">Type</label>
+    <div class="col-md-3" *ngIf="isitemVisible">
+      <label for="fromDate" class="form-label">item</label>
       <div class="mb-3">
         <ng-select bindLabel="name" bindValue="id" [(ngModel)]="selectedSubAccounts"
           [multiple]="true" [groupBy]="'category'" placeholder="None selected" [closeOnSelect]="false">
@@ -78,7 +79,7 @@
 
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3"  *ngIf="isDetailVisible">
       <label for="fromDate" class="form-label">Detail Type</label>
       <div class="mb-3"> <ng-select bindLabel="name" bindValue="id"
           [(ngModel)]="selectedSubAccounts" [multiple]="true" [groupBy]="'category'" placeholder="None selected"
@@ -105,9 +106,7 @@
 
 
   </div>
-
-
-  <div class="row">
+  <div class="row"   *ngIf="isAccountsVisible">
     <div class="col-md-3">
       <label for="">Form date</label>
       <div class="input-group w-auto mt-2">
@@ -144,26 +143,12 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="d-flex gap-3  mt-5">
-    <select class="custom-select p-2 rounded ">
-      <option selected>10</option>
-      <option value="1">25</option>
-      <option value="2">50</option>
-      <option value="3">70</option>
-      <option value="4">All</option>
-    </select>
-    <span>
-      <div class="export_button">
-        <button type="button" class="button d-flex p-0 bg-white overflow-hidden rounded border">
-          <span class="button__text">Export</span>
-          <span class="button__icon border-start">
-            <span class="large-icon">&#x21bb;</span>
-          </span>
-        </button>
-      </div>
-    </span>
-  </div>
-  <div class="row mt-2">
+   <div class="col-md-3 mt-3 p-3">
+    <button class="btn btn-primary">filter</button>
+   </div>
 
+    </div>
   </div>
+
+
+</div>

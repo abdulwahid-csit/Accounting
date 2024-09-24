@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-TreatBalance',
   templateUrl: './TreatBalance.component.html',
-  styleUrls: ['./TreatBalance.component.css']
+  styleUrls: ['./TreatBalance.component.scss']
 })
 export class TreatBalanceComponent implements OnInit {
 

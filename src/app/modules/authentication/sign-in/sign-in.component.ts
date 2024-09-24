@@ -26,8 +26,8 @@ export class SignInComponent {
   signInForm!: FormGroup
   ngOnInit(): void {
     this.signInForm = this.fb.group({
-      email: [null, Validators.compose([Validators.required, Validators.pattern("^[A-Z a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])],
-      password: [null, Validators.compose([Validators.required])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern("^[A-Z a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])],
+      password: ['', Validators.compose([Validators.required])],
 
     })
   }
@@ -63,7 +63,6 @@ export class SignInComponent {
             console.log("Tokens stored to localstorage.")
             this.router.navigate(['dashboard']);
           } else {
-            console.log("Tokens not stored to local storage.")
             this.toast.error("Incomplete response data");
             console.error("Incomplete response data:", response);
           }

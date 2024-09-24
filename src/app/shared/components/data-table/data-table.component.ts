@@ -14,7 +14,7 @@ export class DataTableComponent implements OnInit {
   @Input() searchTerm: string = '';
   @Input() editMethod!: (row: any) => void;
   @Input() deleteMethod!: (row: any) => void;
-
+  @Input() toggleSwitch!: (row: any) => void;
   filterData: any[] = [];
   startItem: number = 0;
   endItem: number = 0;
@@ -78,11 +78,9 @@ export class DataTableComponent implements OnInit {
 
   updatePaginationRange() {
     const paginationParams = this.config?.paginationParams || {};
-
     const currentPage = paginationParams.current_page || 1;
-    const itemsPerPage = paginationParams.items_per_page || 10;
-    const totalRecords = paginationParams.total_records || this.filterData.length;
-
+    const itemsPerPage = (paginationParams.items_per_page) || 10;
+    const totalRecords = paginationParams.total_records ? paginationParams.total_records  : paginationParams.payload_size || this.filterData.length;
     this.startItem = (currentPage - 1) * itemsPerPage + 1;
     this.endItem = Math.min(currentPage * itemsPerPage, totalRecords);
   }
