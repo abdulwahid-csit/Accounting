@@ -22,8 +22,8 @@
               'ng-select-focused': isAccounLevelFocus === true,
               'ng-select-error': isControlHasError('account_level', 'required')
               }" (focus)="isAccounLevelFocus = true" (blur)="isAccounLevelFocus = false"
-              placeholder="Select account level"
-              (change)="setAccountFieldsVisibility($event);" formControlName="account_level">
+              placeholder="Select account level" (change)="setAccountFieldsVisibility($event);"
+              formControlName="account_level">
               <ng-option value="1">Level - 1 </ng-option>
               <ng-option value="2">Level - 2 </ng-option>
               <ng-option value="3">Level - 3 </ng-option>
@@ -36,8 +36,8 @@
             'custom-select': !isControlHasError('account_type', 'required'),
             'ng-select-focused': isParrentAccountFocus === true}
            " (focus)="isParrentAccountFocus = true" (blur)="isParrentAccountFocus = false"
-              placeholder="Select Account Type" formControlName="account_type">
-              <ng-option *ngFor="let item of accountTypes" [value]="item.title">{{item?.title}}</ng-option>
+              placeholder="Select Account Type" formControlName="account_type" (change)="getAccountLLevelOne($event)">
+              <ng-option *ngFor="let item of accountTypes" [value]="item._id"> <span [title]="item.title"> <span [title]="item.title">{{truncateText(item.title, 30)}}</span> </span> </ng-option>
             </ng-select>
             <small *ngIf="isControlHasError('account_type', 'required')" class="mt-1">Parrent account is
               required</small>
@@ -45,44 +45,43 @@
         </div>
         <div class="d-md-flex justify-content-between gap-3">
           <div class="mb-4 w-100 custom-ng-select"
-            *ngIf="selectedAccountLevel == 1 || selectedAccountLevel == 2 || selectedAccountLevel == 3">
+            *ngIf="selectedAccountLevel == '1' || selectedAccountLevel == '2' || selectedAccountLevel == '3'">
             <label for="required" class="required">Select Level - 1</label>
             <ng-select class="" [multiple]="false" [ngClass]="{
             'custom-select-error': isControlHasError('level_one', 'required'),
             'custom-select': !isControlHasError('level_one', 'required'),
             'ng-select-focused': isAccountFocus === true,
             }" formControlName="level_one" (focus)="isAccountFocus = true" (blur)="isAccountFocus = false"
-              placeholder="Enter level 1" (change)="getAccountDetailsType($event)">
-              <ng-option *ngFor="let item of accountTypes" [value]="item.title">{{item?.title}}</ng-option>
+              placeholder="Enter level 1" (change)="getAccountLLevelTwo()">
+              <ng-option *ngFor="let item of accountLevelOne" [value]="item._id"> <span [title]="item.title">{{truncateText(item.title, 30)}}</span> </ng-option>
             </ng-select>
             <small *ngIf="isControlHasError('level_one', 'required')" class="mt-1">Account level - 1 is
               required</small>
           </div>
-          <div class="mb-4 w-100 custom-ng-select" *ngIf="selectedAccountLevel == 2 || selectedAccountLevel == 3">
+          <div class="mb-4 w-100 custom-ng-select" *ngIf="selectedAccountLevel =='2' || selectedAccountLevel == '3'">
             <label for="" class="required">Select Level - 2</label>
             <ng-select class="" [multiple]="false" [ngClass]="{
             'custom-select-error': isControlHasError('level_two', 'required'),
             'custom-select': !isControlHasError('level_two', 'required'),
             'ng-select-focused': isDetailTypeFocus === true,
       }" formControlName="level_two" (focus)="isDetailTypeFocus = true" (blur)="isDetailTypeFocus = false"
-              placeholder="Enter level 2" (change)="getAccountDetailsType($event)">
-              <ng-option *ngFor="let item of accountTypes" [value]="item.title">{{item?.title}}</ng-option>
+              placeholder="Enter level 2" (change)="getAccountLLevelThree()">
+              <ng-option *ngFor="let item of accountLevelTwo" [value]="item._id"> <span [title]="item.title">{{truncateText(item.title, 30)}}</span> </ng-option>
             </ng-select>
             <small *ngIf="isControlHasError('level_two', 'required')" class="mt-1">Account level - 2 is
               required</small>
           </div>
         </div>
         <div class="d-md-flex justify-content-between gap-3">
-          <div class="mb-4 w-100 custom-ng-select" *ngIf="selectedAccountLevel == 3">
+          <div class="mb-4 w-100 custom-ng-select" *ngIf="selectedAccountLevel == '3'">
             <label for="required" class="required">Select Level - 3</label>
             <ng-select class="" [multiple]="false" [ngClass]="{
               'custom-select-error': isControlHasError('level_three', 'required'),
               'custom-select': !isControlHasError('level_three', 'required'),
               'ng-select-focused': isLevelThreeFocus === true,
-              }" formControlName="level_three" (focus)="isLevelThreeFocus = true"
-              (blur)="isLevelThreeFocus = false" [placeholder]="'Enter level 3'"
-              (change)="getAccountDetailsType($event)">
-              <ng-option *ngFor="let item of accountTypes" [value]="item.title">{{item?.title}}</ng-option>
+              }" formControlName="level_three" (focus)="isLevelThreeFocus = true" (blur)="isLevelThreeFocus = false"
+              [placeholder]="'Enter level 3'">
+              <ng-option *ngFor="let item of accountLevelThree" [value]="item._id"> <span [title]="item.title">{{truncateText(item.title, 30)}}</span> </ng-option>
             </ng-select>
             <small *ngIf="isControlHasError('level_three', 'required')" class="mt-1">Account level - 3 is
               required</small>
@@ -152,7 +151,7 @@
             </small>
           </div>
         </div> -->
-        <div class="custom-input" >
+        <div class="custom-input">
           <label for="">Description</label>
           <div class="editor-container" [ngClass]="{'description-error':isControlHasError('description', 'required')}">
             <div class="editor-tabs position-relative">
@@ -175,7 +174,8 @@
             <quill-editor class="quill-editor border-0" (onFocus)="isQuillFocus = true" (onBlur)="isQuillFocus = false"
               [modules]="editorConfig" theme="snow" placeholder="Enter Description Here..."
               formControlName="description"></quill-editor>
-              <small class="text-danger" *ngIf="isControlHasError('description','required')">Description is required.</small>
+            <small class="text-danger" *ngIf="isControlHasError('description','required')">Description is
+              required.</small>
           </div>
         </div>
       </form>
