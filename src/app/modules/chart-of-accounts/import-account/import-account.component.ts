@@ -15,6 +15,7 @@ export class ImportAccountComponent implements OnInit {
   isImportButtonDisabled = false;
   isFileSelected = false;
   importData: any;
+  importedAccountsLengths: number = 0;
   chartOfAccountMultipleData: any;
 
   constructor(
@@ -23,7 +24,7 @@ export class ImportAccountComponent implements OnInit {
     private toastService: ToastrService,
     private router: Router) { }
 
-    
+
   ngOnInit() {}
 
   importFile(evt: any, eventForFileSelection: Event) {
@@ -71,6 +72,7 @@ export class ImportAccountComponent implements OnInit {
       ...account,
       business: this.localStorage.getItem('user')?.business
     }));
+    this.importedAccountsLengths = this.chartOfAccountMultipleData.length;
   }
 
   to_snake_case(str: string): string {
@@ -88,7 +90,7 @@ export class ImportAccountComponent implements OnInit {
     this.isImportButtonDisabled = true;
     this.crudService.create('charts-of-accounts/create-many', this.chartOfAccountMultipleData).subscribe(response => {
       if (response.data?.status_code == 201) {
-        this.toastService.success("Charts Of Account Added.", 'Success')
+        this.toastService.success(`${this.importedAccountsLengths} accounts are added.`, 'Success')
         this.router.navigate(['charts-of-account']);
       }
     }, error => {
