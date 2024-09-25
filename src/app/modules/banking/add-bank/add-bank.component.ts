@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, ValidatorFn, AbstractControl } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { environment } from 'src/environments/environment';
-import { BankingService } from '../banking.service';
 import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 import { ToastrService } from 'ngx-toastr';
+import { CrudService } from 'src/app/shared/services/crud.service';
 @Component({
   selector: 'app-add-bank',
   templateUrl: './add-bank.component.html',
@@ -46,7 +46,7 @@ export class AddBankComponent implements OnInit {
   bankingData: any;
   isUpdateMode: boolean = false
   constructor(private modalService: BsModalService,private fb: FormBuilder,  private http:HttpClient,
-    private bankinService:BankingService, private LocalStoreService: LocalStoreService , private toastr: ToastrService
+   private LocalStoreService: LocalStoreService , private toastr: ToastrService,private CrudService : CrudService
   ) { }
 
   ngOnInit() {
@@ -70,8 +70,8 @@ export class AddBankComponent implements OnInit {
       name:[null,Validators.compose([Validators.required])],
       branch_name:[null,Validators.compose([Validators.required])],
       account_natures:[null,Validators.compose([Validators.required])],
-      account_number:[null,Validators.compose([Validators.required])],
-      iban_number:[null,Validators.compose([Validators.required])],
+      account_number: [null, Validators.compose([Validators.required])],
+      iban_number: [null, Validators.compose([Validators.required])],
       balance:[null],
       business:[""],
       bank:[null,Validators.compose([Validators.required])],
@@ -88,6 +88,7 @@ export class AddBankComponent implements OnInit {
     );
   }
 
+  
 
   closeModal(): void {
     this.modalService.hide();
@@ -150,6 +151,7 @@ export class AddBankComponent implements OnInit {
   }
 submitForm() {
   if(this.applicationForm?.invalid){
+    this.toastr.error('please fill all fileds', 'Error');
     this.applicationForm?.markAllAsTouched();
   return
   }
@@ -158,7 +160,7 @@ submitForm() {
   if(postData['balance'] == null){
     postData['balance'] = 0
   }
-  this.bankinService.createBankingResource(postData).subscribe(
+  this.CrudService.create('banking',postData).subscribe(
     response => {
       console.log('Response:', response);
       this.toastr.success(
@@ -169,13 +171,14 @@ submitForm() {
       this.successCall.emit();
     },
     error => {
+      this.toastr.error(error.massege, 'Error');
       console.error('Error:', error);
     }
   );
 }
 
 fetchBankingData() {
-  this.bankinService.getBankingResource().subscribe(
+  this.CrudService.read('banks').subscribe(
     (response: any) => {
       if (response?.data?.data?.payload) {
         this.bankingData = response.data.data.payload;
@@ -189,7 +192,6 @@ fetchBankingData() {
     }
   );
 }
-
   ngOnDestroy(): void {
     this.isQuillFocus = false;
   }
@@ -216,7 +218,7 @@ fetchBankingData() {
     if(postData['balance'] == null){
       postData['balance'] = 0
     }
-    this.bankinService.editBankingResource(this.data?._id,postData).subscribe(
+    this.CrudService.update('banking',this.data?._id,postData).subscribe(
       response => {
         console.log('Response:', response);
         this.toastr.success(
@@ -236,5 +238,10 @@ fetchBankingData() {
     return control?.invalid && (control.dirty || control.touched) ? true : false;
   }
   
+  sanitizeInput(event: any, controlName: string) {
+    const input = event.target.value;
+    const sanitizedValue = input.replace(/[^a-zA-Z0-9 ]/g, ''); 
+    this.applicationForm.get(controlName)?.setValue(sanitizedValue);
+  }
   
 }
