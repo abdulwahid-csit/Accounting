@@ -5,7 +5,6 @@ import { ChartOfAccountsRoutes } from './chart-of-accounts.routing';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddAccountComponent } from './add-account/add-account.component';
-import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ImportAccountComponent } from './import-account/import-account.component';
@@ -19,7 +18,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
     ChartOfAccountsRoutes,
     NgSelectModule,
-    QuillModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,

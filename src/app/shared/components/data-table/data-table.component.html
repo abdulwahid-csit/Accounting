@@ -3,41 +3,50 @@
     <thead>
       <tr>
         <th *ngFor="let column of columns">
-          <ng-container *ngIf="column.isCheckbox">
+          <!-- <ng-container *ngIf="column.isCheckbox">
             <input type="checkbox" />
           </ng-container>
           <ng-container *ngIf="!column.isCheckbox">
             {{ column.name }}
-          </ng-container>
+          </ng-container> -->
+          {{column}}
         </th>
       </tr>
     </thead>
     <tbody [ngClass]="{'tbody-empty': filterData.length === 0}">
-      <tr *ngFor="let row of filterData">
+      <tr *ngFor="let row of dataSet">
         <td class="align-content-center" style="font-size: 12px;" *ngFor="let column of columns">
-          <ng-container [ngSwitch]="column.key">
+          <ng-container [ngSwitch]="column">
 
             <span *ngSwitchCase="'isChecked'">
               <input type="checkbox" [(ngModel)]="row[column.key]" />
             </span>
 
-            <span *ngSwitchCase="'opening_date'">{{ row[column.key]  | date}}</span>
+            <span *ngSwitchCase="'opening_date'">{{ row[column.key] | date}}</span>
             <span *ngSwitchCase="'branch_name'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'name'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'account_natures'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'bank'">{{ row[column.key]?.title}}</span>
+            <!-- <span *ngSwitchCase="'name'">{{ row[column.key] }}</span> -->
+            <!-- <span *ngSwitchCase="'account_natures'">{{ row[column.key] }}</span> -->
+            <span *ngSwitchCase="'bank'" [title]="getTitle(row[column])">{{getObjectValues(row[column]) || '-'}}</span>
             <span *ngSwitchCase="'account_number'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'iban_number'">{{ row[column.key]  }}</span>
-            <span *ngSwitchCase="'balance'">{{ row[column.key] | currency  }}</span>
-            <span *ngSwitchCase="'Active'"><div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" 
-                     [checked]="row.someBooleanValue" 
-                     (change)="toggleSwitch(row)" 
-                     id="flexSwitchCheckDefault{{row.id}}">
-              <label class="form-check-label" for="flexSwitchCheckDefault{{row.id}}">
-                {{ row.someBooleanValue ? 'Yes' : 'No' }}
-              </label>
-            </div></span>
+            <span *ngSwitchCase="'iban_number'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'balance'">{{ row[column.key] | currency }}</span>
+            <span *ngSwitchCase="'account_type'" [title]="getTitle(row[column])">{{getObjectValues(row[column]) ||
+              '-'}}</span>
+            <span *ngSwitchCase="'level_one'" [title]="getTitle(row[column])">{{getObjectValues(row[column]) ||
+              '-'}}</span>
+            <span *ngSwitchCase="'level_two'" [title]="getTitle(row[column])">{{getObjectValues(row[column]) ||
+              '-'}}</span>
+            <span *ngSwitchCase="'level_three'" [title]="getTitle(row[column])">{{getObjectValues(row[column]) ||
+              '-'}}</span>
+            <span *ngSwitchCase="'Active'">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" [checked]="row.someBooleanValue"
+                  (change)="toggleSwitch(row)" id="flexSwitchCheckDefault{{row.id}}">
+                <label class="form-check-label" for="flexSwitchCheckDefault{{row.id}}">
+                  {{ row.someBooleanValue ? 'Yes' : 'No' }}
+                </label>
+              </div>
+            </span>
             <span *ngSwitchCase="'icons'">
               <button (click)="editMethod(row)" class="btn btn-edit">
                 <i class="fas fa-edit"></i>
@@ -46,8 +55,9 @@
                 <i class="fas fa-trash-alt"></i>
               </button>
             </span>
-            
-            <span *ngSwitchDefault>{{ row[column.key] }}</span>
+
+            <span *ngSwitchDefault [title]="row[column]">{{( row[column].length > 30) ? (row[column] | slice:0:30) +
+              '...' : row[column] }}</span>
           </ng-container>
         </td>
       </tr>
@@ -64,12 +74,9 @@
       </p>
     </div>
     <div>
-      <app-pagination
-        [totalPages]="config.paginationParams.total_pages"
-        [currentPage]="config.paginationParams.current_page"
-        (currentPageChange)="onPageChange($event)">
+      <app-pagination [totalPages]="config.paginationParams.total_pages"
+        [currentPage]="config.paginationParams.current_page" (currentPageChange)="onPageChange($event)">
       </app-pagination>
     </div>
   </div>
 </div>
-

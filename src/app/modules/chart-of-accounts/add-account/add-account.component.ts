@@ -22,9 +22,13 @@ export class AddAccountComponent implements OnInit, OnDestroy {
   isAccounLevelFocus = false
   isLevelThreeFocus = false;
   editorContent = ''
-  selectedAccountLevel: number = 1;
+  selectedAccountLevel = 'Level - 1';
+  accountTypeId!: string;
   accountTypes: any;
   accountDetailsTypes: any;
+  accountLevelOne: any;
+  accountLevelTwo: any;
+  accountLevelThree: any
   @ViewChild('printSection', { static: false }) printSection!: ElementRef;
 
 
@@ -49,7 +53,7 @@ export class AddAccountComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initializeForm();
-    this.getAccountType();
+    this.getAccountTypes();
   }
 
   isControlHasError(controlName: any, validationType: string): boolean {
@@ -112,7 +116,7 @@ export class AddAccountComponent implements OnInit, OnDestroy {
 
   initializeForm() {
     this.applicationForm = new FormGroup({
-      account_level: new FormControl(1),
+      account_level: new FormControl('Level - 1'),
       account_type: new FormControl(null, [Validators.required]),
       level_one: new FormControl(null, [Validators.required]),
       level_two: new FormControl(null),
@@ -123,41 +127,15 @@ export class AddAccountComponent implements OnInit, OnDestroy {
     })
 
   }
-  getAccountType() {
-    this.CrudService.read('meta-data/account-type').subscribe(response => {
-      if (response.data?.status_code === 200) {
-        this.accountTypes = response.data?.data;
-        console.log("Data: ", this.accountTypes)
-      } else {
-        console.log("Error response: ", response);
-      }
-    })
-  }
 
-
-  getAccountDetailsType(selectedAccountType: any): void {
-    const accountTypeName = selectedAccountType;
-    console.log('Selected Account Type Name:', accountTypeName);
-    this.CrudService.read('meta-data/account-detail-type').subscribe(response => {
-      if (response.data?.status_code === 200) {
-        this.accountDetailsTypes = response.data?.data;
-        console.log("Account details types: ", this.accountDetailsTypes);
-      } else {
-        console.log("Error: ", response);
-      }
-    })
-  }
-
-
-
-  setAccountFieldsVisibility(value: number) {
+  setAccountFieldsVisibility(value: string) {
     this.selectedAccountLevel = value;
     this.applicationForm.markAsUntouched();
-    if (value == 2) {
+    if (value == '2') {
       this.applicationForm?.get('level_one')?.setValidators(Validators.required);
       this.applicationForm?.get('level_two')?.setValidators(Validators.required);
     }
-    else if (value == 3) {
+    else if (value == '3') {
       this.applicationForm?.get('level_one')?.setValidators(Validators.required);
       this.applicationForm?.get('level_two')?.setValidators(Validators.required);
       this.applicationForm?.get('level_three')?.setValidators(Validators.required);
@@ -174,6 +152,55 @@ export class AddAccountComponent implements OnInit, OnDestroy {
   }
 
 
+  getAccountTypes() {
+    this.CrudService.read('account-types/account-type').subscribe(response => {
+      if (response.data?.status_code == 201) {
+        this.accountTypes = response.data?.data?.payload;
+      }
+    }, error => {
+      console.log("Error while frtcing account types: ", error.message);
+    })
+  }
+
+
+  getAccountLLevelOne(id: any) {
+    this.accountTypeId = id;
+    this.CrudService.read('account-types/level-one?account_type=' + id).subscribe(response => {
+      if (response.data?.status_code == 201) {
+        this.accountLevelOne = response.data?.data?.payload;
+      }
+    }, error => {
+      console.log("Error while frtcing account types: ", error.message);
+    })
+  }
+
+
+  getAccountLLevelTwo() {
+    console.log("Account LEvel Two is called: ",);
+    this.CrudService.read(`account-types/level-two?level_one=${this.accountTypeId}`).subscribe(response => {
+      if (response.data?.status_code == 201) {
+        this.accountLevelTwo = response.data?.data?.payload;
+      }
+    }, error => {
+      console.log("Error while frtcing account types: ", error.message);
+    })
+  }
+
+
+  getAccountLLevelThree() {
+    this.CrudService.read(`account-types/level-three?level-twe=${this.accountTypeId}`).subscribe(response => {
+      if (response.data?.status_code == 201) {
+        this.accountLevelThree = response.data?.data?.payload;
+      }
+    }, error => {
+      console.log("Error while frtcing account types: ", error.message);
+    })
+  }
+
+  truncateText(text: string, maxLength: number): string {
+    return text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+}
+
 
   onSubmit() {
     if (this.applicationForm.invalid) {
@@ -189,6 +216,7 @@ export class AddAccountComponent implements OnInit, OnDestroy {
         .filter(([key, value]) => value !== null && value !== '')
     );
     filterFormData['business'] = this.locaStorage.getItem('user')?.business;
+    console.log("Form data: ", filterFormData);
 
     this.CrudService.create('charts-of-accounts', filterFormData).subscribe(response => {
       if (response.data?.status_code == 201) {

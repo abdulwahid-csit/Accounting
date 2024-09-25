@@ -48,7 +48,7 @@
     <div class="custom-inpu">
       <label for="" class="req_field">Select Excel File</label>
       <div class="button mt-2 border rounded w-50 py-2 px-3">
-        <input #file type="file" name="" id="" (change)="isImportButtonDisabled = false; importFile(file, $event)" accept=".xlsx, .xls">
+        <input #file type="file" name="" id="" (change)="isImportButtonDisabled = false; importFile(file)" accept=".xlsx, .xls">
       </div>
     </div>
 
@@ -65,12 +65,12 @@
     <div class="table-for-imports mt-4">
       <table class="table border">
         <thead>
-          <th class="border req_field">Account Type</th>
-          <th class="border req_field">Level 1</th>
+          <th class="border">Account Type</th>
+          <th class="border">Level 1</th>
           <th class="border">Level 2</th>
-          <th class="border req_field">Level 3</th>
+          <th class="border">Level 3</th>
           <th class="border">Name</th>
-          <th class="border">Number 3</th>
+          <th class="border">Number</th>
           <th class="border">Description</th>
         </thead>
         <tbody>
@@ -82,6 +82,9 @@
             <td>{{item.name? item.name: 'N/A'}}</td>
             <td>{{item.number? item.number: 'N/A'}}</td>
             <td>{{item.description? item.description: 'N/A'}}</td>
+          </tr>
+          <tr *ngIf="isImportedFileEmpty">
+            <td colspan="7" class="text-center fs-14px">File Is Empty! Please chose a valid file.</td>
           </tr>
         </tbody>
       </table>
