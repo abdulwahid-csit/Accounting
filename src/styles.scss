@@ -1,6 +1,4 @@
 @import url('./assets/icon-styles.scss');
-@import '../node_modules/quill/dist/quill.snow.css';
-@import '../node_modules/quill-mention/dist/quill.mention.css';
 
 
 @font-face {
@@ -222,7 +220,8 @@ body {
     }
     input, textarea {
         padding: 8px 16px;
-        border: var(--bs-border-width) solid var(--bs-border-color);
+        // border: var(--bs-border-width) solid var(--bs-border-color) !important;
+        border-color: #dee2e6 ;
         font-size: 14px;
         font-weight: 600;
         letter-spacing: 0px;
@@ -235,6 +234,9 @@ body {
     }
     textarea::placeholder{
         padding-top: 4px !important;
+        font-size: 14px;
+        font-weight: 500;
+        color: #8492a6;
     }
     input[type="password"]{
         font-size: 18px;
@@ -249,7 +251,7 @@ body {
         // padding: 8px 16px;
         border: var(--bs-border-width) solid var(--bs-border-color);
         outline: 0;
-        border-color: #6f63bd;
+        border-color: #6f63bd !important;
         box-shadow: 0 0 0 0.25rem rgba(111, 97, 207, 0.20);
 
     }
