@@ -130,7 +130,7 @@
     </div>
     <div class="row">
       <div class="col-md-3" *ngIf="isFormdateVisible">
-        <label for="">Form date</label>
+        <label for=""><span class="text-danger">*</span>Form date</label>
         <div class="input-group w-auto mt-2">
           <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker
             [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="datepickerInput">
@@ -148,7 +148,7 @@
 
       </div>
       <div class="col-md-3" *ngIf="isTodateVisible">
-        <label for="">To date</label>
+        <label for=""><span class="text-danger">*</span>To date</label>
 
         <div class="input-group w-auto mt-2">
           <input type="text" placeholder="Datepicker" class="form-control customClass" bsDatepicker
