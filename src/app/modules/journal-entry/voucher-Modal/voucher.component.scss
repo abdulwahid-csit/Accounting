@@ -20,3 +20,8 @@ button.btn.btn-minus {
 ::ng-deep .ng-clear-wrapper{
  display: none;
 }
+
+.invalid {
+    border: 1px solid red;
+}
+
