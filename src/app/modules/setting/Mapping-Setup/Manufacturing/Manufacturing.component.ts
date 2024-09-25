@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingService } from '../../setting.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder } from '@angular/forms';
 import { LocalStoreService } from 'src/app/shared/services/local-store.service';
-import { BankingService } from 'src/app/modules/banking/banking.service';
-
+import { CrudService } from 'src/app/shared/services/crud.service';
 @Component({
   selector: 'app-Manufacturing',
   templateUrl: './Manufacturing.component.html',
@@ -15,7 +13,7 @@ export class ManufacturingComponent implements OnInit {
   update: boolean = false;
   user: any;
   accountTypes: { type: string; key: string }[] = [
-    { type: 'Manufacture Order', key: 'manufacture_Order' },
+    // { type: 'Manufacture Order', key: 'manufacture_Order' },
     { type: 'Material Cost', key: 'material_cost' },
     { type: 'Labour Cost', key: 'labour_cost' }
   ];
@@ -24,9 +22,8 @@ export class ManufacturingComponent implements OnInit {
 
   constructor(
     private LocalStoreService: LocalStoreService, 
-    private settingService: SettingService,
     private toastr: ToastrService,
-    private bankinService: BankingService
+    private CrudService : CrudService
   ) { }
 
   ngOnInit(): void {
@@ -65,9 +62,8 @@ export class ManufacturingComponent implements OnInit {
       labour_cost: {},
       business: this.user.business
     };
-
-    // Iterating over accounts and populating the data
     this.accounts.forEach(account => {
+      if (account.payment_account || account.deposite_account) {
       if (account.enable) {
         const mapping = this.accountTypes.find(type => type.type === account.type);
         if (mapping) {
@@ -83,10 +79,11 @@ export class ManufacturingComponent implements OnInit {
           }
         }
       }
+    }
     });
-
+console.log("data",data)
     // Send the data to the backend
-    this.settingService.createSettingsManufacture(data).subscribe(
+    this.CrudService.create('manufacture/create-update',data).subscribe(
       response => {
         console.log('Response:', response);
         this.toastr.success(
@@ -102,7 +99,7 @@ export class ManufacturingComponent implements OnInit {
   }
 
   fetchSetting() {
-    this.settingService.getSettingsManufacture(this.user?.business).subscribe(
+    this.CrudService.read('manufacture/business',this.user?.business).subscribe(
       (response: any) => {
         if (response?.data?.data) {
           this.setting = response.data.data;
@@ -146,7 +143,7 @@ export class ManufacturingComponent implements OnInit {
     );
   }
   fetchBankingData(page: number = 1) {
-    this.bankinService.getBankResource().subscribe(
+    this.CrudService.read('banking').subscribe(
       (response: any) => {
         if (response?.data?.data?.payload) {
           // Extracting the payload

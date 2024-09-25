@@ -17,6 +17,7 @@ export class ImportAccountComponent implements OnInit {
   importData: any;
   importedAccountsLengths: number = 0;
   chartOfAccountMultipleData: any;
+  isImportedFileEmpty = false;
 
   constructor(
     private localStorage: LocalStoreService,
@@ -25,18 +26,10 @@ export class ImportAccountComponent implements OnInit {
     private router: Router) { }
 
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  importFile(evt: any, eventForFileSelection: Event) {
-    const input = eventForFileSelection.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.isFileSelected = true;
-      this.isImportButtonDisabled = false;
-    } else {
-      this.isFileSelected = false;
-      this.isImportButtonDisabled = true;
-    }
-
+  importFile(evt: any) {
+    // const input = eventForFileSelection.target as HTMLInputElement;
     const target: DataTransfer = <DataTransfer>(evt);
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');
     const reader: FileReader = new FileReader();
@@ -72,7 +65,11 @@ export class ImportAccountComponent implements OnInit {
       ...account,
       business: this.localStorage.getItem('user')?.business
     }));
+    console.log("Data without exclude of mandatory fields:", this.chartOfAccountMultipleData);
+    this.chartOfAccountMultipleData = this.filterObjectsWithMandatoryFields(this.chartOfAccountMultipleData);
     this.importedAccountsLengths = this.chartOfAccountMultipleData.length;
+    console.log("Data with exclude of mandatory fields", this.chartOfAccountMultipleData);
+    this.checkIfFileIsNotValid(this.chartOfAccountMultipleData);
   }
 
   to_snake_case(str: string): string {
@@ -84,6 +81,26 @@ export class ImportAccountComponent implements OnInit {
       .toLowerCase();
   }
 
+
+  filterObjectsWithMandatoryFields(object: any) {
+    return object.filter((obj: { account_type: any; level_one: any; name: any; number: any; }) =>
+      obj.account_type && obj.level_one && obj.name && obj.number
+    );
+  }
+
+
+  checkIfFileIsNotValid(object: any){
+    if (object.length > 0) {
+      this.isFileSelected = true;
+      this.isImportButtonDisabled = false;
+      this.isImportedFileEmpty = false;
+    } else {
+      this.isFileSelected = true;
+      this.isImportButtonDisabled = true;
+      this.isImportedFileEmpty = true;
+
+    }
+  }
 
 
   submittDataToServer() {
@@ -97,4 +114,7 @@ export class ImportAccountComponent implements OnInit {
       this.toastService.error(error.message, "Error !");
     })
   }
+
+
+
 }

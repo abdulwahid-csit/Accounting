@@ -1,23 +1,16 @@
-<div class="col-md-12 col-lg-12 mt-5 main-content">
-    <div class="row d-flex align-items-center">
+<div class="col-md-12 col-lg-12 mt-5 card">
+    <div class="row d-flex align-items-center card-body">
         <div class="text-muted mt-2">Journal Entry</div>
         <div class="row mt-4">
             <div class="col-md-3">
                 <label for=""><span class="text-danger mx-1">*</span>Number</label>
-                <input 
-                    type="text" 
-                    class="form-control mt-2" 
-                    formControlName="number" 
-                    [ngClass]="{'is-invalid': journalEntryForm.get('number')?.touched && journalEntryForm.get('number')?.invalid}">
-                <div *ngIf="journalEntryForm.get('number')?.touched && journalEntryForm.get('number')?.invalid" class="text-danger">
-                    This field is requireda
-                </div>
+                <input type="number" class="form-control mt-2">
             </div>
             <div class="col-md-3">
                 <label for=""><span class="text-danger mx-1">*</span>Journal date</label>
                 <div class="input-group w-auto mt-2">
                     <input 
-                        type="text" 
+                        type="number" 
                         placeholder="Datepicker" 
                         class="form-control customClass" 
                         bsDatepicker 
@@ -39,15 +32,15 @@
             
             <div class="col-md-6">
                 <label for="accountsSelect" class="form-label">Recurring Journal Entry</label>
-              
-                <ng-select 
-                  [items]="journal" 
-                  bindLabel="name" 
-                  bindValue="id" 
+
+                <ng-select
+                  [items]="journal"
+                  bindLabel="name"
+                  bindValue="id"
                   [(ngModel)]="selectedAccounts"
-                  [multiple]="true" 
-                  [groupBy]="'category'" 
-                  placeholder="None selected" 
+                  [multiple]="true"
+                  [groupBy]="'category'"
+                  placeholder="None selected"
                   [closeOnSelect]="false"
                   (change)="onSelectionChange($event)">
                   <ng-template ng-option-tmp let-item="item">
@@ -57,10 +50,10 @@
                     </div>
                   </ng-template>
                 </ng-select>
-                
-               
+
+
               </div>
-              
+
         </div>
         <div class="row mt-2">
             <div class="col-md-6">
@@ -73,14 +66,14 @@
                         <input type="text" id="customField1" class="form-control" [(ngModel)]="customField1">
                     </div>
                       <div class="col-md-3">
-                        <ng-select 
-                        [items]="Schdule" 
-                        bindLabel="name" 
-                        bindValue="id" 
+                        <ng-select
+                        [items]="Schdule"
+                        bindLabel="name"
+                        bindValue="id"
                         [(ngModel)]="customField2"
-                        [multiple]="true" 
-                        [groupBy]="'category'" 
-                        placeholder="None selected" 
+                        [multiple]="true"
+                        [groupBy]="'category'"
+                        placeholder="None selected"
                         [closeOnSelect]="false"
                         >
                     </ng-select>
@@ -183,16 +176,15 @@
         </div>
 
 
-        <div class="row mt-5">
-            <div class="editor-container">
-                <quill-editor [(ngModel)]="htmlText" placeholder="Enter Text" [modules]="quillConfig"
-                    class="editor-content" (onSelectionChanged)="onSelectionChanged($event)"
-                    (onContentChanged)="onContentChanged($event)"></quill-editor>
-
-                <div class="text-end save-button-container mx-5 px-5">
-                    <button class="btn btn-primary">Save</button>
-                </div>
+        <div class="row mt-5 ">
+            <div class="card ">
+                <!-- <quill-editor [(ngModel)]="htmlText" placeholder="Enter Text" [modules]="quillConfig"
+                    class="card-body" (onSelectionChanged)="onSelectionChanged($event)"
+                    (onContentChanged)="onContentChanged($event)"></quill-editor> -->
             </div>
+            <div class="text-end save-button-container mt-2">
+              <button class="btn btn-primary">Save</button>
+          </div>
 
         </div>
     </div>

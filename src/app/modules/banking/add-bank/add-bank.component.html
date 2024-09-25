@@ -81,22 +81,38 @@
             </div>
             </div>
         <div class="d-md-flex justify-content-between align-items-center gap-3 mb-4">
-          <div class="custom-input app-url w-100 "
-            [ngClass]="(isControlHasError('account_number', 'required') || isControlHasError('account_number', 'pattern')) ? 'custom-input-error' : 'custom-input'">
-            <label for="appUrl" class="mb-1 primary_color fw-700 required">Account No </label>
-            <input type="text" trim="blur" maxlength="30"  formControlName="account_number" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Account No" />
-            <small *ngIf="isControlHasError('account_number', 'required')" class="text-danger fs-12px mt-1">
-              Account No Required
-            </small>
-          </div>
-          <div class="custom-input app-url w-100 "
+          <div class="custom-input app-url w-100"
+          [ngClass]="(isControlHasError('account_number', 'required') || isControlHasError('account_number', 'pattern')) ? 'custom-input-error' : 'custom-input'">
+       <label for="appUrl" class="mb-1 primary_color fw-700 required">Account No</label>
+       <input (input)="sanitizeInput($event, 'account_number')" 
+              type="text" 
+              trim="blur" 
+              maxlength="30"  
+              formControlName="account_number" 
+              id="appUrl" 
+              class="form-control form-control-lg ps-3 fs-14px" 
+              placeholder="Enter Account No" />
+       <small *ngIf="isControlHasError('account_number', 'required')" class="text-danger fs-12px mt-1">
+         Account No Required
+       </small>
+     </div>
+     
+     <div class="custom-input app-url w-100"
           [ngClass]="(isControlHasError('iban_number', 'required') || isControlHasError('iban_number', 'pattern')) ? 'custom-input-error' : 'custom-input'">
-          <label for="appUrl" class="mb-1 primary_color fw-700 required">IBAN No</label>
-          <input type="text" trim="blur" maxlength="30"  formControlName="iban_number" type="text" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter IBAN No" />
-          <small *ngIf="isControlHasError('iban_number', 'required')" class="text-danger fs-12px mt-1">
-            IBAN No Required
-          </small>
-        </div>
+       <label for="appUrl" class="mb-1 primary_color fw-700 required">IBAN No</label>
+       <input (input)="sanitizeInput($event, 'iban_number')" 
+              type="text" 
+              trim="blur" 
+              maxlength="30"  
+              formControlName="iban_number" 
+              id="appUrl" 
+              class="form-control form-control-lg ps-3 fs-14px" 
+              placeholder="Enter IBAN No" />
+       <small *ngIf="isControlHasError('iban_number', 'required')" class="text-danger fs-12px mt-1">
+         IBAN No Required
+       </small>
+     </div>
+     
         <div class="custom-input app-url w-100 ">
        <label for="appUrl" class="mb-1 primary_color fw-700 ">Opening Balance</label>
         <input type="number" trim="blur" maxlength="30"  formControlName="balance" id="appUrl" class="form-control form-control-lg ps-3 fs-14px" placeholder="Enter Balance" />

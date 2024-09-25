@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingService } from '../../setting.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalStoreService } from 'src/app/shared/services/local-store.service';
-import { BankingService } from 'src/app/modules/banking/banking.service';
+import { CrudService } from 'src/app/shared/services/crud.service';
 @Component({
   selector: 'app-Purchase',
   templateUrl: './Purchase.component.html',
@@ -33,9 +32,8 @@ export class PurchaseComponent implements OnInit {
 
   constructor(
     private localStoreService: LocalStoreService,
-    private settingService: SettingService,
     private toastr: ToastrService,
-    private bankinService: BankingService
+    private CrudService:CrudService
   ) {}
 
   ngOnInit(): void {
@@ -74,6 +72,7 @@ export class PurchaseComponent implements OnInit {
     };
 
     this.accounts.forEach(account => {
+      if (account.payment_account || account.deposite_account) {
       if (account.enable) {
         data[account.key] = {
           payment_account: account.payment_account,
@@ -81,9 +80,10 @@ export class PurchaseComponent implements OnInit {
         };
         data[account.key.replace('_accounts', '')] = true;
       }
+    }
     });
 
-    this.settingService.createSettingsPurchase(data).subscribe(
+    this.CrudService.create('purchase/create-update',data).subscribe(
       response => {
         this.toastr.success(
           this.update ? 'Settings updated successfully' : 'Settings saved successfully',
@@ -98,7 +98,7 @@ export class PurchaseComponent implements OnInit {
     );
   }
   fetchSetting() {
-    this.settingService.getSettingsPurchase(this.user?.business).subscribe(
+    this.CrudService.read('purchase/business',this.user?.business).subscribe(
       (response: any) => {
         if (response?.data?.data) {
           this.setting = response.data.data;
@@ -119,7 +119,7 @@ export class PurchaseComponent implements OnInit {
               }
   
               // Assuming you might have a similar structure for deposit_account
-              const depositAccountData = this.setting[mapping.key]?.deposite_account;
+              const depositAccountData = this.setting[mapping.key]?.deposite_to;
               if (depositAccountData) {
                 account.deposite_account = depositAccountData._id; // Set account ID
                 // account.deposite_account = depositAccountData.name; // Optional: Save the name if needed
@@ -142,7 +142,7 @@ export class PurchaseComponent implements OnInit {
     );
   }
   fetchBankingData(page: number = 1) {
-    this.bankinService.getBankResource().subscribe(
+    this.CrudService.read('banking').subscribe(
       (response: any) => {
         if (response?.data?.data?.payload) {
           // Extracting the payload

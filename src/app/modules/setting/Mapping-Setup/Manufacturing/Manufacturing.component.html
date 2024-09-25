@@ -8,15 +8,21 @@
       <div class="d-flex col-3 justify-content-between">
         <div>{{ account.type }}</div>
         <div>
-          <div class="form-check form-switch border-start">
+          <!-- <div class="form-check form-switch border-start">
             <input 
               class="form-check-input" 
               type="checkbox" 
               [(ngModel)]="account.enable" 
               (change)="toggleAccount(i)">
             <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-          </div>
+          </div> -->
+
+       
+        <div class="form-check form-switch border-start ">
+          <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="account.enable">
+          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
         </div>
+      </div>
       </div>
 
       <div *ngIf="account.enable">

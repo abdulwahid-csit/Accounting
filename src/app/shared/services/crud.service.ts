@@ -18,7 +18,6 @@ export class CrudService {
   // }
 
   // private apiUrl: string = environment.apiUrl;
-
   constructor(
     private http: HttpClient,
     private LocalStoreService: LocalStoreService
@@ -70,15 +69,21 @@ export class CrudService {
   private handleError(error: any): Observable<never> {
     return throwError(() => new Error(error.error.errors[0]));
   }
-
-// get
-//   getBankResource(page: number = 1, pageSize: number = 10): Observable<any> {
-//     const url = `${this.apiUrl}banking`;
-//     const params = {
-//       page: page.toString(),
-//       pageSize: pageSize.toString()
-//     };
-//     return this.http.get(url, { headers: this.getHeaders(), params });
-// }
-
+  readWithPaginations(endpoint: string, page?: number, selectedPageSize?: number, id?: number): Observable<any | any[]> {
+    let url = `${this.apiUrl}${endpoint}`;
+    
+    if (id) {
+      url += `/${id}`;
+    }
+      const params: any = {};
+    if (page !== undefined) {
+      params.page = page.toString();
+    }
+    if (selectedPageSize !== undefined) {
+      params.limit = selectedPageSize.toString();
+    }
+    return this.http.get<any | any[]>(url, { headers: this.getHeaders(), params })
+      .pipe(catchError(this.handleError));
+  }
+  
 }

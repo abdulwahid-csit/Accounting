@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingService } from '../../setting.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalStoreService } from 'src/app/shared/services/local-store.service';
-import { BankingService } from 'src/app/modules/banking/banking.service';
+import { CrudService } from 'src/app/shared/services/crud.service';
 @Component({
   selector: 'app-Payslips',
   templateUrl: './Payslips.component.html',
@@ -21,8 +20,9 @@ export class PayslipsComponent implements OnInit {
   ];
   setting: any;
   bankingData: any;
-  constructor(private LocalStoreService : LocalStoreService, private settingService:SettingService,
-    private fb : FormBuilder , private toastr: ToastrService, private bankinService: BankingService
+  constructor(private LocalStoreService : LocalStoreService,
+    private fb : FormBuilder , private toastr: ToastrService,
+    private CrudService:CrudService
   ) { }
 
   ngOnInit(): void {
@@ -61,6 +61,7 @@ export class PayslipsComponent implements OnInit {
     };
 
     this.accounts.forEach(account => {
+      if (account.payment_account || account.deposite_account) {
       if (account.enable) {
         const mapping = this.accountTypes.find(type => type.type === account.type);
         if (mapping) {
@@ -71,8 +72,9 @@ export class PayslipsComponent implements OnInit {
           };
         }
       }
+    }
     });
-    this.settingService.createSettingsPaySlips(data).subscribe(
+    this.CrudService.create('pay-slip/create-update',data).subscribe(
       response => {
         console.log('Response:', response);
         // this.successCall.emit();
@@ -88,7 +90,7 @@ export class PayslipsComponent implements OnInit {
     );
   }
   fetchSetting() {
-    this.settingService.getSettingsPaySlips(this.user?.business).subscribe(
+    this.CrudService.read('pay-slip',this.user?.business).subscribe(
       (response: any) => {
         if (response?.data?.data) {
           this.setting = response.data.data;
@@ -133,7 +135,7 @@ export class PayslipsComponent implements OnInit {
   }
   
   fetchBankingData(page: number = 1) {
-    this.bankinService.getBankResource().subscribe(
+    this.CrudService.read('banking').subscribe(
       (response: any) => {
         if (response?.data?.data?.payload) {
           // Extracting the payload

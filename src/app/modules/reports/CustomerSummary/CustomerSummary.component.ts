@@ -11,7 +11,8 @@ export class CustomerSummaryComponent implements OnInit {
 
   ngOnInit() {
   }
-  date = '19/09/2024';
+  startdate = '19/06/2024';
+  enddate = '10/09/2020'
  balanceSheetData = [
   {
     name: 'Assets',

@@ -1,203 +1,232 @@
-<div class="container-fluid mt-5  ">
-    <div class="container mt-5 ">
-        <div class="form-container d-flex justify-content-center flex-column">
-            <div class="row mb-3">
-                <h2>Glad you're here.</h2>
-                <p>Help us customize your settings to offer you the right tools for seamless business experience.</p>
-            </div>
-            <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="row justify-content-center">
-                            <div class="row mb-2">
-                                <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                    <label for="business-name">Business Name <span class="text-danger">*</span></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" id="business-name" formControlName="name" 
-                                        required>
-                                </div>
-                                <div class="col-md-3">
-                                    <a href=""></a>
-                                </div>
-                            </div>
 
-                            <!-- second row -->
-                            <div class="row mb-2">
-                                <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                    <label for="industry">Industry <span class="text-danger">*</span></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" id="industry"  formControlName="industry"
-                                    >
-                                </div>
-                                <div class="col-md-3 text-left d-flex align-items-center justify-content-start">
-                                    <a href="#" class="help-link">Help me choose</a>
-                                </div>
-                            </div>
 
-                            <!-- third row -->
-                            <div class="row mb-2">
-                                <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                    <label for="business-type">Business Type <span class="text-danger">*</span></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <ng-select id="bussinessType"  formControlName="businessType">
-                                        <ng-option value="metal">metal</ng-option>
-                                    </ng-select>
-                                </div>
-                                <div class="col-md-3 d-flex align-items-center justify-content-start">
-                                    <a href="#" class="help-link">Help me choose</a>
-                                </div>
-                            </div>
-
-                            <!-- fourth row -->
-                            <div class="row mb-2">
-                                <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                    <label for="adminEmail">Admin's email <span class="text-danger">*</span></label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" id="adminEmail" formControlName="adminEmail"
-                                        placeholder="Enter company file admin's email" required>
-                                </div>
-                                <div class="col-md-3 d-flex align-items-center justify-content-start">
-                                    <a href="#" class="help-link">Help me choose</a>
-                                </div>
-                            </div>
-
-                            <!-- fifth row -->
-                            <div class="row mb-2">
-                                <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                    <label for="einNumber">Employer Identification Number (EIN)</label>
-                                </div>
-                                <div class="col-md-6 d-flex">
-                                    <div class="col-md-4">
-                                        <input type="text" id="einNumber" formControlName="einNumber"
-                                            placeholder="12-3456789">
+<!-- voucher.component.html -->
+<div class="modal-header p-4 m-2">
+    <h4 class="modal-title">Create Organization</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+<div class="modal-body">
+    
+       
+            <div class="form-container d-flex justify-content-center flex-column">
+                <div class="row mb-3">
+                    <h2>Glad you're here.</h2>
+                    <p>Help us customize your settings to offer you the right tools for seamless business experience.</p>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="row justify-content-center">
+                                <div class="row mb-2">
+                                    <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                        <label for="business-name">Business Name <span class="text-danger">*</span></label>
                                     </div>
-                                    <div class="col-md-1 px-2">
-                                        <i class="fa-solid fa-circle-question" style="color: #007fe0;"></i>
+                                    <div class="col-md-6">
+                                        <input type="text" id="business-name" formControlName="name">
+                                        <small class="text-danger" *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched">
+                                                Business Name is required
+                                        </small>
                                     </div>
-                                    <div class="col-md-3 d-flex justify-content-start align-items-center">
-                                        <label for="ntnNumber">National Tax Number (NTN)</label>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="text" id="ntnNumber" formControlName="ntnNumber">
+                                    <div class="col-md-3">
+                                        <a href=""></a>
                                     </div>
                                 </div>
-                                <div class="col-md-3 d-flex align-items-center justify-content-start"></div>
-                            </div>
-
-                            <!-- sixth row -->
-                            <div class="row mb-2">
-                                <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                    <label for="address">Business Address</label>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <input type="text" id="address" name="address" formControlName="address">
-                                </div>
-                                <div class="col-md-3">
-
-                                </div>
-                            </div>
-
-                            <!-- new-row -->
-                            <div class="row mb-2">
-                                <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                    <label for="domain">Domain</label>
-                                </div>
-                                <div class="col-md-6 d-flex">
-                                    <div class="col-md-5">
-                                        <input type="text" id="domain" formControlName="domain"
-                                            placeholder="domain">
+    
+                                <!-- second row -->
+                                <div class="row mb-2">
+                                    <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                        <label for="industry">Industry <span class="text-danger">*</span></label>
                                     </div>
-                                    <div class="col-md-1 px-2">
-                                        <i class="fa-solid fa-circle-question" style="color: #007fe0;"></i>
+                                    <div class="col-md-6">
+                                        <input type="text" id="industry"  formControlName="industry">
+                                        <small class="text-danger" *ngIf="form.controls['industry'].hasError('required') && form.controls['industry'].touched">
+                                           Industry Name is required
+                                        </small>
                                     </div>
-                                    <div class="col-md-1 d-flex justify-content-start align-items-center">
-                                        <label for="ntnNumber">Logo</label>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <input type="file" id="logo" (change)="onFileChange($event)" accept="image/*">
+                                    <div class="col-md-3 text-left d-flex align-items-center justify-content-start">
                                     </div>
                                 </div>
-                                <div class="col-md-3 d-flex align-items-center justify-content-start"></div>
-                            </div>
-
-                            <!-- seven row -->
-                            <div class="row mb-2">
-                                <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                    Phone
-                                </div>
-
-                                <div class="col-md-6">
-                                    <input type="text" id="phone" name="phone" formControlName="phone">
-                                </div>
-                                <div class="col-md-3">
-
-                                </div>
-                            </div>
-
-                            <!-- eight row -->
-                            <div class="row mb-2">
-                                <div class="col-md-3 d-flex align-items-center justify-content-end">
-                                    <label for="city">City</label>
-                                </div>
-
-                                <div class="col-md-6 d-flex">
-                                    <div class="col-md-5">
-                                        <input type="text" id="city" name="city" formControlName="city">
+    
+                                <!-- third row -->
+                                <div class="row mb-2">
+                                    <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                        <label for="business-type">Business Type <span class="text-danger">*</span></label>
                                     </div>
-                                    <div class="col-md-2 d-flex align-items-center justify-content-end">
-                                        <label for="zip">ZIP</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="bussiness_type"  formControlName="business_type">
+                                        <small class="text-danger" *ngIf="form.controls['business_type'].hasError('required') && form.controls['business_type'].touched">
+                                            Busines Type is required
+                                         </small>
                                     </div>
-                                    <div class="col-md-5">
-                                        <input type="text" id="zip" name="zip">
+                                    <div class="col-md-3 d-flex align-items-center justify-content-start">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-
-                                </div>
-                            </div>
-                            <!-- nine row -->
-                            <div class="row ">
-                                <div class="col-md-3  d-flex align-items-center justify-content-end">
-                                    <label for="state">State</label>
-                                </div>
-
-                                <div class="col-md-6 d-flex">
-                                    <div class="col-md-5">
-                                        <ng-select id="state" name="state" formControlName="state">
-                                            <ng-option value="eourpe"> eourpe</ng-option>
-                                            <ng-option value="eourpe"> eourpe</ng-option>
-
-                                        </ng-select>
+    
+                                <!-- fourth row -->
+                                <div class="row mb-2">
+                                    <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                        <label for="adminEmail">Admin's email <span class="text-danger">*</span></label>
                                     </div>
-                                    <div class="col-md-2  d-flex align-items-center justify-content-end">
-                                        <label for="country">Status</label>
+                                    <div class="col-md-6">
+                                        <input type="email" id="admin_email" formControlName="admin_email"
+                                            placeholder="Enter company file admin's email">
+                                         <small class="text-danger" *ngIf="form.controls['admin_email'].hasError('required') && form.controls['admin_email'].touched">
+                                                Admin Email is required
+                                        </small>
                                     </div>
-                                    <div class="col-md-5">
-                                        <ng-select class="form-control" formControlName="status">
-                                            <ng-option value="Active">Active</ng-option>
-                                            <ng-option value="Inactive">Inactive</ng-option>
-                                        </ng-select>
+                                    <div class="col-md-3 d-flex align-items-center justify-content-start">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+    
+                                <!-- fifth row -->
+                                <div class="row mb-2">
+                                    <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                        <label for="ein_number">Employer Identification Number (EIN)</label>
+                                    </div>
+                                    <div class="col-md-6 d-flex">
+                                        <div class="col-md-4">
+                                            <input type="text" id="ein_number" formControlName="ein_number"
+                                                placeholder="12-3456789">
+                                            <small class="text-danger" *ngIf="form.controls['ein_number'].hasError('required') && form.controls['ein_number'].touched">
+                                                    EIN is required
+                                            </small>
+                                        </div>
+                                        <div class="col-md-1 px-2">
+                                            <i class="fa-solid fa-circle-question" ></i>
+                                        </div>
+                                        <div class="col-md-3 d-flex justify-content-start align-items-center">
+                                            <label for="ntn_number">National Tax Number (NTN)</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="ntn_number" formControlName="ntn_number">
+                                        <small class="text-danger" *ngIf="form.controls['ntn_number'].hasError('required') && form.controls['ntn_number'].touched">
+                                                NIN is required
+                                        </small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 d-flex align-items-center justify-content-start"></div>
+                                </div>
+    
+                                <!-- sixth row -->
+                                <div class="row mb-2">
+                                    <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                        <label for="address">Business Address</label>
+                                    </div>
+    
+                                    <div class="col-md-6">
+                                        <input type="text" id="address" name="address" formControlName="address">
+                                        <small class="text-danger" *ngIf="form.controls['address'].hasError('required') && form.controls['address'].touched">
+                                            Business Address is required
+                                        </small>
+                                    </div>
+                                    <div class="col-md-3">
+    
+                                    </div>
+                                </div>
+    
+                                <!-- new-row -->
+                                <div class="row mb-2">
+                                    <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                        <label for="domain">Domain</label>
+                                    </div>
+                                    <div class="col-md-6 d-flex">
+                                        <div class="col-md-5">
+                                            <input type="text" id="domain" formControlName="domain"
+                                                placeholder="domain">
+                                            <small class="text-danger" *ngIf="form.controls['domain'].hasError('required') && form.controls['domain'].touched">
+                                                    Domain is required
+                                            </small>
+                                        </div>
+                                        <div class="col-md-1 px-2">
+                                            <i class="fa-solid fa-circle-question" ></i>
+                                        </div>
+                                        <div class="col-md-2 d-flex justify-content-start align-items-center">
+                                            <label for="ntnNumber">Country</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="country" formControlName="country">
+                                        <small class="text-danger" *ngIf="form.controls['country'].hasError('required') && form.controls['country'].touched">
+                                                Country Name is required
+                                        </small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 d-flex align-items-center justify-content-start"></div>
+                                </div>
+    
+                                <!-- seven row -->
+                                <div class="row mb-2">
+                                    <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                        Phone
+                                    </div>
+    
+                                    <div class="col-md-6">
+                                        <input type="text" id="phone" name="phone" formControlName="phone">
+                                        <small class="text-danger" *ngIf="form.controls['phone'].hasError('required') && form.controls['phone'].touched">
+                                            Phone Number is required
+                                    </small>
+                                    </div>
+                                    <div class="col-md-3">
+    
+                                    </div>
+                                </div>
+    
+                                <!-- eight row -->
+                                <div class="row mb-2">
+                                    <div class="col-md-3 d-flex align-items-center justify-content-end">
+                                        <label for="city">City</label>
+                                    </div>
+    
+                                    <div class="col-md-6 d-flex">
+                                        <div class="col-md-5">
+                                            <input type="text" id="city" name="city" formControlName="city">
+                                            <small class="text-danger" *ngIf="form.controls['city'].hasError('required') && form.controls['city'].touched">
+                                                City Name is required
+                                            </small>
+                                        </div>
+                                        <div class="col-md-2 d-flex align-items-center justify-content-end">
+                                            <label for="zip">ZIP</label>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="text" id="zip" name="zip" formControlName="zip">
+                                            <small class="text-danger" *ngIf="form.controls['zip'].hasError('required') && form.controls['zip'].touched">
+                                                Zip Code is required
+                                        </small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+    
+                                    </div>
+                                </div>
+                                <!-- nine row -->
+                                <div class="row ">
+                                    <div class="col-md-3  d-flex align-items-center justify-content-end">
+                                        <label for="state">State</label>
+                                    </div>
+    
+                                    <div class="col-md-6 d-flex">
+                                        <div class="col-md-5">
+                                            <input type="text" id="state" name="state" formControlName="state">
+                                        <small class="text-danger" *ngIf="form.controls['state'].hasError('required') && form.controls['state'].touched">
+                                                State Name is required
+                                        </small>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-md-3">
+    
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- buttons and text -->
-                <div class="buttons d-flex justify-content-end gap-3">
-                    <button type="button" class="back-btn">Back</button>
-                    <button type="submit" class="submit-btn">Create Company</button>
-                </div>
-            </form>
+                    <div class="buttons modal-footer d-flex justify-content-end gap-3 mt-5">
+                        <button type="button" class="back-btn mt-2" (click)="close()">Back</button>
+                        <button type="submit" class="submit-btn mt-2" *ngIf="!isUpdateData" [disabled]="form.invalid">Create Company</button>
+                        <button type="submit" class="submit-btn mt-2" *ngIf="isUpdateData"  [disabled]="form.invalid">Update Company</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</div>
+ 

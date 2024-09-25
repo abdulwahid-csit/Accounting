@@ -3,10 +3,11 @@ table {
   border-collapse: collapse;
 }
 .balance-sheet{
-border: 1px solid rgb(172, 167, 167);
-margin-top: 50px;
+border: none;
+// margin-top: 50px;
 }
- th, td {    border: 1px solid #ccc;
+ th, td {    
+  border: 1px solid #ccc;
    padding: 8px;
 }
 

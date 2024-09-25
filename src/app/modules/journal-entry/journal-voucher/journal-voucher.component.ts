@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
-import { VoucherComponent } from '../voucher/voucher.component';
+import { VoucherComponent } from '../voucher-Modal/voucher.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CrudService } from 'src/app/shared/services/crud.service';
 
@@ -53,8 +53,8 @@ export class JournalVoucherComponent {
     }
   };
 
- 
- 
+
+
   openVoucherModal() {
     this.modalService.show(VoucherComponent, {
       class: 'modal-dialog modal-dialog-centered modal-xl create_organization',

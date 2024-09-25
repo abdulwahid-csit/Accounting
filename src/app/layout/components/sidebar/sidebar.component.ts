@@ -13,7 +13,7 @@ export class SidebarComponent implements OnInit {
   activeMenu: string | null = null;
 
   constructor(
-    private commonService:CommonService, 
+    private commonService:CommonService,
     private router:Router,
     public localStoreService: LocalStoreService
   ){ }
@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
 
   // Method to toggle sub-menu
   toggleMenu(menu: string) {
-    if(this.activeMenu == menu && (menu == 'transaction' || menu == 'reports' || menu == 'journal' || menu == 'setting')){
+    if(this.activeMenu == menu && (menu == 'transaction' || menu == 'reports' || menu == 'journal-entry' || menu == 'setting')){
       this.activeMenu = ''
     }else{
       this.activeMenu = menu;
