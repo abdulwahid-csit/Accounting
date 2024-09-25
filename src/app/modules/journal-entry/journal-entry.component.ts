@@ -1,4 +1,3 @@
-import { CrudService } from 'src/app/shared/services/crud.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 
@@ -29,7 +28,7 @@ export class JournalEntryComponent implements OnInit {
   openDatepicker() {
     this.datepicker?.show();
   }
-  constructor(private crudService: CrudService) { }
+  constructor() { }
 
   ngOnInit() {
     const response = {
@@ -121,6 +120,5 @@ export class JournalEntryComponent implements OnInit {
       total_records: 10
     }
   };
-
 
 }

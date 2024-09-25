@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
 // import 'quill-mention';
 import Quill from 'quill';
 // import QuillMention from 'quill-mention';
@@ -17,14 +16,8 @@ export class CreateJournelComponent {
   selectedAccounts: number[] = [];
   htmlText = "<p>Testing</p>";
   subject: string = '';
-  journalEntryForm: any;
 
-  constructor(private fb: FormBuilder) { 
-    this.journalEntryForm = this.fb.group({
-      number: ['', Validators.required],
-      journalDate: ['', Validators.required],
-    });
-  }
+
   journal = [
     { id: 1, name: 'No', },
     { id: 2, name: 'Every 1 month' },
@@ -120,15 +113,5 @@ export class CreateJournelComponent {
 
   onBlur() {
     console.log("Blurred");
-  }
-
-  ngOnInit(): void {}
-
-  onSubmit(): void {
-    if (this.journalEntryForm.valid) {
-      console.log(this.journalEntryForm.value);
-    } else {
-      this.journalEntryForm.markAllAsTouched();
-    }
   }
 }

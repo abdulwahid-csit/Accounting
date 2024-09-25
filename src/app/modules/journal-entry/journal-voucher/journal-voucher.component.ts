@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { VoucherComponent } from '../voucher-Modal/voucher.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { CrudService } from 'src/app/shared/services/crud.service';
 
 @Component({
   selector: 'app-journal-voucher',
@@ -14,17 +13,18 @@ export class JournalVoucherComponent {
 
   columns = [
     { name: 'Type', key: 'isChecked', isCheckbox: true },
-    { name: 'Voucher Number', key: '_id' }, 
-    { name: 'Date', key: 'date' },
-    { name: 'Description', key: 'description' }, 
-    { name: 'Account Debit', key: 'debit_voucher[0].branch_account.name' }, 
-    { name: 'Account Credit', key: 'credit_voucher[0].branch_account.name' }, 
-    { name: 'Balance', key: 'balance' }, 
-    { name: 'Status', key: 'is_deleted' },
-    { name: 'Mapping status', key: 'mapping_status' },
-    { name: 'Mapping', key: 'mapping' }
-];
+    { name: 'Voucher Number', key: 'Voucher Number', },
+    { name: 'Date', key: 'Date' },
+    { name: 'Description', key: 'Description' },
+    { name: 'Account Debit', key: 'Account Debit' },
+    { name: 'Account Credit', key: 'Account Credit' },
+    { name: 'Balance', key: 'Balance' },
+    { name: 'Status', key: 'Status' },
+    { name: 'Mapping status', key: 'Mapping status' },
+    { name: 'Mapping ', key: 'Mapping' },
 
+
+  ];
 
   bsConfig = {
     isAnimated: true
@@ -35,11 +35,102 @@ export class JournalVoucherComponent {
   openDatepicker() {
     this.datepicker?.show();
   }
-  constructor(private modalService: BsModalService, private crudService: CrudService) { }
+  constructor(private modalService: BsModalService) { }
 
   ngOnInit() {
-    this.fetchData();
+    const response = {
+      "status_code": 200,
+      "message": "Paginated list with data and paginate options.",
+      "data": {
+        "payload": [
+          {
+            "id": 1,
+            "Voucher Number": "15/08/2024",
+            "Description": "Accounts Receivable (A/R)",
+            "Account Debit": "Expense",
+            "Account Credit": "Accounts Receivable (A/R)",
+            "Balance":"$34637",
+            "Status":"Approved",
+            "Mapping status":"Has Been Mapped",
+            "Mapping":"arrow",
 
+            "Active": true,
+            "Options": "Edit",
+            "Date": "2024-09-01",
+            "isChecked": false
+          },
+          {
+            "id": 2,
+            "Voucher Number": "15/08/2024",
+            "Description": "Accrued holiday payable",
+            "Account Debit": "Expensed",
+            "Account Credit": "Traveled",
+            "Balance":"$34637",
+            "Status":"Approved",
+            "Mapping status":"Has Been Mapped",
+            "Mapping":"arrow",
+
+            "Active": true,
+            "Options": "Edit",
+            "Date": "2024-09-01",
+            "isChecked": false
+          },
+          {
+            "id": 3,
+            "Voucher Number": "15/08/2024",
+            "Description": "PreSales",
+            "Account Debit": "Expensed",
+            "Account Credit": "Traveled",
+            "Balance":"$34637",
+            "Status":"Approved",
+            "Mapping status":"Has Been Mapped",
+            "Mapping":"arrow",
+
+            "Active": true,
+            "Options": "Edit",
+            "Date": "2024-09-01",
+            "isChecked": false
+          },
+          {
+            "id": 4,
+            "Voucher Number": "15/08/2024",
+            "Description": "Accrued non-current liabilities",
+            "Account Debit": "Expensedive",
+            "Account Credit": "Travelediner",
+            "Balance":"$34637",
+            "Status":"Approved",
+            "Mapping status":"Has Been Mapped",
+            "Mapping":"arrow",
+
+            "Active": true,
+            "Options": "Edit",
+            "Date": "2024-09-01",
+            "isChecked": false
+          },
+
+        ],
+        "paginate_options": {
+          "total_pages": 1,
+          "payload_size": 10,
+          "has_next": false,
+          "current_page": 1,
+          "skipped_records": 0,
+          "total_records": 10
+        }
+      },
+      "timestamp": "2024-09-10T08:06:46.886Z"
+    };
+
+    if (response && response.data && response.data.payload) {
+      this.applicationList = response.data.payload;
+      this.tableConfig.paginationParams = response.data.paginate_options;
+      // this.total_pages = response.data.paginate_options.total_pages;
+      // this.payload_size = response.data.paginate_options.payload_size;
+      // this.current_page = response.data.paginate_options.current_page;
+      // this.has_next = response.data.paginate_options.has_next;
+      // this.skipped_records = response.data.paginate_options.skipped_records;
+      // this.total_records = response.data.paginate_options.total_records;
+    }
   }
 
   tableConfig = {
@@ -52,6 +143,7 @@ export class JournalVoucherComponent {
       total_records: 10
     }
   };
+  // @ViewChild(VoucherComponent, { static: false }) VoucherComponent!: VoucherComponent;
 
 
 
@@ -63,15 +155,4 @@ export class JournalVoucherComponent {
     });
   }
 
-  fetchData() {
-    this.crudService.read('journal-voucher').subscribe(response => {
-      if(response.data?.status_code == 201){
-        this.applicationList = response.data?.data?.payload;
-        this.tableConfig.paginationParams.total_records = response.data?.data?.total_records;
-        console.log("Data Fetched, ", response);
-      }
-    }, error => {
-      console.log("Error", error.message);
-    })
-  }
 }

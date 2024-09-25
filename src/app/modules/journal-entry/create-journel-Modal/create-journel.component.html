@@ -8,28 +8,21 @@
             </div>
             <div class="col-md-3">
                 <label for=""><span class="text-danger mx-1">*</span>Journal date</label>
+
                 <div class="input-group w-auto mt-2">
-                    <input 
-                        type="number" 
-                        placeholder="Datepicker" 
-                        class="form-control customClass" 
-                        bsDatepicker 
-                        [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" 
-                        formControlName="journalDate" 
-                        [ngClass]="{'is-invalid': journalEntryForm.get('journalDate')?.touched && journalEntryForm.get('journalDate')?.invalid}">
+                    <input type="text" placeholder="Datepicker" class="form-control customClass" bsDatepicker
+                        [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="datepickerInput">
                     <div class="input-group-append">
                         <span class="input-group-text">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                class="bi bi-calendar" viewBox="0 0 16 16">
+                                <path
+                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                             </svg>
                         </span>
                     </div>
                 </div>
-                <div *ngIf="journalEntryForm.get('journalDate')?.touched && journalEntryForm.get('journalDate')?.invalid" class="text-danger">
-                    This field is required.
-                </div>
             </div>
-            
             <div class="col-md-6">
                 <label for="accountsSelect" class="form-label">Recurring Journal Entry</label>
 
