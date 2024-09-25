@@ -19,17 +19,17 @@
           <ng-container [ngSwitch]="column">
 
             <span *ngSwitchCase="'isChecked'">
-              <input type="checkbox" [(ngModel)]="row[column.key]" />
+              <input type="checkbox" [(ngModel)]="row[column]" />
             </span>
 
-            <span *ngSwitchCase="'opening_date'">{{ row[column.key] | date}}</span>
-            <span *ngSwitchCase="'branch_name'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'opening_date'">{{ row[column] | date}}</span>
+            <!-- <span *ngSwitchCase="'branch_name'">{{ row[column] }}</span> -->
             <!-- <span *ngSwitchCase="'name'">{{ row[column.key] }}</span> -->
             <!-- <span *ngSwitchCase="'account_natures'">{{ row[column.key] }}</span> -->
             <span *ngSwitchCase="'bank'" [title]="getTitle(row[column])">{{getObjectValues(row[column]) || '-'}}</span>
-            <span *ngSwitchCase="'account_number'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'iban_number'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'balance'">{{ row[column.key] | currency }}</span>
+            <!-- <span *ngSwitchCase="'account_number'">{{ row[column] }}</span>
+            <span *ngSwitchCase="'iban_number'">{{ row[column] }}</span> -->
+            <span *ngSwitchCase="'balance'">{{ row[column] | currency }}</span>
             <span *ngSwitchCase="'account_type'" [title]="getTitle(row[column])">{{getObjectValues(row[column]) ||
               '-'}}</span>
             <span *ngSwitchCase="'level_one'" [title]="getTitle(row[column])">{{getObjectValues(row[column]) ||

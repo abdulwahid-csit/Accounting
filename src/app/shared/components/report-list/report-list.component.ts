@@ -13,7 +13,11 @@ export class ReportListComponent implements OnInit {
   @Input() isTodateVisible = false;
   @Input() isitemVisible = false;
   @Input() isDetailVisible = false;
-  @Input() isSubAccVisible = false;
+  @Input() isDisplayByColumns = false;
+  @Input() isDisplayByRows= false;
+  @Input() isBudget= false;
+
+
   @Input() isCityVisible = false;
   @Input() isPostalCodeVisible = false;
 

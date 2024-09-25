@@ -11,7 +11,8 @@ export class BudgetOveriewComponent implements OnInit {
 
   ngOnInit() {
   }
-  date = '19/09/2024';
+  startdate = '19/09/2024';
+  enddate   = '19/05/2024'
   balanceSheetData = [
    {
      name: 'Assets',
