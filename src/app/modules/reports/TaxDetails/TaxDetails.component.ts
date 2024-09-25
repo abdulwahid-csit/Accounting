@@ -11,7 +11,9 @@ export class TaxDetailsComponent implements OnInit {
 
   ngOnInit() {
   }
- date = '19/09/2024';
+ startdate = '19/09/2024';
+ enddate = '19/09/2024';
+
  balanceSheetData = [
   {
     name: 'Assets',

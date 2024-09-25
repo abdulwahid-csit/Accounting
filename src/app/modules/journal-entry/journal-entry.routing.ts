@@ -6,7 +6,9 @@ import { JournalVoucherComponent } from './journal-voucher/journal-voucher.compo
 const routes: Routes = [
   { path: '', component: JournalEntryComponent },
   { path: 'new-journel', component: CreateJournelComponent },
-  { path: 'journal-voucher', component: JournalVoucherComponent }
+  { path: 'journal-voucher', component: JournalVoucherComponent },
+  { path: 'journal-entry', component: JournalEntryComponent },
+
 ];
 
 export const JournalEntryRoutes = RouterModule.forChild(routes);
