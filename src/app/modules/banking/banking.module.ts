@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddBankComponent } from './add-bank/add-bank.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BsDatepickerDirective, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { QuillModule } from 'ngx-quill';
 
 
 @NgModule({
@@ -24,7 +23,6 @@ import { QuillModule } from 'ngx-quill';
     ReactiveFormsModule,
     NgSelectModule,
     BsDatepickerModule,
-    QuillModule
 
 
   ],
