@@ -20,6 +20,8 @@ export class BankAccountsComponent implements OnInit {
   @Input() changePage: any;
   selectedPageSize: number = 10; // Default page size
   currentPage: number = 1;
+  selected: number = 1;
+  selectedRecords: number = 1;
   constructor(private modalService: BsModalService,private toastr: ToastrService,
     private CrudService : CrudService
 
@@ -78,6 +80,13 @@ export class BankAccountsComponent implements OnInit {
           this.tableConfig.paginationParams = response?.data?.data?.paginate_options
           // console.log('Banking Data:', this.bankingData);
           // console.log(' this.tableConfig.paginationParams:',  this.tableConfig.paginationParams);
+          this.selected = this.tableConfig.paginationParams.payload_size;
+        this.selectedRecords = this.tableConfig.paginationParams.total_records;
+
+        // If the number of records displayed matches the total number of records, set the page size to "All"
+        if (this.selected === this.selectedRecords) {
+          this.selectedPageSize = 1;
+        }
         } else {
           console.error('Unexpected response format', response);
         }
@@ -145,7 +154,7 @@ export class BankAccountsComponent implements OnInit {
     const selectedSize = selectElement.value;
 
     // Handle 'All' option
-    this.selectedPageSize = selectedSize === 'All' ? this.tableConfig.paginationParams.total_records : +selectedSize;
+    this.selectedPageSize = selectedSize === '1' ? this.tableConfig.paginationParams.total_records : +selectedSize;
 
     // Reset to the first page when page size changes
     this.currentPage = 1;
