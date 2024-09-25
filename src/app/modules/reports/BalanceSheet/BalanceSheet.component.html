@@ -1,20 +1,27 @@
+
 <div class="card">
+  <div class="row px-3 mt-4">
+    <h2> Balance Sheet </h2>
+    <a  routerLink="/reports" class="px-3">  Back to report list
+    </a>
+  </div>
+  
   <div class="card-body">
     <app-report-list
   [isAccountsVisible]="true"
   [isFormdateVisible]="true"
   [isitemVisible]="true"
   [isDetailVisible]="false"
-  [isSubAccVisible]= "true"
-  [isTodateVisible]= "true">
+  [isDisplayByColumns]= "true"
+  [isTodateVisible]= "true"
+  [isDisplayByRows]= "true">
 </app-report-list>
   </div>
-</div>
 
+<hr>
 
-
-<div class="container">
- <div class="balance-sheet p-5 ">
+<div class="container mt-5 pt-5">
+ <div class="balance-sheet p-5 mt-5 ">
  <div class="mb-3">
   <h2 class="text-center">GTSSolution</h2>
   <p class="text-center">Balance Sheet Comparison</p>
@@ -133,3 +140,4 @@
  </div>
 </div>
 
+</div>
