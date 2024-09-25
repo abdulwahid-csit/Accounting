@@ -1,26 +1,5 @@
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.balance-sheet{
-border: 1px solid rgb(172, 167, 167);
-margin-top: 50px;
-}
- th, td {    border: 1px solid #ccc;
-   padding: 8px;
-}
 
-.expandable {
-  cursor: pointer;
-}
 
-.child-row {
-  padding-left: 20px;
-}
-
-.toggle {
-  margin-right: 8px;
-}
 .expand-arrow::before {
   content: '▶';
   margin-right: 5px;
@@ -33,26 +12,8 @@ margin-top: 50px;
   color: rgb(185, 185, 185);
 }
 
-.text-centerr {
-  text-align: center;
-  border-left: 1px solid #000;
-  border-bottom: 1px solid #000;
-}
 
-
-.border1 {
-  border: 1px solid #000;
-}
 .container{
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   background-color: white;
-}
-
-.bordertop{
-  border-top:1px solid black;
-  border-bottom:1px solid #000;
-}
-.horizantal-line{
-border-bottom:1px solid #000;
-
 }
