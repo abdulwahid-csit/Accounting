@@ -1,141 +1,103 @@
+<!-- voucher.component.html -->
 <div class="modal-header">
     <h4 class="modal-title">Journal Voucher</h4>
-    <a type="button" class="btn-close" aria-label="Close" (click)="close()"></a>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
 </div>
 <div class="modal-body">
-    <div class="row">
+    <div class="row ">
         <div class="row mb-4">
             <div class="col-md-6">
                 <label for="">Serial Number</label>
-                <input type="text" [value]="serialNumber" class="form-control" disabled>
+                <input type="text" placeholder="1" class="form-control" disabled>
 
             </div>
             <div class="col-md-6">
                 <label for="">Date</label>
-                <div class="input-group w-auto">
-                    <input type="date" placeholder="15/08/2024" class="form-control"
-                           [class.invalid]="form.get('date')?.invalid && (form.get('date')?.dirty || form.get('date')?.touched)">
-                    <div *ngIf="form.get('date')?.invalid && (form.get('date')?.dirty || form.get('date')?.touched)" class="text-danger">
-                        Date is required.
-                    </div>
+  
+                <div class="input-group w-auto ">
+                  <input type="date" placeholder="15/08/2024" class="form-control ">
                 </div>
             </div>
         </div>
         <form [formGroup]="form">
             <div formArrayName="debitEntries">
-                <div *ngFor="let entry of debitEntries.controls; let i = index" [formGroupName]="i" class="mb-4">
-                    <hr>
-                    <div class="row w-100">
-                        <div class="col-md-6">
-                            <label>Type Of Account</label>
-                            <ng-select formControlName="typeOfAccount"
-                                       [class.invalid]="entry.get('typeOfAccount')?.invalid && (entry.get('typeOfAccount')?.dirty || entry.get('typeOfAccount')?.touched)">
-                                <ng-option value="Cash In Hand">Cash In Hand</ng-option>
-                                <ng-option value="Cash At Bank">Cash At Bank</ng-option>
-                            </ng-select>
-                            <div *ngIf="entry.get('typeOfAccount')?.invalid && (entry.get('typeOfAccount')?.dirty || entry.get('typeOfAccount')?.touched)" class="text-danger">
-                                Type Of Account is required.
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Branch Name (Debit)</label>
-                            <ng-select formControlName="branchNameDebit"
-                                       [class.invalid]="entry.get('branchNameDebit')?.invalid && (entry.get('branchNameDebit')?.dirty || entry.get('branchNameDebit')?.touched)">
-                                <ng-option value="CityBank">CityBank</ng-option>
-                                <ng-option value="JpMorgan Chase">JpMorgan Chase</ng-option>
-                            </ng-select>
-                            <div *ngIf="entry.get('branchNameDebit')?.invalid && (entry.get('branchNameDebit')?.dirty || entry.get('branchNameDebit')?.touched)" class="text-danger">
-                                Branch Name (Debit) is required.
-                            </div>
-                        </div>
+              <div *ngFor="let entry of debitEntries.controls; let i = index" [formGroupName]="i" class="mb-4">
+                <hr>
+
+                <div class="row w-100">
+                  <div class="col-md-6">
+                    <label>Type Of Account</label>
+                    <ng-select  formControlName="typeOfAccount">
+                      <ng-option value="Cash In Hand">Cash In Hand</ng-option>
+                      <ng-option value="Cash At Bank">Cash At Bank</ng-option>
+                    </ng-select>
+                  </div>
+                  <div class="col-md-6">
+                    <label>Branch Name (Debit)</label>
+                    <ng-select formControlName="branchNameDebit">
+                      <ng-option value="CityBank">CityBank</ng-option>
+                      <ng-option value="JpMorgan Chase">JpMorgan Chase</ng-option>
+                    </ng-select>
+                  </div>
+                </div>
+                <div class="row mb-4 w-100">
+                    <div class="col-md-6">
+                        <label for="">Branch Account (Debit)</label>
+                        <ng-select>
+                            <ng-option [ariaSelected]="true">2002289679700-COMPANY PRIMARY ACCOUNT</ng-option>
+                            <ng-option>JpMorgan Chasr</ng-option>
+                        </ng-select>
                     </div>
-                    <div class="row mb-4 w-100">
-                        <div class="col-md-6">
-                            <label for="">Branch Account (Debit)</label>
-                            <ng-select formControlName="branchAccountDebit"
-                                       [class.invalid]="entry.get('branchAccountDebit')?.invalid && (entry.get('branchAccountDebit')?.dirty || entry.get('branchAccountDebit')?.touched)">
-                                <ng-option [ariaSelected]="true">2002289679700-COMPANY PRIMARY ACCOUNT</ng-option>
-                                <ng-option>JpMorgan Chase</ng-option>
-                            </ng-select>
-                            <div *ngIf="entry.get('branchAccountDebit')?.invalid && (entry.get('branchAccountDebit')?.dirty || entry.get('branchAccountDebit')?.touched)" class="text-danger">
-                                Branch Account (Debit) is required.
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="">Head Of Account (Debit)</label>
-                            <ng-select formControlName="headOfAccountDebit"
-                                       [class.invalid]="entry.get('headOfAccountDebit')?.invalid && (entry.get('headOfAccountDebit')?.dirty || entry.get('headOfAccountDebit')?.touched)">
-                                <ng-option>Expenditure</ng-option>
-                                <ng-option>Tac revenue</ng-option>
-                            </ng-select>
-                            <div *ngIf="entry.get('headOfAccountDebit')?.invalid && (entry.get('headOfAccountDebit')?.dirty || entry.get('headOfAccountDebit')?.touched)" class="text-danger">
-                                Head Of Account (Debit) is required.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4 w-100">
-                        <div class="col-md-6">
-                            <label for="">Major Head of Account (Debit)</label>
-                            <ng-select formControlName="majorHeadOfAccountDebit"
-                                       [class.invalid]="entry.get('majorHeadOfAccountDebit')?.invalid && (entry.get('majorHeadOfAccountDebit')?.dirty || entry.get('majorHeadOfAccountDebit')?.touched)">
-                                <ng-option>Employee related expenses</ng-option>
-                                <ng-option>Project preinvestment analysis</ng-option>
-                            </ng-select>
-                            <div *ngIf="entry.get('majorHeadOfAccountDebit')?.invalid && (entry.get('majorHeadOfAccountDebit')?.dirty || entry.get('majorHeadOfAccountDebit')?.touched)" class="text-danger">
-                                Major Head of Account (Debit) is required.
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="">Minor Head of Account (Debit)</label>
-                            <ng-select formControlName="minorHeadOfAccountDebit"
-                                       [class.invalid]="entry.get('minorHeadOfAccountDebit')?.invalid && (entry.get('minorHeadOfAccountDebit')?.dirty || entry.get('minorHeadOfAccountDebit')?.touched)">
-                                <ng-option>Pay</ng-option>
-                                <ng-option>Allowances</ng-option>
-                            </ng-select>
-                            <div *ngIf="entry.get('minorHeadOfAccountDebit')?.invalid && (entry.get('minorHeadOfAccountDebit')?.dirty || entry.get('minorHeadOfAccountDebit')?.touched)" class="text-danger">
-                                Minor Head of Account (Debit) is required.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4 w-100">
-                        <div class="col">
-                            <label>Description</label>
-                            <textarea formControlName="description" class="w-100 form-control"
-                                      [class.invalid]="entry.get('description')?.invalid && (entry.get('description')?.dirty || entry.get('description')?.touched)"
-                                      placeholder="Enter Description"></textarea>
-                            <div *ngIf="entry.get('description')?.invalid && (entry.get('description')?.dirty || entry.get('description')?.touched)" class="text-danger">
-                                Description is required.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4 w-100">
-                        <div class="col-md-6">
-                            <label>Debit Amount</label>
-                            <input type="text" formControlName="debitAmount" class="form-control"
-                                   [class.invalid]="entry.get('debitAmount')?.invalid && (entry.get('debitAmount')?.dirty || entry.get('debitAmount')?.touched)"
-                                   placeholder="Enter Amount">
-                            <div *ngIf="entry.get('debitAmount')?.invalid && (entry.get('debitAmount')?.dirty || entry.get('debitAmount')?.touched)" class="text-danger">
-                                Debit Amount is required and must be greater than 0.
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Debit Date</label>
-                            <input type="date" formControlName="debitDate" class="form-control"
-                                   [class.invalid]="entry.get('debitDate')?.invalid && (entry.get('debitDate')?.dirty || entry.get('debitDate')?.touched)">
-                            <div *ngIf="entry.get('debitDate')?.invalid && (entry.get('debitDate')?.dirty || entry.get('debitDate')?.touched)" class="text-danger">
-                                Debit Date is required.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row w-100">
-                        <div class="col-md-12 d-flex justify-content-between">
-                            <button class="btn btn-minus" (click)="removeDebitEntry(i)"><i class="fa-solid fa-minus"></i></button>
-                            <button class="btn btn-plus" (click)="addDebitEntry()"><i class="fa-solid fa-plus"></i></button>
-                        </div>
+                    <div class="col-md-6 ">
+                        <label for="">Head Of Account (Debit)</label>
+                        <ng-select>
+                            <ng-option>Expenditure</ng-option>
+                            <ng-option>Tac revenue</ng-option>
+                        </ng-select>
                     </div>
                 </div>
+                <div class="row mb-4 w-100">
+                    <div class="col-md-6">
+                        <label for=""> Major Head of Account (Debit)</label>
+                        <ng-select>
+                            <ng-option>Employee related expenses</ng-option>
+                            <ng-option>Project preinvestment analysis</ng-option>
+                        </ng-select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for=""> Minor Head of Account (Debit)</label>
+                        <ng-select>
+                            <ng-option>Pay</ng-option>
+                            <ng-option>Allowances</ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row mb-4 w-100">
+                  <div class="col">
+                    <label>Description</label>
+                    <textarea formControlName="description" class="w-100 form-control" placeholder="Enter Description"></textarea>
+                  </div>
+                </div>
+                <div class="row mb-4 w-100">
+                  <div class="col-md-6">
+                    <label>Debit Amount</label>
+                    <input type="text" formControlName="debitAmount" class="form-control" placeholder="Enter Amount">
+                  </div>
+                  <div class="col-md-6">
+                    <label>Debit Date</label>
+                    <input type="date" formControlName="debitDate" class="form-control">
+                  </div>
+                </div>
+                <div class="row w-100">
+                  <div class="col-md-12 d-flex justify-content-between">
+                    <button class="btn btn-minus" (click)="removeDebitEntry(i)"><i class="fa-solid fa-minus"></i></button>
+                    <button class="btn btn-plus" (click)="addDebitEntry()"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                </div>
+              </div>
+
             </div>
-        </form>
+          </form>
         <hr class="mt-2">
         <div class="row mb-4 mt-3">
             <div class="col-md-6">
@@ -159,94 +121,66 @@
                     <div class="row mb-4 w-100">
                         <div class="col-md-6">
                             <label for="">Branch Account (Credit)</label>
-                            <ng-select formControlName="branchAccountCredit"
-                                       [class.invalid]="entry.get('branchAccountCredit')?.invalid && (entry.get('branchAccountCredit')?.dirty || entry.get('branchAccountCredit')?.touched)">
+                            <ng-select>
                                 <ng-option [ariaSelected]="true">2002289679700-COMPANY PRIMARY ACCOUNT</ng-option>
-                                <ng-option>JpMorgan Chase</ng-option>
+                                <ng-option>JpMorgan Chasr</ng-option>
                             </ng-select>
-                            <div *ngIf="entry.get('branchAccountCredit')?.invalid && (entry.get('branchAccountCredit')?.dirty || entry.get('branchAccountCredit')?.touched)" class="text-danger">
-                                Branch Account (Credit) is required.
-                            </div>
                         </div>
                         <div class="col-md-6">
                             <label for="">Head Of Account (Credit)</label>
-                            <ng-select formControlName="headOfAccountCredit"
-                                       [class.invalid]="entry.get('headOfAccountCredit')?.invalid && (entry.get('headOfAccountCredit')?.dirty || entry.get('headOfAccountCredit')?.touched)">
+                            <ng-select>
                                 <ng-option>Expenditure</ng-option>
                                 <ng-option>Tac revenue</ng-option>
                             </ng-select>
-                            <div *ngIf="entry.get('headOfAccountCredit')?.invalid && (entry.get('headOfAccountCredit')?.dirty || entry.get('headOfAccountCredit')?.touched)" class="text-danger">
-                                Head Of Account (Credit) is required.
-                            </div>
                         </div>
                     </div>
                     <div class="row mb-4 w-100">
                         <div class="col-md-6">
-                            <label for="">Major Head of Account (Credit)</label>
-                            <ng-select formControlName="majorHeadOfAccountCredit"
-                                       [class.invalid]="entry.get('majorHeadOfAccountCredit')?.invalid && (entry.get('majorHeadOfAccountCredit')?.dirty || entry.get('majorHeadOfAccountCredit')?.touched)">
+                            <label for=""> Major Head of Account (Credit)</label>
+                            <ng-select>
                                 <ng-option>Employee related expenses</ng-option>
                                 <ng-option>Project preinvestment analysis</ng-option>
                             </ng-select>
-                            <div *ngIf="entry.get('majorHeadOfAccountCredit')?.invalid && (entry.get('majorHeadOfAccountCredit')?.dirty || entry.get('majorHeadOfAccountCredit')?.touched)" class="text-danger">
-                                Major Head of Account (Credit) is required.
-                            </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="">Minor Head of Account (Credit)</label>
-                            <ng-select formControlName="minorHeadOfAccountCredit"
-                                       [class.invalid]="entry.get('minorHeadOfAccountCredit')?.invalid && (entry.get('minorHeadOfAccountCredit')?.dirty || entry.get('minorHeadOfAccountCredit')?.touched)">
+                            <label for=""> Minor Head of Account (Credit)</label>
+                            <ng-select>
                                 <ng-option>Pay</ng-option>
                                 <ng-option>Allowances</ng-option>
                             </ng-select>
-                            <div *ngIf="entry.get('minorHeadOfAccountCredit')?.invalid && (entry.get('minorHeadOfAccountCredit')?.dirty || entry.get('minorHeadOfAccountCredit')?.touched)" class="text-danger">
-                                Minor Head of Account (Credit) is required.
-                            </div>
                         </div>
                     </div>
                     <div class="row mb-4 w-100">
-                        <div class="col--12">
-                            <label for="">Description</label>
-                            <textarea formControlName="description" class="w-100 form-control"
-                                      [class.invalid]="entry.get('description')?.invalid && (entry.get('description')?.dirty || entry.get('description')?.touched)"
-                                      placeholder="Enter Description"></textarea>
-                            <div *ngIf="entry.get('description')?.invalid && (entry.get('description')?.dirty || entry.get('description')?.touched)" class="text-danger">
-                                Description is required.
-                            </div>
+                            <div class="col--12">
+                                <label for="">Description</label>
+                            <textarea name="" id="" class="w-100 form-control">Enter Description</textarea>
                         </div>
                     </div>
                     <div class="row mb-4 w-100">
                         <div class="col-md-6">
-                            <label for="">Credit Amount</label>
-                            <input type="text" formControlName="creditAmount" class="form-control"
-                                   [class.invalid]="entry.get('creditAmount')?.invalid && (entry.get('creditAmount')?.dirty || entry.get('creditAmount')?.touched)"
-                                   placeholder="Enter Amount">
-                            <div *ngIf="entry.get('creditAmount')?.invalid && (entry.get('creditAmount')?.dirty || entry.get('creditAmount')?.touched)" class="text-danger">
-                                Credit Amount is required and must be greater than 0.
-                            </div>
+                            <label for=""> Credit Amount</label>
+                           <input type="text" class="form-control" placeholder="Enter Amount">
                         </div>
                         <div class="col-md-6">
                             <label for="">Credit Date</label>
-                            <input type="date" formControlName="creditDate" class="form-control"
-                                   [class.invalid]="entry.get('creditDate')?.invalid && (entry.get('creditDate')?.dirty || entry.get('creditDate')?.touched)">
-                            <div *ngIf="entry.get('creditDate')?.invalid && (entry.get('creditDate')?.dirty || entry.get('creditDate')?.touched)" class="text-danger">
-                                Credit Date is required.
+                            <div class="input-group w-auto ">
+                                <input type="date" placeholder="15/08/2024" class="form-control ">
                             </div>
                         </div>
                     </div>
                     <div class="row w-100">
                         <div class="col-md-12 d-flex justify-content-between">
-                            <button class="btn btn-minus" (click)="removeCreditEntry(i)"><i class="fa-solid fa-minus"></i></button>
-                            <button class="btn btn-plus" (click)="addCreditEntry()"><i class="fa-solid fa-plus"></i></button>
-                        </div>
+                          <button class="btn btn-minus" (click)="removeCreditEntry(i)"><i class="fa-solid fa-minus"></i></button>
+                          <button class="btn btn-plus" (click)="addCreditEntry()"><i class="fa-solid fa-plus"></i></button>
+                      </div>
                     </div>
                 </div>
             </div>
         </form>
+      
     </div>
 </div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="close()"><i class="bi bi-x"></i> Close</button>
-    <button type="button" class="btn btn-primary" (click)="save()"><i class="bi bi-check2-circle"></i> Save </button>
+<div class="modal-footer ">
+    <button type="button" class="btn btn-light " (click)="close()"><i class="bi bi-x"></i> Close</button>
+    <button type="button" class="btn btn-primary"><img src="" alt=""><i class="bi bi-check2-circle"></i> Save </button>
 </div>
-
