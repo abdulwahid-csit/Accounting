@@ -13,7 +13,7 @@ export class ManufacturingComponent implements OnInit {
   update: boolean = false;
   user: any;
   accountTypes: { type: string; key: string }[] = [
-    { type: 'Manufacture Order', key: 'manufacture_Order' },
+    // { type: 'Manufacture Order', key: 'manufacture_Order' },
     { type: 'Material Cost', key: 'material_cost' },
     { type: 'Labour Cost', key: 'labour_cost' }
   ];
@@ -62,7 +62,6 @@ export class ManufacturingComponent implements OnInit {
       labour_cost: {},
       business: this.user.business
     };
-
     this.accounts.forEach(account => {
       if (account.payment_account || account.deposite_account) {
       if (account.enable) {
@@ -82,7 +81,7 @@ export class ManufacturingComponent implements OnInit {
       }
     }
     });
-
+console.log("data",data)
     // Send the data to the backend
     this.CrudService.create('manufacture/create-update',data).subscribe(
       response => {
@@ -100,7 +99,7 @@ export class ManufacturingComponent implements OnInit {
   }
 
   fetchSetting() {
-    this.CrudService.read('manufacture/',this.user?.business).subscribe(
+    this.CrudService.read('manufacture/business',this.user?.business).subscribe(
       (response: any) => {
         if (response?.data?.data) {
           this.setting = response.data.data;
