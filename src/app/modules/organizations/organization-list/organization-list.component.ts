@@ -22,22 +22,7 @@ export class OrganizationListComponent {
     }
   };
 
-  columns = [
-    { name: 'Type', key: 'isChecked', isCheckbox: true },
-    { name: 'Name', key: 'name', },
-    { name: 'Industry', key: 'industry' },
-    { name: 'Business Type', key: 'business_type' },
-    { name: 'adminn Email', key: 'admin_email' },
-    { name: 'ein Number', key: 'ein_number' },
-    { name: 'ntn Number', key: 'ntn_number' },
-    { name: 'Address', key: 'address' },
-    { name: 'Domain', key: 'domain' },
-    { name: 'Phone', key: 'phone' },
-    { name: 'City', key: 'city' },
-    { name: 'Zip', key: 'zip' },
-    { name: 'State', key: 'state' },
-    { name: 'Country', key: 'country' },
-    { name: 'Options', key: 'icons' }
+  columns: any = [
 ];
  
   constructor(private modalService:BsModalService, private crudService:CrudService){}
@@ -71,8 +56,10 @@ updateOrganization(data?: any) {
 
  organizationList(){
    this.crudService.read('business').subscribe(response => {
-    if (response.data?.status_code === 200) {
-      this.applicationList = response.data.data.payload;
+    if (response.data?.status_code === 200 || response.data?.status_code === 201) {
+      const column = Object.keys(response.data?.data?.payload[(0)]);
+      this.columns = column.filter((column:string) =>  column !== 'id');
+      this.applicationList = response.data?.data?.payload;
       this.tableConfig.paginationParams = response.data.data.paginate_options;
     } else {
       console.log("Error response: ", response);
@@ -81,6 +68,18 @@ updateOrganization(data?: any) {
     console.error("An error occurred while fetching data:", error);
   });
 }
+// this.CrudService.read('charts-of-accounts').subscribe(response => {
+//   if (response?.data?.status_code == 201 || response.data?.status_code == 200) {
+//     const column = Object.keys(response.data?.data?.payload[0]);
+//     this.columns = column.filter((column: string) => column !== '_id' &&
+//     column !== 'business' && column !== 'is_deleted' && column !== 'active');
+//     this.dataSet = response.data?.data?.payload;
+//     console.log("Columns are: ", this.columns);
+//     console.log("Charts of account data.", this.dataSet);
+//     this.tableConfig.paginationParams = response?.data?.data?.paginate_options      }
+// }, error => {
+//   console.log("Error ", error.message)
+// })
 
 editRow(row: any) {
   this.updateOrganization(row);
