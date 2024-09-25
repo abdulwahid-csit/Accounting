@@ -37,7 +37,7 @@ const routes: Routes = [
 
       },
       {
-        path: 'journal-entry',
+        path: 'journal',
         loadChildren: () => import('../modules/journal-entry/journal-entry.module').then(m => m.JournalEntryModule),
 
       },

@@ -1,5 +1,7 @@
+import { TransactionsListComponent } from './../../../modules/dashboard/components/bank-account-list/transactions-list/transactions-list.component';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { count } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-data-table',
@@ -40,7 +42,9 @@ export class DataTableComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.printDataset();
+   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['searchTerm'] || changes['dataSet'] || changes['config']) {
@@ -108,16 +112,26 @@ export class DataTableComponent implements OnInit {
     this.router.navigate([detailRoute]);
   }
 
-  getOrganization(value: any) {
-    if (value && typeof value === 'object') {
-      return value.name;
+  getObjectValues(value: any) {
+    if (value && typeof value == 'object') {
+      let title:string = value.title;
+      return title.length > 30 ? title.slice(0, 20) + '...' : title;
     }
     return '';
   }
 
+  getTitle(value: any) {
+    if (value && typeof value == 'object') {
+      return value.title;
+    }
+    return '-';
+  }
+
+ 
+
   getRole(value: any) {
     if (value && typeof value === 'object') {
-      return value.name;
+      return value.title;
     }
     return '';
   }
@@ -146,4 +160,16 @@ export class DataTableComponent implements OnInit {
   //     this.selectedItems = [];
   //   }
   // }
+
+  
+  printDataset(){
+    setTimeout(() => {
+      console.log('Data set in datatable: ', this.dataSet);
+      this.filterData = this.dataSet;
+    }, 2000);
+  }
+
+  printRows(column: any){
+console.log("Coulumns in datatable: ", column);
+  }
 }
