@@ -166,7 +166,10 @@ export class DataTableComponent implements OnInit {
     setTimeout(() => {
       console.log('Data set in datatable: ', this.dataSet);
       this.filterData = this.dataSet;
-    }, 2000);
+      // this.columns = this.columns.map((column: string | number) => 
+      //   column.toString().replace(/[_-]/g, ' ').trim()
+      // );
+       }, 2000);
   }
 
   printRows(column: any){

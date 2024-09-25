@@ -22,23 +22,24 @@ export class BankAccountsComponent implements OnInit {
   currentPage: number = 1;
   selected: number = 1;
   selectedRecords: number = 1;
+  columns: string[] | undefined;
   constructor(private modalService: BsModalService,private toastr: ToastrService,
     private CrudService : CrudService
 
   ) { }
-  columns = [
-    { name: 'Check', key: 'isChecked', isCheckbox: true },
-    { name: 'Opening Date', key: 'opening_date' },
-    { name: 'Branch Name', key: 'branch_name' },
-    { name: 'Bank Name', key: 'bank' },
-    { name: 'Acoount Nature', key: 'account_natures' },
-    { name: 'Title Of Account', key: 'name' },
-    { name: 'Account Number', key: 'account_number' },
-    { name: 'IBAN Number', key: 'iban_number' },
-    { name: 'Opening balance', key: 'balance' },
-    { name: 'Active', key: 'Active' },
-    { name: 'Options', key: 'icons' }
-  ];
+  // columns = [
+  //   { name: 'Check', key: 'isChecked', isCheckbox: true },
+  //   { name: 'Opening Date', key: 'opening_date' },
+  //   { name: 'Branch Name', key: 'branch_name' },
+  //   { name: 'Bank Name', key: 'bank' },
+  //   { name: 'Acoount Nature', key: 'account_natures' },
+  //   { name: 'Title Of Account', key: 'name' },
+  //   { name: 'Account Number', key: 'account_number' },
+  //   { name: 'IBAN Number', key: 'iban_number' },
+  //   { name: 'Opening balance', key: 'balance' },
+  //   { name: 'Active', key: 'Active' },
+  //   { name: 'Options', key: 'icons' }
+  // ];
 
   tableConfig = {
     paginationParams: {
@@ -81,12 +82,16 @@ export class BankAccountsComponent implements OnInit {
           // console.log('Banking Data:', this.bankingData);
           // console.log(' this.tableConfig.paginationParams:',  this.tableConfig.paginationParams);
           this.selected = this.tableConfig.paginationParams.payload_size;
-        this.selectedRecords = this.tableConfig.paginationParams.total_records;
+          this.selectedRecords = this.tableConfig.paginationParams.total_records;
 
         // If the number of records displayed matches the total number of records, set the page size to "All"
         if (this.selected === this.selectedRecords) {
           this.selectedPageSize = 1;
         }
+        const column = Object.keys(response.data?.data?.payload[0]);
+        this.columns = column.filter((column: string) => column !== '_id' &&
+        column !== 'business');
+        console.log("this.columns",this.columns)
         } else {
           console.error('Unexpected response format', response);
         }
