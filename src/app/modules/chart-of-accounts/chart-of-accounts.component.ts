@@ -1,3 +1,4 @@
+import { DashboardComponent } from './../dashboard/dashboard/dashboard.component';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -18,18 +19,23 @@ export class ChartOfAccountsComponent implements OnInit {
   isDetailTypeFocus = false;
   isStatusFocus = false;
   accoutTypes: any;
+  accountLevelOne: any;
+  accountLevelTwo: any;
+  accountLevelThree: any
+  dataSet: any;
 
   applicationList: any[] = [];
-  columns = [
+  columns: any = [
     { name: 'Check', key: 'isChecked', isCheckbox: true },
-    { name: 'Name', key: 'Name' },
-    { name: 'Parent Account', key: 'ParentAccount' },
-    { name: 'Guy', key: 'Type' },
-    { name: 'Type of Details', key: 'DetailType' },
-    { name: 'Primary Balance', key: 'PrimaryBalance' },
-    { name: 'Bank Balance', key: 'BankBalance' },
-    { name: 'Assets', key: 'Active' },
-    { name: 'Options', key: 'Options' }
+    { name: 'name', key: 'name' },
+    { name: 'account type', key: 'account type' },
+    { name: 'Level 1', key: 'level_one' },
+    { name: 'Level 2', key: 'level_two' },
+    { name: 'Level 3', key: 'level_three' },
+    { name: 'number', key: 'number' },
+    { name: 'Description', key: 'description' },
+    { name: 'Options', key: 'Options' },
+    
   ];
 
   tableConfig = {
@@ -43,78 +49,6 @@ export class ChartOfAccountsComponent implements OnInit {
     }
   };
 
-  response = {
-    "status_code": 200,
-    "message": "Paginated list with data and paginate options.",
-    "data": {
-      "payload": [
-        {
-          "id": 1,
-          "Name": "Sales of Product Income",
-          "ParentAccount": "",
-          "Guy": "Income",
-          "Type Of Details": "Unapplied Cash Payment Income",
-          "PrimaryBalance": 1200.50,
-          "BankBalance": null,
-          "Assets": true,
-          "Options": "History",
-          // "Date": "2024-09-01",
-          // "isChecked": false
-        },
-        {
-          "id": 2,
-          "Name": "Asim Doe",
-          "ParentAccount": "PreSales",
-          "Type": "Expensed",
-          "DetailType": "Traveled",
-          "PrimaryBalance": 1200.50,
-          "BankBalance": 800.75,
-          "Active": true,
-          "Options": "Edit",
-          "Date": "2024-09-01",
-          "isChecked": false
-        },
-        {
-          "id": 3,
-          "Name": "Wahid Doe",
-          "ParentAccount": "PreSales",
-          "Type": "Expensed",
-          "DetailType": "Traveled",
-          "PrimaryBalance": 1400.50,
-          "BankBalance": 1800.75,
-          "Active": true,
-          "Options": "Edit",
-          "Date": "2024-09-01",
-          "isChecked": false
-        },
-        {
-          "id": 4,
-          "Name": "Afaq Doe",
-          "ParentAccount": "InSales",
-          "Type": "Expensedive",
-          "DetailType": "Travelediner",
-          "PrimaryBalance": 2200.50,
-          "BankBalance": 3400.75,
-          "Active": true,
-          "Options": "Edit",
-          "Date": "2024-09-01",
-          "isChecked": false
-        },
-
-      ],
-      "paginate_options": {
-        "total_pages": 1,
-        "payload_size": 10,
-        "has_next": false,
-        "current_page": 1,
-        "skipped_records": 0,
-        "total_records": 10
-      }
-    },
-    "timestamp": "2024-09-10T08:06:46.886Z"
-  };
-
-
 
   constructor(
     private modalService: BsModalService,
@@ -122,16 +56,6 @@ export class ChartOfAccountsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.response && this.response.data && this.response.data.payload) {
-      this.applicationList = this.response.data.payload;
-      this.tableConfig.paginationParams = this.response.data.paginate_options;
-      // this.total_pages = this.response.data.paginate_options.total_pages;
-      // this.payload_size = this.response.data.paginate_options.payload_size;
-      // this.current_page = this.response.data.paginate_options.current_page;
-      // this.has_next = this.response.data.paginate_options.has_next;
-      // this.skipped_records = this.response.data.paginate_options.skipped_records;
-      // this.total_records = this.response.data.paginate_options.total_records;
-    }
     this.applicationForm = new FormGroup({
       organization: new FormControl('', [Validators.required]),
     })
@@ -172,20 +96,60 @@ export class ChartOfAccountsComponent implements OnInit {
 
   getChartOfAccounts() {
     this.CrudService.read('charts-of-accounts').subscribe(response => {
-      if (response?.data?.status_code == 201) {
-        console.log("Charts of account data is loaded.")
-      }
-      console.log("Charts Of Account Data: ", response.data)
+      if (response?.data?.status_code == 201 || response.data?.status_code == 200) {
+        const column = Object.keys(response.data?.data?.payload[0]);
+        this.columns = column.filter((column: string) => column !== '_id' &&
+        column !== 'business' && column !== 'is_deleted' && column !== 'active');
+        this.dataSet = response.data?.data?.payload;
+        console.log("Columns are: ", this.columns);
+        console.log("Charts of account data.", this.dataSet);
+        this.tableConfig.paginationParams = response?.data?.data?.paginate_options      }
     }, error => {
       console.log("Error ", error.message)
     })
   }
 
 
-  getAccountTypes(){
-    this.CrudService.read('meta-data/account-type').subscribe(response => {
-      if(response.data?.status_code == 200){
-        this.accoutTypes = response.data?.data;
+  getAccountTypes() {
+    this.CrudService.read('account-types/account-type').subscribe(response => {
+      if (response.data?.status_code == 201) {
+        this.accoutTypes = response.data?.data?.payload;
+      }
+    }, error => {
+      console.log("Error while frtcing account types: ", error.message);
+    })
+  }
+
+
+  getAccountLLevelOne(object: any) {
+    console.log("Get Account level one called.")
+    console.log("Object id is: ", object._id);
+    this.CrudService.read('account-types/level-one', object._id).subscribe(response => {
+      if (response.data?.status_code == 201) {
+        this.accountLevelOne = response.data?.data?.payload;
+      }
+    }, error => {
+      console.log("Error while frtcing account types: ", error.message);
+    })
+  }
+
+
+  getAccountLLevelTwo(object: any) {
+    console.log("Account LEvel Two is called: ", object._id);
+    this.CrudService.read('account-types/level-two').subscribe(response => {
+      if (response.data?.status_code == 201) {
+        this.accountLevelTwo = response.data?.data?.payload;
+      }
+    }, error => {
+      console.log("Error while frtcing account types: ", error.message);
+    })
+  }
+
+
+  getAccountLLevelThree(object: any) {
+    this.CrudService.read('account-types/level-three').subscribe(response => {
+      if (response.data?.status_code == 201) {
+        this.accountLevelThree = response.data?.data?.payload;
       }
     }, error => {
       console.log("Error while frtcing account types: ", error.message);

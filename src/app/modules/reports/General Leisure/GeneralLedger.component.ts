@@ -11,7 +11,8 @@ export class GeneralLedgerComponent implements OnInit {
 
   ngOnInit() {
   }
-  date = '19/09/2024';
+  startdate = '19/09/2024';
+  enddate = '10/09/2025'
  balanceSheetData = [
   {
     name: 'Assets',

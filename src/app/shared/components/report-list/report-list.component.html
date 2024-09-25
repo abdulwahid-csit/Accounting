@@ -1,74 +1,23 @@
 <div>
-<div class="col-md-12 col-lg-12 mt-5 main-content">
-  <div class="row d-flex align-items-center">
-    <div class="col-md-3 mb-3" *ngIf="isAccountsVisible">
-      <label for="accountsSelect" class="form-label">Accounts method</label>
+  <div class="col-md-12 col-lg-12 mt-3 px-2 ">
+    <div class="row d-flex align-items-center">
+      <div class="col-md-3 mb-3" *ngIf="isAccountsVisible">
+        <label for="accountsSelect" class="form-label">Accounts method</label>
 
-      <ng-select  bindLabel="name" bindValue="id" [(ngModel)]="selectedAccounts"
-        [multiple]="true" [groupBy]="'category'" placeholder="None selected" [closeOnSelect]="false">
-        <ng-template ng-option-tmp let-item="item">
-          <div class="custom-option">
-            <i class="fas fa-check custom-icon" *ngIf="selectedAccounts.includes(item.id)"></i>
-            {{ item.name }} <small>{{ item.category }}</small>
-          </div>
-        </ng-template>
-
-        <ng-template ng-header-tmp>
-          <input type="text" class="form-control mt-2" placeholder="Search..." [(ngModel)]="SearchItems"
-            (ngModelChange)="filterAccounts()" />
-          <hr class="p-0" />
-          <div class="ng-select-header d-flex justify-content-center">
-            <button type="button" class="btn btn-primary" (click)="selectAll()">Select All</button>
-            <button type="button" class="btn btn-secondary" (click)="deselectAll()">Deselect All</button>
-          </div>
-        </ng-template>
-      </ng-select>
-  </div>
-
-
-
-    <div class="col-md-3" *ngIf="isSubAccVisible" >
-      <div class="mb-3">
-        <label for="statusSelect" class="form-label">Sub Account</label>
-        <ng-select  bindLabel="name" bindValue="id" [(ngModel)]="selectedSubAccounts"
-          [multiple]="true" [groupBy]="'category'" placeholder="None selected" [closeOnSelect]="false">
+        <ng-select bindLabel="name" bindValue="id" [(ngModel)]="selectedAccounts" [multiple]="true"
+          [groupBy]="'category'" placeholder="None selected" [closeOnSelect]="false">
           <ng-template ng-option-tmp let-item="item">
             <div class="custom-option">
-              <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
-              {{ item.name }}
-
+              <i class="fas fa-check custom-icon" *ngIf="selectedAccounts.includes(item.id)"></i>
+              {{ item.name }} <small>{{ item.category }}</small>
             </div>
           </ng-template>
 
           <ng-template ng-header-tmp>
-            <input type="text" class="form-control mt-2" placeholder="Search..." />
+            <input type="text" class="form-control mt-2" placeholder="Search..." [(ngModel)]="SearchItems"
+              (ngModelChange)="filterAccounts()" />
             <hr class="p-0" />
             <div class="ng-select-header d-flex justify-content-center">
-              <button type="button" class="btn btn-primary" (click)=" selectAllSubAccounts()">Select All</button>
-              <button type="button" class="btn btn-secondary" (click)="deselectAllSubAccounts()">Deselect All</button>
-            </div>
-          </ng-template>
-        </ng-select>
-
-      </div>
-
-    </div>
-    <div class="col-md-3" *ngIf="isitemVisible">
-      <label for="fromDate" class="form-label">item</label>
-      <div class="mb-3">
-        <ng-select bindLabel="name" bindValue="id" [(ngModel)]="selectedSubAccounts"
-          [multiple]="true" [groupBy]="'category'" placeholder="None selected" [closeOnSelect]="false">
-          <ng-template ng-option-tmp let-item="item">
-            <div class="custom-option">
-              <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
-              {{ item.name }}
-            </div>
-          </ng-template>
-
-          <ng-template ng-header-tmp>
-            <input type="text" class="form-control mt-2" placeholder="Search..." />
-            <hr class="p-0" />
-            <div class="ng-select-header d-flex ">
               <button type="button" class="btn btn-primary" (click)="selectAll()">Select All</button>
               <button type="button" class="btn btn-secondary" (click)="deselectAll()">Deselect All</button>
             </div>
@@ -76,76 +25,193 @@
         </ng-select>
       </div>
 
-    </div>
 
-    <div class="col-md-3"  *ngIf="isDetailVisible">
-      <label for="fromDate" class="form-label">Detail Type</label>
-      <div class="mb-3"> <ng-select bindLabel="name" bindValue="id"
-          [(ngModel)]="selectedSubAccounts" [multiple]="true" [groupBy]="'category'" placeholder="None selected"
-          [closeOnSelect]="false">
-          <ng-template ng-option-tmp let-item="item">
-            <div class="custom-option">
-              <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
-              {{ item.name }}
 
-            </div>
-          </ng-template>
+      <div class="col-md-3" *ngIf="isDisplayByColumns">
+        <div class="mb-3">
+          <label for="statusSelect" class="form-label">Display columns by</label>
+          <ng-select bindLabel="name" bindValue="id" [(ngModel)]="selectedSubAccounts" [multiple]="true"
+            [groupBy]="'category'" placeholder="None selected" [closeOnSelect]="false">
+            <ng-template ng-option-tmp let-item="item">
+              <div class="custom-option">
+                <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
+                {{ item.name }}
 
-          <ng-template ng-header-tmp>
-            <input type="text" class="form-control mt-2" placeholder="Search..." />
-            <hr class="p-0" />
-            <div class="ng-select-header d-flex">
-              <button type="button" class="btn btn-primary" (click)="selectAll()">Select All</button>
-              <button type="button" class="btn btn-secondary" (click)="deselectAll()">Deselect All</button>
-            </div>
-          </ng-template>
-        </ng-select>
+              </div>
+            </ng-template>
+
+            <ng-template ng-header-tmp>
+              <input type="text" class="form-control mt-2" placeholder="Search..." />
+              <hr class="p-0" />
+              <div class="ng-select-header d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" (click)=" selectAllSubAccounts()">Select All</button>
+                <button type="button" class="btn btn-secondary" (click)="deselectAllSubAccounts()">Deselect All</button>
+              </div>
+            </ng-template>
+          </ng-select>
+
+        </div>
+
       </div>
-    </div>
+      <div class="col-md-3" *ngIf="isitemVisible">
+        <label for="fromDate" class="form-label">item</label>
+        <div class="mb-3">
+          <ng-select bindLabel="name" bindValue="id" [(ngModel)]="selectedSubAccounts" [multiple]="true"
+            [groupBy]="'category'" placeholder="None selected" [closeOnSelect]="false">
+            <ng-template ng-option-tmp let-item="item">
+              <div class="custom-option">
+                <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
+                {{ item.name }}
+              </div>
+            </ng-template>
 
+            <ng-template ng-header-tmp>
+              <input type="text" class="form-control mt-2" placeholder="Search..." />
+              <hr class="p-0" />
+              <div class="ng-select-header d-flex ">
+                <button type="button" class="btn btn-primary" (click)="selectAll()">Select All</button>
+                <button type="button" class="btn btn-secondary" (click)="deselectAll()">Deselect All</button>
+              </div>
+            </ng-template>
+          </ng-select>
+        </div>
 
-  </div>
-  <div class="row"   *ngIf="isFormdateVisible">
-    <div class="col-md-3">
-      <label for="">Form date</label>
-      <div class="input-group w-auto mt-2">
-        <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker
-          [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="datepickerInput">
-        <div class="input-group-append">
-          <span class="input-group-text" (click)="openDatepicker()">
-            <!-- Calendar SVG Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar"
-              viewBox="0 0 16 16">
-              <path
-                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-            </svg>
-          </span>
+      </div>
+
+      <!-- <div class="col-md-3" *ngIf="isDetailVisible">
+        <label for="fromDate" class="form-label">Detail Type</label>
+        <div class="mb-3"> <ng-select bindLabel="name" bindValue="id" [(ngModel)]="selectedSubAccounts"
+            [multiple]="true" [groupBy]="'category'" placeholder="None selected" [closeOnSelect]="false">
+            <ng-template ng-option-tmp let-item="item">
+              <div class="custom-option">
+                <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
+                {{ item.name }}
+
+              </div>
+            </ng-template>
+
+            <ng-template ng-header-tmp>
+              <input type="text" class="form-control mt-2" placeholder="Search..." />
+              <hr class="p-0" />
+              <div class="ng-select-header d-flex">
+                <button type="button" class="btn btn-primary" (click)="selectAll()">Select All</button>
+                <button type="button" class="btn btn-secondary" (click)="deselectAll()">Deselect All</button>
+              </div>
+            </ng-template>
+          </ng-select>
+        </div>
+      </div> -->
+
+      <div class="col-md-3" *ngIf="isDisplayByRows">
+        <label for="fromDate" class="form-label">Display rows by</label>
+        <div class="mb-3">
+          <ng-select bindLabel="name" bindValue="id" [(ngModel)]="selectedSubAccounts" [multiple]="true"
+            [groupBy]="'category'" placeholder="None selected" [closeOnSelect]="false">
+            <ng-template ng-option-tmp let-item="item">
+              <div class="custom-option">
+                <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
+                {{ item.name }}
+              </div>
+            </ng-template>
+
+            <ng-template ng-header-tmp>
+              <input type="text" class="form-control mt-2" placeholder="Search..." />
+              <hr class="p-0" />
+              <div class="ng-select-header d-flex ">
+                <button type="button" class="btn btn-primary" (click)="selectAll()">Select All</button>
+                <button type="button" class="btn btn-secondary" (click)="deselectAll()">Deselect All</button>
+              </div>
+            </ng-template>
+          </ng-select>
         </div>
       </div>
 
-    </div>
-    <div class="col-md-3" *ngIf="isTodateVisible">
-      <label for="">To date</label>
 
-      <div class="input-group w-auto mt-2">
-        <input type="text" placeholder="Datepicker" class="form-control customClass" bsDatepicker
-          [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="datepickerInput">
-        <div class="input-group-append">
-          <span class="input-group-text" (click)="openDatepicker()">
-            <!-- Calendar SVG Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar"
-              viewBox="0 0 16 16">
-              <path
-                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-            </svg>
-          </span>
+    </div>
+    <div class="row">
+      <div class="col-md-3" *ngIf="isFormdateVisible">
+        <label for=""><span class="text-danger">*</span>Form date</label>
+        <div class="input-group w-auto mt-2">
+          <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+            [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="datepickerInput">
+          <div class="input-group-append">
+            <span class="input-group-text" (click)="openDatepicker()">
+              <!-- Calendar SVG Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-3" *ngIf="isTodateVisible">
+        <label for=""><span class="text-danger">*</span>To date</label>
+
+        <div class="input-group w-auto mt-2">
+          <input type="text" placeholder="Datepicker" class="form-control customClass" bsDatepicker
+            [bsConfig]="{ isAnimated: true, containerClass: 'customClass' }" id="datepickerInput">
+          <div class="input-group-append">
+            <span class="input-group-text" (click)="openDatepicker()">
+              <!-- Calendar SVG Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-calendar"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+              </svg>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-   <div class="col-md-3 mt-3 p-3">
-    <button class="btn btn-primary">filter</button>
-   </div>
 
+      <div class="col-md-3" *ngIf="isBudget">
+        <div class="mb-3">
+          <label for="statusSelect" class="form-label">Budget</label>
+          <ng-select bindLabel="name" bindValue="id" [(ngModel)]="selectedSubAccounts" [multiple]="true"
+            [groupBy]="'category'" placeholder="None selected" [closeOnSelect]="false">
+            <ng-template ng-option-tmp let-item="item">
+              <div class="custom-option">
+                <i class="fas fa-check custom-icon" *ngIf="selectedSubAccounts.includes(item.id)"></i>
+                {{ item.name }}
+
+              </div>
+            </ng-template>
+
+            <ng-template ng-header-tmp>
+              <input type="text" class="form-control mt-2" placeholder="Search..." />
+              <hr class="p-0" />
+              <div class="ng-select-header d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" (click)=" selectAllSubAccounts()">Select All</button>
+                <button type="button" class="btn btn-secondary" (click)="deselectAllSubAccounts()">Deselect All</button>
+              </div>
+            </ng-template>
+          </ng-select>
+
+        </div>
+
+      </div>
+      <div class="col-md-1 d-flex justify-content-end mt-3 py-3">
+        <button class="btn btn-primary">filter</button>
+      </div>
+
+      <div class="col-md-1 mt-3 py-3">
+        <div class="dropdown show">
+          <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <span class="mx-2"><i class="fa-solid fa-print"></i></span>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Exprt PDF</a>
+            <a class="dropdown-item" href="#">Export Excel</a>
+          </div>
+        </div>
+      </div>
+
+
+  
     </div>
   </div>
 
