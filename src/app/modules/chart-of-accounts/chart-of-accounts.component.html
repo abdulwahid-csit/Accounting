@@ -16,7 +16,8 @@
           <label for="">Account Type</label>
           <ng-select class="" [multiple]="false" [ngClass]="{
         'ng-select-focused': isAccountFocus === true,
-      }" (focus)="isAccountFocus = true" (blur)="isAccountFocus = false" placeholder="Select Account Type" (change)="getAccountLLevelOne($event)">
+      }" (focus)="isAccountFocus = true" (blur)="isAccountFocus = false" placeholder="Select Account Type"
+            (change)="getAccountTypesOrLevels($event, 'level-one')">
             <ng-option *ngFor="let item of accoutTypes" [value]="item">{{item.title}} </ng-option>
           </ng-select>
         </div>
@@ -25,8 +26,7 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'ng-select-focused': isParrentAccountFocus === true,
       }" (focus)="isParrentAccountFocus = true" (blur)="isParrentAccountFocus = false"
-            placeholder="Select organization"
-            (change)="getAccountLLevelTwo($event)">
+            placeholder="Select organization" (change)="getAccountTypesOrLevels($event, 'level-two')">
             <ng-option *ngFor="let item of accountLevelOne" [value]="item">{{item.title}}</ng-option>
           </ng-select>
         </div>
@@ -34,9 +34,10 @@
           <label for="">Level 2</label>
           <ng-select class="" [multiple]="false" [ngClass]="{
         'ng-select-focused': isTypeFoucus === true,
-      }" (focus)="isTypeFoucus = true" (blur)="isTypeFoucus = false" placeholder="Select organization"  (change)="getAccountLLevelThree($event)">
+      }" (focus)="isTypeFoucus = true" (blur)="isTypeFoucus = false" placeholder="Select organization"
+            (change)="getAccountTypesOrLevels($event, 'level-three')">
             <ng-option *ngFor="let item of accountLevelTwo" [value]="item">{{item.title}}</ng-option>
-  
+
           </ng-select>
         </div>
         <div class="box">
@@ -60,7 +61,9 @@
       </div>
 
       <div class="table_div mt-5">
-        <app-data-table [columns]="columns" [config]="tableConfig" [dataSet]="dataSet"></app-data-table>
+        <app-data-table [columns]="columns" [editMethod]="editChartsOfAccount.bind(this)"
+          [deleteMethod]="deleteChartOFAccoundData.bind(this)" [config]="tableConfig" [dataSet]="dataSet"
+          (changePage)="getAccountTypesOrLevels($event, 'status')"></app-data-table>
       </div>
     </div>
   </div>
