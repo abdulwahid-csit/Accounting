@@ -70,4 +70,15 @@ export class CrudService {
   private handleError(error: any): Observable<never> {
     return throwError(() => new Error(error.error.errors[0]));
   }
+
+// get
+//   getBankResource(page: number = 1, pageSize: number = 10): Observable<any> {
+//     const url = `${this.apiUrl}banking`;
+//     const params = {
+//       page: page.toString(),
+//       pageSize: pageSize.toString()
+//     };
+//     return this.http.get(url, { headers: this.getHeaders(), params });
+// }
+
 }
