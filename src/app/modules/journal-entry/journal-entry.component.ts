@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
+import { CrudService } from 'src/app/shared/services/crud.service';
+
 
 @Component({
   selector: 'app-journal-entry',
@@ -10,13 +12,7 @@ export class JournalEntryComponent implements OnInit {
 
   applicationList: any[] = [];
 
-  columns = [
-    { name: 'Type', key: 'isChecked', isCheckbox: true },
-    { name: 'Journal date', key: 'Journaldate', },
-
-    { name: 'Number-Description', key: 'NumberDescription' },
-    { name: 'Reference', key: 'Reference' },
-    { name: 'Amount', key: 'Amount' }
+  columns: any = [
   ];
 
   bsConfig = {
@@ -28,86 +24,10 @@ export class JournalEntryComponent implements OnInit {
   openDatepicker() {
     this.datepicker?.show();
   }
-  constructor() { }
+  constructor(private CrudService : CrudService) { }
 
   ngOnInit() {
-    const response = {
-      "status_code": 200,
-      "message": "Paginated list with data and paginate options.",
-      "data": {
-        "payload": [
-          {
-            "id": 1,
-            "Journaldate": "15/08/2024",
-            "NumberDescription": "Accounts Receivable (A/R)",
-            "Reference": "Expense",
-            "Amount": "Accounts Receivable (A/R)",
-          
-            "Active": true,
-            "Options": "Edit",
-            "Date": "2024-09-01",
-            "isChecked": false
-          },
-          {
-            "id": 2,
-            "Journaldate": "15/08/2024",
-            "NumberDescription": "Accrued holiday payable",
-            "Reference": "Expensed",
-            "Amount": "Traveled",
-          
-            "Active": true,
-            "Options": "Edit",
-            "Date": "2024-09-01",
-            "isChecked": false
-          },
-          {
-            "id": 3,
-            "Journaldate": "15/08/2024",
-            "NumberDescription": "PreSales",
-            "Reference": "Expensed",
-            "Amount": "Traveled",
-          
-            "Active": true,
-            "Options": "Edit",
-            "Date": "2024-09-01",
-            "isChecked": false
-          },
-          {
-            "id": 4,
-            "Journaldate": "15/08/2024",
-            "NumberDescription": "Accrued non-current liabilities",
-            "Reference": "Expensedive",
-            "Amount": "Travelediner",
-          
-            "Active": true,
-            "Options": "Edit",
-            "Date": "2024-09-01",
-            "isChecked": false
-          },
-
-        ],
-        "paginate_options": {
-          "total_pages": 1,
-          "payload_size": 10,
-          "has_next": false,
-          "current_page": 1,
-          "skipped_records": 0,
-          "total_records": 10
-        }
-      },
-      "timestamp": "2024-09-10T08:06:46.886Z"
-    };
-
-    if (response && response.data && response.data.payload) {
-      this.applicationList = response.data.payload;
-      this.tableConfig.paginationParams = response.data.paginate_options;
-      // this.total_pages = response.data.paginate_options.total_pages;
-      // this.payload_size = response.data.paginate_options.payload_size;
-      // this.current_page = response.data.paginate_options.current_page;
-      // this.has_next = response.data.paginate_options.has_next;
-      // this.skipped_records = response.data.paginate_options.skipped_records;
-      // this.total_records = response.data.paginate_options.total_records;
-    }
+    this.fetchJournalEntry();
   }
 
   tableConfig = {
@@ -120,5 +40,18 @@ export class JournalEntryComponent implements OnInit {
       total_records: 10
     }
   };
+  fetchJournalEntry() {
+
+    this.CrudService.read('journal-entry',).subscribe((response)=>{
+      const column = Object.keys(response.data?.data?.payload[(0)]);
+      console.log("here are the columns of journal", column);
+      this.columns = column.filter((column:string) =>  column !== 'id');
+      this.applicationList = response.data?.data?.payload;
+      console.log("here is the response of the journal entry", response.data);
+      this.applicationList = response.data?.data?.payload;
+      this.tableConfig.paginationParams = response?.data?.data?.paginate_options;
+
+    })
+  }
 
 }

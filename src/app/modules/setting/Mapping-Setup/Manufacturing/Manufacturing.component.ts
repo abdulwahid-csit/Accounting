@@ -21,7 +21,7 @@ export class ManufacturingComponent implements OnInit {
   bankingData: any;
 
   constructor(
-    private LocalStoreService: LocalStoreService, 
+    private LocalStoreService: LocalStoreService,
     private toastr: ToastrService,
     private CrudService : CrudService
   ) { }
@@ -104,21 +104,21 @@ console.log("data",data)
         if (response?.data?.data) {
           this.setting = response.data.data;
           this.update = true;
-  
+
           // Iterate through the accounts and update payment accounts
           this.accounts.forEach(account => {
             const mapping = this.accountTypes.find(type => type.type === account.type);
             if (mapping) {
               // Update payment account based on the new response structure
               const paymentAccountData = this.setting[mapping.key]?.payment_account;
-  
+
               if (paymentAccountData) {
                 account.payment_account = paymentAccountData._id; // Set account ID
                 // account.payment_account = paymentAccountData.name; // Optional: Save the name if needed
               } else {
                 account.payment_account = ''; // Reset if not found
               }
-  
+
               // Assuming you might have a similar structure for deposit_account
               const depositAccountData = this.setting[mapping.key]?.deposite_account;
               if (depositAccountData) {
@@ -127,7 +127,7 @@ console.log("data",data)
               } else {
                 account.deposite_account = ''; // Reset if not found
               }
-  
+
               // Enable logic
               account.enable = account.payment_account !== '' || account.deposite_account !== '';
             }
