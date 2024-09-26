@@ -120,7 +120,7 @@ private LocalStoreService: LocalStoreService,private toastr:ToastrService
       (response: any) => {
         if (response?.data?.data?.payload) {
           this.bankingData = response?.data?.data?.payload
-          console.log("this.bankingData",this.bankingData)
+          // console.log("this.bankingData",this.bankingData)
           // Extracting the payload
           // this.bankingData = response.data.data.payload.map((item: any) => {
           //   return {
