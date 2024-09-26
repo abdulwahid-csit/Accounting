@@ -80,7 +80,12 @@ export class InventoryComponent implements OnInit {
         };
         const correspondingFlagKey = account.key.replace('_accounts', ''); // Creates key like "receiving_voucher"
         data[correspondingFlagKey] = true;
-      }}
+      }}else{
+        const accountKey = account.key.replace('_accounts', '');
+        // data[accountKey] = false;
+        data[account.key] = {
+        };
+      }
     });
 
     this.CrudService.create('inventory/create-update',data).subscribe(
@@ -110,7 +115,7 @@ export class InventoryComponent implements OnInit {
             const mapping = this.accountTypes.find(type => type.type === account.type);
             if (mapping) {
               // Update payment account based on the new response structure
-              const paymentAccountData = this.setting[mapping.key]?.payment_account;
+              const paymentAccountData = this.setting[mapping.key]?.payment_account || null;
   
               if (paymentAccountData) {
                 account.payment_account = paymentAccountData._id; // Set account ID
@@ -120,7 +125,7 @@ export class InventoryComponent implements OnInit {
               }
   
               // Assuming you might have a similar structure for deposit_account
-              const depositAccountData = this.setting[mapping.key]?.deposite_to;
+              const depositAccountData = this.setting[mapping.key]?.deposite_to || null;
               if (depositAccountData) {
                 account.deposite_account = depositAccountData._id; // Set account ID
                 // account.deposite_account = depositAccountData.name; // Optional: Save the name if needed

@@ -27,7 +27,8 @@ import { CustomerSummaryComponent } from './CustomerSummary/CustomerSummary.comp
     ReportsRoutes,
     FormsModule,
     NgSelectModule,
-    SharedModule
+    SharedModule,
+    
 
   ],
   declarations: [

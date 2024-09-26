@@ -24,8 +24,8 @@
 <div class="container mt-5 pt-5">
  <div class=" p-5 mt-5 ">
  <div class="mb-3">
-  <h2 class="text-center">ISOBOT</h2>
-  <p class="text-center">Reconciliation Detail</p>
+  <h2 class="text-center">{{title}}</h2>
+  <p class="text-center">{{subtitle}}</p>
   <p class="text-center">HDFC, Period Ending  {{date}}</p>
  </div>
 
@@ -44,7 +44,7 @@
 
     <tbody >
       <!-- Assets Loop -->
-      <ng-container *ngFor="let item of balanceSheetData">
+      <ng-container *ngFor="let item of reconciliationDetail">
         <tr >
           <td (click)="toggleSection(item)" class="cursor-pointer">
             <span *ngIf="item.currentAssets || item.longTermAssets"

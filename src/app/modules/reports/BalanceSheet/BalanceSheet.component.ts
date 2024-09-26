@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportDataService } from 'src/app/shared/services/reports-data.service';
 
 @Component({
   selector: 'app-BalanceSheet',
@@ -6,12 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./BalanceSheet.component.scss']
 })
 export class BalanceSheetComponent implements OnInit {
-
-  constructor() { }
+  title: string = 'GTSSolution';
+  subtitle: string = 'Balance Sheet Comparison';
+  date: string = '19/09/20';
+  
+  constructor(private reportDataService: ReportDataService) { }
 
   ngOnInit() {
+    this.sendDataToReportDataService()
   }
- date = '19/09/2024';
+
  balanceSheetData = [
   {
     name: 'Assets',
@@ -93,6 +98,11 @@ export class BalanceSheetComponent implements OnInit {
 
 toggleSection(item: any) {
   item.expanded = !item.expanded;
+}
+
+
+sendDataToReportDataService() {
+  this.reportDataService.updateReportData(this.balanceSheetData, this.title,this.subtitle, this.date);
 }
 
 }

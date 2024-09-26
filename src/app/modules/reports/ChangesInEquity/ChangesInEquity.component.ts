@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportDataService } from 'src/app/shared/services/reports-data.service';
 
 @Component({
   selector: 'app-ChangesInEquity',
@@ -6,13 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ChangesInEquity.component.scss']
 })
 export class ChangesInEquityComponent implements OnInit {
+  title: string = 'GTSSolution';
+  subtitle: string = 'InEquityReport';
+  date: string = '19/09/20';
 
-  constructor() { }
+  constructor(private reportDataService:ReportDataService) { }
 
   ngOnInit() {
+    this.sendDataToReportDataService();
   }
- date = '19/09/2024';
- balanceSheetData = [
+ 
+ changesInEquity = [
   {
     name: 'Assets',
     value2024: '',
@@ -93,6 +98,9 @@ export class ChangesInEquityComponent implements OnInit {
 
 toggleSection(item: any) {
   item.expanded = !item.expanded;
+}
+sendDataToReportDataService() {
+  this.reportDataService.updateReportData(this.changesInEquity, this.title,this.subtitle, this.date);
 }
 
 }
