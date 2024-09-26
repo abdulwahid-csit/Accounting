@@ -132,7 +132,7 @@ export class ItemMappingSetupComponent {
     postData['business'] = this.user.business
     this.CrudService.create('item-mapping-setup',postData).subscribe(
       response => {
-        console.log('Response:', response);
+        // console.log('Response:', response);
         this.toastr.success(
            'form saved successfully',
           'Success'
@@ -163,7 +163,7 @@ export class ItemMappingSetupComponent {
     postData['business'] = this.user.business
     this.CrudService.update('item-mapping-setup',this.data?._id,postData).subscribe(
       response => {
-        console.log('Response:', response);
+        // console.log('Response:', response);
         this.toastr.success(
           'form updated successfully',
          'Success'
