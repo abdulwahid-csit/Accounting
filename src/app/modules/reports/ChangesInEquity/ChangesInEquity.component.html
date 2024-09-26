@@ -44,7 +44,7 @@
 
     <tbody >
       <!-- Assets Loop -->
-      <ng-container *ngFor="let item of balanceSheetData">
+      <ng-container *ngFor="let item of changesInEquity">
         <tr >
           <td (click)="toggleSection(item)" class="cursor-pointer">
             <span *ngIf="item.currentAssets || item.longTermAssets"

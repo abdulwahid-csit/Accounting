@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportDataService } from 'src/app/shared/services/reports-data.service';
 
 @Component({
   selector: 'app-BudgetOveriew',
@@ -6,14 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./BudgetOveriew.component.scss']
 })
 export class BudgetOveriewComponent implements OnInit {
+  title: string = 'ISOBOT';
+  subtitle: string = 'Budget Overview';
+  date: string = '19/09/2024- 19/05/2024';
 
-  constructor() { }
+  constructor(private reportDataService:ReportDataService) { }
 
   ngOnInit() {
+    this.sendDataToReportDataService();
   }
-  startdate = '19/09/2024';
-  enddate   = '19/05/2024'
-  balanceSheetData = [
+  
+  budgetOverview = [
    {
      name: 'Assets',
      value2024: '',
@@ -95,5 +99,10 @@ export class BudgetOveriewComponent implements OnInit {
  toggleSection(item: any) {
    item.expanded = !item.expanded;
  }
+
+ sendDataToReportDataService() {
+  this.reportDataService.updateReportData(this.budgetOverview, this.title,this.subtitle, this.date);
+}
+
 
 }
