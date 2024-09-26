@@ -13,7 +13,7 @@
         </th>
       </tr>
     </thead>
-    <tbody [ngClass]="{'tbody-empty': filterData.length === 0}">
+    <tbody [ngClass]="{'tbody-empty': filterData?.length === 0}">
       <tr *ngFor="let row of dataSet">
         <td class="align-content-center" style="font-size: 12px;" *ngFor="let column of columns">
           <ng-container [ngSwitch]="column">
@@ -47,7 +47,7 @@
                 </label>
               </div>
             </span>
-            <span *ngSwitchCase="'icons'">
+            <span *ngSwitchCase="'actions'">
               <button (click)="editMethod(row)" class="btn btn-edit">
                 <i class="fas fa-edit"></i>
               </button>
@@ -56,7 +56,7 @@
               </button>
             </span>
 
-            <span *ngSwitchDefault [title]="row[column]">{{( row[column].length > 30) ? (row[column] | slice:0:30) +
+            <span *ngSwitchDefault [title]="row[column]">{{( row[column]?.length > 30) ? (row[column] | slice:0:30) +
               '...' : row[column] }}</span>
           </ng-container>
         </td>
@@ -67,7 +67,7 @@
     </tbody>
 
   </table>
-  <div class="dataTable_pagination d-flex align-items-center justify-content-between" *ngIf="filterData.length">
+  <div class="dataTable_pagination d-flex align-items-center justify-content-between" *ngIf="filterData?.length">
     <div>
       <p class="mb-0 fw-600 color-8492A6 fs-14px">
         Showing {{startItem}} to {{endItem}} of {{config.paginationParams.total_records}} results
