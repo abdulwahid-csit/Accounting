@@ -3,6 +3,7 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
 </div>
 <div class="modal-body">
+    <form [formGroup]="settingForm">
     <div class="row ">
         <div class="row mb-2">
             <div class="col-12">
@@ -18,9 +19,10 @@
         <div class="col-12">
             <label class="mb-2" for="">Payment account</label>
             <ng-select>
-                <ng-option>Sales </ng-option>
-                <ng-option>Dividend income </ng-option>
-                <ng-option>sales - retail </ng-option>
+                <ng-option *ngFor="let bank of bankingData" [value]="bank?._id">
+                    <!-- {{ bank?.name }} ({{ bank?.account_number }}) -->
+                    {{ bank?.name }}
+                  </ng-option> 
                </ng-select>
 
         </div>
@@ -29,8 +31,11 @@
     <div class="col-12">
         <label class="mb-2" for="">Deposit to</label>
         <ng-select>
-            <ng-option> class</ng-option>
-           </ng-select>
+            <ng-option *ngFor="let bank of bankingData" [value]="bank?._id">
+                <!-- {{ bank?.name }} ({{ bank?.account_number }}) -->
+                {{ bank?.name }}
+              </ng-option> 
+               </ng-select>
 
     </div>
 </div>
@@ -39,8 +44,12 @@
     <div class="col-12">
         <label class="mb-2" for="">Expenses</label>
         <ng-select>
-            <ng-option> class</ng-option>
-           </ng-select>
+            <ng-option *ngFor="let bank of bankingData" [value]="bank?._id">
+                <!-- {{ bank?.name }} ({{ bank?.account_number }}) -->
+                {{ bank?.name }}
+              </ng-option> 
+            
+            </ng-select>
         </div>
 </div>
 
@@ -48,8 +57,12 @@
         <div class="col-12">
         <label class="mb-2" for="">Deposit to</label>
         <ng-select>
-            <ng-option> class</ng-option>
-           </ng-select>
+            <ng-option *ngFor="let bank of bankingData" [value]="bank?._id">
+                <!-- {{ bank?.name }} ({{ bank?.account_number }}) -->
+                {{ bank?.name }}
+              </ng-option> 
+            
+            </ng-select>
         </div>
 </div>
 <div class="row mb-2 mt-2">
@@ -57,8 +70,11 @@
     <div class="col-12">
     <label class="mb-2" for="">Payment account</label>
     <ng-select>
-        <ng-option> class</ng-option>
-       </ng-select>
+        <ng-option *ngFor="let bank of bankingData" [value]="bank?._id">
+            <!-- {{ bank?.name }} ({{ bank?.account_number }}) -->
+            {{ bank?.name }}
+          </ng-option> 
+               </ng-select>
     </div>
 </div>
 
@@ -66,12 +82,16 @@
     <div class="col-12">
     <label class="mb-2" for="">Deposit to</label>
     <ng-select>
-        <ng-option> class</ng-option>
-       </ng-select>
+        <ng-option *ngFor="let bank of bankingData" [value]="bank?._id">
+            <!-- {{ bank?.name }} ({{ bank?.account_number }}) -->
+            {{ bank?.name }}
+          </ng-option> 
+               </ng-select>
     </div>
 </div>
 
 </div>
+</form>
 </div>
 <div class="modal-footer ">
     <button type="button" class="btn btn-light " (click)="close()"><i class="bi bi-x"></i> Close</button>
