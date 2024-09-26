@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportDataService } from 'src/app/shared/services/reports-data.service';
 
 @Component({
   selector: 'app-Tax-Summary',
@@ -7,14 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaxSummaryComponent implements OnInit {
 
-  constructor() { }
+  title: string = 'ISOBOT';
+  subtitle: string = 'Tax Summary Report';
+  date: string = '19/09/2024- 19/05/2024';
+
+  constructor(private reportDataService:ReportDataService) { }
 
   ngOnInit() {
+    this.sendDataToReportDataService();
   }
- startdate = '01/09/2024 ';
- enddate = '24/09/2024';
+ 
 
- balanceSheetData = [
+ taxSummary = [
   {
     name: 'Assets',
     value2024: '',
@@ -95,6 +100,9 @@ export class TaxSummaryComponent implements OnInit {
 
 toggleSection(item: any) {
   item.expanded = !item.expanded;
+}
+sendDataToReportDataService() {
+  this.reportDataService.updateReportData(this.taxSummary, this.title,this.subtitle, this.date);
 }
 
 }

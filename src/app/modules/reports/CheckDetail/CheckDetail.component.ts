@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportDataService } from 'src/app/shared/services/reports-data.service';
 
 @Component({
   selector: 'app-CheckDetail',
@@ -6,14 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./CheckDetail.component.scss']
 })
 export class CheckDetailComponent implements OnInit {
-  constructor() { }
+
+  title: string = 'ISOBOT';
+  subtitle: string = 'Check Detail';
+  date: string = '19/09/20-19/09/2024';
+
+  constructor(private reportDataService:ReportDataService) { }
 
   ngOnInit() {
+    this.sendDataToReportDataService();
   }
- startdate = '19/09/2024';
- enddate = '19/09/2024';
 
- balanceSheetData = [
+ checkDetail = [
   {
     name: 'Assets',
     value2024: '',
@@ -95,4 +100,9 @@ export class CheckDetailComponent implements OnInit {
 toggleSection(item: any) {
   item.expanded = !item.expanded;
 }
+
+sendDataToReportDataService() {
+  this.reportDataService.updateReportData(this.checkDetail, this.title,this.subtitle, this.date);
+}
+
 }
