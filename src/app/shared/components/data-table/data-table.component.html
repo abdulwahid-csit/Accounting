@@ -13,23 +13,23 @@
         </th>
       </tr>
     </thead>
-    <tbody [ngClass]="{'tbody-empty': filterData.length === 0}">
+    <tbody [ngClass]="{'tbody-empty': filterData?.length === 0}">
       <tr *ngFor="let row of dataSet">
         <td class="align-content-center" style="font-size: 12px;" *ngFor="let column of columns">
           <ng-container [ngSwitch]="column">
 
             <span *ngSwitchCase="'isChecked'">
-              <input type="checkbox" [(ngModel)]="row[column.key]" />
+              <input type="checkbox" [(ngModel)]="row[column]" />
             </span>
 
-            <span *ngSwitchCase="'opening_date'">{{ row[column.key] | date}}</span>
-            <span *ngSwitchCase="'branch_name'">{{ row[column.key] }}</span>
+            <span *ngSwitchCase="'opening_date'">{{ row[column] | date}}</span>
+            <!-- <span *ngSwitchCase="'branch_name'">{{ row[column] }}</span> -->
             <!-- <span *ngSwitchCase="'name'">{{ row[column.key] }}</span> -->
             <!-- <span *ngSwitchCase="'account_natures'">{{ row[column.key] }}</span> -->
             <span *ngSwitchCase="'bank'" [title]="getTitle(row[column])">{{getObjectValues(row[column]) || '-'}}</span>
-            <span *ngSwitchCase="'account_number'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'iban_number'">{{ row[column.key] }}</span>
-            <span *ngSwitchCase="'balance'">{{ row[column.key] | currency }}</span>
+            <!-- <span *ngSwitchCase="'account_number'">{{ row[column] }}</span>
+            <span *ngSwitchCase="'iban_number'">{{ row[column] }}</span> -->
+            <span *ngSwitchCase="'balance'">{{ row[column] | currency }}</span>
             <span *ngSwitchCase="'account_type'" [title]="getTitle(row[column])">{{getObjectValues(row[column]) ||
               '-'}}</span>
             <span *ngSwitchCase="'level_one'" [title]="getTitle(row[column])">{{getObjectValues(row[column]) ||
@@ -47,7 +47,7 @@
                 </label>
               </div>
             </span>
-            <span *ngSwitchCase="'icons'">
+            <span *ngSwitchCase="'actions'">
               <button (click)="editMethod(row)" class="btn btn-edit">
                 <i class="fas fa-edit"></i>
               </button>
@@ -56,18 +56,18 @@
               </button>
             </span>
 
-            <span *ngSwitchDefault [title]="row[column]">{{( row[column].length > 30) ? (row[column] | slice:0:30) +
+            <span *ngSwitchDefault [title]="row[column]">{{( row[column]?.length > 30) ? (row[column] | slice:0:30) +
               '...' : row[column] }}</span>
           </ng-container>
         </td>
       </tr>
-      <tr *ngIf="filterData.length === 0" class="text-center tbody-empty">
-        <td [attr.colspan]="columns.length" class="font_weight_600">No Data Found</td>
+      <tr *ngIf="filterData?.length === 0" class="text-center tbody-empty">
+        <td [attr.colspan]="columns?.length" class="font_weight_600">No Data Found</td>
       </tr>
     </tbody>
 
   </table>
-  <div class="dataTable_pagination d-flex align-items-center justify-content-between" *ngIf="filterData.length">
+  <div class="dataTable_pagination d-flex align-items-center justify-content-between" *ngIf="filterData?.length">
     <div>
       <p class="mb-0 fw-600 color-8492A6 fs-14px">
         Showing {{startItem}} to {{endItem}} of {{config.paginationParams.total_records}} results

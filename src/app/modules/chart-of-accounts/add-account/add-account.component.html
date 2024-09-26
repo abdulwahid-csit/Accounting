@@ -4,7 +4,7 @@
     <div class="fs-20px bold-font pb-0">
       <h3>Add Account</h3>
     </div>
-    <div class="close-button-x" (click)="closeModal()">
+    <div class="close-button-x" (click)="closeModal(false)">
       X
     </div>
   </div>
@@ -24,9 +24,9 @@
               }" (focus)="isAccounLevelFocus = true" (blur)="isAccounLevelFocus = false"
               placeholder="Select account level" (change)="setAccountFieldsVisibility($event);"
               formControlName="account_level">
-              <ng-option value="1">Level - 1 </ng-option>
-              <ng-option value="2">Level - 2 </ng-option>
-              <ng-option value="3">Level - 3 </ng-option>
+              <ng-option value="Level - 1">Level - 1 </ng-option>
+              <ng-option value="Level - 2">Level - 2 </ng-option>
+              <ng-option value="Level - 3">Level - 3 </ng-option>
             </ng-select>
           </div>
           <div class="mb-4 w-100 custom-ng-select">
@@ -45,7 +45,7 @@
         </div>
         <div class="d-md-flex justify-content-between gap-3">
           <div class="mb-4 w-100 custom-ng-select"
-            *ngIf="selectedAccountLevel == '1' || selectedAccountLevel == '2' || selectedAccountLevel == '3'">
+            *ngIf="selectedAccountLevel == 'Level - 1' || selectedAccountLevel == 'Level - 2' || selectedAccountLevel == 'Level - 3'">
             <label for="required" class="required">Select Level - 1</label>
             <ng-select class="" [multiple]="false" [ngClass]="{
             'custom-select-error': isControlHasError('level_one', 'required'),
@@ -58,7 +58,7 @@
             <small *ngIf="isControlHasError('level_one', 'required')" class="mt-1">Account level - 1 is
               required</small>
           </div>
-          <div class="mb-4 w-100 custom-ng-select" *ngIf="selectedAccountLevel =='2' || selectedAccountLevel == '3'">
+          <div class="mb-4 w-100 custom-ng-select" *ngIf="selectedAccountLevel =='Level - 2' || selectedAccountLevel == 'Level - 3'">
             <label for="" class="required">Select Level - 2</label>
             <ng-select class="" [multiple]="false" [ngClass]="{
             'custom-select-error': isControlHasError('level_two', 'required'),
@@ -73,7 +73,7 @@
           </div>
         </div>
         <div class="d-md-flex justify-content-between gap-3">
-          <div class="mb-4 w-100 custom-ng-select" *ngIf="selectedAccountLevel == '3'">
+          <div class="mb-4 w-100 custom-ng-select" *ngIf="selectedAccountLevel == 'Level - 3'">
             <label for="required" class="required">Select Level - 3</label>
             <ng-select class="" [multiple]="false" [ngClass]="{
               'custom-select-error': isControlHasError('level_three', 'required'),
@@ -185,10 +185,11 @@
     </div>
     <div id="print-section" #printSection style="display: none;"></div>
 
-    <div class="modal-footer pe-0">
+    <div class="modal-footer pe-0 border-top-0">
       <div class="d-flex gap-2 me-0">
-        <button class="btn btn-outline-secondary" (click)="closeModal()">Close</button>
-        <button class="primary_button" (click)="onSubmit()">Save</button>
+        <button class="btn btn-outline-secondary" (click)="closeModal(false)">Close</button>
+        <button class="primary_button" *ngIf="!isUpdateMode" (click)="onSubmit()">Save</button>
+        <button class="primary_button" *ngIf="isUpdateMode" (click)="onSubmit()">Update</button>
       </div>
     </div>
   </div>

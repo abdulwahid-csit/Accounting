@@ -83,7 +83,7 @@ export class DataTableComponent implements OnInit {
   updatePaginationRange() {
     const paginationParams = this.config?.paginationParams || {};
     const currentPage = paginationParams.current_page || 1;
-    const itemsPerPage = (paginationParams.items_per_page) || 10;
+    const itemsPerPage = (paginationParams.items_per_page ? paginationParams.items_per_page : paginationParams.payload_size ) || 10;
     const totalRecords = paginationParams.total_records ? paginationParams.total_records  : paginationParams.payload_size || this.filterData.length;
     this.startItem = (currentPage - 1) * itemsPerPage + 1;
     this.endItem = Math.min(currentPage * itemsPerPage, totalRecords);
@@ -166,7 +166,10 @@ export class DataTableComponent implements OnInit {
     setTimeout(() => {
       console.log('Data set in datatable: ', this.dataSet);
       this.filterData = this.dataSet;
-    }, 2000);
+      // this.columns = this.columns.map((column: string | number) => 
+      //   column.toString().replace(/[_-]/g, ' ').trim()
+      // );
+       }, 2000);
   }
 
   printRows(column: any){
