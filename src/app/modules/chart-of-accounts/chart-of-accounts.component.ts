@@ -1,12 +1,12 @@
 import { DashboardComponent } from './../dashboard/dashboard/dashboard.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { CrudService } from 'src/app/shared/services/crud.service';
 import { DeleteModalComponent } from 'src/app/shared/components/delete-modal/delete-modal.component';
 import { ToastrService } from 'ngx-toastr';
-
+import { RECORDS_LIMIT } from 'src/app/shared/constants/records-limit';
 @Component({
   selector: 'app-chart-of-accounts',
   templateUrl: './chart-of-accounts.component.html',
@@ -30,13 +30,17 @@ export class ChartOfAccountsComponent implements OnInit {
   applicationList: any[] = [];
   selectedPageSize = 20;
   currentPage: number = 1;
-
+  @Input() changePage: any;
+  filterLAstOptionId!: string;
+  recordsPerPage: string[] = RECORDS_LIMIT;
   selectedAccountTypeId!: string;
   selectedAccountLevelOneId!: string;
   selectedAccountLevelTwoId!: string;
   selectedAccountLevelThreeId!: string;
   selectedAccountStatus!: string;
-
+  firstPage = 10;
+  searchByName: string = '';
+  
   columns: any = [
     { name: 'Check', key: 'isChecked', isCheckbox: true },
   ];
@@ -57,14 +61,20 @@ export class ChartOfAccountsComponent implements OnInit {
     private modalService: BsModalService,
     private CrudService: CrudService,
     private toastr: ToastrService
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
+
     this.applicationForm = new FormGroup({
       organization: new FormControl('', [Validators.required]),
     })
     this.getChartOfAccounts();
     this.getAccountTypes();
+    // this.getAccountLLevelOne();
+    // this.getAccountLLevelTwo();
+    // this.getAccountLLevelThree();
   }
 
   isControlHasError(controlName: any, validationType: string): boolean {
@@ -79,13 +89,11 @@ export class ChartOfAccountsComponent implements OnInit {
 
 
   onSelectFoucus() {
-    console.log("NG slect focused");
     this.isFocused = true;
   }
 
   onNgSelectBlur() {
     this.isFocused = false;
-    console.log("Ng select blured.")
   }
 
 
@@ -117,7 +125,6 @@ export class ChartOfAccountsComponent implements OnInit {
         this.columns = column.filter((column: string) => column !== '_id' &&
           column !== 'business' && column !== 'is_deleted' && column !== 'active');
         this.dataSet = response.data?.data?.payload;
-        console.log("Columns are: ", this.columns);
         this.columns.push('actions');
         this.columns.unshift('isChecked');
         this.tableConfig.paginationParams = response?.data?.data?.paginate_options;
@@ -139,23 +146,19 @@ export class ChartOfAccountsComponent implements OnInit {
   }
 
 
-  getAccountLLevelOne(object: any) {
-    console.log("Get Account level one called.")
-    console.log("Object id is: ", object._id);
-    this.CrudService.read('account-types/level-one?accountType=' + object._id).subscribe(response => {
+  getAccountLLevelOne() {
+    this.CrudService.read('account-types/level-one').subscribe(response => {
       if (response.data?.status_code == 201 || response.data?.status_code == 200) {
         this.accountLevelOne = response.data?.data?.payload;
       }
     }, error => {
       console.log("Error while frtcing account types: ", error.message);
     })
-    this.getFilterChartsOfAccounts(object._id, 1)
   }
 
 
-  getAccountLLevelTwo(object: any) {
-    console.log("Account LEvel Two is called: ", object._id);
-    this.CrudService.read('account-types/level-two?levelOne=' + object._id).subscribe(response => {
+  getAccountLLevelTwo() {
+    this.CrudService.read('account-types/level-two').subscribe(response => {
       if (response.data?.status_code == 201) {
         this.accountLevelTwo = response.data?.data?.payload;
       }
@@ -165,7 +168,7 @@ export class ChartOfAccountsComponent implements OnInit {
   }
 
 
-  getAccountLLevelThree(object: any) {
+  getAccountLLevelThree() {
     this.CrudService.read('account-types/level-three').subscribe(response => {
       if (response.data?.status_code == 201) {
         this.accountLevelThree = response.data?.data?.payload;
@@ -176,60 +179,65 @@ export class ChartOfAccountsComponent implements OnInit {
   }
 
 
-  getAccountTypesOrLevels(object: any, accountLevelName: string) {
-    let id = object._id;
+
+
+  getAccountTypesOrLevels(object: any, accountLevelName: string,) {
+    if (object) {
+      var id = object._id;
+    }
     switch (accountLevelName) {
+      case 'account-type':
+        this.getChartOfAccounts();
+        this.selectedAccountTypeId = id;
+        if (id) {
+          this.CrudService.read('account-types/level-one?accountType=' + id).subscribe(response => {
+            if (response.data?.status_code == 201 || response.data?.status_code == 200) {
+              this.accountLevelOne = response.data?.data?.payload;
+            }
+          }, error => {
+            console.log("Error while frtcing account types: ", error.message);
+          })
+          this.getFilterChartsOfAccounts()
+        }
+        break;
+
       case 'level-one':
         this.selectedAccountLevelOneId = id;
-
-        this.CrudService.read('account-types/level-one?accountType=' + id).subscribe(response => {
-          if (response.data?.status_code == 201 || response.data?.status_code == 200) {
-            this.accountLevelOne = response.data?.data?.payload;
-          }
-        }, error => {
-          console.log("Error while frtcing account types: ", error.message);
-        })
-        this.getFilterChartsOfAccounts(id, 1)
-
-        break;
-      case 'level-two':
-        this.selectedAccountLevelTwoId = id;
-
-        this.CrudService.read('account-types/level-two?levelOne=' + id).subscribe(response => {
+        this.CrudService.read('account-types/level-two?accountType=' + this.selectedAccountTypeId).subscribe(response => {
           if (response.data?.status_code == 201 || response.data?.status_code == 200) {
             this.accountLevelTwo = response.data?.data?.payload;
           }
         }, error => {
           console.log("Error while frtcing account types: ", error.message);
         })
-        this.getFilterChartsOfAccounts(id, 1)
-
-        console.log("Call Level two api.")
+        this.getFilterChartsOfAccounts()
         break;
-      case 'level-three':
-        this.selectedAccountLevelThreeId = id;
 
-        this.CrudService.read('account-types/level-two?levelTwo=' + id).subscribe(response => {
+      case 'level-two':
+        this.selectedAccountLevelTwoId = id;
+        this.CrudService.read('account-types/level-three?accountType=' + this.selectedAccountTypeId).subscribe(response => {
           if (response.data?.status_code == 201 || response.data?.status_code == 200) {
             this.accountLevelThree = response.data?.data?.payload;
           }
         }, error => {
           console.log("Error while frtcing account types: ", error.message);
         })
-        this.getFilterChartsOfAccounts(id, 1)
-
-
-        console.log("Call Level three api.")
+        this.getFilterChartsOfAccounts()
         break;
+
+      case 'level-three':
+        this.selectedAccountLevelThreeId = id;
+        this.getFilterChartsOfAccounts();
+        break;
+
       case 'status':
-        this.selectedAccountStatus = id;
-        console.log("Call Level four api.")
+        this.selectedAccountStatus = object;
+        this.getFilterChartsOfAccounts();
         break;
     }
   }
 
   editChartsOfAccount(data: any) {
-    console.log('Edit Data For Charts of Account: ', data);
     this.addAccount(data);
   }
 
@@ -258,18 +266,50 @@ export class ChartOfAccountsComponent implements OnInit {
     })
   }
 
-  onPageSizeChange(event: Event) {
-    const selectElement = event.target as HTMLSelectElement;
-    const selectedSize = selectElement.value;
+  onPageSizeChange(event: string) {
+    const selectedSize = event;
     this.selectedPageSize = selectedSize === 'All' ? this.tableConfig.paginationParams.total_records : +selectedSize;
+    console.log("Total Records in table config are: ", this.tableConfig.paginationParams.total_records);
     this.currentPage = 1;
     this.getChartOfAccounts(this.currentPage, this.selectedPageSize);
   }
 
-  getFilterChartsOfAccounts(selectedOptionId: any, checkId: number) {
-    let selectOptionId = selectedOptionId;
-    console.log("selectOptionId", selectOptionId)
+  getFilterChartsOfAccounts(event?: KeyboardEvent) {
+    if(event){
+      let target = event.target as HTMLInputElement;
+      var searchTerm = target.value;
+      this.searchByName = searchTerm;
+      console.log("Serach term ", searchTerm);
+    }
+    let filterIds = {
+      accountType: this.selectedAccountTypeId ? `accountType=${this.selectedAccountTypeId}` : '',
+      levelOne: this.selectedAccountLevelOneId ? `accountType=${this.selectedAccountTypeId}` : '',
+      levelTwo: this.selectedAccountLevelTwoId ? `accountType=${this.selectedAccountTypeId}` : '',
+      levelThree: this.selectedAccountLevelThreeId ? `accountType=${this.selectedAccountTypeId}` : '',
+      active: this.selectedAccountStatus ? `active=${this.selectedAccountStatus}` : '',
+      search: this.searchByName ? `search=${this.searchByName}` : ''
+    };
+    let queryParams = Object.values(filterIds)
+      .filter(param => param)
+      .join('&');
+
+    this.CrudService.read(`charts-of-accounts?${queryParams}`).subscribe(response => {
+      if (response.data?.status_code == 200 || response.data?.status_code == 201) {
+        this.dataSet = response.data?.data?.payload;
+      }
+    }, error => {
+      console.log("Error ", error);
+    });
   }
 
+  getChartsOfAccountsByName(event: KeyboardEvent){
+    let target = event.target as HTMLInputElement;
+    let searchTerm = target.value;
+    console.log("Serach term ", searchTerm);
+  }
 
 }
+
+
+
+

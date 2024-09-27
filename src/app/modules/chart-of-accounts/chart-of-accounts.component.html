@@ -17,7 +17,7 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'ng-select-focused': isAccountFocus === true,
       }" (focus)="isAccountFocus = true" (blur)="isAccountFocus = false" placeholder="Select Account Type"
-            (change)="getAccountTypesOrLevels($event, 'level-one')">
+            (change)="getAccountTypesOrLevels($event, 'account-type')">
             <ng-option *ngFor="let item of accoutTypes" [value]="item">{{item.title}} </ng-option>
           </ng-select>
         </div>
@@ -26,7 +26,7 @@
           <ng-select class="" [multiple]="false" [ngClass]="{
         'ng-select-focused': isParrentAccountFocus === true,
       }" (focus)="isParrentAccountFocus = true" (blur)="isParrentAccountFocus = false"
-            placeholder="Select organization" (change)="getAccountTypesOrLevels($event, 'level-two')">
+            placeholder="Filter by level 1" (change)="getAccountTypesOrLevels($event, 'level-one')">
             <ng-option *ngFor="let item of accountLevelOne" [value]="item">{{item.title}}</ng-option>
           </ng-select>
         </div>
@@ -34,8 +34,8 @@
           <label for="">Level 2</label>
           <ng-select class="" [multiple]="false" [ngClass]="{
         'ng-select-focused': isTypeFoucus === true,
-      }" (focus)="isTypeFoucus = true" (blur)="isTypeFoucus = false" placeholder="Select organization"
-            (change)="getAccountTypesOrLevels($event, 'level-three')">
+      }" (focus)="isTypeFoucus = true" (blur)="isTypeFoucus = false" placeholder="Filter by level 2"
+            (change)="getAccountTypesOrLevels($event, 'level-two')">
             <ng-option *ngFor="let item of accountLevelTwo" [value]="item">{{item.title}}</ng-option>
 
           </ng-select>
@@ -43,8 +43,8 @@
         <div class="box">
           <label for="">Level 3</label>
           <ng-select class="" [multiple]="false" [ngClass]="{
-        'ng-select-focused': isDetailTypeFocus === true,
-      }" (focus)="isDetailTypeFocus = true" (blur)="isDetailTypeFocus = false" placeholder="Select organization">
+        'ng-select-focused': isDetailTypeFocus === true, 
+      }" (change)="getAccountTypesOrLevels($event, 'level-three')" (focus)="isDetailTypeFocus = true" (blur)="isDetailTypeFocus = false" placeholder="Filter by level 3">
             <ng-option *ngFor="let item of accountLevelThree" [value]="item">{{item.title}}</ng-option>
           </ng-select>
         </div>
@@ -52,18 +52,35 @@
           <label for="">Active</label>
           <ng-select class="" [multiple]="false" [ngClass]="{
         'ng-select-focused': isStatusFocus === true,
-      }" (focus)="isStatusFocus = true" (blur)="isStatusFocus = false" placeholder="Select organization">
-            <ng-option [value]="'id'">All </ng-option>
-            <ng-option [value]="'id'">Yes </ng-option>
-            <ng-option [value]="'id'">No </ng-option>
+      }" (change)="getAccountTypesOrLevels($event, 'status')" (focus)="isStatusFocus = true" (blur)="isStatusFocus = false" placeholder="Filter by status">
+            <ng-option [value]="''">All </ng-option>
+            <ng-option [value]="'true'">Yes </ng-option>
+            <ng-option [value]="'false'">No </ng-option>
           </ng-select>
         </div>
       </div>
 
-      <div class="table_div mt-5">
+      <div class="">
+        <div class="d-flex justify-content-between">
+        <div class="d-flex gap-3">
+          <div class="custom-recordsshow-dropdown">
+            <ng-select [(ngModel)]="firstPage" [clearable]="false" (change)="onPageSizeChange($event)">
+            <ng-option *ngFor="let item of recordsPerPage" [value]="item">{{item}}</ng-option>
+          </ng-select></div>
+          <div>
+            <button class="primary_button">Export</button>
+          </div>
+        </div>
+        <div class="search_input d-flex justify-content-end">
+          <input type="text" class="position-relative" (keyup)="getFilterChartsOfAccounts($event)" placeholder="Search..." aria-label="search" aria-describedby="basic-addon2">
+          <span><img src="../../../../assets/icons/search.svg" alt=""></span>
+      </div>
+      </div>
+    </div>
+      <div class="table_div mt-3">
         <app-data-table [columns]="columns" [editMethod]="editChartsOfAccount.bind(this)"
           [deleteMethod]="deleteChartOFAccoundData.bind(this)" [config]="tableConfig" [dataSet]="dataSet"
-          (changePage)="getAccountTypesOrLevels($event, 'status')"></app-data-table>
+          (changePage)="getChartOfAccounts($event)"></app-data-table>
       </div>
     </div>
   </div>

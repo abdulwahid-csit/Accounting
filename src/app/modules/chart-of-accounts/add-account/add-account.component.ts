@@ -169,7 +169,7 @@ export class AddAccountComponent implements OnInit {
 
   getAccountLLevelThree() {
     this.applicationForm.get('level_three')?.reset();
-    this.CrudService.read(`account-types/level-three?level-twe=${this.accountTypeId}`).subscribe(response => {
+    this.CrudService.read(`account-types/level-three?level-two=${this.accountTypeId}`).subscribe(response => {
       if (response.data?.status_code == 201) {
         this.accountLevelThree = response.data?.data?.payload;
       }

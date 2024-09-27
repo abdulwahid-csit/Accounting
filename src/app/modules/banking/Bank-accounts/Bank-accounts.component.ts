@@ -91,6 +91,8 @@ export class BankAccountsComponent implements OnInit {
         const column = Object.keys(response.data?.data?.payload[0]);
         this.columns = column.filter((column: string) => column !== '_id' &&
         column !== 'business');
+        this.columns.push('actions');
+        this.columns.unshift('isChecked');
         console.log("this.columns",this.columns)
         } else {
           console.error('Unexpected response format', response);

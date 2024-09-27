@@ -1,0 +1,1 @@
+export const RECORDS_LIMIT = [ '10', '25', '50', '100', 'All'];
