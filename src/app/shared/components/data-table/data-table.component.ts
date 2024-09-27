@@ -61,11 +61,11 @@ export class DataTableComponent implements OnInit {
 
   filteredData() {
     if (!Array.isArray(this.dataSet)) {
-      this.filterData = [];
+      // this.filterData = [];
       return;
     }
 
-      this.filterData = this.dataSet;
+      // this.filterData = this.dataSet;
     // if (!this.searchTerm) {
     // } else {
     //   const lowercasedSearchTerm = this.searchTerm.toLowerCase();
@@ -127,7 +127,7 @@ export class DataTableComponent implements OnInit {
     return '-';
   }
 
- 
+
 
   getRole(value: any) {
     if (value && typeof value === 'object') {
@@ -161,12 +161,12 @@ export class DataTableComponent implements OnInit {
   //   }
   // }
 
-  
+
   printDataset(){
     setTimeout(() => {
       console.log('Data set in datatable: ', this.dataSet);
       this.filterData = this.dataSet;
-      // this.columns = this.columns.map((column: string | number) => 
+      // this.columns = this.columns.map((column: string | number) =>
       //   column.toString().replace(/[_-]/g, ' ').trim()
       // );
        }, 2000);
