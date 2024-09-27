@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportDataService } from 'src/app/shared/services/reports-data.service';
 
 @Component({
   selector: 'app-CashFlows',
@@ -6,14 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./CashFlows.component.scss']
 })
 export class CashFlowsComponent implements OnInit {
+  title: string = 'ISOBOT';
+  subtitle: string = 'Statement of Cash Flows';
+  date: string = '19/09/2024- 19/05/2024';
 
-  constructor() { }
+  constructor(private reportDataService:ReportDataService) { }
 
   ngOnInit() {
+    this.sendDataToReportDataService();
   }
- startdate = '19/09/2024';
- enddate = '12/09/2024'
- balanceSheetData = [
+
+ cashFlowsData = [
   {
     name: 'Assets',
     value2024: '',
@@ -94,5 +98,8 @@ export class CashFlowsComponent implements OnInit {
 
 toggleSection(item: any) {
   item.expanded = !item.expanded;
+}
+sendDataToReportDataService() {
+  this.reportDataService.updateReportData(this.cashFlowsData, this.title,this.subtitle, this.date);
 }
 }

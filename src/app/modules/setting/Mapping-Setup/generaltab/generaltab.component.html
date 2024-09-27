@@ -387,14 +387,31 @@
 <table class="table table-responsive table-bordered  px-3 mt-4">
   <thead class="table-light">
       <tr>
-      <td>Description</td>
-      <td>Description</td>
-      <td>Description</td>
+      <td>Item</td>
+      <td>Inventory asset </td>
+      <td>Income Account</td>
+      <td>Expense Account</td>
+      <td>Actions</td>
     </tr>
   </thead>
-  <tr>
+  <tr *ngIf="bankingData?.length == 0">
     <td>No entries found</td>
   </tr>
+  <tr *ngFor="let item of bankingData">
+    <td>{{item?.item.name}}</td>
+    <td>{{item?.inventory_asset_account.name}}</td>
+    <td>{{item?.income_account.name}}</td>
+    <td>{{item?.expense_account.name}}</td>
+    <td> <span>
+      <button (click)="editMethod(item)" class="btn btn-edit">
+        <i class="fas fa-edit"></i>
+      </button>
+      <button (click)="deleteRow(item)" class="btn btn-delete">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </span></td>
+  </tr>
+
 </table>  
 </div>
 <!-- payment mode mapping -->

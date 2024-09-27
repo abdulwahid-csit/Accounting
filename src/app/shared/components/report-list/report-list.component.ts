@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ExportService } from '../../services/export.service';
+import { BalanceSheetComponent } from 'src/app/modules/reports/BalanceSheet/BalanceSheet.component';
+import { GeneralLedgerComponent } from 'src/app/modules/reports/General Leisure/GeneralLedger.component';
+import { ReportDataService } from '../../services/reports-data.service';
 
 @Component({
   selector: 'app-report-list',
@@ -32,6 +36,7 @@ export class ReportListComponent implements OnInit {
   subAccounts: readonly any[] | null | undefined;
   selectedAccounts: any;
   filteredAccounts: readonly any[] | null | undefined;
+  receivedData: any;
 
 
 
@@ -55,9 +60,17 @@ filterAccounts() {
 
 }
 
-  constructor() { }
+constructor(private reportDataService: ReportDataService, private exportService: ExportService) {}
+
+// // Function to get the current report data
 
   ngOnInit() {
+    this.reportDataService.reportData$.subscribe((data) => {
+      if (data) {
+        this.receivedData = data;
+        console.log('Received Data:', this.receivedData);
+      }
+    });
   }
 
 
@@ -69,6 +82,23 @@ filterAccounts() {
     return (
       control.hasError(validationType) && (control.dirty || control.touched)
     );
+  }
+
+  exportPDF() {
+    if (this.receivedData) {
+        this.exportService.exportToPDF(this.receivedData);
+    } else {
+        console.error("No data available for export");
+    }
+}
+
+
+  exportExcel() {
+    if (this.receivedData) {
+      this.exportService.exportToExcel(this.receivedData);
+  } else {
+      console.error("No data available for export");
+  }
   }
 
 }

@@ -19,7 +19,7 @@
 
        
         <div class="form-check form-switch border-start ">
-          <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="account.enable">
+          <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" (change)="toggleAccount(i)" [(ngModel)]="account.enable">
           <label class="form-check-label" for="flexSwitchCheckDefault"></label>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportDataService } from 'src/app/shared/services/reports-data.service';
 
 @Component({
   selector: 'app-ReconcilationDetail',
@@ -6,13 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ReconcilationDetail.component.scss']
 })
 export class ReconcilationDetailComponent implements OnInit {
+  title: string = 'ISOBOT';
+  subtitle: string = 'Reconciliation Detail';
+  date: string = '19/05/2024';
 
-  constructor() { }
+  constructor(private reportDataService:ReportDataService) { }
 
   ngOnInit() {
+    this.sendDataToReportDataService();
   }
- date = '19/09/2024';
- balanceSheetData = [
+
+ reconciliationDetail = [
   {
     name: 'Assets',
     value2024: '',
@@ -93,5 +98,9 @@ export class ReconcilationDetailComponent implements OnInit {
 
 toggleSection(item: any) {
   item.expanded = !item.expanded;
+}
+
+sendDataToReportDataService() {
+  this.reportDataService.updateReportData(this.reconciliationDetail, this.title,this.subtitle, this.date);
 }
 }

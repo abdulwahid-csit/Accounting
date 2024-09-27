@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportDataService } from 'src/app/shared/services/reports-data.service';
 
 @Component({
   selector: 'app-CustomerSummary',
@@ -6,14 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./CustomerSummary.component.scss']
 })
 export class CustomerSummaryComponent implements OnInit {
+  title: string = 'ISOBOT';
+  subtitle: string = 'Custom Summary Report';
+  date: string = '19/09/2024- 19/05/2024';
 
-  constructor() { }
+  constructor(private reportDataService:ReportDataService) { }
 
   ngOnInit() {
+    this.sendDataToReportDataService();
   }
-  startdate = '19/06/2024';
-  enddate = '10/09/2020'
- balanceSheetData = [
+ 
+ customerSummary = [
   {
     name: 'Assets',
     value2024: '',
@@ -94,6 +98,9 @@ export class CustomerSummaryComponent implements OnInit {
 
 toggleSection(item: any) {
   item.expanded = !item.expanded;
+}
+sendDataToReportDataService() {
+  this.reportDataService.updateReportData(this.customerSummary, this.title,this.subtitle, this.date);
 }
 
 }
