@@ -139,8 +139,8 @@ export class AddAccountComponent implements OnInit {
     this.applicationForm.get('level_one')?.reset();
     this.applicationForm.get('level_two')?.reset();
     this.applicationForm.get('level_three')?.reset();
-    this.accountLevelTwo  = [];
-    this.accountLevelThree  = [];
+    this.accountLevelTwo = [];
+    this.accountLevelThree = [];
     this.accountTypeId = id;
     this.CrudService.read('account-types/level-one?account_type=' + id).subscribe(response => {
       if (response.data?.status_code == 201) {
@@ -155,7 +155,7 @@ export class AddAccountComponent implements OnInit {
   getAccountLLevelTwo() {
     this.applicationForm.get('level_two')?.reset();
     this.applicationForm.get('level_three')?.reset();
-    this.accountLevelThree  = [];
+    this.accountLevelThree = [];
     console.log("Account LEvel Two is called: ",);
     this.CrudService.read(`account-types/level-two?level_one=${this.accountTypeId}`).subscribe(response => {
       if (response.data?.status_code == 201) {

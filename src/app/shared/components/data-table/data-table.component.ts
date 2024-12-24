@@ -43,7 +43,6 @@ export class DataTableComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.printDataset();
    }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -61,11 +60,11 @@ export class DataTableComponent implements OnInit {
 
   filteredData() {
     if (!Array.isArray(this.dataSet)) {
-      // this.filterData = [];
+      this.filterData = [];
       return;
     }
 
-      // this.filterData = this.dataSet;
+      this.filterData = this.dataSet;
     // if (!this.searchTerm) {
     // } else {
     //   const lowercasedSearchTerm = this.searchTerm.toLowerCase();
@@ -162,17 +161,17 @@ export class DataTableComponent implements OnInit {
   // }
 
 
-  printDataset(){
-    setTimeout(() => {
-      console.log('Data set in datatable: ', this.dataSet);
-      this.filterData = this.dataSet;
-      // this.columns = this.columns.map((column: string | number) =>
-      //   column.toString().replace(/[_-]/g, ' ').trim()
-      // );
-       }, 2000);
-  }
+//   printDataset(){
+//     setTimeout(() => {
+//       console.log('Data set in datatable: ', this.dataSet);
+//       this.filterData = this.dataSet;
+//       // this.columns = this.columns.map((column: string | number) =>
+//       //   column.toString().replace(/[_-]/g, ' ').trim()
+//       // );
+//        }, 2000);
+//   }
 
-  printRows(column: any){
-console.log("Coulumns in datatable: ", column);
-  }
+//   printRows(column: any){
+// console.log("Coulumns in datatable: ", column);
+//   }
 }

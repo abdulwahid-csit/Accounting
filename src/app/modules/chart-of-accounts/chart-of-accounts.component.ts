@@ -65,6 +65,7 @@ export class ChartOfAccountsComponent implements OnInit {
 
   }
 
+
   ngOnInit() {
 
     this.applicationForm = new FormGroup({
@@ -76,6 +77,7 @@ export class ChartOfAccountsComponent implements OnInit {
     // this.getAccountLLevelTwo();
     // this.getAccountLLevelThree();
   }
+
 
   isControlHasError(controlName: any, validationType: string): boolean {
     const control = this.applicationForm.controls[controlName];
@@ -91,6 +93,7 @@ export class ChartOfAccountsComponent implements OnInit {
   onSelectFoucus() {
     this.isFocused = true;
   }
+
 
   onNgSelectBlur() {
     this.isFocused = false;
@@ -179,8 +182,6 @@ export class ChartOfAccountsComponent implements OnInit {
   }
 
 
-
-
   getAccountTypesOrLevels(object: any, accountLevelName: string,) {
     if (object) {
       var id = object._id;
@@ -237,9 +238,11 @@ export class ChartOfAccountsComponent implements OnInit {
     }
   }
 
+
   editChartsOfAccount(data: any) {
     this.addAccount(data);
   }
+
 
   deleteChartOFAccoundData(data: any) {
     // this.itemToDelete = data._id;
@@ -256,6 +259,7 @@ export class ChartOfAccountsComponent implements OnInit {
     });
   }
 
+
   delete(id: any) {
     this.CrudService.delete('charts-of-accounts', id).subscribe(response => {
       this.getChartOfAccounts();
@@ -266,6 +270,7 @@ export class ChartOfAccountsComponent implements OnInit {
     })
   }
 
+
   onPageSizeChange(event: string) {
     const selectedSize = event;
     this.selectedPageSize = selectedSize === 'All' ? this.tableConfig.paginationParams.total_records : +selectedSize;
@@ -274,12 +279,12 @@ export class ChartOfAccountsComponent implements OnInit {
     this.getChartOfAccounts(this.currentPage, this.selectedPageSize);
   }
 
+
   getFilterChartsOfAccounts(event?: KeyboardEvent) {
     if(event){
       let target = event.target as HTMLInputElement;
       var searchTerm = target.value;
       this.searchByName = searchTerm;
-      console.log("Serach term ", searchTerm);
     }
     let filterIds = {
       accountType: this.selectedAccountTypeId ? `accountType=${this.selectedAccountTypeId}` : '',
@@ -302,14 +307,10 @@ export class ChartOfAccountsComponent implements OnInit {
     });
   }
 
+
   getChartsOfAccountsByName(event: KeyboardEvent){
     let target = event.target as HTMLInputElement;
     let searchTerm = target.value;
     console.log("Serach term ", searchTerm);
   }
-
 }
-
-
-
-
